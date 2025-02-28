@@ -1,17 +1,22 @@
 package frogger.model.implementations;
 
 import frogger.common.Position;
+import frogger.model.MovingObject;
 import frogger.model.interfaces.Game;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.HashSet;
+import java.util.Set;
 
 public class GameImpl implements Game, KeyListener{
 
     private PlayerObjectImpl player;
+    private Set<MovingObject> obstacles;
 
     public GameImpl(PlayerObjectImpl player){
         this.player = player;
+        this.obstacles = new HashSet<>();
     }
 
     @Override
@@ -46,5 +51,10 @@ public class GameImpl implements Game, KeyListener{
 
     @Override
     public void keyReleased(KeyEvent e) {}
+
+    @Override
+    public boolean checkCollision() {
+        return this.obstacles.stream().map(x -> x.getPos()).anyMatch(x -> x.equals(this.player.getPos()));
+    }
 
 }

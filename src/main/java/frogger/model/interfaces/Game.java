@@ -5,4 +5,6 @@ public interface Game {
     boolean isGameOver();
 
     int getScore();
+
+    boolean checkCollision();
 }
