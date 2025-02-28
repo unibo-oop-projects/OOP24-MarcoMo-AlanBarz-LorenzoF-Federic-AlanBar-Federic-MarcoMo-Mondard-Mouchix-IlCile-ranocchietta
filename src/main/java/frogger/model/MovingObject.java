@@ -1,8 +1,9 @@
 package frogger.model;
 
 import frogger.common.Position;
+import frogger.model.implementations.GameObjectImpl;
 
-public class MovingObject extends GameObject {
+public class MovingObject extends GameObjectImpl {
     private int direction;
     private float speed;
 

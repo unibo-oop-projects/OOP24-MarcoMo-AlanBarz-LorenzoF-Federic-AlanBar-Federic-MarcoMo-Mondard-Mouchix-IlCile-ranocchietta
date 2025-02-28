@@ -4,8 +4,9 @@ import java.util.LinkedList;
 import java.util.List;
 
 import frogger.common.Position;
+import frogger.model.implementations.GameObjectImpl;
 
-public class Road extends GameObject implements Lane {
+public class Road extends GameObjectImpl implements Lane {
     public Road(Position pos, int dimension) {
         super(pos, dimension);
     }
