@@ -1,11 +1,12 @@
 package frogger.model.implementations;
 
+import frogger.common.Direction;
 import frogger.common.Position;
 import frogger.model.interfaces.PlayerObject;
 
 public class PlayerObjectImpl extends GameObjectImpl implements PlayerObject{
 
-    private boolean up, down, left, right;
+    private Direction direction = Direction.UP;
     private int lives;
     private int score;
 
@@ -24,43 +25,28 @@ public class PlayerObjectImpl extends GameObjectImpl implements PlayerObject{
     }
 
     @Override
-    public boolean isLookingRight() {
-        return this.right;
+    public Direction getDirection() {
+        return this.direction;
     }
 
     @Override
-    public void setLookingRight(boolean bool) {
-        this.right = bool;
+    public void setLookingRight() {
+        this.direction = Direction.RIGHT;
     }
 
     @Override
-    public boolean isLookingLeft() {
-        return this.left;
+    public void setLookingLeft() {
+        this.direction = Direction.LEFT;
     }
 
     @Override
-    public void setLookingLeft(boolean bool) {
-        this.left = bool;
+    public void setLookingDown() {
+        this.direction = Direction.DOWN;
     }
 
     @Override
-    public boolean isLookingDown() {
-        return this.down;
-    }
-
-    @Override
-    public void setLookingDown(boolean bool) {
-        this.down = bool;
-    }
-
-    @Override
-    public boolean isLookingUp() {
-        return this.up;
-    }
-
-    @Override
-    public void setLookingUp(boolean bool) {
-        this.up = bool;
+    public void setLookingUp() {
+        this.direction = Direction.UP;
     }
 
     @Override

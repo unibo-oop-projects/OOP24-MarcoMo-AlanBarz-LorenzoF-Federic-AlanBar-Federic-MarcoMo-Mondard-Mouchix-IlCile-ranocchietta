@@ -1,26 +1,22 @@
 package frogger.model.interfaces;
 
+import frogger.common.Direction;
+
 public interface PlayerObject {
 
     int getLives();
 
     void getHit();
 
-    boolean isLookingRight();
+    Direction getDirection();
 
-    void setLookingRight(boolean bool);
+    void setLookingRight();
 
-    boolean isLookingLeft();
+    void setLookingLeft();
 
-    void setLookingLeft(boolean bool);
+    void setLookingDown();
 
-    boolean isLookingDown();
-
-    void setLookingDown(boolean bool);
-
-    boolean isLookingUp();
-
-    void setLookingUp(boolean bool);
+    void setLookingUp();
 
     void addPoints(int points);
 
