@@ -21,4 +21,8 @@ public interface PlayerObject {
     boolean isLookingUp();
 
     void setLookingUp(boolean bool);
+
+    void addPoints(int points);
+
+    int getScore();
 }

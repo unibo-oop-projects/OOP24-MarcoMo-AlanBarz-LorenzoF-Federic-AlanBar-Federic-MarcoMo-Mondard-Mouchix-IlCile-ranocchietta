@@ -7,6 +7,7 @@ public class PlayerObjectImpl extends GameObjectImpl implements PlayerObject{
 
     private boolean up, down, left, right;
     private int lives;
+    private int score;
 
     public PlayerObjectImpl(Position pos, int dimension) {
         super(pos, dimension);
@@ -60,5 +61,15 @@ public class PlayerObjectImpl extends GameObjectImpl implements PlayerObject{
     @Override
     public void setLookingUp(boolean bool) {
         this.up = bool;
+    }
+
+    @Override
+    public void addPoints(int points) {
+        this.score+=points;
+    }
+
+    @Override
+    public int getScore() {
+        return this.score;
     }
 }
