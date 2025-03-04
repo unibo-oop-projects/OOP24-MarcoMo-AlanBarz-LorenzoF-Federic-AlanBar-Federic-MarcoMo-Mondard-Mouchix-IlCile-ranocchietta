@@ -1,7 +1,15 @@
 package frogger.model.interfaces;
 
+import java.util.List;
+
 import frogger.common.Direction;
 
 public interface Lane {
-    void spawnMovingObjct(float speed, Direction direction);
+    void addMovingObject(MovingObject obstacle);
+
+    void setSpeed(int speed);
+
+    void setDirection(Direction direction);
+
+    List<MovingObject> getLaneObstacles();
 }
