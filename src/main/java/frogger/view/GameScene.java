@@ -11,7 +11,8 @@ public class GameScene {
         frame = new JFrame("Ranocchietta");
         frame.setPreferredSize(new Dimension(600, 800));    //TODO: take the dimension from controller
         this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
+        frame.setResizable(false);
+        
         this.frame.add(panel);
         panel.requestFocus();
 

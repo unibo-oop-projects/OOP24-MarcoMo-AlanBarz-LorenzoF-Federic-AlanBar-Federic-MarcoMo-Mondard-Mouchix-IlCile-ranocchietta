@@ -1,7 +1,6 @@
 package frogger.model.implementations;
 
 import frogger.common.Position;
-import frogger.model.MovingObject;
 import frogger.model.interfaces.Game;
 
 import java.awt.event.KeyEvent;
@@ -12,7 +11,7 @@ import java.util.Set;
 public class GameImpl implements Game, KeyListener{
 
     private PlayerObjectImpl player;
-    private Set<MovingObject> obstacles;
+    private Set<MovingObjectImpl> obstacles;
 
     public GameImpl(PlayerObjectImpl player){
         this.player = player;

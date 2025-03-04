@@ -3,6 +3,7 @@ package frogger.model.implementations;
 import java.util.LinkedList;
 import java.util.List;
 
+import frogger.common.Direction;
 import frogger.common.Position;
 import frogger.model.interfaces.Lane;
 import frogger.model.interfaces.Trunk;
@@ -15,7 +16,7 @@ public class RiverImpl extends GameObjectImpl implements Lane{
     }
 
     @Override
-    public void spawnMovingObjct(float speed, int direction) {
+    public void spawnMovingObjct(float speed, Direction direction) {
         trunks.add(new TrunkImpl(this.getPos(), 0, speed, direction));  //TODO: take the date from a controller
     }
 
