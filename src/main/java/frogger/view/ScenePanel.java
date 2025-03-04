@@ -22,6 +22,11 @@ public class ScenePanel extends JPanel{
 
     @Override
     public void paintComponent(final Graphics g) {
+        
+        // for(var obstacle : controller.getGame().getObstacles()) {
+        //     g.setColor(Color.RED);
+        //     g.fillRect(obstacle.getPos().x(), obstacle.getPos().y(), obstacle.getDimension().width(), obstacle.getDimension().height());
+        // }
         super.paintComponent(g);
     }
 

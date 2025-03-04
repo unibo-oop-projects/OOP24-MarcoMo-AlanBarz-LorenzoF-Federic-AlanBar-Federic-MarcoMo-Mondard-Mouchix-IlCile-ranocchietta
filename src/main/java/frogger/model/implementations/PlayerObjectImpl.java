@@ -1,6 +1,7 @@
 package frogger.model.implementations;
 
 import frogger.common.Direction;
+import frogger.common.Pair;
 import frogger.common.Position;
 import frogger.model.interfaces.PlayerObject;
 
@@ -10,7 +11,7 @@ public class PlayerObjectImpl extends GameObjectImpl implements PlayerObject{
     private int lives;
     private int score;
 
-    public PlayerObjectImpl(Position pos, int dimension) {
+    public PlayerObjectImpl(Position pos, Pair dimension) {
         super(pos, dimension);
     }
 

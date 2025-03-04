@@ -1,6 +1,7 @@
 package frogger.model.implementations;
 
 import frogger.common.Direction;
+import frogger.common.Pair;
 import frogger.common.Position;
 import frogger.model.interfaces.MovingObject;
 
@@ -8,7 +9,7 @@ public class MovingObjectImpl extends GameObjectImpl implements MovingObject{
     private Direction direction;
     private float speed;
 
-    public MovingObjectImpl(Position pos, int dimension, float speed, Direction direction) {
+    public MovingObjectImpl(Position pos, Pair dimension, float speed, Direction direction) {
         super(pos, dimension);
         this.direction = direction; 
         this.speed = speed;

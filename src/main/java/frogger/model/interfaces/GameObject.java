@@ -1,5 +1,6 @@
 package frogger.model.interfaces;
 
+import frogger.common.Pair;
 import frogger.common.Position;
 
 public interface GameObject {
@@ -8,7 +9,7 @@ public interface GameObject {
 
     void setPos(Position pos);
 
-    int getDimension();
+    Pair getDimension();
 
     void resetPosition();
 }
