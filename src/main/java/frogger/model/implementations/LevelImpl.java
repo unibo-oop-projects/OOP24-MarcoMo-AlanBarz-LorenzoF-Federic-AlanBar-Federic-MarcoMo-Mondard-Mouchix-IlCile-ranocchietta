@@ -1,10 +1,13 @@
 package frogger.model.implementations;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import frogger.model.interfaces.Lane;
 import frogger.model.interfaces.Level;
+import frogger.model.interfaces.MovingObject;
 
 public class LevelImpl implements Level{
 
@@ -17,10 +20,11 @@ public class LevelImpl implements Level{
         return new ArrayList<>(lanes);
     }
 
-    /*@Override
-    public void addMovingObjectInLane(MovingObject obstacle, int lane) {
-        lanes.get(lane).addMovingObject(obstacle);
-    }*/
+    public Set<MovingObject> getAllObstacles() {
+        Set<MovingObject> obstacles = new HashSet<>();
+        lanes.forEach(lane -> obstacles.addAll(lane.getLaneObstacles()));
+        return new HashSet<>(obstacles);
+    }
 
     @Override
     public void addLane(Lane lane) {

@@ -1,12 +1,13 @@
 package frogger.model.interfaces;
 
 import java.util.List;
+import java.util.Set;
 
 public interface Level {
 
     List<Lane> getLanes();
 
-    //void addMovingObjectInLane(MovingObject obstacle, int lane);
+    Set<MovingObject> getAllObstacles();
 
     void addLane(Lane lane);
 }

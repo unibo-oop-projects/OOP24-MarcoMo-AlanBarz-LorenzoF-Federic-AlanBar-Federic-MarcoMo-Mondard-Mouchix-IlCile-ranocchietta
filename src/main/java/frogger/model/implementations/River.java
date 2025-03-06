@@ -1,22 +1,22 @@
 package frogger.model.implementations;
 
 import frogger.common.Direction;
-import frogger.model.interfaces.Car;
 import frogger.model.interfaces.MovingObject;
+import frogger.model.interfaces.Trunk;
 
-public class Road extends AbstractLaneImpl {
+public class River extends AbstractLaneImpl {
 
-    public Road(int speed, Direction direction) {
+    public River(int speed, Direction direction) {
         super(speed, direction);
     }
 
     @Override
     public void addMovingObject(MovingObject obstacle) {
-        if (obstacle instanceof Car) {
+        if (obstacle instanceof Trunk) {
             obstacles.add(obstacle);
         }
 
-        throw new IllegalArgumentException("MovingObject type is incopatible with Road.");
+        throw new IllegalArgumentException("MovingObject type is incopatible with River.");
     }
-    
+
 }
