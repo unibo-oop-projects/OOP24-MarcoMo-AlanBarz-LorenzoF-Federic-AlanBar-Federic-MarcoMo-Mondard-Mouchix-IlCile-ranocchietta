@@ -7,8 +7,9 @@ import frogger.common.Direction;
 import frogger.model.interfaces.Lane;
 import frogger.model.interfaces.MovingObject;
 
-public abstract class AbstractLaneImpl implements Lane {
+public abstract class AbstractLaneImpl<T> implements Lane {
 
+    public Class<T> type;
     public final Set<MovingObject> obstacles = new HashSet<>();
     private int speed;
     private Direction direction;
@@ -18,8 +19,17 @@ public abstract class AbstractLaneImpl implements Lane {
         this.direction = direction;
     }
 
+    abstract void setType();
+
     @Override
-    public abstract void addMovingObject(MovingObject obstacle);
+    public void addMovingObject(MovingObject obstacle) {
+        setType();
+        if (type.isInstance(obstacle)) {
+            obstacles.add(obstacle);
+        }
+
+        throw new IllegalArgumentException("Wrong type of MovingObject.");
+    }
 
     @Override
     public int getSpeed() {
