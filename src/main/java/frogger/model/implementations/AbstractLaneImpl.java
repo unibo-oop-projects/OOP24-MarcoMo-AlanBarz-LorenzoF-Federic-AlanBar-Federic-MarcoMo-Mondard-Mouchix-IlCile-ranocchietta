@@ -9,8 +9,8 @@ import frogger.model.interfaces.MovingObject;
 
 public abstract class AbstractLaneImpl<T> implements Lane {
 
-    public Class<T> type;
-    public final Set<MovingObject> obstacles = new HashSet<>();
+    protected Class<T> type;
+    protected final Set<MovingObject> obstacles = new HashSet<>();
     private int speed;
     private Direction direction;
 
@@ -19,7 +19,7 @@ public abstract class AbstractLaneImpl<T> implements Lane {
         this.direction = direction;
     }
 
-    abstract void setType();
+    protected abstract void setType();
 
     @Override
     public void addMovingObject(MovingObject obstacle) {

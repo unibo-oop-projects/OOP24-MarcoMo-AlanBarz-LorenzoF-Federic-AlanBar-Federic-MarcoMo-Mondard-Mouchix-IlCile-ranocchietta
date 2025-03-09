@@ -11,9 +11,14 @@ import frogger.model.interfaces.MovingObject;
 
 public class LevelImpl implements Level{
 
-    private final static int NUM_OF_LANES = 13;
+    protected final static int MAX_X = 6;
+    protected final static int MIN_X = -7;
+    protected final static int MAX_Y = 6;
+    protected final static int MIN_Y = -6;
+    protected final static int ROAD_LANES = 5;
+    protected final static int RIVER_LANES = 5;
 
-    private final List<Lane> lanes = new ArrayList<>(NUM_OF_LANES);
+    private final List<Lane> lanes = new ArrayList<>();
 
     @Override
     public List<Lane> getLanes() {
@@ -29,6 +34,11 @@ public class LevelImpl implements Level{
     @Override
     public void addLane(Lane lane) {
         lanes.add(lane);
+    }
+
+    @Override
+    public int getTotalLanes() {
+        return ROAD_LANES + RIVER_LANES;
     }
 
 }

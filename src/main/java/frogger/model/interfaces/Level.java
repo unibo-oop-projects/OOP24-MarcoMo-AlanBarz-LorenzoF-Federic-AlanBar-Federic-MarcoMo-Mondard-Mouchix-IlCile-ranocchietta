@@ -10,4 +10,6 @@ public interface Level {
     Set<MovingObject> getAllObstacles();
 
     void addLane(Lane lane);
+
+    int getTotalLanes();
 }
