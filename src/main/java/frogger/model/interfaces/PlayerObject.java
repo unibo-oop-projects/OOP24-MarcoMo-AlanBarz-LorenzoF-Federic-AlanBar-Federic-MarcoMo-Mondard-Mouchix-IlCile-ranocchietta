@@ -21,4 +21,6 @@ public interface PlayerObject {
     void addPoints(int points);
 
     int getScore();
+
+    void resetPosition();
 }

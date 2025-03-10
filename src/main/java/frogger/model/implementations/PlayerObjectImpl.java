@@ -7,6 +7,8 @@ import frogger.model.interfaces.PlayerObject;
 
 public class PlayerObjectImpl extends GameObjectImpl implements PlayerObject{
 
+    private final Position starPosition = new Position(0, -6);
+
     private Direction direction = Direction.UP;
     private int lives;
     private int score;
@@ -58,5 +60,10 @@ public class PlayerObjectImpl extends GameObjectImpl implements PlayerObject{
     @Override
     public int getScore() {
         return this.score;
+    }
+
+    @Override
+    public void resetPosition() {
+        setPos(starPosition);
     }
 }

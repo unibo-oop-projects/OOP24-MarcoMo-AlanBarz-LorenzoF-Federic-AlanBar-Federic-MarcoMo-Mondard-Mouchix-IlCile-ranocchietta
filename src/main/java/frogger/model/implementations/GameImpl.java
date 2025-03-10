@@ -62,6 +62,8 @@ public class GameImpl implements Game, KeyListener{
         return Set.copyOf(obstacles);
     }
 
-    
+    public PlayerObjectImpl getPlayer(){
+        return this.player;
+    }
 
 }

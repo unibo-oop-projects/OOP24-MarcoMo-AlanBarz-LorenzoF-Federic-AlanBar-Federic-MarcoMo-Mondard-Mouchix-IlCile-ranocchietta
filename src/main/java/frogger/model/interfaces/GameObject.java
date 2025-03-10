@@ -10,6 +10,4 @@ public interface GameObject {
     void setPos(Position pos);
 
     Pair getDimension();
-
-    void resetPosition();
 }

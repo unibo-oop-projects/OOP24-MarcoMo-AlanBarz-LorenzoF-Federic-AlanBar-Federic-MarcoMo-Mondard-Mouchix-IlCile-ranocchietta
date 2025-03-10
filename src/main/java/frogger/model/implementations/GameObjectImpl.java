@@ -5,7 +5,6 @@ import frogger.common.Position;
 import frogger.model.interfaces.GameObject;
 
 public abstract class GameObjectImpl implements GameObject {
-    private final Position starPosition = new Position(0, 0);
 
     private Position pos;
     private final Pair dimension;
@@ -28,10 +27,5 @@ public abstract class GameObjectImpl implements GameObject {
     @Override
     public Pair getDimension() {
         return dimension;
-    }
-
-    @Override
-    public void resetPosition() {
-        this.pos = this.starPosition;
     }
 }
