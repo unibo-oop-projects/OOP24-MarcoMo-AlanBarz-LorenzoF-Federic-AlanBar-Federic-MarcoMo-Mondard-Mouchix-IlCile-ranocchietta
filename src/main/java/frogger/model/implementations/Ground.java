@@ -1,7 +1,7 @@
 package frogger.model.implementations;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import frogger.common.Direction;
 import frogger.model.interfaces.Lane;
@@ -25,8 +25,8 @@ public class Ground implements Lane{
     }
 
     @Override
-    public List<MovingObject> getLaneObstacles() {
-        return new ArrayList<>();
+    public Set<MovingObject> getLaneObstacles() {
+        return new HashSet<>();
     }
 
 }

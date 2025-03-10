@@ -4,12 +4,13 @@ import java.util.HashSet;
 import java.util.Set;
 
 import frogger.common.Direction;
+import frogger.model.interfaces.Car;
 import frogger.model.interfaces.Lane;
 import frogger.model.interfaces.MovingObject;
+import frogger.model.interfaces.Trunk;
 
-public abstract class AbstractLaneImpl<T> implements Lane {
+public abstract class AbstractLaneImpl implements Lane {
 
-    protected Class<T> type;
     protected final Set<MovingObject> obstacles = new HashSet<>();
     private int speed;
     private Direction direction;
@@ -19,16 +20,18 @@ public abstract class AbstractLaneImpl<T> implements Lane {
         this.direction = direction;
     }
 
-    protected abstract void setType();
+    public abstract void addCar(MovingObject obstacle);
+    public abstract void addTrunk(MovingObject obstacle);
 
     @Override
     public void addMovingObject(MovingObject obstacle) {
-        setType();
-        if (type.isInstance(obstacle)) {
-            obstacles.add(obstacle);
-        }
-
-        throw new IllegalArgumentException("Wrong type of MovingObject.");
+        if (obstacle instanceof Car) {
+            addCar(obstacle);
+        } else if (obstacle instanceof Trunk) {
+            addTrunk(obstacle);
+        } else {
+            throw new IllegalArgumentException("Wrong type of MovingObject.");
+        } 
     }
 
     @Override

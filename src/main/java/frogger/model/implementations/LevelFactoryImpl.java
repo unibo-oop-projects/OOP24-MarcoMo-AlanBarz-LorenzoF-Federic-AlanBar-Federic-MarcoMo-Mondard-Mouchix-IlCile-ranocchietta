@@ -17,11 +17,9 @@ import frogger.model.interfaces.Trunk;
 
 public class LevelFactoryImpl implements LevelFactory {
 
-    private Level level;
-
     @Override
     public Level randomLevel() {
-        level = new LevelImpl();
+        Level level = new LevelImpl();
         int laneIndex = LevelImpl.MIN_Y;
 
         Lane start = new Ground();
@@ -35,6 +33,7 @@ public class LevelFactoryImpl implements LevelFactory {
         }
         Lane mid = new Ground();
         level.addLane(mid);
+        laneIndex++;
         for(int i = 0; i < LevelImpl.RIVER_LANES; i++) {
             Lane river = createLane(River.class);
             createObstacles(Trunk.class, river.getSpeed(), river.getDirection(), laneIndex).forEach(ob -> river.addMovingObject(ob));
@@ -43,8 +42,7 @@ public class LevelFactoryImpl implements LevelFactory {
         }
         Lane end = new Ground();
         level.addLane(end);
-        laneIndex++;
-        if (laneIndex != level.getTotalLanes()) {
+        if (laneIndex != LevelImpl.MAX_Y) {
             throw new IllegalStateException("Number of lanes is invalid.");
         }
         return level;
@@ -71,22 +69,22 @@ public class LevelFactoryImpl implements LevelFactory {
         Random ran = new Random();
         int nOfObstacles = ran.nextInt(4) + 1;
         int bound = Math.abs(LevelImpl.MAX_X) + Math.abs(LevelImpl.MIN_X) + 1;
-            int delta = bound - Math.abs(LevelImpl.MAX_X);
-            while (obstacles.size() != nOfObstacles) {
-                Position pos = new Position(ran.nextInt(bound) - delta, y);
-                MovingObject object;
-                if (!usedPositions.stream().anyMatch(position -> position.equals(pos))) {
-                    if (type.equals(Car.class)) {
-                        object = new CarImpl(pos, null, speed, dir);
-                    } else if (type.equals(Trunk.class)) {
-                        object = new TrunkImpl(pos, null, speed, dir);
-                    } else {
-                        throw new IllegalArgumentException("Type is not compatible.");
-                    }
-                    obstacles.add(object);
-                    usedPositions.add(pos);
+        int delta = bound - Math.abs(LevelImpl.MAX_X);
+        while (obstacles.size() != nOfObstacles) {
+            Position pos = new Position(ran.nextInt(bound) - delta, y);
+            MovingObject object;
+            if (!usedPositions.stream().anyMatch(position -> position.equals(pos))) {
+                if (type.equals(Car.class)) {
+                    object = new CarImpl(pos, null, speed, dir);
+                } else if (type.equals(Trunk.class)) {
+                    object = new TrunkImpl(pos, null, speed, dir);
+                } else {
+                    throw new IllegalArgumentException("Type is not compatible.");
                 }
+                obstacles.add(object);
+                usedPositions.add(pos);
             }
+        }
         return new HashSet<>(obstacles);
     }
 
