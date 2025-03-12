@@ -4,6 +4,8 @@ import frogger.common.Direction;
 import frogger.common.Pair;
 import frogger.common.Position;
 import frogger.model.interfaces.Game;
+import frogger.model.interfaces.Level;
+import frogger.model.interfaces.MovingObject;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -14,10 +16,13 @@ public class GameImpl implements Game, KeyListener{
 
     private PlayerObjectImpl player;
     private Set<MovingObjectImpl> obstacles;
+    private final LevelFactoryImpl levelFactory = new LevelFactoryImpl();
+    private final Level level;
 
     public GameImpl(PlayerObjectImpl player){
         this.player = player;
         this.obstacles = new HashSet<>();
+        level = levelFactory.randomLevel();
     }
 
     @Override
@@ -58,12 +63,8 @@ public class GameImpl implements Game, KeyListener{
         return this.obstacles.stream().map(x -> x.getPos()).anyMatch(x -> x.equals(this.player.getPos()));
     }
 
-    public Set<? extends MovingObjectImpl> getObstacles() {
-        return Set.copyOf(obstacles);
-    }
-
-    public void addObstacles(Set<? extends MovingObjectImpl> obstaclesSet) {
-        obstacles.addAll(obstaclesSet);
+    public Set<MovingObject> getObstacles() {
+        return level.getAllObstacles();
     }
 
     public PlayerObjectImpl getPlayer(){

@@ -8,6 +8,7 @@ import java.awt.event.KeyListener;
 
 import javax.swing.JPanel;
 
+import frogger.common.Costants;
 import frogger.common.input.InputControllerImpl;
 import frogger.common.input.MoveDown;
 import frogger.common.input.MoveLeft;
@@ -25,7 +26,7 @@ public class ScenePanel extends JPanel implements KeyListener{
     }
 
     private void setPanelSize() {
-        setPreferredSize(new Dimension(600, 800));
+        setPreferredSize(new Dimension(Costants.FRAME_WIDTH, Costants.FRAME_HEIGHT));
     }
 
     public void setController(ControllerImpl controller) {

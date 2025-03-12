@@ -6,7 +6,9 @@ import java.util.List;
 import java.util.Random;
 import java.util.Set;
 
+import frogger.common.Costants;
 import frogger.common.Direction;
+import frogger.common.Pair;
 import frogger.common.Position;
 import frogger.model.interfaces.Car;
 import frogger.model.interfaces.Lane;
@@ -75,9 +77,9 @@ public class LevelFactoryImpl implements LevelFactory {
             MovingObject object;
             if (!usedPositions.stream().anyMatch(position -> position.equals(pos))) {
                 if (type.equals(Car.class)) {
-                    object = new CarImpl(pos, null, speed, dir);
+                    object = new CarImpl(pos, new Pair(Costants.CAR_WIDTH, Costants.CAR_HEIGHT), speed, dir);
                 } else if (type.equals(Trunk.class)) {
-                    object = new TrunkImpl(pos, null, speed, dir);
+                    object = new TrunkImpl(pos, new Pair(Costants.CAR_WIDTH, Costants.CAR_HEIGHT), speed, dir);
                 } else {
                     throw new IllegalArgumentException("Type is not compatible.");
                 }

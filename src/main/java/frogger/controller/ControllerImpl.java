@@ -1,12 +1,8 @@
 package frogger.controller;
 
-import java.util.Set;
-
-import frogger.common.Direction;
 import frogger.common.Pair;
 import frogger.common.Position;
 import frogger.common.input.InputControllerImpl;
-import frogger.model.implementations.CarImpl;
 import frogger.model.implementations.GameImpl;
 import frogger.model.implementations.PlayerObjectImpl;
 import frogger.view.GameScene;
@@ -21,10 +17,6 @@ public class ControllerImpl {
 
     public void gameInit() {
         game = new GameImpl(new PlayerObjectImpl(new Position(0, 0), new Pair(50, 50)));  //TODO: create the static class with the constant for dimention
-        game.addObstacles(Set.of(new CarImpl(new Position(100,100), new Pair(100, 50), 0.1f, Direction.LEFT),
-        new CarImpl(new Position(100,200), new Pair(100, 50), 0.1f, Direction.RIGHT),
-        new CarImpl(new Position(100,300), new Pair(100, 50), 0.1f, Direction.LEFT),
-        new CarImpl(new Position(100,400), new Pair(100, 50), 0.1f, Direction.RIGHT)));
     
         scenePanel = new ScenePanel();
         gameScene = new GameScene(scenePanel);
@@ -54,7 +46,10 @@ public class ControllerImpl {
         return game;
     }
 
-    
+    public Position convertPosInPixel(Position pos) {
+        //TODO: creare un convertitore da posizione astratta a valore in pixel
+        return null;
+    }
 
 
 }
