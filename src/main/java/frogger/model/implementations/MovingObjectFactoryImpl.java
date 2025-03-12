@@ -19,10 +19,10 @@ public class MovingObjectFactoryImpl implements MovingObjectFactory{
      */
     @Override
     public <X extends MovingObjectImpl> X createMovingObject(Position pos, Pair dimension, 
-        float speed, Direction direction, Class<X> c) {
+        double speed, Direction direction, Class<X> c) {
         
         try {
-            return c.getConstructor(Position.class, Pair.class, float.class, Direction.class)
+            return c.getConstructor(Position.class, Pair.class, double.class, Direction.class)
             .newInstance(pos, dimension, speed, direction);
         } catch (Exception ex) {
             System.out.println(ex.getMessage());

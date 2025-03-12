@@ -16,7 +16,7 @@ import frogger.common.input.MoveUp;
 import frogger.controller.ControllerImpl;
 
 public class ScenePanel extends JPanel implements KeyListener{
-    ControllerImpl controller = new ControllerImpl();
+    ControllerImpl controller;
     InputControllerImpl inputController = new InputControllerImpl();
 
     public ScenePanel() {
@@ -28,14 +28,19 @@ public class ScenePanel extends JPanel implements KeyListener{
         setPreferredSize(new Dimension(600, 800));
     }
 
+    public void setController(ControllerImpl controller) {
+        this.controller = controller;
+    }
+
     @Override
     public void paintComponent(final Graphics g) {
-        
-        // for(var obstacle : controller.getGame().getObstacles()) {
-        //     g.setColor(Color.RED);
-        //     g.fillRect(obstacle.getPos().x(), obstacle.getPos().y(), obstacle.getDimension().width(), obstacle.getDimension().height());
-        // }
         super.paintComponent(g);
+        
+        for(var obstacle : controller.getGame().getObstacles()) {
+            System.out.println("entrato per disegnare ostacolo");
+            g.setColor(Color.RED);
+            g.fillRect((int)obstacle.getPos().x(), (int)obstacle.getPos().y(), obstacle.getDimension().width(), obstacle.getDimension().height());
+        }
     }
 
     @Override

@@ -17,7 +17,7 @@ public class GameImpl implements Game, KeyListener{
 
     public GameImpl(PlayerObjectImpl player){
         this.player = player;
-        this.obstacles = new HashSet<>(Set.of(new CarImpl(new Position(100,100),new Pair(50,100), 1,Direction.LEFT)));
+        this.obstacles = new HashSet<>();
     }
 
     @Override
@@ -58,8 +58,12 @@ public class GameImpl implements Game, KeyListener{
         return this.obstacles.stream().map(x -> x.getPos()).anyMatch(x -> x.equals(this.player.getPos()));
     }
 
-    public Set<MovingObjectImpl> getObstacles() {
+    public Set<? extends MovingObjectImpl> getObstacles() {
         return Set.copyOf(obstacles);
+    }
+
+    public void addObstacles(Set<? extends MovingObjectImpl> obstaclesSet) {
+        obstacles.addAll(obstaclesSet);
     }
 
     public PlayerObjectImpl getPlayer(){

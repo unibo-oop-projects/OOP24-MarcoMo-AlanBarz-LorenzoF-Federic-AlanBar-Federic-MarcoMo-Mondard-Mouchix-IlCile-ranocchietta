@@ -10,7 +10,7 @@ public class PlayerObjectImpl extends GameObjectImpl implements PlayerObject{
     private final Position starPosition = new Position(0, -6);
 
     private Direction direction = Direction.UP;
-    private int lives;
+    private int lives = 3;
     private int score;
 
     public PlayerObjectImpl(Position pos, Pair dimension) {

@@ -1,5 +1,5 @@
 package frogger.common;
 
-public record Position(int x, int y) {
+public record Position(float x, float y) {
     
 }
