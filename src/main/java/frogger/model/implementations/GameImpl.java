@@ -1,18 +1,13 @@
 package frogger.model.implementations;
 
-import frogger.common.Direction;
-import frogger.common.Pair;
-import frogger.common.Position;
 import frogger.model.interfaces.Game;
 import frogger.model.interfaces.Level;
 import frogger.model.interfaces.MovingObject;
 
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.util.HashSet;
 import java.util.Set;
 
-public class GameImpl implements Game, KeyListener{
+public class GameImpl implements Game{
 
     private PlayerObjectImpl player;
     private Set<MovingObjectImpl> obstacles;
@@ -36,29 +31,6 @@ public class GameImpl implements Game, KeyListener{
     }
 
     @Override
-    public void keyTyped(KeyEvent e) {}
-
-    @Override
-    public void keyPressed(KeyEvent e) {
-        if (e.getKeyCode() == 38){
-            this.player.setLookingUp();
-            this.player.setPos(new Position(this.player.getPos().x(), this.player.getPos().y() + 1));
-        } else if (e.getKeyCode() == 40){
-            this.player.setLookingDown();
-            this.player.setPos(new Position(this.player.getPos().x(), this.player.getPos().y() - 1));
-        } else if (e.getKeyCode() == 39){
-            this.player.setLookingRight();
-            this.player.setPos(new Position(this.player.getPos().x() + 1, this.player.getPos().y()));
-        } else if (e.getKeyCode() == 37){
-            this.player.setLookingLeft();
-            this.player.setPos(new Position(this.player.getPos().x() - 1, this.player.getPos().y()));
-        }
-    }
-
-    @Override
-    public void keyReleased(KeyEvent e) {}
-
-    @Override
     public boolean checkCollision() {
         return this.obstacles.stream().map(x -> x.getPos()).anyMatch(x -> x.equals(this.player.getPos()));
     }
@@ -70,5 +42,4 @@ public class GameImpl implements Game, KeyListener{
     public PlayerObjectImpl getPlayer(){
         return this.player;
     }
-
 }

@@ -38,7 +38,6 @@ public class ScenePanel extends JPanel implements KeyListener{
         super.paintComponent(g);
         
         for(var obstacle : controller.getGame().getObstacles()) {
-            System.out.println("entrato per disegnare ostacolo");
             g.setColor(Color.RED);
             g.fillRect((int)obstacle.getPos().x(), (int)obstacle.getPos().y(), obstacle.getDimension().width(), obstacle.getDimension().height());
         }

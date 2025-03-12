@@ -32,7 +32,6 @@ public class ControllerImpl {
             inputController.processInput(this.game);
             
             for (var elem : game.getObstacles()) {
-                System.out.println("mosso l'ostacolo");
                 elem.move();
             }
             
