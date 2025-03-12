@@ -36,7 +36,7 @@ public class MovingObjectImpl extends GameObjectImpl implements MovingObject{
         this.getPos().y() + (int)(this.getDirectionValue().y() * speed)));
     }
 
-    private Position getDirectionValue() {
+    public Position getDirectionValue() {
         int x = 0;
         int y = 0;
 
