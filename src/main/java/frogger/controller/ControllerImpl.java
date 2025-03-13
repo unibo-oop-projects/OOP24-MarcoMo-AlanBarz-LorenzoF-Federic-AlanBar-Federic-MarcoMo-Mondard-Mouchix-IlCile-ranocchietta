@@ -1,6 +1,6 @@
 package frogger.controller;
 
-import frogger.common.Costants;
+import frogger.common.Constants;
 import frogger.common.Pair;
 import frogger.common.Position;
 import frogger.common.input.InputControllerImpl;
@@ -17,7 +17,7 @@ public class ControllerImpl {
     GameScene gameScene;
 
     public void gameInit() {
-        game = new GameImpl(new PlayerObjectImpl(new Position(0, 0), new Pair(Costants.PLAYER_WIDTH,Costants.PLAYER_HEIGHT)));  //TODO: create the static class with the constant for dimention
+        game = new GameImpl(new PlayerObjectImpl(new Position(0, 0), new Pair(Constants.PLAYER_WIDTH,Constants.PLAYER_HEIGHT)));  //TODO: create the static class with the constant for dimention
     
         scenePanel = new ScenePanel();
         gameScene = new GameScene(scenePanel);
@@ -32,7 +32,7 @@ public class ControllerImpl {
             inputController.processInput(this.game);
             
             for (var elem : game.getObstacles()) {
-                elem.move();
+                // elem.move();
             }
             
             scenePanel.repaint();

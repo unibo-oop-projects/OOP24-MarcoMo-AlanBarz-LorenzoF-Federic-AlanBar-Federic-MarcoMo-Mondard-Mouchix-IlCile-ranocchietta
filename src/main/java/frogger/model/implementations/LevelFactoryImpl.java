@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.Set;
 
-import frogger.common.Costants;
+import frogger.common.Constants;
 import frogger.common.Direction;
 import frogger.common.Pair;
 import frogger.common.Position;
@@ -23,12 +23,12 @@ public class LevelFactoryImpl implements LevelFactory {
     @Override
     public Level randomLevel() {
         Level level = new LevelImpl();
-        int laneIndex = Costants.MIN_Y;
+        int laneIndex = Constants.MIN_Y;
 
         Lane start = new Ground();
         level.addLane(start);
         laneIndex++;
-        for(int i = 0; i < Costants.ROAD_LANES; i++) {
+        for(int i = 0; i < Constants.ROAD_LANES; i++) {
             Lane road = createLane(Road.class);
             createObstacles(Car.class, road.getSpeed(), road.getDirection(), laneIndex).forEach(ob -> road.addMovingObject(ob));
             level.addLane(road);
@@ -37,7 +37,7 @@ public class LevelFactoryImpl implements LevelFactory {
         Lane mid = new Ground();
         level.addLane(mid);
         laneIndex++;
-        for(int i = 0; i < Costants.RIVER_LANES; i++) {
+        for(int i = 0; i < Constants.RIVER_LANES; i++) {
             Lane river = createLane(River.class);
             createObstacles(Trunk.class, river.getSpeed(), river.getDirection(), laneIndex).forEach(ob -> river.addMovingObject(ob));
             level.addLane(river);
@@ -45,7 +45,7 @@ public class LevelFactoryImpl implements LevelFactory {
         }
         Lane end = new Ground();
         level.addLane(end);
-        if (laneIndex != Costants.MAX_Y) {
+        if (laneIndex != Constants.MAX_Y) {
             throw new IllegalStateException("Number of lanes is invalid.");
         }
         return level;
@@ -71,19 +71,19 @@ public class LevelFactoryImpl implements LevelFactory {
         List<Position> usedPositions = new ArrayList<>();
         MovingObjectFactory obstaclesFactory = new MovingObjectFactoryImpl();
         Random ran = new Random();
-        int nOfObstacles = ran.nextBoolean() ? Costants.MIN_OBSTACLES_NUMBER : Costants.MAX_OBSTACLES_NUMBER;
-        int bound = Math.abs(Costants.MAX_X) + Math.abs(Costants.MIN_X) + 1;
-        int delta = bound - Math.abs(Costants.MAX_X);
+        int nOfObstacles = ran.nextBoolean() ? Constants.MIN_OBSTACLES_NUMBER : Constants.MAX_OBSTACLES_NUMBER;
+        int bound = Math.abs(Constants.MAX_X) + Math.abs(Constants.MIN_X) + 1;
+        int delta = bound - Math.abs(Constants.MAX_X);
         while (obstacles.size() != nOfObstacles) {
             Position pos = new Position(ran.nextInt(bound) - delta, y);
             MovingObject object;
             if (!usedPositions.stream().anyMatch(position -> position.equals(pos))) {
                 if (type.equals(Car.class)) {
-                    int width = ran.nextBoolean() ? Costants.MIN_CAR_WIDTH : Costants.MAX_CAR_WIDTH;
-                    object = obstaclesFactory.createMovingObject(pos, new Pair(width, Costants.OBJECT_HEIGHT), speed, dir, CarImpl.class);
+                    int width = ran.nextBoolean() ? Constants.MIN_CAR_WIDTH : Constants.MAX_CAR_WIDTH;
+                    object = obstaclesFactory.createMovingObject(pos, new Pair(width, Constants.OBJECT_HEIGHT), speed, dir, CarImpl.class);
                 } else if (type.equals(Trunk.class)) {
-                    int width = ran.nextBoolean() ? Costants.MIN_TRUNK_WIDTH : Costants.MAX_TRUNK_WIDTH;
-                    object = obstaclesFactory.createMovingObject(pos, new Pair(width, Costants.OBJECT_HEIGHT), speed, dir, TrunkImpl.class);
+                    int width = ran.nextBoolean() ? Constants.MIN_TRUNK_WIDTH : Constants.MAX_TRUNK_WIDTH;
+                    object = obstaclesFactory.createMovingObject(pos, new Pair(width, Constants.OBJECT_HEIGHT), speed, dir, TrunkImpl.class);
                 } else {
                     throw new IllegalArgumentException("Type is not compatible.");
                 }
