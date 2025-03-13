@@ -6,7 +6,7 @@ import frogger.model.interfaces.Trunk;
 
 public class River extends AbstractLaneImpl {
 
-    public River(int speed, Direction direction) {
+    public River(float speed, Direction direction) {
         super(speed, direction);
     }
 

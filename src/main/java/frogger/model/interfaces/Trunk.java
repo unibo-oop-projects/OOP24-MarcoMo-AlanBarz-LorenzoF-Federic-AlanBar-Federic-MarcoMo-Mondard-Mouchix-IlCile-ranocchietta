@@ -1,5 +1,12 @@
 package frogger.model.interfaces;
 
-public interface Trunk extends MovingObject {
+import java.util.Optional;
 
+import frogger.model.implementations.PlayerObjectImpl;
+
+public interface Trunk extends MovingObject {
+    
+    void setFrog(Optional<PlayerObjectImpl> frog);
+
+    void removeFrog();
 }

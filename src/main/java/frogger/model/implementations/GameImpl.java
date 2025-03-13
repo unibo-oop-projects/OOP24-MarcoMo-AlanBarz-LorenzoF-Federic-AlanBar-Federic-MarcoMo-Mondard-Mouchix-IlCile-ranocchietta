@@ -1,9 +1,8 @@
 package frogger.model.implementations;
 
-import frogger.common.Direction;
-import frogger.common.Pair;
-import frogger.common.Position;
 import frogger.model.interfaces.Game;
+import frogger.model.interfaces.Level;
+import frogger.model.interfaces.MovingObject;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -12,10 +11,13 @@ public class GameImpl implements Game{
 
     private PlayerObjectImpl player;
     private Set<MovingObjectImpl> obstacles;
+    private final LevelFactoryImpl levelFactory = new LevelFactoryImpl();
+    private final Level level;
 
     public GameImpl(PlayerObjectImpl player){
         this.player = player;
-        this.obstacles = new HashSet<>(Set.of(new CarImpl(new Position(100,100),new Pair(50,100), 1,Direction.LEFT)));
+        this.obstacles = new HashSet<>();
+        level = levelFactory.randomLevel();
     }
 
     @Override
@@ -33,12 +35,11 @@ public class GameImpl implements Game{
         return this.obstacles.stream().map(x -> x.getPos()).anyMatch(x -> x.equals(this.player.getPos()));
     }
 
-    public Set<MovingObjectImpl> getObstacles() {
-        return Set.copyOf(obstacles);
+    public Set<MovingObject> getObstacles() {
+        return level.getAllObstacles();
     }
 
     public PlayerObjectImpl getPlayer(){
         return this.player;
     }
-
 }

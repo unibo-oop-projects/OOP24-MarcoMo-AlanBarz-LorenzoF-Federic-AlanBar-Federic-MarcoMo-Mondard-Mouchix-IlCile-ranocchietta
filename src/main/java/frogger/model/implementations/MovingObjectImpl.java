@@ -32,11 +32,11 @@ public class MovingObjectImpl extends GameObjectImpl implements MovingObject{
 
     @Override
     public void move() {
-        this.setPos(new Position(this.getPos().x() + (int)(this.getDirectionValue().x() * speed), 
-        this.getPos().y() + (int)(this.getDirectionValue().y() * speed)));
+        this.setPos(new Position(this.getPos().x() + this.getDirectionValue().x() * this.getSpeed(), 
+        this.getPos().y() + this.getDirectionValue().y() * this.getSpeed()));
     }
 
-    private Position getDirectionValue() {
+    public Position getDirectionValue() {
         int x = 0;
         int y = 0;
 

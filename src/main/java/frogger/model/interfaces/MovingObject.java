@@ -2,7 +2,7 @@ package frogger.model.interfaces;
 
 import frogger.common.Direction;
 
-public interface MovingObject {
+public interface MovingObject extends GameObject{
     public void setDirection(Direction direction);
 
     public Direction getDirection();

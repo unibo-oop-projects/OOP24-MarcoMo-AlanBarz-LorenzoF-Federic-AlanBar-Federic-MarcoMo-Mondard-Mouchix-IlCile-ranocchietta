@@ -1,5 +1,6 @@
 package frogger.controller;
 
+import frogger.common.Constants;
 import frogger.common.Pair;
 import frogger.common.Position;
 import frogger.common.input.InputControllerImpl;
@@ -12,22 +13,29 @@ public class ControllerImpl {
 
     private GameImpl game;
     InputControllerImpl inputController = new InputControllerImpl();
+    ScenePanel scenePanel;
+    GameScene gameScene;
 
     public void gameInit() {
-        ScenePanel scenePanel = new ScenePanel();
-        GameScene gameScene = new GameScene(scenePanel);
-
-        game = new GameImpl(new PlayerObjectImpl(new Position(0, 0), new Pair(50, 50)));  //TODO: create the static class with the constant for dimention
+        game = new GameImpl(new PlayerObjectImpl(new Position(0, 0), new Pair(Constants.PLAYER_WIDTH,Constants.PLAYER_HEIGHT)));  //TODO: create the static class with the constant for dimention
+    
+        scenePanel = new ScenePanel();
+        gameScene = new GameScene(scenePanel);
+        scenePanel.setController(this);
     }
 
     public void mainLoop(){
         long previousCycleStartTime = System.currentTimeMillis();
-        if(!game.isGameOver()){
+        while (!game.isGameOver()){
             long currentCycleStartTime = System.currentTimeMillis();
 			long elapsed = currentCycleStartTime - previousCycleStartTime;
             inputController.processInput(this.game);
-
-
+            
+            for (var elem : game.getObstacles()) {
+                // elem.move();
+            }
+            
+            scenePanel.repaint();
 
             previousCycleStartTime = currentCycleStartTime;
         }
@@ -36,8 +44,4 @@ public class ControllerImpl {
     public GameImpl getGame() {
         return game;
     }
-
-    
-
-
 }

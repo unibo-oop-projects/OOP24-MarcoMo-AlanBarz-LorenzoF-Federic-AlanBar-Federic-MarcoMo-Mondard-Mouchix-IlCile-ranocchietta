@@ -11,5 +11,4 @@ public interface Level {
 
     void addLane(Lane lane);
 
-    int getTotalLanes();
 }
