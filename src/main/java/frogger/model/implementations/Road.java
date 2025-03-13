@@ -6,7 +6,7 @@ import frogger.model.interfaces.MovingObject;
 
 public class Road extends AbstractLaneImpl {
 
-    public Road(int speed, Direction direction) {
+    public Road(double speed, Direction direction) {
         super(speed, direction);
     }
 

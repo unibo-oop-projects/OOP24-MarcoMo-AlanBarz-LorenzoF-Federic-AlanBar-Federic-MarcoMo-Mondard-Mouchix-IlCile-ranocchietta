@@ -7,7 +7,7 @@ import frogger.common.Direction;
 public interface Lane {
     void addMovingObject(MovingObject obstacle);
 
-    int getSpeed();
+    double getSpeed();
 
     Direction getDirection();
 
