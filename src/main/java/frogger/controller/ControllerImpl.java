@@ -21,7 +21,6 @@ public class ControllerImpl {
     
         scenePanel = new ScenePanel();
         gameScene = new GameScene(scenePanel);
-        System.out.println("tutto ok fin qui");
         scenePanel.setController(this);
     }
 
@@ -45,11 +44,4 @@ public class ControllerImpl {
     public GameImpl getGame() {
         return game;
     }
-
-    public Position convertPosInPixel(Position pos) {
-        //TODO: creare un convertitore da posizione astratta a valore in pixel
-        return null;
-    }
-
-
 }

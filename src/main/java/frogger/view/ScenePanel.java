@@ -23,7 +23,8 @@ import frogger.controller.ControllerImpl;
 public class ScenePanel extends JPanel implements KeyListener{
     ControllerImpl controller;
     InputControllerImpl inputController = new InputControllerImpl();
-    private BufferedImage img;
+    private BufferedImage frog;
+    private BufferedImage car;
 
     public ScenePanel() {
         setPanelSize();
@@ -32,10 +33,12 @@ public class ScenePanel extends JPanel implements KeyListener{
     }
 
     private void importImg() {
-        InputStream is = getClass().getResourceAsStream("/ranocchietta.png");
+        InputStream isFrog = getClass().getResourceAsStream("/ranocchietta.png");
+        InputStream isCar = getClass().getResourceAsStream("/car.png");
 
         try {
-            img = ImageIO.read(is);
+            frog = ImageIO.read(isFrog);
+            car = ImageIO.read(isCar);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -52,12 +55,14 @@ public class ScenePanel extends JPanel implements KeyListener{
     @Override
     public void paintComponent(final Graphics g) {
         super.paintComponent(g);
-        
-        // for(var obstacle : controller.getGame().getObstacles()) {
-        //     g.setColor(Color.RED);
-        //     g.fillRect((int)obstacle.getPos().x(), (int)obstacle.getPos().y(), obstacle.getDimension().width(), obstacle.getDimension().height());
-        // }
-        g.drawImage(img, (int)controller.getGame().getPlayer().getPos().x(), (int)controller.getGame().getPlayer().getPos().y(), null);
+    
+        g.drawImage(frog, (int)controller.getGame().getPlayer().getPos().x(), (int)controller.getGame().getPlayer().getPos().y(), null);
+        g.drawImage(car, 100, 300, null);
+        for(var obstacle : controller.getGame().getObstacles()) {
+            // g.setColor(Color.RED);
+            // g.fillRect((int)obstacle.getPos().x(), (int)obstacle.getPos().y(), obstacle.getDimension().width(), obstacle.getDimension().height());
+            g.drawImage(car, (int)obstacle.getPos().x(), (int)obstacle.getPos().y(), null);
+        }
     }
 
     @Override

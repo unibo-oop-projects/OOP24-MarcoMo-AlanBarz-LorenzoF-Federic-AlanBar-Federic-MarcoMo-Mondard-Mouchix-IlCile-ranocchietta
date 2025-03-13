@@ -54,7 +54,7 @@ public class LevelFactoryImpl implements LevelFactory {
     private Lane createLane(Class<? extends Lane> type) {
         Random ran = new Random();
         Direction dir = ran.nextBoolean() ? Direction.RIGHT : Direction.LEFT;
-        float speed = ran.nextFloat(0.05f , 0.1f);
+        float speed = ran.nextFloat(0.0002f , 0.0008f);
         Lane lane;
         if (type.equals(Road.class)) {
             lane = new Road(speed, dir);
