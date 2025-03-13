@@ -14,7 +14,6 @@ import javax.swing.JPanel;
 
 import frogger.common.Constants;
 import frogger.common.Direction;
-import frogger.common.input.InputControllerImpl;
 import frogger.common.input.MoveDown;
 import frogger.common.input.MoveLeft;
 import frogger.common.input.MoveRight;
@@ -22,11 +21,9 @@ import frogger.common.input.MoveUp;
 import frogger.controller.ControllerImpl;
 import frogger.model.implementations.CarImpl;
 import frogger.model.implementations.TrunkImpl;
-import frogger.model.interfaces.MovingObject;
 
 public class ScenePanel extends JPanel implements KeyListener{
     ControllerImpl controller;
-    InputControllerImpl inputController = new InputControllerImpl();
     private BufferedImage frog;
     private BufferedImage carLeft;
     private BufferedImage carRight;
@@ -86,13 +83,13 @@ public class ScenePanel extends JPanel implements KeyListener{
     @Override
     public void keyPressed(KeyEvent e) {
         if (e.getKeyCode() == 38){
-            inputController.notifyCommand(new MoveUp());;
+            this.controller.getInputController().notifyCommand(new MoveUp());;
         } else if (e.getKeyCode() == 40){
-            inputController.notifyCommand(new MoveDown());;
+            this.controller.getInputController().notifyCommand(new MoveDown());;
         } else if (e.getKeyCode() == 39){
-            inputController.notifyCommand(new MoveRight());;
+            this.controller.getInputController().notifyCommand(new MoveRight());;
         } else if (e.getKeyCode() == 37){
-            inputController.notifyCommand(new MoveLeft());;
+            this.controller.getInputController().notifyCommand(new MoveLeft());;
         }
     }
 

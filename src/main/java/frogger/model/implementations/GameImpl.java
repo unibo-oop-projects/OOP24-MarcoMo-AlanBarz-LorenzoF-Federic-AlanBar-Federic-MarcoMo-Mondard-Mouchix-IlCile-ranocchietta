@@ -1,5 +1,6 @@
 package frogger.model.implementations;
 
+import frogger.common.Pair;
 import frogger.model.interfaces.Game;
 import frogger.model.interfaces.Level;
 import frogger.model.interfaces.MovingObject;
@@ -14,8 +15,8 @@ public class GameImpl implements Game{
     private final LevelFactoryImpl levelFactory = new LevelFactoryImpl();
     private final Level level;
 
-    public GameImpl(PlayerObjectImpl player){
-        this.player = player;
+    public GameImpl(Pair dimension){
+        this.player = new PlayerObjectImpl(dimension);
         this.obstacles = new HashSet<>();
         level = levelFactory.randomLevel();
     }

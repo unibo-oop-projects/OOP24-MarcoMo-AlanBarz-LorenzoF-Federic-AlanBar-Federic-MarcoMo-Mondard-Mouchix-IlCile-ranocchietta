@@ -2,26 +2,26 @@ package frogger.controller;
 
 import frogger.common.Constants;
 import frogger.common.Pair;
-import frogger.common.Position;
+import frogger.common.input.InputController;
 import frogger.common.input.InputControllerImpl;
 import frogger.model.implementations.GameImpl;
-import frogger.model.implementations.PlayerObjectImpl;
 import frogger.view.GameScene;
 import frogger.view.ScenePanel;
 
 public class ControllerImpl {
 
     private GameImpl game;
-    InputControllerImpl inputController = new InputControllerImpl();
+    InputControllerImpl inputController;
     ScenePanel scenePanel;
     GameScene gameScene;
 
     public void gameInit() {
-        game = new GameImpl(new PlayerObjectImpl(new Position(0, 0), new Pair(Constants.PLAYER_WIDTH,Constants.PLAYER_HEIGHT)));  //TODO: create the static class with the constant for dimention
+        game = new GameImpl(new Pair(Constants.PLAYER_WIDTH,Constants.PLAYER_HEIGHT));  //TODO: create the static class with the constant for dimention
     
         scenePanel = new ScenePanel();
         gameScene = new GameScene(scenePanel);
         scenePanel.setController(this);
+        inputController = new InputControllerImpl();
     }
 
     public void mainLoop(){
@@ -44,4 +44,13 @@ public class ControllerImpl {
     public GameImpl getGame() {
         return game;
     }
+
+    public InputController getInputController() {
+        return this.inputController;
+    }
+
+    public ScenePanel getScenePanel(){
+        return this.scenePanel;
+    }
 }
+

@@ -9,12 +9,15 @@ public class PlayerObjectImpl extends GameObjectImpl implements PlayerObject{
 
     private final Position startPosition = new Position(0, -6);
 
-    private Direction direction = Direction.UP;
-    private int lives = 3;
+    private Direction direction;
+    private int lives;
     private int score;
 
-    public PlayerObjectImpl(Position pos, Pair dimension) {
-        super(pos, dimension);
+    public PlayerObjectImpl(Pair dimension) {
+        super(new Position(0, -6), dimension);
+        this.lives = 3;
+        this.score = 0;
+        this.direction = Direction.UP;
     }
 
     @Override
@@ -24,6 +27,7 @@ public class PlayerObjectImpl extends GameObjectImpl implements PlayerObject{
 
     @Override
     public void getHit() {
+        this.resetPosition();
         this.lives--;
     }
 
