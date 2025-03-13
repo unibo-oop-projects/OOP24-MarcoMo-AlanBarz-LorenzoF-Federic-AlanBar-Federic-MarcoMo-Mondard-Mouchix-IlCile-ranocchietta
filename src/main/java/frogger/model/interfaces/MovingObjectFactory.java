@@ -18,6 +18,6 @@ public interface MovingObjectFactory {
      * @return An object of type X that extends MovingObject
      */
     <X extends MovingObjectImpl> X createMovingObject(Position pos, Pair dimension,
-            double speed, Direction direction, Class<X> c);
+            float speed, Direction direction, Class<X> c);
 
 }

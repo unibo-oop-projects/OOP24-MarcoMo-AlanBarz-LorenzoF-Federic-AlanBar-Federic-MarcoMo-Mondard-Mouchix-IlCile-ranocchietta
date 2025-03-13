@@ -15,7 +15,7 @@ public class Ground implements Lane{
     }
 
     @Override
-    public int getSpeed() {
+    public float getSpeed() {
         return 0;
     }
 

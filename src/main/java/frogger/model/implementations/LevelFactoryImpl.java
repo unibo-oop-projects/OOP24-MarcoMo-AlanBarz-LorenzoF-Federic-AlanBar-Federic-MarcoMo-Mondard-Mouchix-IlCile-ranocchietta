@@ -54,7 +54,7 @@ public class LevelFactoryImpl implements LevelFactory {
     private Lane createLane(Class<? extends Lane> type) {
         Random ran = new Random();
         Direction dir = ran.nextBoolean() ? Direction.RIGHT : Direction.LEFT;
-        double speed = ran.doubles(0.1 , 1).findFirst().getAsDouble();
+        float speed = ran.nextFloat(0.05f , 0.1f);
         Lane lane;
         if (type.equals(Road.class)) {
             lane = new Road(speed, dir);
@@ -66,7 +66,7 @@ public class LevelFactoryImpl implements LevelFactory {
         return lane;
     }
 
-    private Set<MovingObject> createObstacles(Class<? extends MovingObject> type, double speed, Direction dir, int y) {
+    private Set<MovingObject> createObstacles(Class<? extends MovingObject> type, float speed, Direction dir, int y) {
         Set<MovingObject> obstacles = new HashSet<>();
         List<Position> usedPositions = new ArrayList<>();
         MovingObjectFactory obstaclesFactory = new MovingObjectFactoryImpl();

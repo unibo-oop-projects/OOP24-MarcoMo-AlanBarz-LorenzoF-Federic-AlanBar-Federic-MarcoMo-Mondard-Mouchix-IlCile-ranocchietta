@@ -5,7 +5,11 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.io.InputStream;
 
+import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 import frogger.common.Costants;
@@ -19,10 +23,22 @@ import frogger.controller.ControllerImpl;
 public class ScenePanel extends JPanel implements KeyListener{
     ControllerImpl controller;
     InputControllerImpl inputController = new InputControllerImpl();
+    private BufferedImage img;
 
     public ScenePanel() {
         setPanelSize();
         setBackground(Color.BLACK);
+        importImg();
+    }
+
+    private void importImg() {
+        InputStream is = getClass().getResourceAsStream("/ranocchietta.png");
+
+        try {
+            img = ImageIO.read(is);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void setPanelSize() {
@@ -37,10 +53,11 @@ public class ScenePanel extends JPanel implements KeyListener{
     public void paintComponent(final Graphics g) {
         super.paintComponent(g);
         
-        for(var obstacle : controller.getGame().getObstacles()) {
-            g.setColor(Color.RED);
-            g.fillRect((int)obstacle.getPos().x(), (int)obstacle.getPos().y(), obstacle.getDimension().width(), obstacle.getDimension().height());
-        }
+        // for(var obstacle : controller.getGame().getObstacles()) {
+        //     g.setColor(Color.RED);
+        //     g.fillRect((int)obstacle.getPos().x(), (int)obstacle.getPos().y(), obstacle.getDimension().width(), obstacle.getDimension().height());
+        // }
+        g.drawImage(img, (int)controller.getGame().getPlayer().getPos().x(), (int)controller.getGame().getPlayer().getPos().y(), null);
     }
 
     @Override

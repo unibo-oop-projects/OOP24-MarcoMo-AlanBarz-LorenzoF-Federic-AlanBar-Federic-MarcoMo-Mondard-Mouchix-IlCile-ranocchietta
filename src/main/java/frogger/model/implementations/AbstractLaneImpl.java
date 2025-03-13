@@ -12,10 +12,10 @@ import frogger.model.interfaces.Trunk;
 public abstract class AbstractLaneImpl implements Lane {
 
     protected final Set<MovingObject> obstacles = new HashSet<>();
-    private double speed;
+    private float speed;
     private Direction direction;
 
-    public AbstractLaneImpl(double speed, Direction direction) {
+    public AbstractLaneImpl(float speed, Direction direction) {
         this.speed = speed;
         this.direction = direction;
     }
@@ -35,7 +35,7 @@ public abstract class AbstractLaneImpl implements Lane {
     }
 
     @Override
-    public double getSpeed() {
+    public float getSpeed() {
         return this.speed;
     }
 
