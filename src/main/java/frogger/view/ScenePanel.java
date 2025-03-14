@@ -61,18 +61,18 @@ public class ScenePanel extends JPanel implements KeyListener{
         super.paintComponent(g);
         
         //drowing the frog
-        g.drawImage(frog, getXinPixel((int)controller.getGame().getPlayer().getPos().x()), 
-            getYinPixel((int)controller.getGame().getPlayer().getPos().y()), null);
+        g.drawImage(frog, controller.getXinPixel((int)controller.getGame().getPlayer().getPos().x()), 
+        controller.getYinPixel((int)controller.getGame().getPlayer().getPos().y()), null);
         
         //drowing the obstacles
         for(var obstacle : controller.getGame().getObstacles()) {
             //TODO: put the sprite for all the type of obstacles
             if(obstacle.getDirection().equals(Direction.LEFT)) {
                 g.drawImage((obstacle instanceof CarImpl? carLeft : (obstacle instanceof TrunkImpl? null : null)),
-                    (int)obstacle.getPos().x(), getYinPixel((int)obstacle.getPos().y()), null);
+                    (int)obstacle.getPos().x(), controller.getYinPixel((int)obstacle.getPos().y()), null);
             } else {
                 g.drawImage((obstacle instanceof CarImpl? carRight : (obstacle instanceof TrunkImpl? null : null)), 
-                    (int)obstacle.getPos().x(), getYinPixel((int)obstacle.getPos().y()), null);
+                    (int)obstacle.getPos().x(), controller.getYinPixel((int)obstacle.getPos().y()), null);
             }
         }
     } 
@@ -96,21 +96,6 @@ public class ScenePanel extends JPanel implements KeyListener{
     @Override
     public void keyReleased(KeyEvent e) {}
 
-    /**
-     * convert the x position of the logic grid, into the x position on the screen in pixel 
-     * @param pos
-     * @return
-     */
-    private int getXinPixel(int x) {
-        int centerX = Constants.FRAME_WIDTH / 2;
-        int ratioX = Constants.FRAME_WIDTH / Constants.N_COLUMN;
-        return Math.round(centerX + x * ratioX);
-    }
-
-    private int getYinPixel(int y) {
-        int centerY = Constants.FRAME_HEIGHT / 2;
-        int ratioY = Constants.FRAME_HEIGHT / Constants.N_ROW;
-        return Math.round(centerY + y * ratioY);
-    }
+    
 
 }

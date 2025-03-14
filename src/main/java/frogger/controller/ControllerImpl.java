@@ -32,7 +32,7 @@ public class ControllerImpl {
             inputController.processInput(this.game);
             
             for (var elem : game.getObstacles()) {
-                // elem.move();
+                elem.move();
             }
             
             scenePanel.repaint();
@@ -51,6 +51,23 @@ public class ControllerImpl {
 
     public ScenePanel getScenePanel(){
         return this.scenePanel;
+    }
+
+    /**
+     * convert the x position of the logic grid, into the x position on the screen in pixel 
+     * @param pos
+     * @return
+     */
+    public int getXinPixel(int x) {
+        int centerX = Constants.FRAME_WIDTH / 2;
+        int ratioX = Constants.FRAME_WIDTH / Constants.N_COLUMN;
+        return Math.round(centerX + x * ratioX);
+    }
+
+    public int getYinPixel(int y) {
+        int centerY = Constants.FRAME_HEIGHT / 2;
+        int ratioY = Constants.FRAME_HEIGHT / Constants.N_ROW;
+        return Math.round(centerY + y * ratioY);
     }
 }
 
