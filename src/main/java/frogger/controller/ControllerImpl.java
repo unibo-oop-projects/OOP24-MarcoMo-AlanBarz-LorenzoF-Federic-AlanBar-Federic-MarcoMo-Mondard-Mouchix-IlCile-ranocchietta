@@ -67,7 +67,7 @@ public class ControllerImpl {
     public int getYinPixel(int y) {
         int centerY = Constants.FRAME_HEIGHT / 2;
         int ratioY = Constants.FRAME_HEIGHT / Constants.N_ROW;
-        return Math.round(centerY + y * ratioY);
+        return Math.round(centerY - y * ratioY);
     }
 }
 
