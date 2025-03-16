@@ -1,5 +1,6 @@
 package frogger.model.implementations;
 
+import frogger.common.Constants;
 import frogger.common.Direction;
 import frogger.common.Pair;
 import frogger.common.Position;
@@ -34,6 +35,13 @@ public class MovingObjectImpl extends GameObjectImpl implements MovingObject{
     public void move() {
         this.setPos(new Position(this.getPos().x() + this.getDirectionValue().x() * this.getSpeed(), 
         this.getPos().y() + this.getDirectionValue().y() * this.getSpeed()));
+        if(!valid(this.getPos())) {
+            // System.out.println("uscito");
+        }
+    }
+
+    private boolean valid(Position pos) {
+        return pos.x() >= 0 && pos.x() <= Constants.FRAME_WIDTH;
     }
 
     public Position getDirectionValue() {

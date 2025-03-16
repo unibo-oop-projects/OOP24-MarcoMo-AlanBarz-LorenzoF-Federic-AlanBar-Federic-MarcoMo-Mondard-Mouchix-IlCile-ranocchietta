@@ -60,13 +60,13 @@ public class ControllerImpl {
      */
     public int getXinPixel(int x) {
         int centerX = Constants.FRAME_WIDTH / 2;
-        int ratioX = Constants.FRAME_WIDTH / Constants.N_COLUMN;
+        int ratioX = Constants.FRAME_WIDTH / Constants.N_COLUMN;    //number of pixel per column
         return Math.round(centerX + x * ratioX);
     }
 
     public int getYinPixel(int y) {
         int centerY = Constants.FRAME_HEIGHT / 2;
-        int ratioY = Constants.FRAME_HEIGHT / Constants.N_ROW;
+        int ratioY = Constants.FRAME_HEIGHT / Constants.N_ROW;  //number of pixel per row
         return Math.round(centerY - y * ratioY);
     }
 }

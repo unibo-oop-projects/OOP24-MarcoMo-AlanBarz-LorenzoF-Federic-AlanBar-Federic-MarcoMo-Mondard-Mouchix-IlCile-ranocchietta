@@ -27,6 +27,7 @@ public class ScenePanel extends JPanel implements KeyListener{
     private BufferedImage frog;
     private BufferedImage carLeft;
     private BufferedImage carRight;
+    private BufferedImage trunk;
 
     public ScenePanel() {
         setPanelSize();
@@ -38,11 +39,13 @@ public class ScenePanel extends JPanel implements KeyListener{
         InputStream isFrog = getClass().getResourceAsStream("/ranocchietta.png");
         InputStream isCarLeft = getClass().getResourceAsStream("/carLeft.png");
         InputStream isCarRight = getClass().getResourceAsStream("/carRight.png");
-
+        InputStream isTrunk = getClass().getResourceAsStream("/trunk.png");
+        
         try {
             frog = ImageIO.read(isFrog);
             carLeft = ImageIO.read(isCarLeft);
             carRight = ImageIO.read(isCarRight);
+            trunk = ImageIO.read(isTrunk);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -68,11 +71,15 @@ public class ScenePanel extends JPanel implements KeyListener{
         for(var obstacle : controller.getGame().getObstacles()) {
             //TODO: put the sprite for all the type of obstacles
             if(obstacle.getDirection().equals(Direction.LEFT)) {
-                g.drawImage((obstacle instanceof CarImpl? carLeft : (obstacle instanceof TrunkImpl? null : null)),
-                    (int)obstacle.getPos().x(), controller.getYinPixel((int)obstacle.getPos().y()), null);
+                g.drawImage((obstacle instanceof CarImpl? carLeft : (obstacle instanceof TrunkImpl? trunk : null)),
+                    (int)obstacle.getPos().x(), controller.getYinPixel((int)obstacle.getPos().y()),
+                    obstacle.getDimension().width() * Constants.BLOCK_WIDTH, obstacle.getDimension().height() * Constants.BLOCK_HEIGHT,
+                    null);
             } else {
-                g.drawImage((obstacle instanceof CarImpl? carRight : (obstacle instanceof TrunkImpl? null : null)), 
-                    (int)obstacle.getPos().x(), controller.getYinPixel((int)obstacle.getPos().y()), null);
+                g.drawImage((obstacle instanceof CarImpl? carRight : (obstacle instanceof TrunkImpl? trunk : null)),
+                    (int)obstacle.getPos().x(), controller.getYinPixel((int)obstacle.getPos().y()),
+                    obstacle.getDimension().width() * Constants.BLOCK_WIDTH, obstacle.getDimension().height() * Constants.BLOCK_HEIGHT,
+                    null);
             }
         }
     } 
