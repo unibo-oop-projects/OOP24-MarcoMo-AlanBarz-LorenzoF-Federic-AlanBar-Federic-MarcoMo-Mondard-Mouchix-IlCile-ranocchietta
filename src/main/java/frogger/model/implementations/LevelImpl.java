@@ -2,6 +2,7 @@ package frogger.model.implementations;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -29,11 +30,11 @@ public class LevelImpl implements Level{
     }
 
     @Override
-    public void restartObstacle(MovingObject movingObject) {
-        Lane lane = lanes.stream().filter(a -> a.getLaneObstacles() == movingObject).findAny().get();
-        lane.restartObstacle(movingObject);
-        
-        lane.addMovingObject(new MovingObjectImpl(lanes.indexOf(lane), null, 0, null));
+    public void restartObstacle(final MovingObject movingObject) {
+        Optional<Lane> lane = lanes.stream().filter(a -> a.getLaneObstacles().contains(movingObject)).findAny();
+        if(lane.isPresent()) {
+            lane.get().restartObstacle(movingObject);
+        }
     }
     
 }

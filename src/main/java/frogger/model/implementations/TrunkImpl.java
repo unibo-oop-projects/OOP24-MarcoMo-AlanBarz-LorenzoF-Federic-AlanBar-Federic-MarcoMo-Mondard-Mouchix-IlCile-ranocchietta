@@ -24,12 +24,13 @@ public class TrunkImpl extends MovingObjectImpl implements Trunk{
     }
 
     @Override
-    public void move() {
-        super.move();
+    public boolean move() {
+        
         if (frog.isPresent()) {
             frog.get().setPos(new Position(frog.get().getPos().x() + (int)(this.getDirectionValue().x() * this.getSpeed()), 
             this.getPos().y() + (int)(this.getDirectionValue().y() * this.getSpeed())));
         }
+        return super.move();
     }
 
 }

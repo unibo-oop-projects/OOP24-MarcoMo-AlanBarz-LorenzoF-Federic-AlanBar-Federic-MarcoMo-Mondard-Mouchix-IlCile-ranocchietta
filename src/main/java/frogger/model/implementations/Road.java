@@ -23,14 +23,12 @@ public class Road extends AbstractLaneImpl {
     }
 
     @Override
-    public void restartObstacle(MovingObject movingObject) {
+    public void restartObstacle(final MovingObject movingObject) {
         MovingObjectFactoryImpl factory = new MovingObjectFactoryImpl();
         this.addCar(factory.createMovingObject(
             new Position((movingObject.getDirection() == Direction.RIGHT? 0 : Constants.FRAME_WIDTH), movingObject.getPos().y()),
              movingObject.getDimension(), getSpeed(), getDirection(), CarImpl.class));
         super.obstacles.remove(movingObject);
-        // MovingObjectFactoryImpl factory = new MovingObjectFactoryImpl();
-        // this.addCar(factory.createMovingObject(, null, getSpeed(), getDirection(), null));
     }
     
 }

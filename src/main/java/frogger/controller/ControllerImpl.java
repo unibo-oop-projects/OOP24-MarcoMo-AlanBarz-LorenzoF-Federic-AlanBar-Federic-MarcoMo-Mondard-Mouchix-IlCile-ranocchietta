@@ -33,7 +33,7 @@ public class ControllerImpl {
             
             for (var obstacle : game.getObstacles()) {
                 if (!obstacle.move()) {
-                
+                    game.restartObstacle(obstacle);
                 }
             }
             

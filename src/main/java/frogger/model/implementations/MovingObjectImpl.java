@@ -41,8 +41,8 @@ public class MovingObjectImpl extends GameObjectImpl implements MovingObject{
         return true;
     }
 
-    private boolean valid(Position pos) {
-        return pos.x() >= 0 && pos.x() <= Constants.FRAME_WIDTH;
+    private boolean valid(final Position pos) {
+        return pos.x() >= (-this.getDimension().width()) && pos.x() <= Constants.FRAME_WIDTH;
     }
 
     public Position getDirectionValue() {

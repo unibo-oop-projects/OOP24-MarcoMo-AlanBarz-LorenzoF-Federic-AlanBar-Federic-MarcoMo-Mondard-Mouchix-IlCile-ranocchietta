@@ -29,4 +29,7 @@ public class Ground implements Lane{
         return new HashSet<>();
     }
 
+    @Override
+    public void restartObstacle(MovingObject movingObject) {}
+
 }
