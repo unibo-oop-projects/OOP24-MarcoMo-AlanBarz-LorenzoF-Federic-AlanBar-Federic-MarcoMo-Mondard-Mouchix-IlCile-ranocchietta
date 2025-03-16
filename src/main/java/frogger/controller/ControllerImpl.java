@@ -31,8 +31,10 @@ public class ControllerImpl {
 			long elapsed = currentCycleStartTime - previousCycleStartTime;
             inputController.processInput(this.game);
             
-            for (var elem : game.getObstacles()) {
-                elem.move();
+            for (var obstacle : game.getObstacles()) {
+                if (!obstacle.move()) {
+                
+                }
             }
             
             scenePanel.repaint();

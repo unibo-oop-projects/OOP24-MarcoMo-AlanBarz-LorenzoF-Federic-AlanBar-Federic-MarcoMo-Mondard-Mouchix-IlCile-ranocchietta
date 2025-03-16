@@ -9,5 +9,5 @@ public interface MovingObject extends GameObject{
 
     public float getSpeed();
 
-    public void move();
+    public boolean move();
 }

@@ -19,4 +19,9 @@ public class River extends AbstractLaneImpl {
     public void addTrunk(MovingObject obstacle) {
         super.obstacles.add((Trunk)obstacle);
     }
+
+    @Override
+    public void restartObstacle(MovingObject movingObject) {
+        super.obstacles.remove(movingObject);
+    }
 }

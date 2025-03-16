@@ -76,7 +76,6 @@ public class LevelFactoryImpl implements LevelFactory {
         int delta = bound - Math.abs(Constants.MAX_X);
         while (obstacles.size() != nOfObstacles) {
             Position pos = new Position(ran.nextInt(bound) * (Constants.FRAME_WIDTH / Constants.N_COLUMN), y);
-            System.out.println(pos);
             MovingObject object;
             if (!usedPositions.stream().anyMatch(position -> position.equals(pos))) {
                 if (type.equals(Car.class)) {

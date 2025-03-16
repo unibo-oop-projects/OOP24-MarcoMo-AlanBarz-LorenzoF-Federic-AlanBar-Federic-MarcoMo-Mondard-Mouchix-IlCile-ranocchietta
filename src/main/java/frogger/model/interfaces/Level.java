@@ -11,4 +11,5 @@ public interface Level {
 
     void addLane(Lane lane);
 
+    void restartObstacle(MovingObject movingObject);
 }

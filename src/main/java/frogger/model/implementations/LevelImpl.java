@@ -27,5 +27,13 @@ public class LevelImpl implements Level{
     public void addLane(Lane lane) {
         lanes.add(lane);
     }
+
+    @Override
+    public void restartObstacle(MovingObject movingObject) {
+        Lane lane = lanes.stream().filter(a -> a.getLaneObstacles() == movingObject).findAny().get();
+        lane.restartObstacle(movingObject);
+        
+        lane.addMovingObject(new MovingObjectImpl(lanes.indexOf(lane), null, 0, null));
+    }
     
 }
