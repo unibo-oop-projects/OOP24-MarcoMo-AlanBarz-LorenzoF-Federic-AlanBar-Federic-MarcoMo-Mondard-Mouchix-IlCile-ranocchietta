@@ -76,7 +76,7 @@ public class ScenePanel extends JPanel implements KeyListener{
                     obstacle.getDimension().width() * Constants.BLOCK_WIDTH, obstacle.getDimension().height() * Constants.BLOCK_HEIGHT,
                     null);
             } else {
-                g.drawImage((obstacle instanceof CarImpl? carRight : (obstacle instanceof TrunkImpl? trunk : null)),
+                g.drawImage((obstacle instanceof CarImpl? carRight : (obstacle instanceof TrunkImpl? null : null)),
                     (int)obstacle.getPos().x(), controller.getYinPixel((int)obstacle.getPos().y()),
                     obstacle.getDimension().width() * Constants.BLOCK_WIDTH, obstacle.getDimension().height() * Constants.BLOCK_HEIGHT,
                     null);
