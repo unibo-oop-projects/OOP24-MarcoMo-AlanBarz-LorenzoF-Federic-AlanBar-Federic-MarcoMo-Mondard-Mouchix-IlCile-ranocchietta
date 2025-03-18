@@ -15,8 +15,8 @@ public class TrunkImpl extends MovingObjectImpl implements Trunk{
         super(pos, dimension, speed, direction);
     }
 
-    public void setFrog(Optional<PlayerObjectImpl> frog) {
-        this.frog = frog;
+    public void setFrog(PlayerObjectImpl frog) {
+        this.frog = Optional.of(frog);
     }
 
     public void removeFrog() {

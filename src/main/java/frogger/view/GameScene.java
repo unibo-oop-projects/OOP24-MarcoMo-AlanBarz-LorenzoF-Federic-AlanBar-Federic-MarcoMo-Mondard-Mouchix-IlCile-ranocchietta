@@ -16,7 +16,7 @@ public class GameScene {
         this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(true);
         
-        this.frame.add(panel);
+        this.frame.getContentPane().add(panel);
         panel.requestFocus();
 
         frame.pack();

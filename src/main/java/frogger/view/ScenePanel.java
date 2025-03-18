@@ -30,6 +30,8 @@ public class ScenePanel extends JPanel implements KeyListener{
     private BufferedImage trunk;
 
     public ScenePanel() {
+        this.addKeyListener(this);
+        setFocusable(true);
         setPanelSize();
         setBackground(Color.BLACK);
         importImg();
@@ -92,11 +94,11 @@ public class ScenePanel extends JPanel implements KeyListener{
         if (e.getKeyCode() == 38){
             this.controller.getInputController().notifyCommand(new MoveUp());;
         } else if (e.getKeyCode() == 40){
-            this.controller.getInputController().notifyCommand(new MoveDown());;
+            this.controller.getInputController().notifyCommand(new MoveDown());
         } else if (e.getKeyCode() == 39){
-            this.controller.getInputController().notifyCommand(new MoveRight());;
+            this.controller.getInputController().notifyCommand(new MoveRight());
         } else if (e.getKeyCode() == 37){
-            this.controller.getInputController().notifyCommand(new MoveLeft());;
+            this.controller.getInputController().notifyCommand(new MoveLeft());
         }
     }
 

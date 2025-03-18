@@ -9,7 +9,7 @@ public class MoveRight implements Command{
     @Override
     public void execute(GameImpl game) {
         PlayerObjectImpl player = game.getPlayer();
-		if(player.getPos().y() < 6){
+		if(player.getPos().x() < 6){
             player.setLookingRight();
 			player.setPos(new Position(player.getPos().x() + 1, player.getPos().y()));
 		}

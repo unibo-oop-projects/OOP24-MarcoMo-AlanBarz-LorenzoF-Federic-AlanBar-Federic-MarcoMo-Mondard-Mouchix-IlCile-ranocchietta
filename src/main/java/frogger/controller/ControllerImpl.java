@@ -2,6 +2,7 @@ package frogger.controller;
 
 import frogger.common.Constants;
 import frogger.common.Pair;
+import frogger.common.Position;
 import frogger.common.input.InputController;
 import frogger.common.input.InputControllerImpl;
 import frogger.model.implementations.GameImpl;
@@ -29,8 +30,10 @@ public class ControllerImpl {
         while (!game.isGameOver()){
             long currentCycleStartTime = System.currentTimeMillis();
 			long elapsed = currentCycleStartTime - previousCycleStartTime;
-            inputController.processInput(this.game);
+            this.inputController.processInput(this.game);
             
+            this.game.checkCollision(new Position(getXinPixel((int)this.game.getPlayer().getPos().x()), this.game.getPlayer().getPos().y()));
+
             for (var obstacle : game.getObstacles()) {
                 if (!obstacle.move()) {
                     game.restartObstacle(obstacle);

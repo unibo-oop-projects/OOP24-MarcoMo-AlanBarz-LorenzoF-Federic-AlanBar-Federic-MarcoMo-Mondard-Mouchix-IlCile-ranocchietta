@@ -21,11 +21,11 @@ public class ShopImpl implements Shop{
 
     @Override
     public void shopInit() {
-        // try {
-        //     this.purchasableObjects.add(factory.newSkin(10, ImageIO.read(getClass().getResourceAsStream("/ranocchietta.png"))));
-        // } catch (IOException e) {
-        //     e.printStackTrace();
-        // }
+        try {
+             this.purchasableObjects.add(factory.createSkin(10, ImageIO.read(getClass().getResourceAsStream("/ranocchietta.png"))));
+        } catch (IOException e) {
+             e.printStackTrace();
+        }
     }
 
 }
