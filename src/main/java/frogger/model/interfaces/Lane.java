@@ -12,6 +12,4 @@ public interface Lane {
     Direction getDirection();
 
     Set<MovingObject> getLaneObstacles();
-
-    void restartObstacle(MovingObject movingObject);
 }

@@ -21,14 +21,4 @@ public class Road extends AbstractLaneImpl {
     public void addTrunk(MovingObject obstacle) {
         throw new IllegalStateException("Wrong type of obstacle.");
     }
-
-    @Override
-    public void restartObstacle(final MovingObject movingObject) {
-        MovingObjectFactoryImpl factory = new MovingObjectFactoryImpl();
-        this.addCar(factory.createMovingObject(
-            new Position((movingObject.getDirection() == Direction.RIGHT? 0 : Constants.FRAME_WIDTH), movingObject.getPos().y()),
-             movingObject.getDimension(), getSpeed(), getDirection(), CarImpl.class));
-        super.obstacles.remove(movingObject);
-    }
-    
 }

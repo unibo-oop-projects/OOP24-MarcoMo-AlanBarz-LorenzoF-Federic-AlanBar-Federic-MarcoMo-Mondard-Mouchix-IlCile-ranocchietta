@@ -34,11 +34,7 @@ public class ControllerImpl {
             
             this.game.checkCollision(new Position(getXinPixel((int)this.game.getPlayer().getPos().x()), this.game.getPlayer().getPos().y()));
 
-            for (var obstacle : game.getObstacles()) {
-                if (!obstacle.move()) {
-                    game.restartObstacle(obstacle);
-                }
-            }
+            game.getObstacles().forEach(a -> a.move()); //moving all obstacles
             
             scenePanel.repaint();
 

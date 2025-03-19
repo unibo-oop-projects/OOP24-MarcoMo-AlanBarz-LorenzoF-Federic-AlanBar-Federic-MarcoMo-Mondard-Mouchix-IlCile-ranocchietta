@@ -10,6 +10,4 @@ public interface Level {
     Set<MovingObject> getAllObstacles();
 
     void addLane(Lane lane);
-
-    void restartObstacle(MovingObject movingObject);
 }
