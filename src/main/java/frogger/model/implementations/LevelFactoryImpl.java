@@ -54,7 +54,7 @@ public class LevelFactoryImpl implements LevelFactory {
     private Lane createLane(Class<? extends Lane> type) {
         Random ran = new Random();
         Direction dir = ran.nextBoolean() ? Direction.RIGHT : Direction.LEFT;
-        float speed = ran.nextFloat(0.0002f , 0.0008f);
+        float speed = ran.nextFloat(0.5f , 1);
         Lane lane;
         if (type.equals(Road.class)) {
             lane = new Road(speed, dir);
@@ -84,6 +84,7 @@ public class LevelFactoryImpl implements LevelFactory {
                 } else if (type.equals(Trunk.class)) {
                     int width = ran.nextBoolean() ? Constants.MIN_TRUNK_WIDTH : Constants.MAX_TRUNK_WIDTH;
                     object = obstaclesFactory.createMovingObject(pos, new Pair(width, Constants.OBJECT_HEIGHT), speed, dir, TrunkImpl.class);
+                    System.out.println(pos);
                 } else {
                     throw new IllegalArgumentException("Type is not compatible.");
                 }

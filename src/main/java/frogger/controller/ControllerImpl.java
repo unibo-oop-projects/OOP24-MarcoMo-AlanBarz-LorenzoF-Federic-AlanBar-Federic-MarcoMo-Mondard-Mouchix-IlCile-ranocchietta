@@ -10,6 +10,7 @@ import frogger.view.GameScene;
 import frogger.view.ScenePanel;
 
 public class ControllerImpl {
+    private final int FPS_SET = 120;
 
     private GameImpl game;
     InputControllerImpl inputController;
@@ -17,7 +18,7 @@ public class ControllerImpl {
     GameScene gameScene;
 
     public void gameInit() {
-        game = new GameImpl(new Pair(Constants.PLAYER_WIDTH,Constants.PLAYER_HEIGHT));  //TODO: create the static class with the constant for dimention
+        game = new GameImpl(new Pair(Constants.PLAYER_WIDTH,Constants.PLAYER_HEIGHT));
     
         scenePanel = new ScenePanel();
         gameScene = new GameScene(scenePanel);
@@ -26,19 +27,23 @@ public class ControllerImpl {
     }
 
     public void mainLoop(){
-        long previousCycleStartTime = System.currentTimeMillis();
+        double timePerFrame = 1000000000.0 / FPS_SET;
+        long lastFrame = System.nanoTime();
+        long now = System.nanoTime();
+        long lastCheck = System.currentTimeMillis();
+
         while (!game.isGameOver()){
-            long currentCycleStartTime = System.currentTimeMillis();
-			long elapsed = currentCycleStartTime - previousCycleStartTime;
+            now = System.nanoTime();
+
             this.inputController.processInput(this.game);
             
-            this.game.checkCollision(new Position(getXinPixel((int)this.game.getPlayer().getPos().x()), this.game.getPlayer().getPos().y()));
+            if (now - lastFrame >= timePerFrame) {
+                this.game.checkCollision(new Position(getXinPixel((int)this.game.getPlayer().getPos().x()), this.game.getPlayer().getPos().y()));
+                game.getObstacles().forEach(a -> a.move()); //moving all obstacles
+                scenePanel.repaint();
 
-            game.getObstacles().forEach(a -> a.move()); //moving all obstacles
-            
-            scenePanel.repaint();
-
-            previousCycleStartTime = currentCycleStartTime;
+                lastFrame = now;
+            }
         }
     }
 
