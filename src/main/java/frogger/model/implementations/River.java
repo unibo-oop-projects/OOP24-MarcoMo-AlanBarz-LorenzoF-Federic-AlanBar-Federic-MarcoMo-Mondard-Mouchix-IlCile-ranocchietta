@@ -21,13 +21,4 @@ public class River extends AbstractLaneImpl {
     public void addTrunk(final MovingObject obstacle) {
         super.obstacles.add((Trunk)obstacle);
     }
-
-    @Override
-    public void restartObstacle(final MovingObject movingObject) {
-        MovingObjectFactoryImpl factory = new MovingObjectFactoryImpl();
-        this.addTrunk(factory.createMovingObject(
-            new Position((movingObject.getDirection() == Direction.RIGHT? 0 : Constants.FRAME_WIDTH), movingObject.getPos().y()),
-             movingObject.getDimension(), getSpeed(), getDirection(), TrunkImpl.class));
-        super.obstacles.remove(movingObject);
-    }
 }

@@ -1,7 +1,5 @@
 package frogger.view;
 
-//import java.awt.Dimension;
-
 import javax.swing.JFrame;
 
 import frogger.common.Constants;

@@ -79,8 +79,4 @@ public class GameImpl implements Game{
     public PlayerObjectImpl getPlayer(){
         return this.player;
     }
-
-    public void restartObstacle(MovingObject movingObject) {
-        level.restartObstacle(movingObject);
-    }
 }

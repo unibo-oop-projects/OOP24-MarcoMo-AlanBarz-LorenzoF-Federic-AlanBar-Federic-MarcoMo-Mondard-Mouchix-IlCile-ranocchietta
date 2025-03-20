@@ -32,13 +32,12 @@ public class MovingObjectImpl extends GameObjectImpl implements MovingObject{
     }
 
     @Override
-    public boolean move() {
+    public void move() {
         this.setPos(new Position(this.getPos().x() + this.getDirectionValue().x() * this.getSpeed(), 
         this.getPos().y() + this.getDirectionValue().y() * this.getSpeed()));
         if(!valid(this.getPos())) {
-            return false;
+            this.setPos(new Position((this.getDirection() == Direction.RIGHT? -this.getDimension().width() : Constants.FRAME_WIDTH), this.getPos().y()));
         }
-        return true;
     }
 
     private boolean valid(final Position pos) {

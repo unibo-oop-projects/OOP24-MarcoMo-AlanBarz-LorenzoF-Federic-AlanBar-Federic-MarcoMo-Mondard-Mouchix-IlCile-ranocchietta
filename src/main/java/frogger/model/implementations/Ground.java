@@ -28,8 +28,4 @@ public class Ground implements Lane{
     public Set<MovingObject> getLaneObstacles() {
         return new HashSet<>();
     }
-
-    @Override
-    public void restartObstacle(MovingObject movingObject) {}
-
 }

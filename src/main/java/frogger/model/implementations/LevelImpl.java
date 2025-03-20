@@ -28,13 +28,4 @@ public class LevelImpl implements Level{
     public void addLane(Lane lane) {
         lanes.add(lane);
     }
-
-    @Override
-    public void restartObstacle(final MovingObject movingObject) {
-        Optional<Lane> lane = lanes.stream().filter(a -> a.getLaneObstacles().contains(movingObject)).findAny();
-        if(lane.isPresent()) {
-            lane.get().restartObstacle(movingObject);
-        }
-    }
-    
 }
