@@ -7,6 +7,7 @@ import frogger.model.interfaces.Level;
 import frogger.model.interfaces.MovingObject;
 
 import java.util.Set;
+import java.util.function.Predicate;
 
 public class GameImpl implements Game{
 
@@ -31,20 +32,26 @@ public class GameImpl implements Game{
 
     @Override
     public void checkCollision(Position p) {
-        /*if(fai == 1){
-            System.out.println("entro");
-            System.err.println(level.getAllObstacles().size());
-            for(var obastacle: level.getAllObstacles()){
-                System.out.println(obastacle.getPos().x() + ", " + obastacle.getPos().y());
-            }
-            fai = 0;
-        }*/
         if(this.player.getPos().y() > -6 && this.player.getPos().y() < 0){
-            for(var obstacle: this.level.getAllObstacles()){
+            /*for(var obstacle: this.level.getAllObstacles()){
                 int radius = obstacle.getDimension().width();
                 if(p.x() < obstacle.getPos().x() + radius && p.x() > obstacle.getPos().x() - radius && obstacle.getPos().y() == p.y()){
                     this.player.getHit();
                 }
+            }*/
+
+            if(this.level.getAllObstacles().stream().filter(x -> x.getPos().y() == p.y()).anyMatch(new Predicate<MovingObject>() {
+
+                @Override
+                public boolean test(MovingObject obstacle) {
+                    if(p.x() < obstacle.getPos().x() + obstacle.getDimension().width() && p.x() > obstacle.getPos().x() - obstacle.getDimension().width()){
+                        return true;
+                    }
+                    return false;
+                }
+                
+            } )){
+                this.player.getHit();
             }
         }else if(this.player.getPos().y() > 0 && this.player.getPos().y() < 6){
             boolean trovato = false;
