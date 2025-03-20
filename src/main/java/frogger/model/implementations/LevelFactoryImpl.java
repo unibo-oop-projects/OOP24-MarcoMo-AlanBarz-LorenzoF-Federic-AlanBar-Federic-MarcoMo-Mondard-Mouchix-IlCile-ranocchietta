@@ -29,7 +29,7 @@ public class LevelFactoryImpl implements LevelFactory {
         level.addLane(start);
         laneIndex++;
         for(int i = 0; i < Constants.ROAD_LANES; i++) {
-            Lane road = createLane(Road.class);
+            Lane road = createLane(Road.class, laneIndex);
             createObstacles(Car.class, road.getSpeed(), road.getDirection(), laneIndex).forEach(ob -> road.addMovingObject(ob));
             level.addLane(road);
             laneIndex++;
@@ -38,7 +38,7 @@ public class LevelFactoryImpl implements LevelFactory {
         level.addLane(mid);
         laneIndex++;
         for(int i = 0; i < Constants.RIVER_LANES; i++) {
-            Lane river = createLane(River.class);
+            Lane river = createLane(River.class, laneIndex);
             createObstacles(Trunk.class, river.getSpeed(), river.getDirection(), laneIndex).forEach(ob -> river.addMovingObject(ob));
             level.addLane(river);
             laneIndex++;
@@ -51,9 +51,9 @@ public class LevelFactoryImpl implements LevelFactory {
         return level;
     }
 
-    private Lane createLane(Class<? extends Lane> type) {
+    private Lane createLane(Class<? extends Lane> type, int y) {
         Random ran = new Random();
-        Direction dir = ran.nextBoolean() ? Direction.RIGHT : Direction.LEFT;
+        Direction dir = y % 2 == 0 ? Direction.RIGHT : Direction.LEFT;
         float speed = ran.nextFloat(0.5f , 1);
         Lane lane;
         if (type.equals(Road.class)) {
