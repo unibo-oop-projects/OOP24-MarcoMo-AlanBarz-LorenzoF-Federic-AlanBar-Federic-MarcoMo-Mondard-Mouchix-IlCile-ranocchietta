@@ -29,6 +29,6 @@ public class Constants {
     public static int BLOCK_WIDTH = FRAME_WIDTH / N_COLUMN;
     public static int BLOCK_HEIGHT = FRAME_HEIGHT / N_ROW;
 
-    public static int PLAYER_WIDTH = BLOCK_WIDTH;
-    public static int PLAYER_HEIGHT = BLOCK_HEIGHT;
+    public static int PLAYER_WIDTH = 56;
+    public static int PLAYER_HEIGHT = 56;
 }

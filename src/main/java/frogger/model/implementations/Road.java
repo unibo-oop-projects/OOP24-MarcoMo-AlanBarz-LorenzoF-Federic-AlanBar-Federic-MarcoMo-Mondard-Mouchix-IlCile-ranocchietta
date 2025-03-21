@@ -1,8 +1,6 @@
 package frogger.model.implementations;
 
-import frogger.common.Constants;
 import frogger.common.Direction;
-import frogger.common.Position;
 import frogger.model.interfaces.Car;
 import frogger.model.interfaces.MovingObject;
 

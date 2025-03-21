@@ -68,6 +68,8 @@ public class ScenePanel extends JPanel implements KeyListener{
         //drowing the frog
         g.drawImage(frog, controller.getXinPixel((int)controller.getGame().getPlayer().getPos().x()), 
         controller.getYinPixel((int)controller.getGame().getPlayer().getPos().y()), null);
+        this.controller.getGame().getPlayer().drawHitBox(g, this.controller.getXinPixel((int)this.controller.getGame().getPlayer().getPos().x()),
+        this.controller.getYinPixel((int)this.controller.getGame().getPlayer().getPos().y()));
         
         //drowing the obstacles
         for(var obstacle : controller.getGame().getObstacles()) {
@@ -83,6 +85,8 @@ public class ScenePanel extends JPanel implements KeyListener{
                     obstacle.getDimension().width() * Constants.BLOCK_WIDTH, obstacle.getDimension().height() * Constants.BLOCK_HEIGHT,
                     null);
             }
+
+            obstacle.drawHitBox(g, this.controller.getXinPixel((int)obstacle.getPos().x()), this.controller.getYinPixel((int)obstacle.getPos().y()));
         }
     } 
 

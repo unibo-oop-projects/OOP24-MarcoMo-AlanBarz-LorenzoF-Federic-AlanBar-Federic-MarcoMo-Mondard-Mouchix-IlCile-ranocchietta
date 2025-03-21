@@ -2,7 +2,7 @@ package frogger.model.interfaces;
 
 import frogger.common.Direction;
 
-public interface PlayerObject {
+public interface PlayerObject extends GameObject{
 
     int getLives();
 

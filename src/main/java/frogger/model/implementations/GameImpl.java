@@ -1,13 +1,12 @@
 package frogger.model.implementations;
 
 import frogger.common.Pair;
-import frogger.common.Position;
 import frogger.model.interfaces.Game;
 import frogger.model.interfaces.Level;
 import frogger.model.interfaces.MovingObject;
+import frogger.model.interfaces.PlayerObject;
 
 import java.util.Set;
-import java.util.function.Predicate;
 
 public class GameImpl implements Game{
 
@@ -31,30 +30,13 @@ public class GameImpl implements Game{
     }
 
     @Override
-    public void checkCollision(Position p) {
+    public void checkCollision() {
         if(this.player.getPos().y() > -6 && this.player.getPos().y() < 0){
-            /*for(var obstacle: this.level.getAllObstacles()){
-                int radius = obstacle.getDimension().width();
-                if(p.x() < obstacle.getPos().x() + radius && p.x() > obstacle.getPos().x() - radius && obstacle.getPos().y() == p.y()){
-                    this.player.getHit();
-                }
-            }*/
-
-            if(this.level.getAllObstacles().stream().filter(x -> x.getPos().y() == p.y()).anyMatch(new Predicate<MovingObject>() {
-
-                @Override
-                public boolean test(MovingObject obstacle) {
-                    if(p.x() < obstacle.getPos().x() + obstacle.getDimension().width() && p.x() > obstacle.getPos().x() - obstacle.getDimension().width()){
-                        return true;
-                    }
-                    return false;
-                }
-                
-            } )){
+            if(this.level.getAllObstacles().stream().filter(x -> x.getPos().y() == this.player.getPos().y()).anyMatch(x -> x.getHitBox().intersects(this.player.getHitBox()))){
                 this.player.getHit();
             }
         }else if(this.player.getPos().y() > 0 && this.player.getPos().y() < 6){
-            boolean trovato = false;
+            /*boolean trovato = false;
             for(var obstacle: this.level.getAllObstacles()){
                 int radius = obstacle.getDimension().width();
                 if(p.x() < obstacle.getPos().x() + radius && p.x() > obstacle.getPos().x() - radius && obstacle.getPos().y() == p.y()){
@@ -67,7 +49,7 @@ public class GameImpl implements Game{
 
             if(!trovato){
                 this.player.getHit();
-            }
+            }*/
         }
         
     }
@@ -76,7 +58,7 @@ public class GameImpl implements Game{
         return level.getAllObstacles();
     }
 
-    public PlayerObjectImpl getPlayer(){
+    public PlayerObject getPlayer(){
         return this.player;
     }
 }
