@@ -3,15 +3,11 @@ package frogger.view;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
-import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
 import java.io.InputStream;
 
-import javax.imageio.ImageIO;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import frogger.common.Constants;
@@ -35,23 +31,21 @@ public class ScenePanel extends JPanel implements KeyListener{
         setFocusable(true);
         setPanelSize();
         setBackground(Color.BLACK);
-        importImg();
     }
 
     private void importImg() {
         InputStream isFrog = getClass().getResourceAsStream("/ranocchietta.png");
-        InputStream isCarLeft = getClass().getResourceAsStream("/carLeft.png");
-        InputStream isCarRight = getClass().getResourceAsStream("/carRight.png");
-        InputStream isTrunk = getClass().getResourceAsStream("/trunk.png");
-        
-        try {
-            frog = ImageIO.read(isFrog);
-            carLeft = ImageIO.read(isCarLeft);
-            carRight = ImageIO.read(isCarRight);
-            trunk = ImageIO.read(isTrunk);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        controller.getGame().getPlayer().setImage(isFrog);
+        controller.getGame().getObstacles().forEach(obstacle -> {
+            System.out.println(obstacle.getClass().getInterfaces()[0].getSimpleName());
+            if (obstacle instanceof CarImpl) {
+                obstacle.setImage((obstacle.getDirection().equals(Direction.LEFT)? getClass().getResourceAsStream("/carLeft.png") 
+                : getClass().getResourceAsStream("/carRight.png")));
+            } else {
+                obstacle.setImage(getClass().getResourceAsStream("/" + obstacle.getClass().getInterfaces()[0].getSimpleName().toLowerCase() + ".png"));
+            }
+        });
+
     }
 
     private void setPanelSize() {
@@ -60,6 +54,7 @@ public class ScenePanel extends JPanel implements KeyListener{
 
     public void setController(ControllerImpl controller) {
         this.controller = controller;
+        importImg();
     }
 
     @Override
@@ -67,22 +62,19 @@ public class ScenePanel extends JPanel implements KeyListener{
         super.paintComponent(g);
 
         //drowing the frog
-        g.drawImage(frog, (int)controller.getXinPixel(controller.getGame().getPlayer().getPos().x()), 
-        (int)controller.getYinPixel(controller.getGame().getPlayer().getPos().y()),
-        controller.getGame().getPlayer().getDimension().width() * Constants.BLOCK_WIDTH, controller.getGame().getPlayer().getDimension().height() * Constants.BLOCK_WIDTH, 
-        null);
-
+        // g.drawImage(frog, (int)controller.getXinPixel(controller.getGame().getPlayer().getPos().x()), 
+        // (int)controller.getYinPixel(controller.getGame().getPlayer().getPos().y()),
+        // controller.getGame().getPlayer().getDimension().width() * Constants.BLOCK_WIDTH, controller.getGame().getPlayer().getDimension().height() * Constants.BLOCK_WIDTH, 
+        // null);
+        controller.getGame().getPlayer().render(g, (int)controller.getXinPixel(controller.getGame().getPlayer().getPos().x()), 
+        (int)controller.getYinPixel(controller.getGame().getPlayer().getPos().y()));
 
         this.controller.getGame().getPlayer().drawHitBox(g, (int)this.controller.getXinPixel(this.controller.getGame().getPlayer().getPos().x()),
         (int)this.controller.getYinPixel(this.controller.getGame().getPlayer().getPos().y()));
         
         //drowing the obstacles
         for(var obstacle : controller.getGame().getObstacles()) {
-            //TODO: put the sprite for all the type of obstacles
-            g.drawImage((obstacle instanceof CarImpl? (obstacle.getDirection().equals(Direction.LEFT)? carLeft : carRight) : trunk),
-                (int)controller.getXinPixel(obstacle.getPos().x()), (int)controller.getYinPixel(obstacle.getPos().y()),
-                obstacle.getDimension().width() * Constants.BLOCK_WIDTH, obstacle.getDimension().height() * Constants.BLOCK_HEIGHT,
-                null);
+            obstacle.render(g,(int)controller.getXinPixel(obstacle.getPos().x()), (int)controller.getYinPixel(obstacle.getPos().y()));
 
             obstacle.drawHitBox(g, (int)controller.getXinPixel(obstacle.getPos().x()), (int)this.controller.getYinPixel(obstacle.getPos().y()));
         }

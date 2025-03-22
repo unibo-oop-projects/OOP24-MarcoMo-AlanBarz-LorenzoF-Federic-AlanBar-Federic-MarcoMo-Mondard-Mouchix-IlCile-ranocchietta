@@ -3,6 +3,11 @@ package frogger.model.implementations;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.io.InputStream;
+
+import javax.imageio.ImageIO;
 
 import frogger.common.Constants;
 import frogger.common.Pair;
@@ -10,10 +15,10 @@ import frogger.common.Position;
 import frogger.model.interfaces.GameObject;
 
 public abstract class GameObjectImpl implements GameObject {
-
     private Position pos;
     private final Pair dimension;
     protected Rectangle hitbox;
+    private BufferedImage img;
 
     public GameObjectImpl(Position pos, Pair dimension) {
         this.pos = pos;
@@ -55,6 +60,20 @@ public abstract class GameObjectImpl implements GameObject {
     @Override
     public Pair getDimension() {
         return dimension;
+    }
+
+    @Override
+    public void render(Graphics g, int x, int y) {
+        g.drawImage(img, x, y, this.getDimension().width() * Constants.BLOCK_WIDTH, 
+        this.getDimension().height() * Constants.BLOCK_HEIGHT, null);
+    }
+
+    public void setImage(InputStream is) {
+        try {
+            img = ImageIO.read(is);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }
