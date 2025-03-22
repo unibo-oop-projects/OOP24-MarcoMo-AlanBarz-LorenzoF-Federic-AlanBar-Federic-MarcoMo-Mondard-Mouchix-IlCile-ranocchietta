@@ -3,6 +3,7 @@ package frogger.view;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
@@ -10,6 +11,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import javax.imageio.ImageIO;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import frogger.common.Constants;
@@ -20,7 +22,6 @@ import frogger.common.input.MoveRight;
 import frogger.common.input.MoveUp;
 import frogger.controller.ControllerImpl;
 import frogger.model.implementations.CarImpl;
-import frogger.model.implementations.TrunkImpl;
 
 public class ScenePanel extends JPanel implements KeyListener{
     ControllerImpl controller;
@@ -67,7 +68,11 @@ public class ScenePanel extends JPanel implements KeyListener{
 
         //drowing the frog
         g.drawImage(frog, (int)controller.getXinPixel(controller.getGame().getPlayer().getPos().x()), 
-        (int)controller.getYinPixel(controller.getGame().getPlayer().getPos().y()), null);
+        (int)controller.getYinPixel(controller.getGame().getPlayer().getPos().y()),
+        controller.getGame().getPlayer().getDimension().width() * Constants.BLOCK_WIDTH, controller.getGame().getPlayer().getDimension().height() * Constants.BLOCK_WIDTH, 
+        null);
+
+
         this.controller.getGame().getPlayer().drawHitBox(g, (int)this.controller.getXinPixel(this.controller.getGame().getPlayer().getPos().x()),
         (int)this.controller.getYinPixel(this.controller.getGame().getPlayer().getPos().y()));
         

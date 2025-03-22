@@ -36,7 +36,6 @@ public class MovingObjectImpl extends GameObjectImpl implements MovingObject{
         this.setPos(new Position(this.getPos().x() + this.getDirectionValue().x() * this.getSpeed(), 
         this.getPos().y() + this.getDirectionValue().y() * this.getSpeed()));
         if(!valid(this.getPos())) {
-            System.out.println(this.getPos());
             this.setPos(new Position((this.getDirection() == Direction.RIGHT? Constants.MIN_X - 1: Constants.MAX_X + 1), this.getPos().y()));
         }
     }
