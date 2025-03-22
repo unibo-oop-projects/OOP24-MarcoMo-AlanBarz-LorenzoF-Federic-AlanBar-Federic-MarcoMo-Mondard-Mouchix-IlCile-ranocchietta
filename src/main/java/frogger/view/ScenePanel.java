@@ -64,29 +64,22 @@ public class ScenePanel extends JPanel implements KeyListener{
     @Override
     public void paintComponent(final Graphics g) {
         super.paintComponent(g);
-        
+
         //drowing the frog
-        g.drawImage(frog, controller.getXinPixel((int)controller.getGame().getPlayer().getPos().x()), 
-        controller.getYinPixel((int)controller.getGame().getPlayer().getPos().y()), null);
-        this.controller.getGame().getPlayer().drawHitBox(g, this.controller.getXinPixel((int)this.controller.getGame().getPlayer().getPos().x()),
-        this.controller.getYinPixel((int)this.controller.getGame().getPlayer().getPos().y()));
+        g.drawImage(frog, (int)controller.getXinPixel(controller.getGame().getPlayer().getPos().x()), 
+        (int)controller.getYinPixel(controller.getGame().getPlayer().getPos().y()), null);
+        this.controller.getGame().getPlayer().drawHitBox(g, (int)this.controller.getXinPixel(this.controller.getGame().getPlayer().getPos().x()),
+        (int)this.controller.getYinPixel(this.controller.getGame().getPlayer().getPos().y()));
         
         //drowing the obstacles
         for(var obstacle : controller.getGame().getObstacles()) {
             //TODO: put the sprite for all the type of obstacles
-            if(obstacle.getDirection().equals(Direction.LEFT)) {
-                g.drawImage((obstacle instanceof CarImpl? carLeft : (obstacle instanceof TrunkImpl? trunk : null)),
-                    (int)obstacle.getPos().x(), controller.getYinPixel((int)obstacle.getPos().y()),
-                    obstacle.getDimension().width() * Constants.BLOCK_WIDTH, obstacle.getDimension().height() * Constants.BLOCK_HEIGHT,
-                    null);
-            } else {
-                g.drawImage((obstacle instanceof CarImpl? carRight : (obstacle instanceof TrunkImpl? trunk : null)),
-                    (int)obstacle.getPos().x(), controller.getYinPixel((int)obstacle.getPos().y()),
-                    obstacle.getDimension().width() * Constants.BLOCK_WIDTH, obstacle.getDimension().height() * Constants.BLOCK_HEIGHT,
-                    null);
-            }
+            g.drawImage((obstacle instanceof CarImpl? (obstacle.getDirection().equals(Direction.LEFT)? carLeft : carRight) : trunk),
+                (int)controller.getXinPixel(obstacle.getPos().x()), (int)controller.getYinPixel(obstacle.getPos().y()),
+                obstacle.getDimension().width() * Constants.BLOCK_WIDTH, obstacle.getDimension().height() * Constants.BLOCK_HEIGHT,
+                null);
 
-            obstacle.drawHitBox(g, obstacle.getPos().x(), this.controller.getYinPixel((int)obstacle.getPos().y()));
+            obstacle.drawHitBox(g, (int)controller.getXinPixel(obstacle.getPos().x()), (int)this.controller.getYinPixel(obstacle.getPos().y()));
         }
     } 
 
