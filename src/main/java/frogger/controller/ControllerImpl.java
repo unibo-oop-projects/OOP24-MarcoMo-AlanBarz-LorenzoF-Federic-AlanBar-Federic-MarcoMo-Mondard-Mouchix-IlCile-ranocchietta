@@ -36,7 +36,8 @@ public class ControllerImpl {
             this.inputController.processInput(this.game);
             
             if (now - lastFrame >= timePerFrame) {
-                this.game.checkCollision((int)this.getXinPixel((int)this.game.getPlayer().getPos().x()));
+                this.game.checkCollision();
+                this.game.checkNewLevel();
                 this.game.getObstacles().forEach(a -> a.move()); //moving all obstacles
                 this.scenePanel.repaint();
 

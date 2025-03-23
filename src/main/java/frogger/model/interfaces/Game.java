@@ -1,6 +1,6 @@
 package frogger.model.interfaces;
 
-import frogger.common.Position;
+import java.util.Set;
 
 public interface Game {
 
@@ -8,5 +8,13 @@ public interface Game {
 
     int getScore();
 
-    void checkCollision(int pixel);
+    PlayerObject getPlayer();
+
+    Set<MovingObject> getObstacles();
+
+    Level getLevel();
+
+    void checkCollision();
+
+    void checkNewLevel();
 }

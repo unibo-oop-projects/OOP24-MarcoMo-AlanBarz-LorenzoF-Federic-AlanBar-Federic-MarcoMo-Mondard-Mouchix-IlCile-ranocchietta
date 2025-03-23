@@ -1,20 +1,20 @@
 package frogger.model.implementations;
 
+import frogger.common.Constants;
 import frogger.common.Pair;
-import frogger.common.Position;
 import frogger.model.interfaces.Game;
 import frogger.model.interfaces.Level;
 import frogger.model.interfaces.MovingObject;
 import frogger.model.interfaces.PlayerObject;
 
+import java.util.Optional;
 import java.util.Set;
-import java.util.function.Predicate;
 
 public class GameImpl implements Game{
 
-    private PlayerObjectImpl player;
     private final LevelFactoryImpl levelFactory = new LevelFactoryImpl();
-    private final Level level;
+    private PlayerObjectImpl player;
+    private Level level;
 
     public GameImpl(Pair dimension){
         this.player = new PlayerObjectImpl(dimension);
@@ -32,51 +32,48 @@ public class GameImpl implements Game{
     }
 
     @Override
-    public void checkCollision(int pixel) {
+    public void checkCollision() {
         if(this.player.getPos().y() > -6 && this.player.getPos().y() < 0){
-            if(this.level.getAllObstacles().stream().filter(x -> x.getPos().y() == this.player.getPos().y()).anyMatch(new Predicate<MovingObject>() {
-
-                @Override
-                public boolean test(MovingObject t) {
-                    if(Math.abs(t.getPos().x() - pixel) <= player.getDimension().width() + t.getDimension().width()){
-                        System.out.println(t.getPos().x());
-                        //System.out.println(Math.abs(t.getPos().x() - player.getPos().x()));
-                        //System.out.println(player.getDimension().width() + t.getDimension().width());
-                        return true;
-                    }
-                    return false;
-                }
-                
-            })){
+            if(this.level.getAllObstacles().stream().filter(x -> x.getPos().y() == this.player.getPos().y()).anyMatch(x -> x.getHitBox().intersects(this.player.getHitBox()))){
                 this.player.getHit();
             }
-            /*if(this.level.getAllObstacles().stream().filter(x -> x.getPos().y() == this.player.getPos().y()).anyMatch(x -> x.getHitBox().intersects(this.player.getHitBox()))){
-                this.player.getHit();
-            }*/
         }else if(this.player.getPos().y() > 0 && this.player.getPos().y() < 6){
             /*boolean trovato = false;
-            for(var obstacle: this.level.getAllObstacles()){
-                int radius = obstacle.getDimension().width();
-                if(p.x() < obstacle.getPos().x() + radius && p.x() > obstacle.getPos().x() - radius && obstacle.getPos().y() == p.y()){
-                    if(obstacle instanceof TrunkImpl){
-                        ((TrunkImpl)obstacle).setFrog(this.player);
-                    }
-                    trovato = true;
-                }
+            Optional<MovingObject> obstacle = this.level.getAllObstacles().stream().filter(x -> x.getPos().y() == this.player.getPos().y()).filter(x -> x.getHitBox().intersects(this.player.getHitBox())).findFirst();
+            if(obstacle.get() instanceof TrunkImpl){
+                System.out.println("entrato");
+                ((TrunkImpl)obstacle.get()).setFrog(this.player);
             }
 
             if(!trovato){
                 this.player.getHit();
-            }*/
+            }
+            */
         }
         
     }
 
+    @Override
     public Set<MovingObject> getObstacles() {
         return level.getAllObstacles();
     }
 
+    @Override
     public PlayerObject getPlayer(){
         return this.player;
+    }
+
+    @Override
+    public void checkNewLevel() {
+        if(this.player.getPos().y()==6){
+            this.level = this.levelFactory.randomLevel();
+            this.player.addPoints(Constants.POINT_LEVEL_COMPLETED);
+            this.player.resetPosition();
+        }
+    }
+
+    @Override
+    public Level getLevel() {
+        return this.level;
     }
 }

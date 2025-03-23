@@ -40,4 +40,7 @@ public class Constants {
 
     public final static int PLAYER_WIDTH = 1;
     public final static int PLAYER_HEIGHT = 1;
+
+    public final static int POINT_PER_LANE = 10;
+    public final static int POINT_LEVEL_COMPLETED = 100;
 }
