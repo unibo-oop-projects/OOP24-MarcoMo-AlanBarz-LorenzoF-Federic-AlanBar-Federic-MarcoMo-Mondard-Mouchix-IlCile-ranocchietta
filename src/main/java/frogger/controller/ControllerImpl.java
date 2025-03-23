@@ -2,6 +2,7 @@ package frogger.controller;
 
 import frogger.common.Constants;
 import frogger.common.Pair;
+import frogger.common.Position;
 import frogger.common.input.InputController;
 import frogger.common.input.InputControllerImpl;
 import frogger.model.implementations.GameImpl;
@@ -37,9 +38,9 @@ public class ControllerImpl {
             this.inputController.processInput(this.game);
             
             if (now - lastFrame >= timePerFrame) {
-                this.game.checkCollision();
-                game.getObstacles().forEach(a -> a.move()); //moving all obstacles
-                scenePanel.repaint();
+                this.game.checkCollision(this.getXinPixel((int)this.game.getPlayer().getPos().x()));
+                this.game.getObstacles().forEach(a -> a.move()); //moving all obstacles
+                this.scenePanel.repaint();
 
                 lastFrame = now;
             }

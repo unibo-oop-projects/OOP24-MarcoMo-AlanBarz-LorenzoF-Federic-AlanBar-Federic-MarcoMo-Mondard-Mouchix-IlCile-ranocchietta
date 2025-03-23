@@ -1,12 +1,14 @@
 package frogger.model.implementations;
 
 import frogger.common.Pair;
+import frogger.common.Position;
 import frogger.model.interfaces.Game;
 import frogger.model.interfaces.Level;
 import frogger.model.interfaces.MovingObject;
 import frogger.model.interfaces.PlayerObject;
 
 import java.util.Set;
+import java.util.function.Predicate;
 
 public class GameImpl implements Game{
 
@@ -30,11 +32,27 @@ public class GameImpl implements Game{
     }
 
     @Override
-    public void checkCollision() {
+    public void checkCollision(int pixel) {
         if(this.player.getPos().y() > -6 && this.player.getPos().y() < 0){
-            if(this.level.getAllObstacles().stream().filter(x -> x.getPos().y() == this.player.getPos().y()).anyMatch(x -> x.getHitBox().intersects(this.player.getHitBox()))){
+            if(this.level.getAllObstacles().stream().filter(x -> x.getPos().y() == this.player.getPos().y()).anyMatch(new Predicate<MovingObject>() {
+
+                @Override
+                public boolean test(MovingObject t) {
+                    if(Math.abs(t.getPos().x() - pixel) <= player.getDimension().width() + t.getDimension().width()){
+                        System.out.println(t.getPos().x());
+                        //System.out.println(Math.abs(t.getPos().x() - player.getPos().x()));
+                        //System.out.println(player.getDimension().width() + t.getDimension().width());
+                        return true;
+                    }
+                    return false;
+                }
+                
+            })){
                 this.player.getHit();
             }
+            /*if(this.level.getAllObstacles().stream().filter(x -> x.getPos().y() == this.player.getPos().y()).anyMatch(x -> x.getHitBox().intersects(this.player.getHitBox()))){
+                this.player.getHit();
+            }*/
         }else if(this.player.getPos().y() > 0 && this.player.getPos().y() < 6){
             /*boolean trovato = false;
             for(var obstacle: this.level.getAllObstacles()){

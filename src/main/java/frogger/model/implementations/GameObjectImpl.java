@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
+import frogger.common.Constants;
 import frogger.common.Pair;
 import frogger.common.Position;
 import frogger.model.interfaces.GameObject;
@@ -37,12 +38,12 @@ public abstract class GameObjectImpl implements GameObject {
 
     public void drawHitBox(Graphics g, float x, float y){
         g.setColor(Color.PINK);
-        g.drawRect((int)x, (int)y, this.hitbox.width, this.hitbox.height);
+        g.drawRect((int)x, (int)y, this.hitbox.width * Constants.BLOCK_WIDTH, this.hitbox.height * Constants.BLOCK_HEIGHT);
     }
 
     @Override
     public Position getPos() {
-        return pos;
+        return this.pos;
     }
 
     @Override
@@ -53,7 +54,7 @@ public abstract class GameObjectImpl implements GameObject {
 
     @Override
     public Pair getDimension() {
-        return dimension;
+        return this.dimension;
     }
 
 }

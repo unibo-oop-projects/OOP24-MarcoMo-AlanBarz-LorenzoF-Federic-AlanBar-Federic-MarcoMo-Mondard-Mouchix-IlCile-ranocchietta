@@ -86,7 +86,7 @@ public class ScenePanel extends JPanel implements KeyListener{
                     null);
             }
 
-            obstacle.drawHitBox(g, this.controller.getXinPixel((int)obstacle.getPos().x()), this.controller.getYinPixel((int)obstacle.getPos().y()));
+            obstacle.drawHitBox(g, (int)obstacle.getPos().x(), this.controller.getYinPixel((int)obstacle.getPos().y()));
         }
     } 
 
