@@ -1,6 +1,15 @@
 package frogger.common;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
+
 public class Constants {
+    //scale the dimention of the frame 
+    private final static Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
+    private final static int sw = (int) screen.getWidth();
+    private final static  int sh = (int) screen.getHeight();
+    private final static double scale = 0.8;
+
     public final static int MIN_OBSTACLES_NUMBER = 2;
     public final static int MAX_OBSTACLES_NUMBER = 3;
 
@@ -23,8 +32,8 @@ public class Constants {
     public final static int N_ROW = ROAD_LANES + RIVER_LANES + 3;
     public final static int N_COLUMN = Math.abs(MAX_X) + Math.abs(MIN_X) + 1;
 
-    public final static int FRAME_WIDTH = 900;
-    public final static int FRAME_HEIGHT = 800;
+    public final static int FRAME_WIDTH = (int) (sw / N_COLUMN * N_ROW * scale);
+    public final static int FRAME_HEIGHT = (int) (sh / N_ROW * N_COLUMN * scale);
     
     public final static int BLOCK_WIDTH = FRAME_WIDTH / N_COLUMN;
     public final static int BLOCK_HEIGHT = FRAME_HEIGHT / N_ROW;

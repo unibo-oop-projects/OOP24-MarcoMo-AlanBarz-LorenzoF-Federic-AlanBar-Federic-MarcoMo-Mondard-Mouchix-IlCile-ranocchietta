@@ -23,10 +23,10 @@ public class MovingObjectFactoryImpl implements MovingObjectFactory{
         float speed, Direction direction, Class<X> c) {
         
         try {
-            int bound = Math.abs(Constants.MAX_X) + Math.abs(Constants.MIN_X) + 1;
-            int delta = bound - Math.abs(Constants.MAX_X);
-            pos = new Position((pos.x() + delta) * (Constants.BLOCK_WIDTH), pos.y());
-            System.out.println(pos);
+            // int bound = Math.abs(Constants.MAX_X) + Math.abs(Constants.MIN_X) + 1;
+            // int delta = bound - Math.abs(Constants.MAX_X);
+            // pos = new Position((pos.x() + delta) * (Constants.BLOCK_WIDTH), pos.y());
+            // System.out.println(pos);
             return c.getConstructor(Position.class, Pair.class, float.class, Direction.class)
             .newInstance(pos, dimension, speed, direction);
         } catch (Exception ex) {

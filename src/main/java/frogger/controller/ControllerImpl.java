@@ -2,7 +2,6 @@ package frogger.controller;
 
 import frogger.common.Constants;
 import frogger.common.Pair;
-import frogger.common.Position;
 import frogger.common.input.InputController;
 import frogger.common.input.InputControllerImpl;
 import frogger.model.implementations.GameImpl;
@@ -30,7 +29,6 @@ public class ControllerImpl {
         double timePerFrame = 1000000000.0 / FPS_SET;
         long lastFrame = System.nanoTime();
         long now = System.nanoTime();
-        long lastCheck = System.currentTimeMillis();
 
         while (!game.isGameOver()){
             now = System.nanoTime();
@@ -38,7 +36,7 @@ public class ControllerImpl {
             this.inputController.processInput(this.game);
             
             if (now - lastFrame >= timePerFrame) {
-                this.game.checkCollision(this.getXinPixel((int)this.game.getPlayer().getPos().x()));
+                this.game.checkCollision((int)this.getXinPixel((int)this.game.getPlayer().getPos().x()));
                 this.game.getObstacles().forEach(a -> a.move()); //moving all obstacles
                 this.scenePanel.repaint();
 
@@ -64,15 +62,15 @@ public class ControllerImpl {
      * @param pos
      * @return
      */
-    public int getXinPixel(int x) {
+    public double getXinPixel(double x) {
         int centerX = Constants.FRAME_WIDTH / 2;
-        int ratioX = Constants.FRAME_WIDTH / Constants.N_COLUMN;    //number of pixel per column
+        int ratioX = Constants.BLOCK_WIDTH;    //number of pixel per column
         return Math.round(centerX + x * ratioX);
     }
 
-    public int getYinPixel(int y) {
+    public double getYinPixel(double y) {
         int centerY = Constants.FRAME_HEIGHT / 2;
-        int ratioY = Constants.FRAME_HEIGHT / Constants.N_ROW;  //number of pixel per row
+        int ratioY = Constants.BLOCK_HEIGHT;  //number of pixel per row
         return Math.round(centerY - y * ratioY);
     }
 }
