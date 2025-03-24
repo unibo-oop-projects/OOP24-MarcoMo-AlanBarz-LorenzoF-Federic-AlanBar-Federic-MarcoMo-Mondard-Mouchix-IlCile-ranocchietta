@@ -3,6 +3,7 @@ package frogger.model.implementations;
 import frogger.common.Constants;
 import frogger.common.Pair;
 import frogger.model.interfaces.Game;
+import frogger.model.interfaces.Lane;
 import frogger.model.interfaces.Level;
 import frogger.model.interfaces.MovingObject;
 import frogger.model.interfaces.PlayerObject;
@@ -75,5 +76,18 @@ public class GameImpl implements Game{
     @Override
     public Level getLevel() {
         return this.level;
+    }
+
+    @Override
+    public Lane getCurrentLane() {
+        return level.getLanes().get((int)this.player.getPos().y() + Constants.MAX_Y);
+    }
+
+    @Override
+    public void checkProgress() {
+        if (!getCurrentLane().isCompleted()) {
+            this.player.addPoints(Constants.POINT_PER_LANE);
+            this.getCurrentLane().setCompleted();
+        }
     }
 }

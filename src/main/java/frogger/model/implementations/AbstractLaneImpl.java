@@ -12,8 +12,9 @@ import frogger.model.interfaces.Trunk;
 public abstract class AbstractLaneImpl implements Lane {
 
     protected final Set<MovingObject> obstacles = new HashSet<>();
-    private float speed;
-    private Direction direction;
+    private final float speed;
+    private final Direction direction;
+    private boolean completed = false;
 
     public AbstractLaneImpl(float speed, Direction direction) {
         this.speed = speed;
@@ -24,7 +25,7 @@ public abstract class AbstractLaneImpl implements Lane {
     public abstract void addTrunk(MovingObject obstacle);
 
     @Override
-    public void addMovingObject(MovingObject obstacle) {
+    public void addMovingObject(final MovingObject obstacle) {
         if (obstacle instanceof Car) {
             addCar(obstacle);
         } else if (obstacle instanceof Trunk) {
@@ -47,6 +48,16 @@ public abstract class AbstractLaneImpl implements Lane {
     @Override
     public Set<MovingObject> getLaneObstacles() {
         return new HashSet<>(obstacles);
+    }
+
+    @Override
+    public boolean isCompleted() {
+        return this.completed;
+    }
+
+    @Override
+    public void setCompleted() {
+        this.completed = true;
     }
 
 }

@@ -17,4 +17,8 @@ public interface Game {
     void checkCollision();
 
     void checkNewLevel();
+
+    Lane getCurrentLane();
+
+    void checkProgress();
 }

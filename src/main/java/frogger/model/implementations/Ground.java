@@ -28,4 +28,13 @@ public class Ground implements Lane{
     public Set<MovingObject> getLaneObstacles() {
         return new HashSet<>();
     }
+
+    @Override
+    public boolean isCompleted() {
+        return false;
+    }
+
+    @Override
+    public void setCompleted() {}
+    
 }

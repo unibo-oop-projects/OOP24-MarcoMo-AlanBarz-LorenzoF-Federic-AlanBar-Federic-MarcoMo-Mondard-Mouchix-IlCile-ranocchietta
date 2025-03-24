@@ -12,4 +12,8 @@ public interface Lane {
     Direction getDirection();
 
     Set<MovingObject> getLaneObstacles();
+
+    boolean isCompleted();
+
+    void setCompleted();
 }
