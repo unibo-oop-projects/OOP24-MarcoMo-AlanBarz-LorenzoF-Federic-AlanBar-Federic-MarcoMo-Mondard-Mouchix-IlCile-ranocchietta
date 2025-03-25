@@ -37,6 +37,7 @@ public class ControllerImpl {
             
             if (now - lastFrame >= timePerFrame) {
                 this.game.checkCollision();
+                this.game.checkProgress();
                 this.game.checkNewLevel();
                 this.game.getObstacles().forEach(a -> a.move()); //moving all obstacles
                 this.scenePanel.repaint();

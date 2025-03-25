@@ -5,8 +5,11 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.io.InputStream;
 
+import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 import frogger.common.Constants;
@@ -56,6 +59,15 @@ public class ScenePanel extends JPanel implements KeyListener{
     public void paintComponent(final Graphics g) {
         super.paintComponent(g);
 
+        InputStream heartStream = getClass().getResourceAsStream("/heart.png");
+        try{
+            BufferedImage heart = ImageIO.read(heartStream); 
+            for(int i = 0; i < this.controller.getGame().getPlayer().getLives(); i++){
+                g.drawImage(heart, (int)this.controller.getXinPixel(i + Constants.MIN_X) , 0, null);
+            }
+        } catch (IOException e){
+            e.printStackTrace();
+        }
         //drowing the frog
         // g.drawImage(frog, (int)controller.getXinPixel(controller.getGame().getPlayer().getPos().x()), 
         // (int)controller.getYinPixel(controller.getGame().getPlayer().getPos().y()),
@@ -93,7 +105,4 @@ public class ScenePanel extends JPanel implements KeyListener{
 
     @Override
     public void keyReleased(KeyEvent e) {}
-
-    
-
 }
