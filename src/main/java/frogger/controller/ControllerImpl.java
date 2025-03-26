@@ -71,7 +71,7 @@ public class ControllerImpl {
     }
 
     public double getYinPixel(double y) {
-        int centerY = Constants.FRAME_HEIGHT / 2;
+        int centerY = Constants.FRAME_HEIGHT / 2 - Constants.BLOCK_HEIGHT / 2;
         int ratioY = Constants.BLOCK_HEIGHT;  //number of pixel per row
         return Math.round(centerY - y * ratioY);
     }

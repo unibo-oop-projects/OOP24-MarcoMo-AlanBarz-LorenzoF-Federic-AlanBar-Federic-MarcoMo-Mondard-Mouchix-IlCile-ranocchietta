@@ -29,5 +29,4 @@ public class GameScene {
         frame.setVisible(true);
         System.out.println(frame.getWidth() + ", " + frame.getHeight());
     }
-
 }
