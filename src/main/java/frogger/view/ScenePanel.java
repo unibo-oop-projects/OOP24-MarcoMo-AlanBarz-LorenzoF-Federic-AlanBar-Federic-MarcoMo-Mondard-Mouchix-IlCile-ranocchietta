@@ -2,7 +2,10 @@ package frogger.view;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Label;
+import java.awt.TextField;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
@@ -23,6 +26,7 @@ import frogger.model.implementations.CarImpl;
 
 public class ScenePanel extends JPanel implements KeyListener{
     ControllerImpl controller;
+    private final Font myFont = new Font("MyFont", 1, 30);
 
     public ScenePanel() {
         this.addKeyListener(this);
@@ -35,7 +39,7 @@ public class ScenePanel extends JPanel implements KeyListener{
         InputStream isFrog = getClass().getResourceAsStream("/ranocchietta.png");
         controller.getGame().getPlayer().setImage(isFrog);
         controller.getGame().getObstacles().forEach(obstacle -> {
-            System.out.println(obstacle.getClass().getInterfaces()[0].getSimpleName());
+            //System.out.println(obstacle.getClass().getInterfaces()[0].getSimpleName());
             if (obstacle instanceof CarImpl) {
                 obstacle.setImage((obstacle.getDirection().equals(Direction.LEFT)? getClass().getResourceAsStream("/carLeft.png") 
                 : getClass().getResourceAsStream("/carRight.png")));
@@ -68,6 +72,11 @@ public class ScenePanel extends JPanel implements KeyListener{
         } catch (IOException e){
             e.printStackTrace();
         }
+
+        g.setColor(Color.WHITE);
+        g.setFont(myFont);
+        g.drawString("Punteggio: " + this.controller.getGame().getPlayer().getScore(), (int)this.controller.getXinPixel(Constants.MAX_X - 1), (int)this.controller.getYinPixel(Constants.MAX_Y));
+        
         //drowing the frog
         // g.drawImage(frog, (int)controller.getXinPixel(controller.getGame().getPlayer().getPos().x()), 
         // (int)controller.getYinPixel(controller.getGame().getPlayer().getPos().y()),

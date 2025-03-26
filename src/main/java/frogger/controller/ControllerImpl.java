@@ -12,9 +12,9 @@ public class ControllerImpl {
     private final int FPS_SET = 120;
 
     private GameImpl game;
-    InputControllerImpl inputController;
-    ScenePanel scenePanel;
-    GameScene gameScene;
+    private InputControllerImpl inputController;
+    private ScenePanel scenePanel;
+    private GameScene gameScene;
 
     public void gameInit() {
         game = new GameImpl(new Pair(Constants.PLAYER_WIDTH,Constants.PLAYER_HEIGHT));

@@ -31,7 +31,7 @@ public class Ground implements Lane{
 
     @Override
     public boolean isCompleted() {
-        return false;
+        return true;
     }
 
     @Override
