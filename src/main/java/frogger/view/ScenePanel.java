@@ -4,8 +4,6 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
-import java.awt.Label;
-import java.awt.TextField;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
@@ -16,13 +14,11 @@ import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 import frogger.common.Constants;
-import frogger.common.Direction;
 import frogger.common.input.MoveDown;
 import frogger.common.input.MoveLeft;
 import frogger.common.input.MoveRight;
 import frogger.common.input.MoveUp;
 import frogger.controller.ControllerImpl;
-import frogger.model.implementations.CarImpl;
 
 public class ScenePanel extends JPanel implements KeyListener{
     ControllerImpl controller;
@@ -38,16 +34,6 @@ public class ScenePanel extends JPanel implements KeyListener{
     private void importImg() {
         InputStream isFrog = getClass().getResourceAsStream("/ranocchietta.png");
         controller.getGame().getPlayer().setImage(isFrog);
-        controller.getGame().getObstacles().forEach(obstacle -> {
-            //System.out.println(obstacle.getClass().getInterfaces()[0].getSimpleName());
-            if (obstacle instanceof CarImpl) {
-                obstacle.setImage((obstacle.getDirection().equals(Direction.LEFT)? getClass().getResourceAsStream("/carLeft.png") 
-                : getClass().getResourceAsStream("/carRight.png")));
-            } else {
-                obstacle.setImage(getClass().getResourceAsStream("/" + obstacle.getClass().getInterfaces()[0].getSimpleName().toLowerCase() + ".png"));
-            }
-        });
-
     }
 
     private void setPanelSize() {
@@ -90,9 +76,9 @@ public class ScenePanel extends JPanel implements KeyListener{
         
         //drowing the obstacles
         for(var obstacle : controller.getGame().getObstacles()) {
-            obstacle.render(g,(int)controller.getXinPixel(obstacle.getPos().x()), (int)controller.getYinPixel(obstacle.getPos().y()));
+            obstacle.render(g, (int)this.controller.getXinPixel(obstacle.getPos().x()), (int)this.controller.getYinPixel(obstacle.getPos().y()));
 
-            obstacle.drawHitBox(g, (int)controller.getXinPixel(obstacle.getPos().x()), (int)this.controller.getYinPixel(obstacle.getPos().y()));
+            obstacle.drawHitBox(g, (int)this.controller.getXinPixel(obstacle.getPos().x()), (int)this.controller.getYinPixel(obstacle.getPos().y()));
         }
     } 
 

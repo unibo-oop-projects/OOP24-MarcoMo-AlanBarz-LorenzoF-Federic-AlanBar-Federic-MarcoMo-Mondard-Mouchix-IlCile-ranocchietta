@@ -9,6 +9,8 @@ public class CarImpl extends MovingObjectImpl implements Car{
     
     public CarImpl(Position pos, Pair dimension, float speed, Direction direction) {
         super(pos, dimension, speed, direction);
+        super.setImage(this.getDirection().equals(Direction.LEFT)? getClass().getResourceAsStream("/carLeft.png") 
+        : getClass().getResourceAsStream("/carRight.png"));
     }
 
 }

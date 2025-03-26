@@ -34,24 +34,26 @@ public class GameImpl implements Game{
 
     @Override
     public void checkCollision() {
+        
         if(this.player.getPos().y() > -6 && this.player.getPos().y() < 0){
             if(this.level.getAllObstacles().stream().filter(x -> x.getPos().y() == this.player.getPos().y()).anyMatch(x -> x.getHitBox().intersects(this.player.getHitBox()))){
                 this.player.getHit();
             }
         }else if(this.player.getPos().y() > 0 && this.player.getPos().y() < 6){
-            /*boolean trovato = false;
-            Optional<MovingObject> obstacle = this.level.getAllObstacles().stream().filter(x -> x.getPos().y() == this.player.getPos().y()).filter(x -> x.getHitBox().intersects(this.player.getHitBox())).findFirst();
-            if(obstacle.get() instanceof TrunkImpl){
-                System.out.println("entrato");
-                ((TrunkImpl)obstacle.get()).setFrog(this.player);
+            Optional<MovingObject> obstacle = this.level.getAllObstacles().stream().
+                    filter(x -> x.getPos().y() == this.player.getPos().y()).
+                    filter(x -> x.getHitBox().intersects(this.player.getHitBox())).
+                    findFirst();
+            
+            if (obstacle.isEmpty()) {
+                this.player.getHit();
+                return;
             }
 
-            if(!trovato){
-                this.player.getHit();
+            if (obstacle.get() instanceof TrunkImpl){
+                ((TrunkImpl)obstacle.get()).setFrog(this.player);
             }
-            */
         }
-        
     }
 
     @Override

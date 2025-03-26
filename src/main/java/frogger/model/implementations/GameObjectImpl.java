@@ -23,7 +23,7 @@ public abstract class GameObjectImpl implements GameObject {
     public GameObjectImpl(Position pos, Pair dimension) {
         this.pos = pos;
         this.dimension = dimension;
-
+        
         initHitBox();
     }
 

@@ -13,6 +13,7 @@ public class TrunkImpl extends MovingObjectImpl implements Trunk{
 
     public TrunkImpl(Position pos, Pair dimension, float speed, Direction direction) {
         super(pos, dimension, speed, direction);
+        super.setImage(getClass().getResourceAsStream("/trunk.png"));
     }
 
     public void setFrog(PlayerObjectImpl frog) {
@@ -25,9 +26,14 @@ public class TrunkImpl extends MovingObjectImpl implements Trunk{
 
     @Override
     public void move() {
+        
+        
         if (frog.isPresent()) {
-            frog.get().setPos(new Position(frog.get().getPos().x() + (int)(this.getDirectionValue().x() * this.getSpeed()), 
-            this.getPos().y() + (int)(this.getDirectionValue().y() * this.getSpeed())));
+            Position pos = new Position(frog.get().getPos().x() + (this.getDirectionValue().x() * this.getSpeed()), 
+        this.getPos().y() + (this.getDirectionValue().y() * this.getSpeed()));
+        System.out.println("rana: " + pos + " ostacolo: " + this.getPos());
+            frog.get().setPos(new Position(frog.get().getPos().x() + (this.getDirectionValue().x() * this.getSpeed()), 
+            this.getPos().y() + (this.getDirectionValue().y() * this.getSpeed())));
         }
         super.move();
     }
