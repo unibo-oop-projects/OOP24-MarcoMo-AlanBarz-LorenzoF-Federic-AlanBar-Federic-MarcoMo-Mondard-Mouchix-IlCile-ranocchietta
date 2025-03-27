@@ -1,8 +1,5 @@
 package frogger.view;
 
-import java.awt.Dimension;
-import java.awt.Toolkit;
-
 import javax.swing.JFrame;
 
 import frogger.common.Constants;
@@ -12,9 +9,7 @@ public class GameScene {
     
     public GameScene(ScenePanel panel) {
         frame = new JFrame("Ranocchietta");
-        Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
 
-        //frame.setPreferredSize(new Dimension(Constants.FRAME_WIDTH, Constants.FRAME_HEIGHT));
         frame.setSize(Constants.FRAME_WIDTH, Constants.FRAME_HEIGHT);
         this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(true);

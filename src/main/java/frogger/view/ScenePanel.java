@@ -19,8 +19,6 @@ import frogger.common.input.MoveLeft;
 import frogger.common.input.MoveRight;
 import frogger.common.input.MoveUp;
 import frogger.controller.ControllerImpl;
-import frogger.model.implementations.River;
-import frogger.model.implementations.Road;
 
 public class ScenePanel extends JPanel implements KeyListener{
     ControllerImpl controller;
@@ -51,12 +49,13 @@ public class ScenePanel extends JPanel implements KeyListener{
     public void paintComponent(final Graphics g) {
         super.paintComponent(g);
 
-        int j = 0;
-        for(var lane : controller.getGame().getLevel().getLanes().reversed()) {
-            Color c = lane instanceof River ? Color.BLUE : (lane instanceof Road ? Color.BLACK : Color.GRAY);
-            g.setColor(c);
-            g.fillRect(0, j * Constants.BLOCK_HEIGHT, Constants.FRAME_WIDTH, Constants.BLOCK_HEIGHT);
-            j++;
+        InputStream backgroundStream = getClass().getResourceAsStream("/background.png");
+        BufferedImage background;
+        try {
+            background = ImageIO.read(backgroundStream);
+            g.drawImage(background, 0 , 0, Constants.FRAME_WIDTH, Constants.FRAME_HEIGHT, null);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
 
         InputStream heartStream = getClass().getResourceAsStream("/heart.png");
