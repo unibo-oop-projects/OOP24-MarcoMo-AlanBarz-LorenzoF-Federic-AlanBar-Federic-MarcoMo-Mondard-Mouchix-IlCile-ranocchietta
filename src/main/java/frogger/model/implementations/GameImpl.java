@@ -40,6 +40,11 @@ public class GameImpl implements Game{
                 this.player.getHit();
             }
         }else if(this.player.getPos().y() > 0 && this.player.getPos().y() < 6){
+            // getObstacles().stream().forEach(a -> {
+            //     if (a instanceof TrunkImpl) {
+            //         ((TrunkImpl)a).removeFrog();
+            //     }
+            // });
             Optional<MovingObject> obstacle = this.level.getAllObstacles().stream().
                     filter(x -> x.getPos().y() == this.player.getPos().y()).
                     filter(x -> x.getHitBox().intersects(this.player.getHitBox())).

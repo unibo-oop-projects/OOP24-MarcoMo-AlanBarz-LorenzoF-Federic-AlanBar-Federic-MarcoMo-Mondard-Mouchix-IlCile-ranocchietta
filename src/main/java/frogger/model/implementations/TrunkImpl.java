@@ -30,10 +30,10 @@ public class TrunkImpl extends MovingObjectImpl implements Trunk{
         
         if (frog.isPresent()) {
             Position pos = new Position(frog.get().getPos().x() + (this.getDirectionValue().x() * this.getSpeed()), 
-        this.getPos().y() + (this.getDirectionValue().y() * this.getSpeed()));
-        System.out.println("rana: " + pos + " ostacolo: " + this.getPos());
+            this.getPos().y() + (this.getDirectionValue().y() * this.getSpeed()));
+            System.out.println("rana: " + pos + " ostacolo: " + this.getPos());
             frog.get().setPos(new Position(frog.get().getPos().x() + (this.getDirectionValue().x() * this.getSpeed()), 
-            this.getPos().y() + (this.getDirectionValue().y() * this.getSpeed())));
+            frog.get().getPos().y() + (this.getDirectionValue().y() * this.getSpeed())));
         }
         super.move();
     }
