@@ -2,7 +2,6 @@ package frogger.model.implementations;
 
 import frogger.common.Direction;
 import frogger.model.interfaces.MovingObject;
-import frogger.model.interfaces.Trunk;
 
 public class River extends AbstractLaneImpl {
 
@@ -17,6 +16,6 @@ public class River extends AbstractLaneImpl {
 
     @Override
     public void addTrunk(final MovingObject obstacle) {
-        super.obstacles.add((Trunk)obstacle);
+        super.obstacles.add((TrunkImpl)obstacle);
     }
 }

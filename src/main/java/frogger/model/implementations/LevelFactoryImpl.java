@@ -30,7 +30,7 @@ public class LevelFactoryImpl implements LevelFactory {
         laneIndex++;
         for(int i = 0; i < Constants.ROAD_LANES; i++) {
             Lane road = createLane(Road.class, laneIndex);
-            createObstacles(Car.class, road.getSpeed(), road.getDirection(), laneIndex).forEach(ob -> road.addMovingObject(ob));
+            createObstacles(CarImpl.class, road.getSpeed(), road.getDirection(), laneIndex).forEach(ob -> road.addMovingObject(ob));
             level.addLane(road);
             laneIndex++;
         }
@@ -39,7 +39,7 @@ public class LevelFactoryImpl implements LevelFactory {
         laneIndex++;
         for(int i = 0; i < Constants.RIVER_LANES; i++) {
             Lane river = createLane(River.class, laneIndex);
-            createObstacles(Trunk.class, river.getSpeed(), river.getDirection(), laneIndex).forEach(ob -> river.addMovingObject(ob));
+            createObstacles(TrunkImpl.class, river.getSpeed(), river.getDirection(), laneIndex).forEach(ob -> river.addMovingObject(ob));
             level.addLane(river);
             laneIndex++;
         }
@@ -78,10 +78,10 @@ public class LevelFactoryImpl implements LevelFactory {
             Position pos = new Position(ran.nextInt(bound) - delta, y);
             MovingObject object;
             if (!usedPositions.stream().anyMatch(position -> position.equals(pos))) {
-                if (type.equals(Car.class)) {
+                if (type.equals(CarImpl.class)) {
                     int width = ran.nextBoolean() ? Constants.MIN_CAR_WIDTH : Constants.MAX_CAR_WIDTH;
                     object = obstaclesFactory.createMovingObject(pos, new Pair(width, Constants.OBJECT_HEIGHT), speed, dir, CarImpl.class);
-                } else if (type.equals(Trunk.class)) {
+                } else if (type.equals(TrunkImpl.class)) {
                     int width = ran.nextBoolean() ? Constants.MIN_TRUNK_WIDTH : Constants.MAX_TRUNK_WIDTH;
                     object = obstaclesFactory.createMovingObject(pos, new Pair(width, Constants.OBJECT_HEIGHT), speed, dir, TrunkImpl.class);
                     System.out.println(pos);

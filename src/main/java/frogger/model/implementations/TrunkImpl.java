@@ -26,14 +26,13 @@ public class TrunkImpl extends MovingObjectImpl implements Trunk{
 
     @Override
     public void move() {
-        
-        
         if (frog.isPresent()) {
-            Position pos = new Position(frog.get().getPos().x() + (this.getDirectionValue().x() * this.getSpeed()), 
-            this.getPos().y() + (this.getDirectionValue().y() * this.getSpeed()));
-            System.out.println("rana: " + pos + " ostacolo: " + this.getPos());
-            frog.get().setPos(new Position(frog.get().getPos().x() + (this.getDirectionValue().x() * this.getSpeed()), 
-            frog.get().getPos().y() + (this.getDirectionValue().y() * this.getSpeed())));
+            if (frog.get().getPos().y() != this.getPos().y()) {
+                this.removeFrog();
+            } else {
+                frog.get().setPos(new Position(frog.get().getPos().x() + this.getDirectionValue().x() * this.getSpeed(), 
+                frog.get().getPos().y() + this.getDirectionValue().y() * this.getSpeed()));
+            }
         }
         super.move();
     }

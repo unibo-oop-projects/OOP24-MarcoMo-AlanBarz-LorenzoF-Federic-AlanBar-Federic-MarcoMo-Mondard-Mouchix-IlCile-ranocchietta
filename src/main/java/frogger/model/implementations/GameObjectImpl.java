@@ -32,8 +32,8 @@ public abstract class GameObjectImpl implements GameObject {
     }
 
     protected void updateHitBox(){
-        this.hitbox.x = (int) this.pos.x();
-        this.hitbox.y = (int) this.pos.y();
+        this.hitbox.x = Math.round(this.pos.x());
+        this.hitbox.y = Math.round(this.pos.y());
     }
 
     @Override
