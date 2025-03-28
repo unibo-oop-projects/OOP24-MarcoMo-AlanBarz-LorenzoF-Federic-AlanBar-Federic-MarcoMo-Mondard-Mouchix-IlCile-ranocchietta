@@ -1,7 +1,6 @@
 package frogger.model.implementations;
 
 import frogger.common.Direction;
-import frogger.model.interfaces.Car;
 import frogger.model.interfaces.MovingObject;
 
 public class Road extends AbstractLaneImpl {
@@ -12,7 +11,7 @@ public class Road extends AbstractLaneImpl {
 
     @Override
     public void addCar(MovingObject obstacle) {
-        super.obstacles.add((Car)obstacle);
+        super.obstacles.add((CarImpl)obstacle);
     }
 
     @Override

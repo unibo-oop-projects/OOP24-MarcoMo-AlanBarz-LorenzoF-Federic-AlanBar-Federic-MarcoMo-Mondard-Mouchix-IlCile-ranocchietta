@@ -67,6 +67,23 @@ public class ScenePanel extends JPanel implements KeyListener{
         } catch (IOException e){
             e.printStackTrace();
         }
+
+        g.setColor(Color.WHITE);
+        g.setFont(myFont);
+        g.drawString("Punteggio: " + this.controller.getGame().getPlayer().getScore(), (int)this.controller.getXinPixel(Constants.MAX_X - 2), (int)this.controller.getYinPixel(Constants.MAX_Y - 0.5));
+        
+        //drowing the obstacles
+        for(var obstacle : controller.getGame().getObstacles()) {
+            obstacle.render(g, (int)this.controller.getXinPixel(obstacle.getPos().x()), (int)this.controller.getYinPixel(obstacle.getPos().y()));
+
+            obstacle.drawHitBox(g, (int)this.controller.getXinPixel(obstacle.getPos().x()), (int)this.controller.getYinPixel(obstacle.getPos().y()));
+        }
+
+        //drowing the frog
+        // g.drawImage(frog, (int)controller.getXinPixel(controller.getGame().getPlayer().getPos().x()), 
+        // (int)controller.getYinPixel(controller.getGame().getPlayer().getPos().y()),
+        // controller.getGame().getPlayer().getDimension().width() * Constants.BLOCK_WIDTH, controller.getGame().getPlayer().getDimension().height() * Constants.BLOCK_WIDTH, 
+        // null);
         
         controller.getGame().getPlayer().render(g, (int)controller.getXinPixel(controller.getGame().getPlayer().getPos().x()), 
         (int)controller.getYinPixel(controller.getGame().getPlayer().getPos().y()));
