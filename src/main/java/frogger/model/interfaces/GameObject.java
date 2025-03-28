@@ -1,7 +1,7 @@
 package frogger.model.interfaces;
 
 import java.awt.Graphics;
-import java.awt.Rectangle;
+import java.awt.geom.Rectangle2D;
 import java.io.InputStream;
 
 import frogger.common.Pair;
@@ -15,7 +15,7 @@ public interface GameObject {
 
     Pair getDimension();
 
-    public Rectangle getHitBox();
+    public Rectangle2D.Float getHitBox();
 
     public void drawHitBox(Graphics g, float x, float y);
 

@@ -2,7 +2,7 @@ package frogger.model.implementations;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Rectangle;
+import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
@@ -17,7 +17,7 @@ import frogger.model.interfaces.GameObject;
 public abstract class GameObjectImpl implements GameObject {
     private Position pos;
     private final Pair dimension;
-    protected Rectangle hitbox;
+    protected Rectangle2D.Float hitbox;
     private BufferedImage img;
 
     public GameObjectImpl(Position pos, Pair dimension) {
@@ -28,7 +28,7 @@ public abstract class GameObjectImpl implements GameObject {
     }
 
     private void initHitBox() {
-        this.hitbox = new Rectangle((int) this.pos.x(), (int) this.pos.y(), this.dimension.width(), this.dimension.height());
+        this.hitbox = new Rectangle2D.Float(this.pos.x(), this.pos.y(), this.dimension.width(), this.dimension.height());
     }
 
     protected void updateHitBox(){
@@ -37,13 +37,13 @@ public abstract class GameObjectImpl implements GameObject {
     }
 
     @Override
-    public Rectangle getHitBox(){
+    public Rectangle2D.Float getHitBox(){
         return this.hitbox;
     }
 
     public void drawHitBox(Graphics g, float x, float y){
         g.setColor(Color.PINK);
-        g.drawRect((int)x, (int)y, this.hitbox.width * Constants.BLOCK_WIDTH, this.hitbox.height * Constants.BLOCK_HEIGHT);
+        g.drawRect((int)x, (int)y, (int)this.hitbox.width * Constants.BLOCK_WIDTH, (int)this.hitbox.height * Constants.BLOCK_HEIGHT);
     }
 
     @Override
