@@ -8,7 +8,7 @@ public class Eagle extends MovingObjectImpl {
 
     public Eagle(Position pos, Pair dimension, float speed, Direction direction) {
         super(pos, dimension, speed, direction);
-        super.setImage(getClass().getResourceAsStream("/carRight.png"));
+        super.setImage(getClass().getResourceAsStream("/eagle.png"));
     }
 
 }
