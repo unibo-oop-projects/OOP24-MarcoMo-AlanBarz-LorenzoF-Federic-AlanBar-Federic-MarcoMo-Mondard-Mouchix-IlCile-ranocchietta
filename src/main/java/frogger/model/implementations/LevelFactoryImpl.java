@@ -10,13 +10,11 @@ import frogger.common.Constants;
 import frogger.common.Direction;
 import frogger.common.Pair;
 import frogger.common.Position;
-import frogger.model.interfaces.Car;
 import frogger.model.interfaces.Lane;
 import frogger.model.interfaces.Level;
 import frogger.model.interfaces.LevelFactory;
 import frogger.model.interfaces.MovingObject;
 import frogger.model.interfaces.MovingObjectFactory;
-import frogger.model.interfaces.Trunk;
 
 public class LevelFactoryImpl implements LevelFactory {
 
@@ -30,7 +28,7 @@ public class LevelFactoryImpl implements LevelFactory {
         laneIndex++;
         for(int i = 0; i < Constants.ROAD_LANES; i++) {
             Lane road = createLane(Road.class, laneIndex);
-            createObstacles(CarImpl.class, road.getSpeed(), road.getDirection(), laneIndex).forEach(ob -> road.addMovingObject(ob));
+            createObstacles(Car.class, road.getSpeed(), road.getDirection(), laneIndex).forEach(ob -> road.addMovingObject(ob));
             level.addLane(road);
             laneIndex++;
         }
@@ -39,7 +37,7 @@ public class LevelFactoryImpl implements LevelFactory {
         laneIndex++;
         for(int i = 0; i < Constants.RIVER_LANES; i++) {
             Lane river = createLane(River.class, laneIndex);
-            createObstacles(TrunkImpl.class, river.getSpeed(), river.getDirection(), laneIndex).forEach(ob -> river.addMovingObject(ob));
+            createObstacles(Trunk.class, river.getSpeed(), river.getDirection(), laneIndex).forEach(ob -> river.addMovingObject(ob));
             level.addLane(river);
             laneIndex++;
         }
@@ -78,12 +76,12 @@ public class LevelFactoryImpl implements LevelFactory {
             Position pos = new Position(ran.nextInt(bound) - delta, y);
             MovingObject object;
             if (!usedPositions.stream().anyMatch(position -> position.equals(pos))) {
-                if (type.equals(CarImpl.class)) {
+                if (type.equals(Car.class)) {
                     int width = ran.nextBoolean() ? Constants.MIN_CAR_WIDTH : Constants.MAX_CAR_WIDTH;
-                    object = obstaclesFactory.createMovingObject(pos, new Pair(width, Constants.OBJECT_HEIGHT), speed, dir, CarImpl.class);
-                } else if (type.equals(TrunkImpl.class)) {
+                    object = obstaclesFactory.createMovingObject(pos, new Pair(width, Constants.OBJECT_HEIGHT), speed, dir, Car.class);
+                } else if (type.equals(Trunk.class)) {
                     int width = ran.nextBoolean() ? Constants.MIN_TRUNK_WIDTH : Constants.MAX_TRUNK_WIDTH;
-                    object = obstaclesFactory.createMovingObject(pos, new Pair(width, Constants.OBJECT_HEIGHT), speed, dir, TrunkImpl.class);
+                    object = obstaclesFactory.createMovingObject(pos, new Pair(width, Constants.OBJECT_HEIGHT), speed, dir, Trunk.class);
                     System.out.println(pos);
                 } else {
                     throw new IllegalArgumentException("Type is not compatible.");

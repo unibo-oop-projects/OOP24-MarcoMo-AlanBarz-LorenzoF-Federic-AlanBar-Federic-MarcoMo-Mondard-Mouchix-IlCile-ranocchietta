@@ -4,10 +4,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 import frogger.common.Direction;
-import frogger.model.interfaces.Car;
 import frogger.model.interfaces.Lane;
 import frogger.model.interfaces.MovingObject;
-import frogger.model.interfaces.Trunk;
 
 public abstract class AbstractLaneImpl implements Lane {
 

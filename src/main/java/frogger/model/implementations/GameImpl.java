@@ -41,8 +41,8 @@ public class GameImpl implements Game{
             }
         }else if(this.player.getPos().y() > 0 && this.player.getPos().y() < 6){
             getObstacles().stream().forEach(a -> {
-                 if (a instanceof TrunkImpl) {
-                     ((TrunkImpl)a).removeFrog();
+                 if (a instanceof Trunk) {
+                     ((Trunk)a).removeFrog();
                  }
             });
             Optional<MovingObject> obstacle = this.level.getAllObstacles().stream().
@@ -55,8 +55,8 @@ public class GameImpl implements Game{
                 return;
             }
 
-            if (obstacle.get() instanceof TrunkImpl){
-                ((TrunkImpl)obstacle.get()).setFrog(this.player);
+            if (obstacle.get() instanceof Trunk){
+                ((Trunk)obstacle.get()).setFrog(this.player);
             }
         }
     }

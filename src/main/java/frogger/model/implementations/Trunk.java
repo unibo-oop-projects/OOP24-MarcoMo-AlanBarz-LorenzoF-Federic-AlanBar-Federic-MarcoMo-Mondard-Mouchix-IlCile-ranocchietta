@@ -5,13 +5,13 @@ import java.util.Optional;
 import frogger.common.Direction;
 import frogger.common.Pair;
 import frogger.common.Position;
-import frogger.model.interfaces.Trunk;
+import frogger.model.interfaces.Carrier;
 
-public class TrunkImpl extends MovingObjectImpl implements Trunk{
+public class Trunk extends MovingObjectImpl implements Carrier {
 
     private Optional<PlayerObjectImpl> frog = Optional.empty();
 
-    public TrunkImpl(Position pos, Pair dimension, float speed, Direction direction) {
+    public Trunk(Position pos, Pair dimension, float speed, Direction direction) {
         super(pos, dimension, speed, direction);
         super.setImage(getClass().getResourceAsStream("/trunk.png"));
     }

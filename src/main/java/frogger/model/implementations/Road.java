@@ -11,7 +11,7 @@ public class Road extends AbstractLaneImpl {
 
     @Override
     public void addCar(MovingObject obstacle) {
-        super.obstacles.add((CarImpl)obstacle);
+        super.obstacles.add((Car)obstacle);
     }
 
     @Override
