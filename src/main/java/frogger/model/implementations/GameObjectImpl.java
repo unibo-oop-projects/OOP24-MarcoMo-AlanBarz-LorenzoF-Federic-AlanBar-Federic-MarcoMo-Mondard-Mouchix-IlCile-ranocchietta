@@ -62,10 +62,14 @@ public abstract class GameObjectImpl implements GameObject {
         return dimension;
     }
 
-    @Override
-    public void render(Graphics g, int x, int y) {
-        g.drawImage(img, x, y, this.getDimension().width() * Constants.BLOCK_WIDTH, 
-        this.getDimension().height() * Constants.BLOCK_HEIGHT, null);
+    // @Override
+    // public void render(Graphics g, int x, int y) {
+    //     g.drawImage(img, x, y, this.getDimension().width() * Constants.BLOCK_WIDTH, 
+    //     this.getDimension().height() * Constants.BLOCK_HEIGHT, null);
+    // }
+
+    public BufferedImage getImage() {
+        return img;
     }
 
     public void setImage(InputStream is) {
