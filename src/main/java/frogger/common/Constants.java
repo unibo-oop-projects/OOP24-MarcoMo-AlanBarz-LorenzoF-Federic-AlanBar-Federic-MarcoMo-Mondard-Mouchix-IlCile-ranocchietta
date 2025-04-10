@@ -23,13 +23,14 @@ public class Constants {
 
     public final static int LANE_HEIGHT = 1;
 
-    public final static int MAX_X = 6;
-    public final static int MIN_X = -7;
-    public final static int MAX_Y = 6;
-    public final static int MIN_Y = -6;
     public final static int ROAD_LANES = 5;
     public final static int RIVER_LANES = 5;
-    public final static int N_ROW = ROAD_LANES + RIVER_LANES + 3;
+    public final static int GROUND_LANES = 3;
+    public final static int MAX_X = 6;
+    public final static int MIN_X = -7;
+    public final static int MAX_Y = RIVER_LANES + 1;
+    public final static int MIN_Y = - (ROAD_LANES + 1);
+    public final static int N_ROW = ROAD_LANES + RIVER_LANES + GROUND_LANES;
     public final static int N_COLUMN = Math.abs(MAX_X) + Math.abs(MIN_X) + 1;
 
     public final static int FRAME_HEIGHT = (int) (sh * scale);
