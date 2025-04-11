@@ -1,6 +1,7 @@
 package frogger.controller;
 
 import frogger.common.Constants;
+import frogger.common.GameState;
 import frogger.common.Pair;
 import frogger.common.input.InputController;
 import frogger.common.input.InputControllerImpl;
@@ -15,6 +16,7 @@ public class ControllerImpl {
     private InputControllerImpl inputController;
     private ScenePanel scenePanel;
     private GameScene gameScene;
+    private GameState gameState;
 
     public void gameInit() {
         game = new GameImpl(new Pair(Constants.PLAYER_WIDTH,Constants.PLAYER_HEIGHT));
@@ -28,22 +30,35 @@ public class ControllerImpl {
     public void mainLoop(){
         double timePerFrame = 1000000000.0 / FPS_SET;
         long lastFrame = System.nanoTime();
-        long now = System.nanoTime();
+        long now;
 
         while (!game.isGameOver()){
-            now = System.nanoTime();
-
+            now = System.nanoTime(); 
             this.inputController.processInput(this.game);
-            
-            if (now - lastFrame >= timePerFrame) {
-                this.game.checkCollision();
-                this.game.checkProgress();
-                this.game.checkNewLevel();
-                this.game.getObstacles().forEach(a -> a.move()); //moving all obstacles
-                this.scenePanel.repaint();
 
-                lastFrame = now;
-            }
+            if (now - lastFrame >= timePerFrame) {
+                switch (GameState.state) {
+                    case PLAYING -> {
+                        this.game.checkCollision();
+                        this.game.checkProgress();
+                        this.game.checkNewLevel();
+                        this.game.getObstacles().forEach(a -> a.move()); //moving all obstacles
+                        this.scenePanel.repaint();
+                    }
+                    case MENU -> {
+                        //TODO: implement menu
+                    }
+                    case SHOP -> {
+                        //TODO: implement menu
+                    }
+                    case DEAD -> {
+                        //TODO: implement menu
+                    }
+                    default -> System.exit(0);
+                }
+           
+            lastFrame = now;
+            }            
         }
     }
 
