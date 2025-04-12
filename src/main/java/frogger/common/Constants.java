@@ -19,6 +19,9 @@ public class Constants {
     public final static int MIN_TRUNK_WIDTH = 1;
     public final static int MAX_TRUNK_WIDTH = 1;
 
+    public final static int EAGLE_WIDTH = 1;
+    public final static int EAGLE_HEIGHT = 1;
+
     public final static int OBJECT_HEIGHT = 1;
 
     public final static int LANE_HEIGHT = 1;

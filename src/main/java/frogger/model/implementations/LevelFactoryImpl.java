@@ -18,11 +18,14 @@ import frogger.model.interfaces.MovingObjectFactory;
 
 public class LevelFactoryImpl implements LevelFactory {
 
+    private Random ran = new Random();
+
     @Override
     public Level randomLevel() {
         Level level = new LevelImpl();
         int laneIndex = Constants.MIN_Y;
-
+        createEagles().forEach(eagle -> level.addEagle(eagle));
+        
         Lane start = new Ground();
         level.addLane(start);
         laneIndex++;
@@ -50,7 +53,6 @@ public class LevelFactoryImpl implements LevelFactory {
     }
 
     private Lane createLane(Class<? extends Lane> type, int y) {
-        Random ran = new Random();
         Direction dir = y % 2 == 0 ? Direction.RIGHT : Direction.LEFT;
         float speed = ran.nextFloat(0.008f , 0.03f);
         Lane lane;
@@ -68,12 +70,9 @@ public class LevelFactoryImpl implements LevelFactory {
         Set<MovingObject> obstacles = new HashSet<>();
         List<Position> usedPositions = new ArrayList<>();
         MovingObjectFactory obstaclesFactory = new MovingObjectFactoryImpl();
-        Random ran = new Random();
         int nOfObstacles = ran.nextBoolean() ? Constants.MIN_OBSTACLES_NUMBER : Constants.MAX_OBSTACLES_NUMBER;
-        int bound = Math.abs(Constants.MAX_X) + Math.abs(Constants.MIN_X) + 1;
-        int delta = bound - Math.abs(Constants.MAX_X);
         while (obstacles.size() != nOfObstacles) {
-            Position pos = new Position(ran.nextInt(bound) - delta, y);
+            Position pos = new Position(randomX(), y);
             MovingObject object;
             if (!usedPositions.stream().anyMatch(position -> position.equals(pos))) {
                 if (type.equals(Car.class)) {
@@ -82,7 +81,6 @@ public class LevelFactoryImpl implements LevelFactory {
                 } else if (type.equals(Trunk.class)) {
                     int width = ran.nextBoolean() ? Constants.MIN_TRUNK_WIDTH : Constants.MAX_TRUNK_WIDTH;
                     object = obstaclesFactory.createMovingObject(pos, new Pair(width, Constants.OBJECT_HEIGHT), speed, dir, Trunk.class);
-                    System.out.println(pos);
                 } else {
                     throw new IllegalArgumentException("Type is not compatible.");
                 }
@@ -91,6 +89,38 @@ public class LevelFactoryImpl implements LevelFactory {
             }
         }
         return new HashSet<>(obstacles);
+    }
+
+    private List<MovingObject> createEagles() {
+        List<MovingObject> eagles = new ArrayList<>();
+        List<Position> usedPositions = new ArrayList<>();
+        int n = ran.nextBoolean() ? Constants.MIN_OBSTACLES_NUMBER : Constants.MAX_OBSTACLES_NUMBER;
+        while (eagles.size() != n) {
+            Position pos = new Position(randomX(), -7);
+            if (!usedPositions.stream().anyMatch(position -> position.equals(pos))) {
+                Pair dim = new Pair(Constants.EAGLE_WIDTH, Constants.EAGLE_HEIGHT);
+                Direction dir = Direction.UP;
+                int triggerRow = randomY();
+                float speed = ran.nextFloat(0.008f , 0.03f);
+                Eagle eagle = new Eagle(pos, dim, speed, dir, triggerRow);
+                System.out.println(pos);
+                eagles.add(eagle);
+                usedPositions.add(pos);
+            }
+        }
+        return new ArrayList<>(eagles);
+    }
+
+    private int randomX() {
+        int boundX = Math.abs(Constants.MAX_X) + Math.abs(Constants.MIN_X) + 1;
+        int deltaX = boundX - Math.abs(Constants.MAX_X);
+        return ran.nextInt(boundX) - deltaX;
+    }
+
+    private int randomY() {
+        int boundY = Math.abs(Constants.MAX_Y) + Math.abs(Constants.MIN_Y) + 1;
+        int deltaY = boundY - Math.abs(Constants.MAX_Y);
+        return ran.nextInt(boundY) - deltaY;
     }
 
 }
