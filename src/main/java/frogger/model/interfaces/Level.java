@@ -13,5 +13,5 @@ public interface Level {
 
     void addEagle(MovingObject eagle);
 
-    List<MovingObject> getEagles();
+    List<MovingObject/*Eagle*/> getEagles();
 }

@@ -42,7 +42,7 @@ public class GameImpl implements Game{
         }else if(this.player.getPos().y() > 0 && this.player.getPos().y() < 6){
             getObstacles().stream().forEach(a -> {
                  if (a instanceof Trunk) {
-                     ((Trunk)a).removeFrog();
+                     ((Trunk)a).removeObj();
                  }
             });
             Optional<MovingObject> obstacle = this.level.getAllObstacles().stream().
@@ -56,7 +56,7 @@ public class GameImpl implements Game{
             }
 
             if (obstacle.get() instanceof Trunk){
-                ((Trunk)obstacle.get()).setFrog(this.player);
+                ((Trunk)obstacle.get()).setObj(this.player);
             }
         }
     }
@@ -95,6 +95,14 @@ public class GameImpl implements Game{
         if (!getCurrentLane().isCompleted()) {
             this.player.addPoints(Constants.POINT_PER_LANE);
             this.getCurrentLane().setCompleted();
+        }
+    }
+
+    public void checkEagleTrigger() {
+        for (var eagle : this.level.getEagles()) {
+            // if(eagle.getTrigger() == this.getPlayer().getPos().y()) { 
+            //     eagle.start();
+            // }
         }
     }
 }

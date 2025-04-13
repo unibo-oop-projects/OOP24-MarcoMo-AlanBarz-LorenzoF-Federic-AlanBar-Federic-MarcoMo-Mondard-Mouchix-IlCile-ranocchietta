@@ -7,11 +7,10 @@ import frogger.model.interfaces.Startable;
 
 public class Eagle extends MovingObjectImpl implements Startable<Integer> {
     private boolean started = false; 
-    private int triggerRow;
+    private int triggerRow = 0;
 
-    public Eagle(Position pos, Pair dimension, float speed, Direction direction, int triggerRow) {
+    public Eagle(Position pos, Pair dimension, float speed, Direction direction) {
         super(pos, dimension, speed, direction);
-        this.triggerRow = triggerRow;
         super.setImage(getClass().getResourceAsStream("/eagle.png"));
     }
 

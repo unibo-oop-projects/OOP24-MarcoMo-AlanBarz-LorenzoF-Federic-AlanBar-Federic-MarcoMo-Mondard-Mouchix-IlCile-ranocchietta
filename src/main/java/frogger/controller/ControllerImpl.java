@@ -42,6 +42,7 @@ public class ControllerImpl {
                         this.game.checkCollision();
                         this.game.checkProgress();
                         this.game.checkNewLevel();
+                        this.game.checkEagleTrigger();
                         this.game.getObstacles().forEach(a -> a.move()); //moving all obstacles
                         this.scenePanel.repaint();
                     }

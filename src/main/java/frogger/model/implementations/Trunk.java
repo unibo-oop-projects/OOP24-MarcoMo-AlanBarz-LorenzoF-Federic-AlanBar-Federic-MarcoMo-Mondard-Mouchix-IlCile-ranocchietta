@@ -7,7 +7,7 @@ import frogger.common.Pair;
 import frogger.common.Position;
 import frogger.model.interfaces.Carrier;
 
-public class Trunk extends MovingObjectImpl implements Carrier {
+public class Trunk extends MovingObjectImpl implements Carrier<PlayerObjectImpl> {
 
     private Optional<PlayerObjectImpl> frog = Optional.empty();
 
@@ -16,11 +16,11 @@ public class Trunk extends MovingObjectImpl implements Carrier {
         super.setImage(getClass().getResourceAsStream("/trunk.png"));
     }
 
-    public void setFrog(PlayerObjectImpl frog) {
+    public void setObj(PlayerObjectImpl frog) {
         this.frog = Optional.of(frog);
     }
 
-    public void removeFrog() {
+    public void removeObj() {
         this.frog = Optional.empty();
     }
 
@@ -28,7 +28,7 @@ public class Trunk extends MovingObjectImpl implements Carrier {
     public void move() {
         if (frog.isPresent()) {
             if (frog.get().getPos().y() != this.getPos().y()) {
-                this.removeFrog();
+                this.removeObj();
             } else {
                 frog.get().setPos(new Position(frog.get().getPos().x() + this.getDirectionValue().x() * this.getSpeed(), 
                 frog.get().getPos().y() + this.getDirectionValue().y() * this.getSpeed()));

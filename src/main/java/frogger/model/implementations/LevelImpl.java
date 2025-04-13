@@ -12,7 +12,7 @@ import frogger.model.interfaces.MovingObject;
 public class LevelImpl implements Level{
 
     private final List<Lane> lanes = new ArrayList<>();
-    private final List<MovingObject> eagles = new ArrayList<>();
+    private final List<MovingObject/*Eagle*/> eagles = new ArrayList<>();
 
     @Override
     public List<Lane> getLanes() {
@@ -21,6 +21,7 @@ public class LevelImpl implements Level{
 
     @Override
     public Set<MovingObject> getAllObstacles() {
+        //aggiungere le aquile
         return lanes.stream().flatMap(elem -> elem.getLaneObstacles().stream()).collect(Collectors.toSet());
     }
 
@@ -37,7 +38,7 @@ public class LevelImpl implements Level{
     }
 
     @Override
-    public List<MovingObject> getEagles() {
+    public List<MovingObject/*Eagle*/> getEagles() {
         return new ArrayList<>(this.eagles);
     }
 }

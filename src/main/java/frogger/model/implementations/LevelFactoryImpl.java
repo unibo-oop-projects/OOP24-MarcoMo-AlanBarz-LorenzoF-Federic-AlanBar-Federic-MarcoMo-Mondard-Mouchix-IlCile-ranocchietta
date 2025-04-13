@@ -102,7 +102,11 @@ public class LevelFactoryImpl implements LevelFactory {
                 Direction dir = Direction.UP;
                 int triggerRow = randomY();
                 float speed = ran.nextFloat(0.008f , 0.03f);
-                Eagle eagle = new Eagle(pos, dim, speed, dir, triggerRow);
+                // da errore:
+                // Eagle eagle = new Eagle(pos, dim, speed, dir, triggerRow);
+                // modificabile in:
+                Eagle eagle = new Eagle(pos, dim, speed, dir);
+                eagle.setTrigger(triggerRow);
                 System.out.println(pos);
                 eagles.add(eagle);
                 usedPositions.add(pos);
