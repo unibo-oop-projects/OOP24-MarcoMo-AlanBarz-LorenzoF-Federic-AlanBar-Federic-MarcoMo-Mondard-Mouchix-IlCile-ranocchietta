@@ -101,7 +101,10 @@ public class LevelFactoryImpl implements LevelFactory {
             if (!usedPositions.stream().anyMatch(position -> position.equals(pos))) {
                 Pair dim = new Pair(Constants.EAGLE_WIDTH, Constants.EAGLE_HEIGHT);
                 Direction dir = Direction.UP;
-                int triggerRow = randomY();
+                int triggerRow = Constants.MIN_Y;
+                while(triggerRow == Constants.MIN_Y || triggerRow == Constants.MAX_Y) {
+                    triggerRow = randomY();
+                }
                 float speed = ran.nextFloat(Constants.MIN_SPEED ,Constants.MAX_SPEED);
                 Eagle eagle = obstaclesFactory.createMovingObject(pos, dim, speed, dir, Eagle.class);
                 eagle.setTrigger(triggerRow);
