@@ -100,9 +100,9 @@ public class GameImpl implements Game{
 
     public void checkEagleTrigger() {
         for (var eagle : this.level.getEagles()) {
-            // if(eagle.getTrigger() == this.getPlayer().getPos().y()) { 
-            //     eagle.start();
-            // }
+            if(eagle.getTrigger() == this.getPlayer().getPos().y()) { 
+                eagle.start();
+            }
         }
     }
 }

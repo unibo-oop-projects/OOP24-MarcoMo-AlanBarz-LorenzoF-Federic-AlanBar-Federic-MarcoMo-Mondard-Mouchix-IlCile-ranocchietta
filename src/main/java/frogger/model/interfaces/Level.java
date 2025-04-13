@@ -3,6 +3,8 @@ package frogger.model.interfaces;
 import java.util.List;
 import java.util.Set;
 
+import frogger.model.implementations.Eagle;
+
 public interface Level {
 
     List<Lane> getLanes();
@@ -11,7 +13,7 @@ public interface Level {
 
     void addLane(Lane lane);
 
-    void addEagle(MovingObject eagle);
+    void addEagle(Eagle eagle);
 
-    List<MovingObject/*Eagle*/> getEagles();
+    List<Eagle> getEagles();
 }

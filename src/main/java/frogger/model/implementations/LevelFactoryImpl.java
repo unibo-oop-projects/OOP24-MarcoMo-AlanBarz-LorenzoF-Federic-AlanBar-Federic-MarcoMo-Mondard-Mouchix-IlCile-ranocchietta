@@ -54,7 +54,7 @@ public class LevelFactoryImpl implements LevelFactory {
 
     private Lane createLane(Class<? extends Lane> type, int y) {
         Direction dir = y % 2 == 0 ? Direction.RIGHT : Direction.LEFT;
-        float speed = ran.nextFloat(0.008f , 0.03f);
+        float speed = ran.nextFloat(Constants.MIN_SPEED ,Constants.MAX_SPEED);
         Lane lane;
         if (type.equals(Road.class)) {
             lane = new Road(speed, dir);
@@ -91,23 +91,20 @@ public class LevelFactoryImpl implements LevelFactory {
         return new HashSet<>(obstacles);
     }
 
-    private List<MovingObject> createEagles() {
-        List<MovingObject> eagles = new ArrayList<>();
+    private List<Eagle> createEagles() {
+        List<Eagle> eagles = new ArrayList<>();
         List<Position> usedPositions = new ArrayList<>();
+        MovingObjectFactory obstaclesFactory = new MovingObjectFactoryImpl();
         int n = ran.nextBoolean() ? Constants.MIN_OBSTACLES_NUMBER : Constants.MAX_OBSTACLES_NUMBER;
         while (eagles.size() != n) {
-            Position pos = new Position(randomX(), -7);
+            Position pos = new Position(randomX(), Constants.MIN_Y -1);
             if (!usedPositions.stream().anyMatch(position -> position.equals(pos))) {
                 Pair dim = new Pair(Constants.EAGLE_WIDTH, Constants.EAGLE_HEIGHT);
                 Direction dir = Direction.UP;
                 int triggerRow = randomY();
-                float speed = ran.nextFloat(0.008f , 0.03f);
-                // da errore:
-                // Eagle eagle = new Eagle(pos, dim, speed, dir, triggerRow);
-                // modificabile in:
-                Eagle eagle = new Eagle(pos, dim, speed, dir);
+                float speed = ran.nextFloat(Constants.MIN_SPEED ,Constants.MAX_SPEED);
+                Eagle eagle = obstaclesFactory.createMovingObject(pos, dim, speed, dir, Eagle.class);
                 eagle.setTrigger(triggerRow);
-                System.out.println(pos);
                 eagles.add(eagle);
                 usedPositions.add(pos);
             }
