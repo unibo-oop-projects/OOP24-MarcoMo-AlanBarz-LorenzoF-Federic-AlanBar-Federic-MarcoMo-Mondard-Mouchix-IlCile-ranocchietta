@@ -59,11 +59,11 @@ public class MovingObjectImpl extends GameObjectImpl implements MovingObject{
                 break;
             case Direction.UP:
                 x = 0;
-                y = -1;
+                y = 1;
                 break;
             case Direction.DOWN:
                 x = 0;
-                y = 1;
+                y = -1;
                 break;
                 
         }

@@ -1,10 +1,15 @@
 package frogger.model.interfaces;
 
-import frogger.model.implementations.PlayerObjectImpl;
-
-public interface Carrier { 
+public interface Carrier<X> { 
     
-    void setFrog(PlayerObjectImpl frog);
+    /**
+     * set the object to carry on it
+     * @param object the object to set
+     */
+    void setObj(X object);
 
-    void removeFrog();
+    /**
+     * to remove the object setted, and stop carry it
+     */
+    void removeObj();
 }
