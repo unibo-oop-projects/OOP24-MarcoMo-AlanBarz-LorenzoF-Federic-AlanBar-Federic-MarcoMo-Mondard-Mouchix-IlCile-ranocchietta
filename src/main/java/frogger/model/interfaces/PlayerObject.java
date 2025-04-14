@@ -23,4 +23,8 @@ public interface PlayerObject extends GameObject{
     int getScore();
 
     void resetPosition();
+
+    boolean isAttached();
+
+    void setAttached(boolean b);
 }

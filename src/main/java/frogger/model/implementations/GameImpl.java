@@ -35,28 +35,27 @@ public class GameImpl implements Game{
     @Override
     public void checkCollision() {
         
-        if(this.player.getPos().y() > -6 && this.player.getPos().y() < 0){
-            if(this.level.getAllObstacles().stream().filter(x -> x.getPos().y() == this.player.getPos().y()).anyMatch(x -> x.getHitBox().intersects(this.player.getHitBox()))){
+        if(this.player.getPos().y() > -6 && this.player.getPos().y() < 1){
+            if(this.level.getAllObstacles().stream().anyMatch(x -> x.getHitBox().intersects(this.player.getHitBox()))){
                 this.player.getHit();
             }
         }else if(this.player.getPos().y() > 0 && this.player.getPos().y() < 6){
-            getObstacles().stream().forEach(a -> {
-                 if (a instanceof Trunk) {
-                     ((Trunk)a).removeObj();
-                 }
-            });
-            Optional<MovingObject> obstacle = this.level.getAllObstacles().stream().
-                    filter(x -> x.getPos().y() == this.player.getPos().y()).
-                    filter(x -> x.getHitBox().intersects(this.player.getHitBox())).
-                    findFirst();
-            
-            if (obstacle.isEmpty()) {
-                this.player.getHit();
-                return;
-            }
 
-            if (obstacle.get() instanceof Trunk){
-                ((Trunk)obstacle.get()).setObj(this.player);
+            this.player.setAttached(false);
+            
+            if(this.level.getAllObstacles().stream().anyMatch(x -> x.getHitBox().intersects(this.player.getHitBox()))){
+                getObstacles().stream().filter(x -> x.getHitBox().intersects(this.player.getHitBox())).forEach(x ->{
+                    if(x instanceof Trunk){
+                        if(!this.player.isAttached()){
+                            ((Trunk)x).setObj(this.player);
+                            this.player.setAttached(true);
+                        }
+                    } else if(x instanceof Eagle){
+                        this.player.getHit();
+                    }
+                });
+            } else {
+               this.player.getHit(); 
             }
         }
     }

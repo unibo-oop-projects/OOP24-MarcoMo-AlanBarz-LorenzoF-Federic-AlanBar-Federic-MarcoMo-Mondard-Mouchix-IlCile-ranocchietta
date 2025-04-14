@@ -12,12 +12,14 @@ public class PlayerObjectImpl extends GameObjectImpl implements PlayerObject{
     private Direction direction;
     private int lives;
     private int score;
-
+    private boolean attached;
+    
     public PlayerObjectImpl(Pair dimension) {
         super(new Position(0, -6), dimension);
         this.lives = 3;
         this.score = 0;
         this.direction = Direction.UP;
+        this.attached = false;
     }
 
     @Override
@@ -70,5 +72,15 @@ public class PlayerObjectImpl extends GameObjectImpl implements PlayerObject{
     public void resetPosition() {
         setLookingUp();
         setPos(startPosition);
+    }
+
+    @Override
+    public boolean isAttached() {
+        return this.attached;
+    }
+
+    @Override
+    public void setAttached(boolean b) {
+        this.attached = b;
     }
 }
