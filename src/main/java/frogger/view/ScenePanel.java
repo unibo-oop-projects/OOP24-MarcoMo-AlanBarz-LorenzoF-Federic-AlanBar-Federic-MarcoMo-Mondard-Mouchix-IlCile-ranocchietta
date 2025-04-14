@@ -96,7 +96,7 @@ public class ScenePanel extends JPanel implements KeyListener{
 
         g.setColor(Color.WHITE);
         g.setFont(myFont);
-        g.drawString("Punteggio: " + this.controller.getGame().getPlayer().getScore(), (int)this.controller.getXinPixel(Constants.MAX_X - 2), (int)this.controller.getYinPixel(Constants.MAX_Y - 0.5));
+        g.drawString("Punteggio: " + this.controller.getGame().getPlayer().getScore(), (int)this.controller.getXinPixel(Constants.MAX_X - 3), (int)this.controller.getYinPixel(Constants.MAX_Y - 0.5));
     } 
 
     @Override
