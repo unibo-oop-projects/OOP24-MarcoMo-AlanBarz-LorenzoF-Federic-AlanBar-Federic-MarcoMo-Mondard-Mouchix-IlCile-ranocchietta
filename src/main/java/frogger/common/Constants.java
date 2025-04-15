@@ -14,10 +14,10 @@ public class Constants {
     public final static int MAX_OBSTACLES_NUMBER = 3;
 
     public final static int MIN_CAR_WIDTH = 1;
-    public final static int MAX_CAR_WIDTH = 1;
+    public final static int MAX_CAR_WIDTH = 2;
 
     public final static int MIN_TRUNK_WIDTH = 1;
-    public final static int MAX_TRUNK_WIDTH = 1;
+    public final static int MAX_TRUNK_WIDTH = 2;
 
     public final static int EAGLE_WIDTH = 1;
     public final static int EAGLE_HEIGHT = 1;

@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
 import java.util.Set;
+import java.util.stream.IntStream;
 
 import frogger.common.Constants;
 import frogger.common.Direction;
@@ -66,28 +67,31 @@ public class LevelFactoryImpl implements LevelFactory {
         return lane;
     }
 
-    private Set<MovingObject> createObstacles(Class<? extends MovingObject> type, float speed, Direction dir, int y) {
+    private Set<MovingObject> createObstacles(Class<? extends MovingObjectImpl> type, float speed, Direction dir, int y) {
         Set<MovingObject> obstacles = new HashSet<>();
-        List<Position> usedPositions = new ArrayList<>();
+        List<Float> usedPositions = new ArrayList<>();
         MovingObjectFactory obstaclesFactory = new MovingObjectFactoryImpl();
         int nOfObstacles = ran.nextBoolean() ? Constants.MIN_OBSTACLES_NUMBER : Constants.MAX_OBSTACLES_NUMBER;
+
+        int width;
+        if (type.equals(Car.class)) {
+            width = ran.nextBoolean() ? Constants.MIN_CAR_WIDTH : Constants.MAX_CAR_WIDTH;
+        } else {
+            width = ran.nextBoolean() ? Constants.MIN_TRUNK_WIDTH : Constants.MAX_TRUNK_WIDTH;
+        }
+        Pair dim = new Pair(width, Constants.OBJECT_HEIGHT);
+
         while (obstacles.size() != nOfObstacles) {
             Position pos = new Position(randomX(), y);
-            MovingObject object;
-            if (!usedPositions.stream().anyMatch(position -> position.equals(pos))) {
-                if (type.equals(Car.class)) {
-                    int width = ran.nextBoolean() ? Constants.MIN_CAR_WIDTH : Constants.MAX_CAR_WIDTH;
-                    object = obstaclesFactory.createMovingObject(pos, new Pair(width, Constants.OBJECT_HEIGHT), speed, dir, Car.class);
-                } else if (type.equals(Trunk.class)) {
-                    int width = ran.nextBoolean() ? Constants.MIN_TRUNK_WIDTH : Constants.MAX_TRUNK_WIDTH;
-                    object = obstaclesFactory.createMovingObject(pos, new Pair(width, Constants.OBJECT_HEIGHT), speed, dir, Trunk.class);
-                } else {
-                    throw new IllegalArgumentException("Type is not compatible.");
-                }
+            boolean valid = true;
+            valid = IntStream.range(0, width).noneMatch(i -> usedPositions.contains(pos.x() + i));
+            if (valid) {
+                IntStream.range(0, width).forEach(i -> usedPositions.add(pos.x() + i));
+                MovingObject object = obstaclesFactory.createMovingObject(pos, dim, speed, dir, type);
                 obstacles.add(object);
-                usedPositions.add(pos);
             }
         }
+
         return new HashSet<>(obstacles);
     }
 
