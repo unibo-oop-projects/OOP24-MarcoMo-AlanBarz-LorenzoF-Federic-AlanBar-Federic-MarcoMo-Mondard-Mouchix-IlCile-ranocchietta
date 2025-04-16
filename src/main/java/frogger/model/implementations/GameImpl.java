@@ -1,5 +1,7 @@
 package frogger.model.implementations;
 
+import java.util.Set;
+
 import frogger.common.Constants;
 import frogger.common.Pair;
 import frogger.model.interfaces.Game;
@@ -8,18 +10,21 @@ import frogger.model.interfaces.Level;
 import frogger.model.interfaces.MovingObject;
 import frogger.model.interfaces.PlayerObject;
 
-import java.util.Optional;
-import java.util.Set;
-
 public class GameImpl implements Game{
 
     private final LevelFactoryImpl levelFactory = new LevelFactoryImpl();
     private PlayerObjectImpl player;
     private Level level;
+    private final Menu menu;
 
     public GameImpl(Pair dimension){
+        this.menu = new Menu(this);
         this.player = new PlayerObjectImpl(dimension);
         level = levelFactory.randomLevel();
+    }
+
+    public Menu getMenu() {
+        return this.menu;
     }
 
     @Override

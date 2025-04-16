@@ -14,10 +14,10 @@ public class Constants {
     public final static int MAX_OBSTACLES_NUMBER = 3;
 
     public final static int MIN_CAR_WIDTH = 1;
-    public final static int MAX_CAR_WIDTH = 1;
+    public final static int MAX_CAR_WIDTH = 2;
 
     public final static int MIN_TRUNK_WIDTH = 1;
-    public final static int MAX_TRUNK_WIDTH = 1;
+    public final static int MAX_TRUNK_WIDTH = 2;
 
     public final static int EAGLE_WIDTH = 1;
     public final static int EAGLE_HEIGHT = 1;
@@ -49,4 +49,9 @@ public class Constants {
 
     public final static int POINT_PER_LANE = 10;
     public final static int POINT_LEVEL_COMPLETED = 100;
+
+    public final static int B_WIDTH_DEFAULT = 166; // ! This is temporary
+    public final static int B_HEIGHT_DEFAULT = 61;   // ! This is temporary
+    public final static int B_WIDTH = (int)(B_WIDTH_DEFAULT * 1.3); // ! This is temporary
+    public final static int B_HEIGHT = (int)(B_HEIGHT_DEFAULT * 1.3);   // ! This is temporary
 }

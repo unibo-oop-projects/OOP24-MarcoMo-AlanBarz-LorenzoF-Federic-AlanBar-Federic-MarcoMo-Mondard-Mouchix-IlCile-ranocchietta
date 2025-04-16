@@ -16,7 +16,6 @@ public class ControllerImpl {
     private InputControllerImpl inputController;
     private ScenePanel scenePanel;
     private GameScene gameScene;
-    private GameState gameState;
 
     public void gameInit() {
         game = new GameImpl(new Pair(Constants.PLAYER_WIDTH,Constants.PLAYER_HEIGHT));
@@ -43,11 +42,10 @@ public class ControllerImpl {
                         this.game.checkProgress();
                         this.game.checkNewLevel();
                         this.game.checkEagleTrigger();
-                        this.game.getObstacles().forEach(a -> a.move()); //moving all obstacles
-                        this.scenePanel.repaint();
+                        this.game.getObstacles().forEach(a -> a.move()); //moving all obstacles                        
                     }
                     case MENU -> {
-                        //TODO: implement menu
+                        this.game.getMenu().update(); 
                     }
                     case SHOP -> {
                         //TODO: implement menu
@@ -55,9 +53,12 @@ public class ControllerImpl {
                     case DEAD -> {
                         //TODO: implement menu
                     }
+                    case QUIT -> {
+                        System.exit(0);
+                    }
                     default -> System.exit(0);
                 }
-           
+            this.scenePanel.repaint();
             lastFrame = now;
             }            
         }

@@ -14,6 +14,8 @@ import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 import frogger.common.Constants;
+import frogger.common.GameState;
+import frogger.common.input.MouseInput;
 import frogger.common.input.MoveDown;
 import frogger.common.input.MoveLeft;
 import frogger.common.input.MoveRight;
@@ -29,10 +31,13 @@ public class ScenePanel extends JPanel implements KeyListener{
     private BufferedImage[] idleAni;
     private int aniTick;
     private int aniIndex;
-    private int aniSpeed = 15;
+    private int aniSpeed = 15;   
 
     public ScenePanel() {
         this.addKeyListener(this);
+        MouseInput mouseInput = new MouseInput(this);
+        addMouseListener(mouseInput);
+        addMouseMotionListener(mouseInput);
         setFocusable(true);
         setPanelSize();
         setBackground(Color.BLACK);
@@ -67,6 +72,17 @@ public class ScenePanel extends JPanel implements KeyListener{
 
     @Override
     public void paintComponent(final Graphics g) {
+        switch (GameState.state) {
+            case PLAYING -> {
+                this.paintLevel(g);
+            }
+            case MENU -> {
+                this.controller.getGame().getMenu().draw(g);
+            }            
+        }
+    } 
+
+    private void paintLevel(Graphics g){
         super.paintComponent(g);
         this.updateAnimationTick();
 
@@ -99,7 +115,7 @@ public class ScenePanel extends JPanel implements KeyListener{
         g.setColor(Color.WHITE);
         g.setFont(myFont);
         g.drawString("Punteggio: " + this.controller.getGame().getPlayer().getScore(), (int)this.controller.getXinPixel(Constants.MAX_X - 3), (int)this.controller.getYinPixel(Constants.MAX_Y - 0.5));
-    } 
+    }
 
     @Override
     public void keyTyped(KeyEvent e) {}
@@ -138,5 +154,9 @@ public class ScenePanel extends JPanel implements KeyListener{
                 aniIndex = 0;
             }
         }
+    }
+
+    public ControllerImpl getController() {
+        return controller;
     }
 }
