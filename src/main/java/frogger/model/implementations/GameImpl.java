@@ -42,6 +42,12 @@ public class GameImpl implements Game{
         }else if(this.player.getPos().y() > 0 && this.player.getPos().y() < 6){
 
             this.player.setAttached(false);
+
+            getObstacles().stream().forEach(x -> {
+                if(x instanceof Trunk){
+                    ((Trunk)x).removeObj();
+                }
+            });
             
             if(this.level.getAllObstacles().stream().anyMatch(x -> x.getHitBox().intersects(this.player.getHitBox()))){
                 getObstacles().stream().filter(x -> x.getHitBox().intersects(this.player.getHitBox())).forEach(x ->{

@@ -72,6 +72,8 @@ public class ScenePanel extends JPanel implements KeyListener{
 
         g.drawImage(background, 0 , 0, Constants.FRAME_WIDTH, Constants.FRAME_HEIGHT, null);
 
+        //RasterImage image = (RasterImage) Image.load("image.bmp");
+
         for(int i = 0; i < this.controller.getGame().getPlayer().getLives(); i++){
             g.drawImage(heart, (int)this.controller.getXinPixel(i + Constants.MIN_X) , 0, null);
         }

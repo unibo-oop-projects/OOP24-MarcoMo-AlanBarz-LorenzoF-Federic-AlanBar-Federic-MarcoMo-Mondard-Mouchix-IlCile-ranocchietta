@@ -1,0 +1,2 @@
+Skin 10 ranocchietta.png true
+Skin 30 ranocchietta.png false
