@@ -37,5 +37,4 @@ public class ShopImpl implements Shop{
             e.printStackTrace();
         }
     }
-
 }

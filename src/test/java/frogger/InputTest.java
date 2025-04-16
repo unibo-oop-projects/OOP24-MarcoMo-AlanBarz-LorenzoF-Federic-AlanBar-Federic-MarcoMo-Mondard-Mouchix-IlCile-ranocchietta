@@ -26,56 +26,56 @@ public class InputTest {
         assertEquals(new Position(0, -6), this.controller.getGame().getPlayer().getPos());
 
         System.out.println(KeyEvent.getKeyText(KeyEvent.VK_UP).toString());
-        this.controller.getScenePanel().keyPressed(new KeyEvent(new Button(), KeyEvent.KEY_PRESSED, System.currentTimeMillis(), 0, KeyEvent.VK_UP, 'S'));
+        this.controller.getScenePanel().getKeyListeners()[0].keyPressed(new KeyEvent(new Button(), KeyEvent.KEY_PRESSED, System.currentTimeMillis(), 0, KeyEvent.VK_UP, 'S'));
         //this.controller.getInputController().notifyCommand(new MoveUp());
         this.controller.getInputController().processInput(this.controller.getGame());
         assertEquals(new Position(0, -5), this.controller.getGame().getPlayer().getPos());
 
         //this.controller.getInputController().notifyCommand(new MoveDown());
-        this.controller.getScenePanel().keyPressed(new KeyEvent(new Button(), KeyEvent.KEY_PRESSED, System.currentTimeMillis(), 0, KeyEvent.VK_DOWN, 'D'));
+        this.controller.getScenePanel().getKeyListeners()[0].keyPressed(new KeyEvent(new Button(), KeyEvent.KEY_PRESSED, System.currentTimeMillis(), 0, KeyEvent.VK_DOWN, 'D'));
         this.controller.getInputController().processInput(this.controller.getGame());
 
         assertEquals(new Position(0, -6), this.controller.getGame().getPlayer().getPos());
 
-        this.controller.getScenePanel().keyPressed(new KeyEvent(new Button(), KeyEvent.KEY_PRESSED, System.currentTimeMillis(), 0, KeyEvent.VK_LEFT, 'L'));
+        this.controller.getScenePanel().getKeyListeners()[0].keyPressed(new KeyEvent(new Button(), KeyEvent.KEY_PRESSED, System.currentTimeMillis(), 0, KeyEvent.VK_LEFT, 'L'));
         this.controller.getInputController().processInput(this.controller.getGame());
 
         assertEquals(new Position(-1, -6), this.controller.getGame().getPlayer().getPos());
 
-        this.controller.getScenePanel().keyPressed(new KeyEvent(new Button(), KeyEvent.KEY_PRESSED, System.currentTimeMillis(), 0, KeyEvent.VK_RIGHT, 'R'));
+        this.controller.getScenePanel().getKeyListeners()[0].keyPressed(new KeyEvent(new Button(), KeyEvent.KEY_PRESSED, System.currentTimeMillis(), 0, KeyEvent.VK_RIGHT, 'R'));
         this.controller.getInputController().processInput(this.controller.getGame());
 
         assertEquals(new Position(0, -6), this.controller.getGame().getPlayer().getPos());
 
-        this.controller.getScenePanel().keyPressed(new KeyEvent(new Button(), KeyEvent.KEY_PRESSED, System.currentTimeMillis(), 0, KeyEvent.VK_DOWN, 'D'));
+        this.controller.getScenePanel().getKeyListeners()[0].keyPressed(new KeyEvent(new Button(), KeyEvent.KEY_PRESSED, System.currentTimeMillis(), 0, KeyEvent.VK_DOWN, 'D'));
         this.controller.getInputController().processInput(this.controller.getGame());
 
         assertEquals(new Position(0, -6), this.controller.getGame().getPlayer().getPos());
 
-        this.controller.getScenePanel().keyPressed(new KeyEvent(new Button(), KeyEvent.KEY_PRESSED, System.currentTimeMillis(), 0, KeyEvent.VK_LEFT, 'L'));
+        this.controller.getScenePanel().getKeyListeners()[0].keyPressed(new KeyEvent(new Button(), KeyEvent.KEY_PRESSED, System.currentTimeMillis(), 0, KeyEvent.VK_LEFT, 'L'));
         this.controller.getInputController().processInput(this.controller.getGame());
 
-        this.controller.getScenePanel().keyPressed(new KeyEvent(new Button(), KeyEvent.KEY_PRESSED, System.currentTimeMillis(), 0, KeyEvent.VK_LEFT, 'L'));
+        this.controller.getScenePanel().getKeyListeners()[0].keyPressed(new KeyEvent(new Button(), KeyEvent.KEY_PRESSED, System.currentTimeMillis(), 0, KeyEvent.VK_LEFT, 'L'));
         this.controller.getInputController().processInput(this.controller.getGame());
 
-        this.controller.getScenePanel().keyPressed(new KeyEvent(new Button(), KeyEvent.KEY_PRESSED, System.currentTimeMillis(), 0, KeyEvent.VK_LEFT, 'L'));
+        this.controller.getScenePanel().getKeyListeners()[0].keyPressed(new KeyEvent(new Button(), KeyEvent.KEY_PRESSED, System.currentTimeMillis(), 0, KeyEvent.VK_LEFT, 'L'));
         this.controller.getInputController().processInput(this.controller.getGame());
 
-        this.controller.getScenePanel().keyPressed(new KeyEvent(new Button(), KeyEvent.KEY_PRESSED, System.currentTimeMillis(), 0, KeyEvent.VK_LEFT, 'L'));
+        this.controller.getScenePanel().getKeyListeners()[0].keyPressed(new KeyEvent(new Button(), KeyEvent.KEY_PRESSED, System.currentTimeMillis(), 0, KeyEvent.VK_LEFT, 'L'));
         this.controller.getInputController().processInput(this.controller.getGame());
 
-        this.controller.getScenePanel().keyPressed(new KeyEvent(new Button(), KeyEvent.KEY_PRESSED, System.currentTimeMillis(), 0, KeyEvent.VK_LEFT, 'L'));
+        this.controller.getScenePanel().getKeyListeners()[0].keyPressed(new KeyEvent(new Button(), KeyEvent.KEY_PRESSED, System.currentTimeMillis(), 0, KeyEvent.VK_LEFT, 'L'));
         this.controller.getInputController().processInput(this.controller.getGame());
 
-        this.controller.getScenePanel().keyPressed(new KeyEvent(new Button(), KeyEvent.KEY_PRESSED, System.currentTimeMillis(), 0, KeyEvent.VK_LEFT, 'L'));
+        this.controller.getScenePanel().getKeyListeners()[0].keyPressed(new KeyEvent(new Button(), KeyEvent.KEY_PRESSED, System.currentTimeMillis(), 0, KeyEvent.VK_LEFT, 'L'));
         this.controller.getInputController().processInput(this.controller.getGame());
 
-        this.controller.getScenePanel().keyPressed(new KeyEvent(new Button(), KeyEvent.KEY_PRESSED, System.currentTimeMillis(), 0, KeyEvent.VK_LEFT, 'L'));
+        this.controller.getScenePanel().getKeyListeners()[0].keyPressed(new KeyEvent(new Button(), KeyEvent.KEY_PRESSED, System.currentTimeMillis(), 0, KeyEvent.VK_LEFT, 'L'));
         this.controller.getInputController().processInput(this.controller.getGame());
         
         assertEquals(new Position(-7, -6), this.controller.getGame().getPlayer().getPos());
 
-        this.controller.getScenePanel().keyPressed(new KeyEvent(new Button(), KeyEvent.KEY_PRESSED, System.currentTimeMillis(), 0, KeyEvent.VK_LEFT, 'L'));
+        this.controller.getScenePanel().getKeyListeners()[0].keyPressed(new KeyEvent(new Button(), KeyEvent.KEY_PRESSED, System.currentTimeMillis(), 0, KeyEvent.VK_LEFT, 'L'));
         this.controller.getInputController().processInput(this.controller.getGame());
 
         assertEquals(new Position(-7, -6), this.controller.getGame().getPlayer().getPos());
