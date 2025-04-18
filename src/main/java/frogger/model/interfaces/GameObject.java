@@ -1,6 +1,5 @@
 package frogger.model.interfaces;
 
-import java.awt.Graphics;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 import java.io.InputStream;
@@ -17,8 +16,6 @@ public interface GameObject {
     Pair getDimension();
 
     public Rectangle2D.Float getHitBox();
-
-    public void drawHitBox(Graphics g, float x, float y);
 
     // public void render(Graphics g, int x, int y);
 

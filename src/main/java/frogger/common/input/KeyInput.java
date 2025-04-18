@@ -18,14 +18,11 @@ public class KeyInput implements KeyListener{
 
     @Override
     public void keyPressed(KeyEvent e) {
-        if (e.getKeyCode() == 38){
-            this.scenePanel.getController().getInputController().notifyCommand(new MoveUp());;
-        } else if (e.getKeyCode() == 40){
-            this.scenePanel.getController().getInputController().notifyCommand(new MoveDown());
-        } else if (e.getKeyCode() == 39){
-            this.scenePanel.getController().getInputController().notifyCommand(new MoveRight());
-        } else if (e.getKeyCode() == 37){
-            this.scenePanel.getController().getInputController().notifyCommand(new MoveLeft());
+        switch (e.getKeyCode()) {
+            case 38 -> this.scenePanel.getController().getInputController().notifyCommand(new MoveUp());
+            case 40 -> this.scenePanel.getController().getInputController().notifyCommand(new MoveDown());
+            case 39 -> this.scenePanel.getController().getInputController().notifyCommand(new MoveRight());
+            case 37 -> this.scenePanel.getController().getInputController().notifyCommand(new MoveLeft());
         }
     }
 

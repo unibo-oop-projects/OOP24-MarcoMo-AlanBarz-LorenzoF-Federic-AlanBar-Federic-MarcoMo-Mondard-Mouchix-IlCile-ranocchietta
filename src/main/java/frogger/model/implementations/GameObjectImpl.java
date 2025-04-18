@@ -1,7 +1,5 @@
 package frogger.model.implementations;
 
-import java.awt.Color;
-import java.awt.Graphics;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -9,7 +7,6 @@ import java.io.InputStream;
 
 import javax.imageio.ImageIO;
 
-import frogger.common.Constants;
 import frogger.common.Pair;
 import frogger.common.Position;
 import frogger.model.interfaces.GameObject;
@@ -39,11 +36,6 @@ public abstract class GameObjectImpl implements GameObject {
     @Override
     public Rectangle2D.Float getHitBox(){
         return this.hitbox;
-    }
-
-    public void drawHitBox(Graphics g, float x, float y){
-        g.setColor(Color.PINK);
-        g.drawRect((int)x, (int)y, (int)this.hitbox.width * Constants.BLOCK_WIDTH, (int)this.hitbox.height * Constants.BLOCK_HEIGHT);
     }
 
     @Override

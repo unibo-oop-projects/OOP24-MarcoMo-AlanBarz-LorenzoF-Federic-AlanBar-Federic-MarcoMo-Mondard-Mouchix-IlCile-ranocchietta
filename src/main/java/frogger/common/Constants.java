@@ -5,7 +5,7 @@ import java.awt.Toolkit;
 
 public class Constants {
     //scale the dimention of the frame 
-    private final static Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
+    private final static Dimension screen = Toolkit.getDefaultToolkit().getScreenSize(); 
     //private final static int sw = (int) screen.getWidth();
     private final static  int sh = (int) screen.getHeight();
     private final static double scale = 0.8;
@@ -54,4 +54,6 @@ public class Constants {
     public final static int B_HEIGHT_DEFAULT = 61;   // ! This is temporary
     public final static int B_WIDTH = (int)(B_WIDTH_DEFAULT * 1.3); // ! This is temporary
     public final static int B_HEIGHT = (int)(B_HEIGHT_DEFAULT * 1.3);   // ! This is temporary
+
+    public final static String PROP_FILE_SEPARATOR = "file.separator";
 }

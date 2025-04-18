@@ -9,12 +9,13 @@ import java.util.Set;
 
 import javax.imageio.ImageIO;
 
+import frogger.common.Constants;
 import frogger.model.interfaces.PurchasableObject;
 import frogger.model.interfaces.Shop;
 
 public class ShopImpl implements Shop{
 
-    public static final String FILE_NAME = "shop.txt";
+    private static final String FILE_NAME = "shop.txt";
     private final Set<PurchasableObject> purchasableObjects = new HashSet<>();
     private final PurchasableObjectFactoryImpl factory = new PurchasableObjectFactoryImpl();
 
@@ -30,7 +31,7 @@ public class ShopImpl implements Shop{
                 String line = r.readLine();
                 String[] values = line.split(" ");
                 if(values[0] == "Skin"){
-                    this.purchasableObjects.add(factory.createSkin(Integer.parseInt(values[1]), ImageIO.read(getClass().getResourceAsStream("/" + values[2]))));
+                    this.purchasableObjects.add(factory.createSkin(Integer.parseInt(values[1]), ImageIO.read(getClass().getResourceAsStream(System.getProperty(Constants.PROP_FILE_SEPARATOR) + values[2]))));
                 }
             }
         } catch (IOException e) {

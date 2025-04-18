@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
@@ -12,6 +13,7 @@ import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 import frogger.common.Constants;
+import frogger.common.Direction;
 import frogger.common.GameState;
 import frogger.common.input.KeyInput;
 import frogger.common.input.MouseInput;
@@ -74,7 +76,16 @@ public class ScenePanel extends JPanel{
             }
             case MENU -> {
                 this.controller.getGame().getMenu().draw(g);
-            }            
+            }   
+            case SHOP -> {
+                //TODO: implement the shop
+            }
+            case DEAD -> {
+                //TODO: implement the dead screen
+            }
+            case QUIT -> {
+                //TODO: implement the quit screen
+            }      
         }
     } 
 
@@ -84,8 +95,6 @@ public class ScenePanel extends JPanel{
 
         g.drawImage(background, 0 , 0, Constants.FRAME_WIDTH, Constants.FRAME_HEIGHT, null);
 
-        //RasterImage image = (RasterImage) Image.load("image.bmp");
-
         for(int i = 0; i < this.controller.getGame().getPlayer().getLives(); i++){
             g.drawImage(heart, (int)this.controller.getXinPixel(i + Constants.MIN_X) , 0, null);
         }
@@ -93,20 +102,33 @@ public class ScenePanel extends JPanel{
         //drowing the obstacles
         for(var obstacle : controller.getGame().getObstacles()) {
             g.drawImage(obstacle.getImage(), (int)this.controller.getXinPixel(obstacle.getPos().x()), 
-            (int)this.controller.getYinPixel(obstacle.getPos().y()), 
-            obstacle.getDimension().width() * Constants.BLOCK_WIDTH, 
-            obstacle.getDimension().height() * Constants.BLOCK_HEIGHT, null);
-            
-            obstacle.drawHitBox(g, (int)this.controller.getXinPixel(obstacle.getPos().x()), (int)this.controller.getYinPixel(obstacle.getPos().y()));
+                (int)this.controller.getYinPixel(obstacle.getPos().y()), 
+                obstacle.getDimension().width() * Constants.BLOCK_WIDTH, 
+                obstacle.getDimension().height() * Constants.BLOCK_HEIGHT, null);
         }
         
-        g.drawImage( controller.getGame().getPlayer().getImage() /*idleAni[aniIndex]*/, (int)controller.getXinPixel(controller.getGame().getPlayer().getPos().x()), 
-        (int)controller.getYinPixel(controller.getGame().getPlayer().getPos().y()), 
-        controller.getGame().getPlayer().getDimension().width() * Constants.BLOCK_WIDTH, 
-        controller.getGame().getPlayer().getDimension().height() * Constants.BLOCK_HEIGHT, null);
+        // Drawing the Player with rotation
+        Graphics2D g2d = (Graphics2D) g;
+        var player = controller.getGame().getPlayer();
+        BufferedImage playerImage = player.getImage(); 
+        int playerX = (int) controller.getXinPixel(player.getPos().x());
+        int playerY = (int) controller.getYinPixel(player.getPos().y());
+        int playerWidth = player.getDimension().width() * Constants.BLOCK_WIDTH;
+        int playerHeight = player.getDimension().height() * Constants.BLOCK_HEIGHT;
 
-        this.controller.getGame().getPlayer().drawHitBox(g, (int)this.controller.getXinPixel(this.controller.getGame().getPlayer().getPos().x()),
-        (int)this.controller.getYinPixel(this.controller.getGame().getPlayer().getPos().y()));
+        // Calculate the rotation angle based on the direction
+        double angle = switch (player.getDirection()) {
+            case Direction.UP -> Math.PI;
+            case Direction.RIGHT -> -Math.PI / 2;
+            case Direction.DOWN -> 0;
+            case Direction.LEFT -> Math.PI / 2;
+            default -> 0; // No rotation by default
+        };
+
+        // Apply the rotation
+        g2d.rotate(angle, playerX + playerWidth / 2.0, playerY + playerHeight / 2.0);
+        g2d.drawImage(playerImage, playerX, playerY, playerWidth, playerHeight, null);
+        g2d.rotate(-angle, playerX + playerWidth / 2.0, playerY + playerHeight / 2.0); // Restore the rotation
 
         g.setColor(Color.WHITE);
         g.setFont(myFont);
