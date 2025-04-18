@@ -99,12 +99,13 @@ public class LevelFactoryImpl implements LevelFactory {
         List<Eagle> eagles = new ArrayList<>();
         List<Position> usedPositions = new ArrayList<>();
         MovingObjectFactory obstaclesFactory = new MovingObjectFactoryImpl();
-        int n = ran.nextBoolean() ? Constants.MIN_OBSTACLES_NUMBER : Constants.MAX_OBSTACLES_NUMBER;
+        int n = ran.nextBoolean() ? Constants.MIN_EAGLES_NUMBER : Constants.MAX_EAGLES_NUMBER;
         while (eagles.size() != n) {
-            Position pos = new Position(randomX(), Constants.MIN_Y -1);
+            int y = ran.nextBoolean() ? Constants.MIN_Y -1 : Constants.MAX_Y +1;
+            Position pos = new Position(randomX(), y);
             if (!usedPositions.stream().anyMatch(position -> position.equals(pos))) {
                 Pair dim = new Pair(Constants.EAGLE_WIDTH, Constants.EAGLE_HEIGHT);
-                Direction dir = Direction.UP;
+                Direction dir = y == Constants.MIN_Y -1 ? Direction.UP : Direction.DOWN;
                 int triggerRow = Constants.MIN_Y;
                 while(triggerRow == Constants.MIN_Y || triggerRow == Constants.MAX_Y) {
                     triggerRow = randomY();
