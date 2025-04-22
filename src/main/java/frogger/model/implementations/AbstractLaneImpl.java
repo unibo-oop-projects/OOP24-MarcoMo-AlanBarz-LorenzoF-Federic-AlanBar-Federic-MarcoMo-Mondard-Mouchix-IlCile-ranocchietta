@@ -19,7 +19,15 @@ public abstract class AbstractLaneImpl implements Lane {
         this.direction = direction;
     }
 
+    /**
+     * Abstact method to be implemented, add an obstacle to the list of type Car
+     * @param obstacle the obstacle to add
+     */
     public abstract void addCar(MovingObject obstacle);
+    /**
+     * Abstact method to be implemented, add an obstacle to the list of type Trunk
+     * @param obstacle the obstacle to add
+     */
     public abstract void addTrunk(MovingObject obstacle);
 
     @Override

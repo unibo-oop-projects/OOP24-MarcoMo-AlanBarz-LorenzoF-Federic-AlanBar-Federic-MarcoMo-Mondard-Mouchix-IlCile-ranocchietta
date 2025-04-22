@@ -24,7 +24,7 @@ public class Constants {
     public final static int EAGLE_WIDTH = 1;
     public final static int EAGLE_HEIGHT = 1;
 
-    public final static float MIN_SPEED = 0.008f;
+    public final static float MIN_SPEED = 0.01f;
     public final static float MAX_SPEED = 0.03f;
 
     public final static int OBJECT_HEIGHT = 1;
