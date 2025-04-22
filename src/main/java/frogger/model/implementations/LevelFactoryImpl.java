@@ -73,15 +73,14 @@ public class LevelFactoryImpl implements LevelFactory {
         MovingObjectFactory obstaclesFactory = new MovingObjectFactoryImpl();
         int nOfObstacles = ran.nextBoolean() ? Constants.MIN_OBSTACLES_NUMBER : Constants.MAX_OBSTACLES_NUMBER;
 
-        int width;
-        if (type.equals(Car.class)) {
-            width = ran.nextBoolean() ? Constants.MIN_CAR_WIDTH : Constants.MAX_CAR_WIDTH;
-        } else {
-            width = ran.nextBoolean() ? Constants.MIN_TRUNK_WIDTH : Constants.MAX_TRUNK_WIDTH;
-        }
-        Pair dim = new Pair(width, Constants.OBJECT_HEIGHT);
-
         while (obstacles.size() != nOfObstacles) {
+            int width;
+            if (type.equals(Car.class)) {
+                width = ran.nextBoolean() ? Constants.MIN_CAR_WIDTH : Constants.MAX_CAR_WIDTH;
+            } else {
+                width = ran.nextBoolean() ? Constants.MIN_TRUNK_WIDTH : Constants.MAX_TRUNK_WIDTH;
+            }
+            Pair dim = new Pair(width, Constants.OBJECT_HEIGHT);
             Position pos = new Position(randomX(), y);
             boolean valid = true;
             valid = IntStream.range(0, width).noneMatch(i -> usedPositions.contains(pos.x() + i));
