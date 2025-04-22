@@ -1,6 +1,5 @@
 package frogger.model.implementations;
 
-import ch.qos.logback.core.ConsoleAppender;
 import frogger.common.Constants;
 import frogger.common.Direction;
 import frogger.common.Pair;

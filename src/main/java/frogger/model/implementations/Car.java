@@ -8,8 +8,25 @@ public class Car extends MovingObjectImpl {
     
     public Car(Position pos, Pair dimension, float speed, Direction direction) {
         super(pos, dimension, speed, direction);
-        super.setImage(this.getDirection().equals(Direction.LEFT)? getClass().getResourceAsStream("/carLeft.png") 
-        : getClass().getResourceAsStream("/carRight.png"));
+
+        super.setImage(getClass().getResourceAsStream(findImg()));
+        
     }
 
+    private String findImg() {
+        String result = "/";
+        if (this.getDimension().width() > 1) {
+            result += "truk";
+        } else {
+            result += "car";
+        }
+
+        if (this.getDirection().equals(Direction.LEFT)) {
+            result += "Left";
+        } else {
+            result += "Right";
+        }
+        result += ".png";
+        return result;
+    }
 }

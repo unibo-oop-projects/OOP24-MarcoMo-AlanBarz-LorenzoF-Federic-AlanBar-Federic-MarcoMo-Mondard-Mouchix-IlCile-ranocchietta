@@ -11,7 +11,8 @@ public class Eagle extends MovingObjectImpl implements Startable<Integer> {
 
     public Eagle(Position pos, Pair dimension, float speed, Direction direction) {
         super(pos, dimension, speed, direction);
-        super.setImage(getClass().getResourceAsStream("/eagle.png"));
+        super.setImage(this.getDirection().equals(Direction.UP) ? getClass().getResourceAsStream("/eagleUp.png")
+        : getClass().getResourceAsStream("/eagleDown.png"));
     }
 
     @Override
