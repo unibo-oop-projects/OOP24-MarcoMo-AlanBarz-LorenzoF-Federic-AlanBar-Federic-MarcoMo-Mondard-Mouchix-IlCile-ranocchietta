@@ -20,6 +20,11 @@ public class Eagle extends MovingObjectImpl implements Startable<Integer> {
     }
 
     @Override
+    public void stop() {
+        started = false;
+    }
+
+    @Override
     public void move() {
         if (started) {
             super.move();

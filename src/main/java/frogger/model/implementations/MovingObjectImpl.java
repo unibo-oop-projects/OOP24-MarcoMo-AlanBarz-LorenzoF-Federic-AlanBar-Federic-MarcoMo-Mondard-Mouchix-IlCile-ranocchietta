@@ -1,5 +1,6 @@
 package frogger.model.implementations;
 
+import ch.qos.logback.core.ConsoleAppender;
 import frogger.common.Constants;
 import frogger.common.Direction;
 import frogger.common.Pair;
@@ -35,13 +36,29 @@ public class MovingObjectImpl extends GameObjectImpl implements MovingObject{
     public void move() {
         this.setPos(new Position(this.getPos().x() + this.getDirectionValue().x() * this.getSpeed(), 
         this.getPos().y() + this.getDirectionValue().y() * this.getSpeed()));
+        this.checkRestart();
+    }
+
+    private void checkRestart(){
         if(!valid(this.getPos())) {
-            this.setPos(new Position((this.getDirection() == Direction.RIGHT? Constants.MIN_X - 1: Constants.MAX_X + 1), this.getPos().y()));
+            switch (this.getDirection()) {
+                case Direction.RIGHT -> this.setPos(new Position(Constants.MIN_X - 1, this.getPos().y()));
+                case Direction.LEFT -> this.setPos(new Position(Constants.MAX_X + 1, this.getPos().y()));
+                case Direction.UP -> this.setPos(new Position(this.getPos().x(), Constants.MIN_Y - 1));
+                case Direction.DOWN -> this.setPos(new Position(this.getPos().x(), Constants.MAX_Y + 1));
+            }
+
+            //to stop the eagles once they are arrived at the end of the column
+            if(this instanceof Eagle) {
+                Eagle e = (Eagle)this;
+                e.stop();
+            }
         }
     }
 
     private boolean valid(final Position pos) {
-        return pos.x() >= Constants.MIN_X - 1 && pos.x() <= Constants.MAX_X + 1;
+        return pos.x() >= Constants.MIN_X - 1 && pos.x() <= Constants.MAX_X + 1 &&
+        pos.y() >= Constants.MIN_Y - 1 && pos.y() <= Constants.MAX_Y + 1;
     }
 
     public Position getDirectionValue() {

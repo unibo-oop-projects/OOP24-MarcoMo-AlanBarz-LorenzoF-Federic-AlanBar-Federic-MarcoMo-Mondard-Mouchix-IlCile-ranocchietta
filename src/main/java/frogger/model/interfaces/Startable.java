@@ -7,6 +7,11 @@ public interface Startable<X> {
     public void start();
 
     /**
+     * stop the object from his action
+     */
+    public void stop();
+
+    /**
      * set the condition to start the action
      * @param trigger the value to memorize to trigger the action
      */
