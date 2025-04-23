@@ -54,8 +54,8 @@ public class Constants {
 
     public final static int B_WIDTH_DEFAULT = 166; // ! This is temporary
     public final static int B_HEIGHT_DEFAULT = 61;   // ! This is temporary
-    public final static int B_WIDTH = (int)(B_WIDTH_DEFAULT * 1.3); // ! This is temporary
-    public final static int B_HEIGHT = (int)(B_HEIGHT_DEFAULT * 1.3);   // ! This is temporary
+    public final static int B_WIDTH = (int)(B_WIDTH_DEFAULT * 1); // ! This is temporary
+    public final static int B_HEIGHT = (int)(B_HEIGHT_DEFAULT * 1);   // ! This is temporary
 
     public final static String PROP_FILE_SEPARATOR = "file.separator";
 }
