@@ -1,6 +1,18 @@
 package frogger.controller;
 
-public interface Controller {
+import frogger.common.input.InputController;
+import frogger.model.implementations.GameImpl;
+import frogger.view.GameScene;
 
-    void mainLoop();
+public interface Controller {
+    
+    void init(GameScene gameScene);
+
+    void loop();
+
+    void setFrame(GameScene gameScene);
+
+    GameImpl getGame();
+
+    InputController getInputController();
 }

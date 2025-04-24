@@ -19,9 +19,10 @@ import frogger.common.input.KeyInput;
 import frogger.common.input.MouseInput;
 import frogger.controller.Controller;
 import frogger.controller.ControllerImpl;
+import frogger.controller.GameControllerImpl;
 
-public class ScenePanel extends JPanel{
-    ControllerImpl controller;
+public class GamePanel extends JPanel{
+    GameControllerImpl controller;
     private final Font myFont = new Font("MyFont", 1, Constants.BLOCK_HEIGHT/2);
     private BufferedImage img;
     private BufferedImage background;
@@ -31,7 +32,7 @@ public class ScenePanel extends JPanel{
     private int aniIndex;
     private int aniSpeed = 15;   
 
-    public ScenePanel() {
+    public GamePanel() {
         // KeyInput keyInput = new KeyInput(this);
         // this.addKeyListener(keyInput);
         // MouseInput mouseInput = new MouseInput(this);
@@ -63,31 +64,22 @@ public class ScenePanel extends JPanel{
         setPreferredSize(new Dimension(Constants.FRAME_WIDTH, Constants.FRAME_HEIGHT));
     }
 
-    public void setController(Controller controller) {
-        this.controller = (ControllerImpl)controller;
+    public void setController(GameControllerImpl controller) {
+        this.controller = controller;
         importImg();
         loadAnimations();
+        setInputListener();
+    }
+
+    private void setInputListener(){
+        this.addKeyListener(this.getController().getKeyListener());
+        this.addMouseListener(this.getController().getMouseListener());
+        this.addMouseMotionListener(this.getController().getMouseMotionListener());
     }
 
     @Override
     public void paintComponent(final Graphics g) {
-        switch (GameState.state) {
-            case PLAYING -> {
-                this.paintLevel(g);
-            }
-            case MENU -> {
-                this.controller.getGame().getMenu().draw(g);
-            }   
-            case SHOP -> {
-                //TODO: implement the shop
-            }
-            case DEAD -> {
-                //TODO: implement the dead screen
-            }
-            case QUIT -> {
-                //TODO: implement the quit screen
-            }      
-        }
+        this.paintLevel(g);
     } 
 
     private void paintLevel(Graphics g){
@@ -156,7 +148,7 @@ public class ScenePanel extends JPanel{
         }
     }
 
-    public ControllerImpl getController() {
+    public GameControllerImpl getController() {
         return controller;
     }
 }
