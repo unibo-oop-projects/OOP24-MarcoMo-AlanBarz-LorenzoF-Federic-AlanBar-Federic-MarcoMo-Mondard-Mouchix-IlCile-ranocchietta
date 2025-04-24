@@ -2,6 +2,6 @@ package frogger.view;
 
 import javax.swing.JPanel;
 
-public class ShopView extends JPanel{
+public class ShopPanel extends JPanel{
 
 }

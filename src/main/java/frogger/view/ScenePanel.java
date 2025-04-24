@@ -16,8 +16,6 @@ import frogger.common.Constants;
 import frogger.common.Direction;
 import frogger.common.GameState;
 import frogger.common.LoadSave;
-import frogger.common.input.KeyInput;
-import frogger.common.input.MouseInput;
 import frogger.controller.Controller;
 import frogger.controller.ControllerImpl;
 

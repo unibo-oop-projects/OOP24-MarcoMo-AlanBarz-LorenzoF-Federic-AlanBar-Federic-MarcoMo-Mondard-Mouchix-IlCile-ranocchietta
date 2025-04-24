@@ -1,20 +1,16 @@
 package frogger.controller;
 
-import java.awt.event.KeyListener;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
 import frogger.common.Constants;
 import frogger.common.GameState;
 import frogger.common.Pair;
-import frogger.common.input.InputController;
 import frogger.common.input.InputControllerImpl;
-import frogger.common.input.KeyInput;
 import frogger.common.input.MouseInput;
 import frogger.model.implementations.GameImpl;
 import frogger.view.GameScene;
 import frogger.view.MenuPanel;
-import frogger.view.ScenePanel;
 
 public class MenuControllerImpl implements Controller{
 private final int FPS_SET = 120;
@@ -23,7 +19,6 @@ private final int FPS_SET = 120;
     private InputControllerImpl inputController;
     private MenuPanel scenePanel;
     private GameScene gameScene;
-    private KeyInput keyInput = new KeyInput(this);
     private MouseInput mouseInput = new MouseInput(this);
 
 
@@ -73,14 +68,6 @@ private final int FPS_SET = 120;
         int centerY = Constants.FRAME_HEIGHT / 2 - Constants.BLOCK_HEIGHT / 2;
         int ratioY = Constants.BLOCK_HEIGHT;  //number of pixel per row
         return Math.round(centerY - y * ratioY);
-    }
-
-    public InputController getInputController() {
-        return this.inputController;
-    }
-
-    public KeyListener getKeyListener() {
-        return keyInput;
     }
 
     public MouseMotionListener getMouseMotionListener() {

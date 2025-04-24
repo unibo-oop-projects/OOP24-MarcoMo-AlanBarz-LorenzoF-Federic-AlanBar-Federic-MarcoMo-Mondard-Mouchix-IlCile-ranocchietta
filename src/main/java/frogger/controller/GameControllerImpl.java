@@ -1,22 +1,16 @@
 package frogger.controller;
 
 import java.awt.event.KeyListener;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
-
 import frogger.common.Constants;
-import frogger.common.GameState;
 import frogger.common.Pair;
 import frogger.common.input.InputController;
 import frogger.common.input.InputControllerImpl;
 import frogger.common.input.KeyInput;
-import frogger.common.input.MouseInput;
 import frogger.model.implementations.GameImpl;
 import frogger.view.GamePanel;
 import frogger.view.GameScene;
-import frogger.view.ScenePanel;
 
-public class GameControllerImpl implements Controller{
+public class GameControllerImpl implements GameController{
     private final int FPS_SET = 120;
 
     private GameImpl game;
@@ -24,7 +18,6 @@ public class GameControllerImpl implements Controller{
     private GamePanel scenePanel;
     private GameScene gameScene;
     private KeyInput keyInput = new KeyInput(this);
-    private MouseInput mouseInput = new MouseInput(this);
 
     public void init(GameScene gameScene) {
         game = new GameImpl(new Pair(Constants.PLAYER_WIDTH,Constants.PLAYER_HEIGHT));
@@ -87,20 +80,13 @@ public class GameControllerImpl implements Controller{
         return Math.round(centerY - y * ratioY);
     }
 
+    @Override
     public InputController getInputController() {
         return this.inputController;
     }
 
     public KeyListener getKeyListener() {
         return keyInput;
-    }
-
-    public MouseMotionListener getMouseMotionListener() {
-        return mouseInput;
-    }
-
-    public MouseListener getMouseListener() {
-        return mouseInput;
     }
 }
 

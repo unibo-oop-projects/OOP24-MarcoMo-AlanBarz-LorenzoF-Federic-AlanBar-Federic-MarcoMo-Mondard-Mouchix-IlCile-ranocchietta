@@ -28,7 +28,6 @@ public class MenuPanel extends JPanel{
     }
 
     private void setInputListener(){
-        this.addKeyListener(this.getController().getKeyListener());
         this.addMouseListener(this.getController().getMouseListener());
         this.addMouseMotionListener(this.getController().getMouseMotionListener());
     }

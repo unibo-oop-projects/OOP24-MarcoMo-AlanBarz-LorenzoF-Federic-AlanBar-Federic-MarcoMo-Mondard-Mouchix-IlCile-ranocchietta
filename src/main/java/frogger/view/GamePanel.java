@@ -14,11 +14,6 @@ import javax.swing.JPanel;
 
 import frogger.common.Constants;
 import frogger.common.Direction;
-import frogger.common.GameState;
-import frogger.common.input.KeyInput;
-import frogger.common.input.MouseInput;
-import frogger.controller.Controller;
-import frogger.controller.ControllerImpl;
 import frogger.controller.GameControllerImpl;
 
 public class GamePanel extends JPanel{
@@ -33,11 +28,6 @@ public class GamePanel extends JPanel{
     private int aniSpeed = 15;   
 
     public GamePanel() {
-        // KeyInput keyInput = new KeyInput(this);
-        // this.addKeyListener(keyInput);
-        // MouseInput mouseInput = new MouseInput(this);
-        // addMouseListener(mouseInput);
-        // addMouseMotionListener(mouseInput);
         setFocusable(true);
         setPanelSize();
         setBackground(Color.BLACK);
@@ -73,8 +63,6 @@ public class GamePanel extends JPanel{
 
     private void setInputListener(){
         this.addKeyListener(this.getController().getKeyListener());
-        this.addMouseListener(this.getController().getMouseListener());
-        this.addMouseMotionListener(this.getController().getMouseMotionListener());
     }
 
     @Override

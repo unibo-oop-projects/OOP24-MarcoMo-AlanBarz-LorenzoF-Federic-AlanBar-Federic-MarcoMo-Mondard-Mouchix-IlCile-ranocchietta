@@ -1,12 +1,7 @@
 package frogger.controller;
 
-import javax.swing.JPanel;
-
 import frogger.common.GameState;
-import frogger.view.GamePanel;
 import frogger.view.GameScene;
-import frogger.view.MenuPanel;
-import frogger.view.ScenePanel;
 
 public class MainControllerImpl {
     private GameScene frame;
