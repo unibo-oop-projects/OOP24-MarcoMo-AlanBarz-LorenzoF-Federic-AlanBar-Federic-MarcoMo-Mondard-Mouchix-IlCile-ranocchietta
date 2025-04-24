@@ -53,6 +53,12 @@ public class LevelFactoryImpl implements LevelFactory {
         return level;
     }
 
+    /**
+     * Creates a lane with random speed and a certain direction.
+     * @param type the type of lane to create (Road or River)
+     * @param y the y coordinate of the lane, needed to determine the direction
+     * @return the lane
+     */
     private Lane createLane(Class<? extends Lane> type, int y) {
         Direction dir = y % 2 == 0 ? Direction.RIGHT : Direction.LEFT;
         float speed = ran.nextFloat(Constants.MIN_SPEED ,Constants.MAX_SPEED);
@@ -67,6 +73,14 @@ public class LevelFactoryImpl implements LevelFactory {
         return lane;
     }
 
+    /**
+     * Creates a random number of obstacles with random width
+     * @param type the type of obstacles to create (Car or Trunk)
+     * @param speed the speed of the obstacle 
+     * @param dir the direction of the obstacle
+     * @param y the y coordinate of the obstacle
+     * @return a Set of obstacles
+     */
     private Set<MovingObject> createObstacles(Class<? extends MovingObjectImpl> type, float speed, Direction dir, int y) {
         Set<MovingObject> obstacles = new HashSet<>();
         List<Float> usedPositions = new ArrayList<>();
@@ -94,6 +108,10 @@ public class LevelFactoryImpl implements LevelFactory {
         return new HashSet<>(obstacles);
     }
 
+    /**
+     * Creates a random number of eagles
+     * @return a List of Eagles
+     */
     private List<Eagle> createEagles() {
         List<Eagle> eagles = new ArrayList<>();
         List<Position> usedPositions = new ArrayList<>();
@@ -119,12 +137,20 @@ public class LevelFactoryImpl implements LevelFactory {
         return new ArrayList<>(eagles);
     }
 
+    /**
+     * Utility method
+     * @return a random x beetwen the min and max value of x
+     */
     private int randomX() {
         int boundX = Math.abs(Constants.MAX_X) + Math.abs(Constants.MIN_X) + 1;
         int deltaX = boundX - Math.abs(Constants.MAX_X);
         return ran.nextInt(boundX) - deltaX;
     }
 
+    /**
+     * Utility method
+     * @return a random y beetwen the min and max value of y
+     */
     private int randomY() {
         int boundY = Math.abs(Constants.MAX_Y) + Math.abs(Constants.MIN_Y) + 1;
         int deltaY = boundY - Math.abs(Constants.MAX_Y);

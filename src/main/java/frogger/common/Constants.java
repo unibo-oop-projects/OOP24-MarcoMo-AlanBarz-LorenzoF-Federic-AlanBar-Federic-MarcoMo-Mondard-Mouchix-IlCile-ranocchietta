@@ -24,7 +24,7 @@ public class Constants {
     public final static int EAGLE_WIDTH = 1;
     public final static int EAGLE_HEIGHT = 1;
 
-    public final static float MIN_SPEED = 0.008f;
+    public final static float MIN_SPEED = 0.01f;
     public final static float MAX_SPEED = 0.03f;
 
     public final static int OBJECT_HEIGHT = 1;
@@ -54,8 +54,8 @@ public class Constants {
 
     public final static int B_WIDTH_DEFAULT = 166; // ! This is temporary
     public final static int B_HEIGHT_DEFAULT = 61;   // ! This is temporary
-    public final static int B_WIDTH = (int)(B_WIDTH_DEFAULT * 1.3); // ! This is temporary
-    public final static int B_HEIGHT = (int)(B_HEIGHT_DEFAULT * 1.3);   // ! This is temporary
+    public final static int B_WIDTH = (int)(B_WIDTH_DEFAULT * 1); // ! This is temporary
+    public final static int B_HEIGHT = (int)(B_HEIGHT_DEFAULT * 1);   // ! This is temporary
 
     public final static String PROP_FILE_SEPARATOR = "file.separator";
 }

@@ -2,7 +2,6 @@ package frogger.model.implementations;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -21,8 +20,8 @@ public class LevelImpl implements Level{
     }
 
     @Override
-    public Set<MovingObject> getAllObstacles() {
-        return Stream.concat(lanes.stream().flatMap(elem -> elem.getLaneObstacles().stream()), this.eagles.stream()).collect(Collectors.toSet());
+    public List<MovingObject> getAllObstacles() {
+        return Stream.concat(lanes.stream().flatMap(elem -> elem.getLaneObstacles().stream()), this.eagles.stream()).collect(Collectors.toList());
     }
 
     @Override

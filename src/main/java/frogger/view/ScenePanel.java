@@ -15,6 +15,7 @@ import javax.swing.JPanel;
 import frogger.common.Constants;
 import frogger.common.Direction;
 import frogger.common.GameState;
+import frogger.common.LoadSave;
 import frogger.common.input.KeyInput;
 import frogger.common.input.MouseInput;
 import frogger.controller.Controller;
@@ -76,6 +77,10 @@ public class ScenePanel extends JPanel{
                 this.paintLevel(g);
             }
             case MENU -> {
+                BufferedImage mb = LoadSave.GetSprite(LoadSave.MENU_BACKGROUND);
+                g.drawImage(mb, 
+                           (Constants.FRAME_WIDTH/2 -  (mb.getWidth()+30)/2), (Constants.FRAME_HEIGHT/2 -  (mb.getHeight()+30)/2), 
+                           mb.getWidth()+30, mb.getHeight()+30, null);
                 this.controller.getGame().getMenu().draw(g);
             }   
             case SHOP -> {

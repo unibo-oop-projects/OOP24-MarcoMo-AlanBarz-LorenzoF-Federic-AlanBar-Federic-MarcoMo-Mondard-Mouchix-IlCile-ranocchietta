@@ -1,6 +1,5 @@
 package frogger.view;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
@@ -24,11 +23,11 @@ public class MenuButtons{
         this.yPos = yPos;
         this.state = state;
         this.rowIndex = rowIndex;
-        LoadImgs();
+        loadImgs();
         initBounds();
     }
-
-    private void LoadImgs(){
+    
+    private void loadImgs(){
         imgs = new BufferedImage[3];
         BufferedImage temp = LoadSave.GetSprite(LoadSave.MENU_BUTTONS);
         for(int i = 0; i < imgs.length; i++){
@@ -41,8 +40,6 @@ public class MenuButtons{
     }
 
     public void draw(Graphics g){
-        g.setColor(Color.PINK);
-        g.drawRect(xPos- Constants.B_WIDTH/2, yPos, Constants.B_WIDTH, Constants.B_HEIGHT);
         g.drawImage(imgs[index], xPos - Constants.B_WIDTH/2, yPos, Constants.B_WIDTH, Constants.B_HEIGHT, null);
     }
     

@@ -18,9 +18,9 @@ public class Menu extends State{
     }
 
     private void loadButtons() {
-        buttons[0] = new MenuButtons((int)(Constants.FRAME_WIDTH/2), (int)(Constants.FRAME_HEIGHT/2 - 86), 0, GameState.PLAYING);
+        buttons[0] = new MenuButtons((int)(Constants.FRAME_WIDTH/2), (int)(Constants.FRAME_HEIGHT/2 - 70), 0, GameState.PLAYING);
         buttons[1] = new MenuButtons((int)(Constants.FRAME_WIDTH/2), (int)(Constants.FRAME_HEIGHT/2),      1, GameState.SHOP);  
-        buttons[2] = new MenuButtons((int)(Constants.FRAME_WIDTH/2), (int)(Constants.FRAME_HEIGHT/2 + 86), 2, GameState.QUIT);
+        buttons[2] = new MenuButtons((int)(Constants.FRAME_WIDTH/2), (int)(Constants.FRAME_HEIGHT/2 + 70), 2, GameState.QUIT);
     }
 
     public void update(){

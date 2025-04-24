@@ -1,6 +1,6 @@
 package frogger.model.interfaces;
 
-import java.util.Set;
+import java.util.List;
 
 public interface Game {
 
@@ -10,15 +10,30 @@ public interface Game {
 
     PlayerObject getPlayer();
 
-    Set<MovingObject> getObstacles();
+    /**
+     * Get all the obstacles in the level
+     * @return the list of obstacles
+     */
+    List<MovingObject> getObstacles();
 
+    /**
+     * Get the level
+     * @return the level
+     */
     Level getLevel();
 
     void checkCollision();
 
     void checkNewLevel();
 
+    /**
+     * Get the lane where the frog is at the moment
+     * @return the lane
+     */
     Lane getCurrentLane();
 
+    /**
+     * Check if the current lane is already completed, if not add points to the frog
+     */
     void checkProgress();
 }

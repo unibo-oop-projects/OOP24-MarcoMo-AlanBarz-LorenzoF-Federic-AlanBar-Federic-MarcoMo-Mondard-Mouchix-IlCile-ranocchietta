@@ -1,6 +1,6 @@
 package frogger.model.implementations;
 
-import java.util.Set;
+import java.util.List;
 
 import frogger.common.Constants;
 import frogger.common.Pair;
@@ -72,7 +72,7 @@ public class GameImpl implements Game{
     }
 
     @Override
-    public Set<MovingObject> getObstacles() {
+    public List<MovingObject> getObstacles() {
         return level.getAllObstacles();
     }
 
