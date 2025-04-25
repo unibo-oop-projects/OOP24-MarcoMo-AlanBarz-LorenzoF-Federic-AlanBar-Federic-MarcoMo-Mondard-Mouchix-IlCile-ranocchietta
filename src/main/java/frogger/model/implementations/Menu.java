@@ -5,15 +5,13 @@ import java.awt.event.MouseEvent;
 
 import frogger.common.Constants;
 import frogger.common.GameState;
-import frogger.common.State;
 import frogger.view.MenuButtons;
 
-public class Menu extends State{
+public class Menu{
 
     private final MenuButtons[] buttons = new MenuButtons[3];
 
-    public Menu(GameImpl game) {
-        super(game); 
+    public Menu() {
         loadButtons();
     }
 
@@ -73,6 +71,8 @@ public class Menu extends State{
         } 
     }
 
-    
+    public boolean isIn(MouseEvent e, MenuButtons button) {
+        return button.getBounds().contains(e.getX(), e.getY());
+    }
 
 }

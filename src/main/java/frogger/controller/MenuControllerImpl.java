@@ -3,30 +3,29 @@ package frogger.controller;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
-import frogger.common.Constants;
 import frogger.common.GameState;
-import frogger.common.Pair;
 import frogger.common.input.MouseInput;
 import frogger.model.implementations.GameImpl;
+import frogger.model.implementations.Menu;
 import frogger.view.GameScene;
 import frogger.view.MenuPanel;
 
 public class MenuControllerImpl extends AbstractController implements MenuController{
-    private GameImpl game;  
+ 
     private MenuPanel scenePanel;
+    private Menu menu;
 
-    @SuppressWarnings("unused")
     private GameScene gameScene;
 
     private final MouseInput mouseInput = new MouseInput(this);
 
     @Override
     public void init(GameScene gameScene) {
-        game = new GameImpl(new Pair(Constants.PLAYER_WIDTH,Constants.PLAYER_HEIGHT));
+        menu = new Menu();
         this.gameScene = gameScene;
         scenePanel = new MenuPanel();
         scenePanel.setController(this);
-        gameScene.setPanel(scenePanel);
+        gameScene.setPanel(scenePanel);        
     }
 
     // @Override
@@ -49,7 +48,7 @@ public class MenuControllerImpl extends AbstractController implements MenuContro
 
     @Override
     protected void core() {
-        this.game.getMenu().update();
+        this.getMenu().update();
         this.scenePanel.repaint();
     }
 
@@ -61,16 +60,24 @@ public class MenuControllerImpl extends AbstractController implements MenuContro
     @Override
     protected void changesLoopEnd() {}
 
+
     @Override
-    public GameImpl getGame() {
-        return game;
+    public Menu getMenu() {
+        return menu;
     }
 
+    @Override
     public MouseMotionListener getMouseMotionListener() {
         return mouseInput;
     }
 
+    @Override
     public MouseListener getMouseListener() {
         return mouseInput;
+    }
+
+    @Override
+    public GameImpl getGame() {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 }

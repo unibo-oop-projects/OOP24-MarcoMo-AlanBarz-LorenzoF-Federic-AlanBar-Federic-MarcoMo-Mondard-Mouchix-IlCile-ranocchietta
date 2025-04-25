@@ -15,16 +15,10 @@ public class GameImpl implements Game{
     private final LevelFactoryImpl levelFactory = new LevelFactoryImpl();
     private PlayerObjectImpl player;
     private Level level;
-    private final Menu menu;
 
-    public GameImpl(Pair dimension){
-        this.menu = new Menu(this);
+    public GameImpl(Pair dimension){       
         this.player = new PlayerObjectImpl(dimension);
         level = levelFactory.randomLevel();
-    }
-
-    public Menu getMenu() {
-        return this.menu;
     }
 
     @Override

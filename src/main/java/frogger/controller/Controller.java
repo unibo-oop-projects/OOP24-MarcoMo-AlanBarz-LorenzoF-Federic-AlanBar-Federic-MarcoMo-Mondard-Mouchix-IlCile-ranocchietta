@@ -1,6 +1,7 @@
 package frogger.controller;
 
 import frogger.model.implementations.GameImpl;
+import frogger.model.implementations.Menu;
 import frogger.view.GameScene;
 
 public interface Controller {
@@ -12,4 +13,6 @@ public interface Controller {
     void setFrame(GameScene gameScene);
 
     GameImpl getGame();
+
+    Menu getMenu();
 }

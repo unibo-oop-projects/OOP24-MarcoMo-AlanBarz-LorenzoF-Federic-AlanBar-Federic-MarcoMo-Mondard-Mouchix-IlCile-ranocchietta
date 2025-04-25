@@ -79,7 +79,7 @@ public class ScenePanel extends JPanel{
                 g.drawImage(mb, 
                            (Constants.FRAME_WIDTH/2 -  (mb.getWidth()+30)/2), (Constants.FRAME_HEIGHT/2 -  (mb.getHeight()+30)/2), 
                            mb.getWidth()+30, mb.getHeight()+30, null);
-                this.controller.getGame().getMenu().draw(g);
+                // this.controller.getGame().getMenu().draw(g);
             }   
             case SHOP -> {
                 //TODO: implement the shop

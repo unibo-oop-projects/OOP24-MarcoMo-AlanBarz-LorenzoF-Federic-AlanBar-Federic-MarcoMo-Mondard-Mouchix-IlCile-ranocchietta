@@ -27,6 +27,7 @@ public class MenuPanel extends AbstractPanel<MenuControllerImpl>{
     //     this.setInputListener();
     // }
 
+    @Override
     protected void setInputListener(){
         this.addMouseListener(this.getController().getMouseListener());
         this.addMouseMotionListener(this.getController().getMouseMotionListener());
@@ -37,9 +38,9 @@ public class MenuPanel extends AbstractPanel<MenuControllerImpl>{
         BufferedImage background = LoadSave.GetSprite(LoadSave.MENU_BACKGROUND);
         g.drawImage(background, (Constants.FRAME_WIDTH/2 -  (background.getWidth()+30)/2), (Constants.FRAME_HEIGHT/2 -  (background.getHeight()+30)/2), 
                         background.getWidth()+30, background.getHeight()+30, null);
-
-        this.getController().getGame().getMenu().draw(g);
+        this.getController().getMenu().draw(g);
     }
-
+    
+    @Override
     protected void importImg() {};
 }

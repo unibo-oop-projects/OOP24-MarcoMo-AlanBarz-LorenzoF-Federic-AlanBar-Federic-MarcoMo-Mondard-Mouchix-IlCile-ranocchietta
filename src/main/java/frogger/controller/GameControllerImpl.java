@@ -1,6 +1,7 @@
 package frogger.controller;
 
 import java.awt.event.KeyListener;
+
 import frogger.common.Constants;
 import frogger.common.GameState;
 import frogger.common.Pair;
@@ -8,6 +9,7 @@ import frogger.common.input.InputController;
 import frogger.common.input.InputControllerImpl;
 import frogger.common.input.KeyInput;
 import frogger.model.implementations.GameImpl;
+import frogger.model.implementations.Menu;
 import frogger.view.GamePanel;
 import frogger.view.GameScene;
 
@@ -82,6 +84,11 @@ public class GameControllerImpl extends AbstractController implements GameContro
 
     public KeyListener getKeyListener() {
         return keyInput;
+    }
+
+    @Override
+    public Menu getMenu() {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 }
 
