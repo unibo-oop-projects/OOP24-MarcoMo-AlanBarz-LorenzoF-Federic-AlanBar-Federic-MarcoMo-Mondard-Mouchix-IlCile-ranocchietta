@@ -12,7 +12,6 @@ import frogger.view.GamePanel;
 import frogger.view.GameScene;
 
 public class GameControllerImpl extends AbstractController implements GameController{
-    private final int FPS_SET = 120;
 
     private GameImpl game;
     private InputControllerImpl inputController;

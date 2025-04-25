@@ -5,14 +5,12 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
-import javax.swing.JPanel;
-
 import frogger.common.Constants;
 import frogger.common.LoadSave;
 import frogger.controller.MenuControllerImpl;
 
-public class MenuPanel extends JPanel{
-    MenuControllerImpl controller;
+public class MenuPanel extends AbstractPanel<MenuControllerImpl>{
+    // MenuControllerImpl controller;
 
     public MenuPanel() {
         setFocusable(true);
@@ -24,12 +22,12 @@ public class MenuPanel extends JPanel{
         setPreferredSize(new Dimension(Constants.FRAME_WIDTH, Constants.FRAME_HEIGHT));
     }
 
-    public void setController(MenuControllerImpl controller) {
-        this.controller = controller;
-        this.setInputListener();
-    }
+    // public void setController(MenuControllerImpl controller) {
+    //     this.controller = controller;
+    //     this.setInputListener();
+    // }
 
-    private void setInputListener(){
+    protected void setInputListener(){
         this.addMouseListener(this.getController().getMouseListener());
         this.addMouseMotionListener(this.getController().getMouseMotionListener());
     }
@@ -40,10 +38,8 @@ public class MenuPanel extends JPanel{
         g.drawImage(background, (Constants.FRAME_WIDTH/2 -  (background.getWidth()+30)/2), (Constants.FRAME_HEIGHT/2 -  (background.getHeight()+30)/2), 
                         background.getWidth()+30, background.getHeight()+30, null);
 
-        this.controller.getGame().getMenu().draw(g);
+        this.getController().getGame().getMenu().draw(g);
     }
 
-    public MenuControllerImpl getController() {
-        return controller;
-    }
+    protected void importImg() {};
 }

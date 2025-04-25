@@ -12,8 +12,6 @@ import frogger.view.GameScene;
 import frogger.view.MenuPanel;
 
 public class MenuControllerImpl extends AbstractController implements MenuController{
-    private final int FPS_SET = 120;
-
     private GameImpl game;  
     private MenuPanel scenePanel;
 

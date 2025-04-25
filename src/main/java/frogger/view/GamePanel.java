@@ -10,22 +10,21 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import javax.imageio.ImageIO;
-import javax.swing.JPanel;
 
 import frogger.common.Constants;
 import frogger.common.Direction;
 import frogger.controller.GameControllerImpl;
 
-public class GamePanel extends JPanel{
-    GameControllerImpl controller;
+public class GamePanel extends AbstractPanel<GameControllerImpl>{
+    // GameControllerImpl controller;
     private final Font myFont = new Font("MyFont", 1, Constants.BLOCK_HEIGHT/2);
-    private BufferedImage img;
+    // private BufferedImage img;
     private BufferedImage background;
     private BufferedImage heart;
-    private BufferedImage[] idleAni;
-    private int aniTick;
-    private int aniIndex;
-    private int aniSpeed = 15;   
+    // private BufferedImage[] idleAni;
+    // private int aniTick;
+    // private int aniIndex;
+    // private int aniSpeed = 15;   
 
     public GamePanel() {
         setFocusable(true);
@@ -33,16 +32,16 @@ public class GamePanel extends JPanel{
         setBackground(Color.BLACK);
     }
 
-    private void importImg() {
+    protected void importImg() {
         InputStream isFrog = getClass().getResourceAsStream("/ranocchietta.png");
-        controller.getGame().getPlayer().setImage(isFrog);
-        InputStream isImg = getClass().getResourceAsStream("/sprites.png");
+        getController().getGame().getPlayer().setImage(isFrog);
+        // InputStream isImg = getClass().getResourceAsStream("/sprites.png");
         InputStream backgroundStream = getClass().getResourceAsStream("/background.png");
         InputStream heartStream = getClass().getResourceAsStream("/heart.png");
         
         
         try {
-            img = ImageIO.read(isImg);
+            // img = ImageIO.read(isImg);
             background = ImageIO.read(backgroundStream);
             heart = ImageIO.read(heartStream); 
         } catch (IOException e) {
@@ -54,14 +53,7 @@ public class GamePanel extends JPanel{
         setPreferredSize(new Dimension(Constants.FRAME_WIDTH, Constants.FRAME_HEIGHT));
     }
 
-    public void setController(GameControllerImpl controller) {
-        this.controller = controller;
-        importImg();
-        loadAnimations();
-        setInputListener();
-    }
-
-    private void setInputListener(){
+    protected void setInputListener(){
         this.addKeyListener(this.getController().getKeyListener());
     }
 
@@ -72,28 +64,28 @@ public class GamePanel extends JPanel{
 
     private void paintLevel(Graphics g){
         super.paintComponent(g);
-        this.updateAnimationTick();
+        // this.updateAnimationTick();
 
         g.drawImage(background, 0 , 0, Constants.FRAME_WIDTH, Constants.FRAME_HEIGHT, null);
 
-        for(int i = 0; i < this.controller.getGame().getPlayer().getLives(); i++){
-            g.drawImage(heart, (int)this.controller.getXinPixel(i + Constants.MIN_X) , 0, null);
+        for(int i = 0; i < this.getController().getGame().getPlayer().getLives(); i++){
+            g.drawImage(heart, (int)this.getController().getXinPixel(i + Constants.MIN_X) , 0, null);
         }
 
         //drowing the obstacles
-        for(var obstacle : controller.getGame().getObstacles()) {
-            g.drawImage(obstacle.getImage(), (int)this.controller.getXinPixel(obstacle.getPos().x()), 
-                (int)this.controller.getYinPixel(obstacle.getPos().y()), 
+        for(var obstacle : getController().getGame().getObstacles()) {
+            g.drawImage(obstacle.getImage(), (int)this.getController().getXinPixel(obstacle.getPos().x()), 
+                (int)this.getController().getYinPixel(obstacle.getPos().y()), 
                 obstacle.getDimension().width() * Constants.BLOCK_WIDTH, 
                 obstacle.getDimension().height() * Constants.BLOCK_HEIGHT, null);
         }
         
         // Drawing the Player with rotation
         Graphics2D g2d = (Graphics2D) g;
-        var player = controller.getGame().getPlayer();
+        var player = getController().getGame().getPlayer();
         BufferedImage playerImage = player.getImage(); 
-        int playerX = (int) controller.getXinPixel(player.getPos().x());
-        int playerY = (int) controller.getYinPixel(player.getPos().y());
+        int playerX = (int) getController().getXinPixel(player.getPos().x());
+        int playerY = (int) getController().getYinPixel(player.getPos().y());
         int playerWidth = player.getDimension().width() * Constants.BLOCK_WIDTH;
         int playerHeight = player.getDimension().height() * Constants.BLOCK_HEIGHT;
 
@@ -113,30 +105,26 @@ public class GamePanel extends JPanel{
 
         g.setColor(Color.WHITE);
         g.setFont(myFont);
-        g.drawString("Punteggio: " + this.controller.getGame().getPlayer().getScore(), (int)this.controller.getXinPixel(Constants.MAX_X - 3), (int)this.controller.getYinPixel(Constants.MAX_Y - 0.5));
+        g.drawString("Punteggio: " + this.getController().getGame().getPlayer().getScore(), (int)this.getController().getXinPixel(Constants.MAX_X - 3), (int)this.getController().getYinPixel(Constants.MAX_Y - 0.5));
     }
 
-    private void loadAnimations() {
-        idleAni = new BufferedImage[5];
+    // private void loadAnimations() {
+    //     idleAni = new BufferedImage[5];
 
-        for(int i = 0; i < idleAni.length; i++) {
-            idleAni[i] = img.getSubimage(i*57,5,57,70);
-        }
-    }
+    //     for(int i = 0; i < idleAni.length; i++) {
+    //         idleAni[i] = img.getSubimage(i*57,5,57,70);
+    //     }
+    // }
 
-    private void updateAnimationTick() {
-        aniTick++;
-        //TODO: add the check if the frog is jumping
-        if(aniTick >= aniSpeed) {
-            aniTick = 0;
-            aniIndex++;
-            if(aniIndex >= idleAni.length) {
-                aniIndex = 0;
-            }
-        }
-    }
-
-    public GameControllerImpl getController() {
-        return controller;
-    }
+    // private void updateAnimationTick() {
+    //     aniTick++;
+    //     //TODO: add the check if the frog is jumping
+    //     if(aniTick >= aniSpeed) {
+    //         aniTick = 0;
+    //         aniIndex++;
+    //         if(aniIndex >= idleAni.length) {
+    //             aniIndex = 0;
+    //         }
+    //     }
+    // }
 }
