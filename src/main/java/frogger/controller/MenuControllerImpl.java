@@ -11,8 +11,8 @@ import frogger.model.implementations.GameImpl;
 import frogger.view.GameScene;
 import frogger.view.MenuPanel;
 
-public class MenuControllerImpl implements Controller{
-private final int FPS_SET = 120;
+public class MenuControllerImpl extends AbstractController implements MenuController{
+    private final int FPS_SET = 120;
 
     private GameImpl game;  
     private MenuPanel scenePanel;
@@ -31,43 +31,41 @@ private final int FPS_SET = 120;
         gameScene.setPanel(scenePanel);
     }
 
-    @Override
-    public void loop(){
-        double timePerFrame = 10000000.0 / FPS_SET;
-        long lastFrame = System.nanoTime();
-        long now;
+    // @Override
+    // public void loop(){
+    //     double timePerFrame = 10000000.0 / FPS_SET;
+    //     long lastFrame = System.nanoTime();
+    //     long now;
 
-        while (GameState.state == GameState.MENU){
-            now = System.nanoTime(); 
+    //     while (GameState.state == GameState.MENU){
+    //         now = System.nanoTime(); 
             
-            if (now - lastFrame >= timePerFrame) {
-                this.game.getMenu().update();
-            }
-            this.scenePanel.repaint();
-            lastFrame = now;
-        }
+    //         if (now - lastFrame >= timePerFrame) {
+    //             this.game.getMenu().update();
+            
+    //             this.scenePanel.repaint();
+    //             lastFrame = now;
+    //         }
+    //     }
+    // }
+
+    @Override
+    protected void core() {
+        this.game.getMenu().update();
+        this.scenePanel.repaint();
     }
 
     @Override
-    public void setFrame(GameScene gameScene) {
-        this.gameScene = gameScene;
+    protected boolean loopCondition() {
+        return GameState.state == GameState.MENU;
     }
+
+    @Override
+    protected void changesLoopEnd() {}
 
     @Override
     public GameImpl getGame() {
         return game;
-    }
-
-    public double getXinPixel(double x) {
-        int centerX = Constants.FRAME_WIDTH / 2;
-        int ratioX = Constants.BLOCK_WIDTH;    //number of pixel per column
-        return Math.round(centerX + x * ratioX);
-    }
-
-    public double getYinPixel(double y) {
-        int centerY = Constants.FRAME_HEIGHT / 2 - Constants.BLOCK_HEIGHT / 2;
-        int ratioY = Constants.BLOCK_HEIGHT;  //number of pixel per row
-        return Math.round(centerY - y * ratioY);
     }
 
     public MouseMotionListener getMouseMotionListener() {
