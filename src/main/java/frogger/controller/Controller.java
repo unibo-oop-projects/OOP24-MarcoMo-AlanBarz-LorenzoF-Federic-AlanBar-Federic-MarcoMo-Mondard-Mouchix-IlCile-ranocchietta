@@ -15,4 +15,8 @@ public interface Controller {
     GameImpl getGame();
 
     Menu getMenu();
+
+    double getXinPixel(double x);
+
+    double getYinPixel(double x);
 }
