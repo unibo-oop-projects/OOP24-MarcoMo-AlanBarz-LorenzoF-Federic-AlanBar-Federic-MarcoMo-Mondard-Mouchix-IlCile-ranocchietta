@@ -13,4 +13,10 @@ public class PowerUpFactory {
             default -> throw new IllegalArgumentException("Unknown power-up type: " + type);
         }
     }
+
+    public static PowerUpType getRandomPowerUpType() {
+        PowerUpType[] powerUpTypes = PowerUpType.values();
+        int randomIndex = (int) (Math.random() * powerUpTypes.length);
+        return powerUpTypes[randomIndex];
+    }
 }
