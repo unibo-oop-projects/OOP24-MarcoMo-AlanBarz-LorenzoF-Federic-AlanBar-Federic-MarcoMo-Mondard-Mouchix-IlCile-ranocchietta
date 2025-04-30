@@ -1,4 +1,4 @@
-package frogger.model.implementations;
+package frogger.controller;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -10,21 +10,23 @@ import java.util.Set;
 import javax.imageio.ImageIO;
 
 import frogger.common.Constants;
+import frogger.model.implementations.PurchasableObjectFactoryImpl;
 import frogger.model.interfaces.PurchasableObject;
-import frogger.model.interfaces.Shop;
 
-public class ShopImpl implements Shop{
+public class ShopController {
 
     private static final String FILE_NAME = "shop.txt";
     private final Set<PurchasableObject> purchasableObjects = new HashSet<>();
     private final PurchasableObjectFactoryImpl factory = new PurchasableObjectFactoryImpl();
 
-    @Override
+    public ShopController() {
+        shopInit();
+    }
+
     public Set<PurchasableObject> getPurchasableObject() {
         return this.purchasableObjects;
     }
 
-    @Override
     public void shopInit() {
         try(final BufferedReader r = new BufferedReader(new InputStreamReader(new FileInputStream(FILE_NAME ),"UTF -16 "))) {
             while(!r.readLine().isEmpty()){
@@ -38,4 +40,6 @@ public class ShopImpl implements Shop{
             e.printStackTrace();
         }
     }
+
+    
 }
