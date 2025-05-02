@@ -35,4 +35,7 @@ public interface Level {
      * @return the list of eagles
      */
     List<Eagle> getEagles();
+
+    List<PowerUp> getPowerUp();
+    void addPowerUp(PowerUp p);
 }

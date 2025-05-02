@@ -16,6 +16,7 @@ import frogger.model.interfaces.Level;
 import frogger.model.interfaces.LevelFactory;
 import frogger.model.interfaces.MovingObject;
 import frogger.model.interfaces.MovingObjectFactory;
+import frogger.model.interfaces.PowerUp;
 
 public class LevelFactoryImpl implements LevelFactory {
 
@@ -26,6 +27,7 @@ public class LevelFactoryImpl implements LevelFactory {
         Level level = new LevelImpl();
         int laneIndex = Constants.MIN_Y;
         createEagles().forEach(eagle -> level.addEagle(eagle));
+        createPowerUp().forEach(p -> level.addPowerUp(p));
         
         Lane start = new Ground();
         level.addLane(start);
@@ -57,6 +59,7 @@ public class LevelFactoryImpl implements LevelFactory {
      * Creates a lane with random speed and a certain direction.
      * @param type the type of lane to create (Road or River)
      * @param y the y coordinate of the lane, needed to determine the direction
+     * @throws IllegalArgumentException if the type of lane is not Road or River
      * @return the lane
      */
     private Lane createLane(Class<? extends Lane> type, int y) {
@@ -96,7 +99,7 @@ public class LevelFactoryImpl implements LevelFactory {
             }
             Pair dim = new Pair(width, Constants.OBJECT_HEIGHT);
             Position pos = new Position(randomX(), y);
-            boolean valid = true;
+            boolean valid;
             valid = IntStream.range(0, width).noneMatch(i -> usedPositions.contains(pos.x() + i));
             if (valid) {
                 IntStream.range(0, width).forEach(i -> usedPositions.add(pos.x() + i));
@@ -136,6 +139,24 @@ public class LevelFactoryImpl implements LevelFactory {
         }
         return new ArrayList<>(eagles);
     }
+
+    private List<PowerUp> createPowerUp() {
+        List<PowerUp> powerUp = new ArrayList<>();
+        List<Position> usedPositions = new ArrayList<>();
+        int n = ran.nextInt(Constants.MAX_POWER_UP_NUMBER - 1) + Constants.MIN_POWER_UP_NUMBER;
+        while (powerUp.size() != n) {
+            Position pos = new Position(randomX(), randomY());
+            if (!usedPositions.contains(pos)) {
+                PowerUpType type = PowerUpFactory.getRandomPowerUpType();
+                Pair dim = new Pair(Constants.POWER_UP_WIDTH, Constants.POWER_UP_HEIGHT);
+                PowerUp p = PowerUpFactory.createPowerUp(type, pos, dim);
+                powerUp.add(p);
+                usedPositions.add(pos);
+            }
+        }
+        return new ArrayList<>(powerUp);
+    } 
+
 
     /**
      * Utility method

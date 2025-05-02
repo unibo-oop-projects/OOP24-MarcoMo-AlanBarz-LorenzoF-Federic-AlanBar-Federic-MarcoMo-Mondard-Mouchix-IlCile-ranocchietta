@@ -48,7 +48,7 @@ public class ControllerImpl{
                         // gameController.mainLoop();
                     }
                     case MENU -> {
-                        this.game.getMenu().update(); 
+                        // this.game.getMenu().update(); 
                     }
                     case SHOP -> {
                         //TODO: implement menu

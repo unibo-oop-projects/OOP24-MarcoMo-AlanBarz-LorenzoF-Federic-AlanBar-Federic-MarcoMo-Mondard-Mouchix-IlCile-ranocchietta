@@ -13,8 +13,7 @@ public class PlayerObjectImpl extends GameObjectImpl implements PlayerObject{
     private int lives;
     private int score;
     private boolean attached;
-    private boolean isHit = false;
-    private boolean isRespawning = false;
+    private boolean dead;
     
     public PlayerObjectImpl(Pair dimension) {
         super(new Position(0, -6), dimension);
@@ -23,6 +22,7 @@ public class PlayerObjectImpl extends GameObjectImpl implements PlayerObject{
         this.score = 0;
         this.direction = Direction.UP;
         this.attached = false;
+        this.dead = false;
     }
 
     @Override
@@ -32,9 +32,8 @@ public class PlayerObjectImpl extends GameObjectImpl implements PlayerObject{
 
     @Override
     public void getHit() {
-        this.isHit = true;
-        this.isRespawning = true;
         this.lives--;
+        this.dead = true;
     }
 
     @Override
@@ -76,8 +75,6 @@ public class PlayerObjectImpl extends GameObjectImpl implements PlayerObject{
     public void resetPosition() {
         setLookingUp();
         setPos(startPosition);
-        this.isHit = false;
-        this.isRespawning = false;
     }
 
     @Override
@@ -91,12 +88,13 @@ public class PlayerObjectImpl extends GameObjectImpl implements PlayerObject{
     }
 
     @Override
-    public boolean isHit() {
-        return this.isHit;
+    public boolean isDead() {
+        return this.dead;
     }
 
     @Override
-    public boolean isRespawning() {
-        return this.isRespawning;
+    public void respawn() {
+        this.dead = false;
+        resetPosition();
     }
 }

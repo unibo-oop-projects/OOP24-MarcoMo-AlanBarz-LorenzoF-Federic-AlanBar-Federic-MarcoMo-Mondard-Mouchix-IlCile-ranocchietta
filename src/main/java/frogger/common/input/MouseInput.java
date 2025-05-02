@@ -40,7 +40,7 @@ public class MouseInput implements MouseMotionListener, MouseListener {
     public void mousePressed(MouseEvent e) {
         switch (GameState.state) {
             case MENU -> {    
-                /*scenePanel.getController()*/controller.getGame().getMenu().mousePressed(e);        
+                /*scenePanel.getController()*/controller.getMenu().mousePressed(e);        
             }
             case SHOP -> {   
             // Handle shop event        
@@ -58,7 +58,7 @@ public class MouseInput implements MouseMotionListener, MouseListener {
     public void mouseReleased(MouseEvent e) {
         switch (GameState.state) {
             case MENU -> {    
-                /*scenePanel.getController()*/controller.getGame().getMenu().mouseReleased(e);        
+                /*scenePanel.getController()*/controller.getMenu().mouseReleased(e);        
             }
             case SHOP -> {   
             // Handle shop event        
@@ -91,7 +91,7 @@ public class MouseInput implements MouseMotionListener, MouseListener {
     public void mouseMoved(MouseEvent e) {
         switch (GameState.state) {
             case MENU -> {    
-            /*scenePanel.getController()*/controller.getGame().getMenu().mouseMoved(e);        
+            /*scenePanel.getController()*/controller.getMenu().mouseMoved(e);        
             }
             case SHOP -> {   
             // Handle shop event        

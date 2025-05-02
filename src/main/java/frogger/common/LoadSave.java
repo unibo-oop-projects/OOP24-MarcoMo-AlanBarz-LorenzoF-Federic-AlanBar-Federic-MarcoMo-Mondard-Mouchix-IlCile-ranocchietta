@@ -10,6 +10,7 @@ public class LoadSave{
 
     public static final String MENU_BUTTONS = "menu_buttons.png";
     public static final String MENU_BACKGROUND = "menu_background.png";
+    public static final String EXTRA_LIFE= "heartPowerUp.png";
 
     public static BufferedImage GetSprite(String fileName) {
         BufferedImage img = null;

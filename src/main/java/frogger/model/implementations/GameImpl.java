@@ -15,16 +15,12 @@ public class GameImpl implements Game{
     private final LevelFactoryImpl levelFactory = new LevelFactoryImpl();
     private PlayerObjectImpl player;
     private Level level;
-    private final Menu menu;
+    private long deathTime = 0;
+    private final int respawnDelay = 1000; // 2 secondi
 
-    public GameImpl(Pair dimension){
-        this.menu = new Menu(this);
+    public GameImpl(Pair dimension){       
         this.player = new PlayerObjectImpl(dimension);
         level = levelFactory.randomLevel();
-    }
-
-    public Menu getMenu() {
-        return this.menu;
     }
 
     @Override
@@ -39,6 +35,16 @@ public class GameImpl implements Game{
 
     @Override
     public void checkCollision() {
+        
+        if (this.player.isDead()) {
+            if (deathTime == 0) {
+                deathTime = System.currentTimeMillis();
+            } else if (System.currentTimeMillis() - deathTime >= respawnDelay) {
+                this.player.respawn();
+                deathTime = 0;
+            }
+            return; // Evita ulteriori controlli durante il respawn
+        }
         
         if(this.player.getPos().y() > -6 && this.player.getPos().y() < 1){
             if(this.level.getAllObstacles().stream().anyMatch(x -> x.getHitBox().intersects(this.player.getHitBox()))){
@@ -61,7 +67,7 @@ public class GameImpl implements Game{
                             ((Trunk)x).setObj(this.player);
                             this.player.setAttached(true);
                         }
-                    } else if(x instanceof Eagle){
+                    } else if(x instanceof Eagle ){
                         this.player.getHit();
                     }
                 });
