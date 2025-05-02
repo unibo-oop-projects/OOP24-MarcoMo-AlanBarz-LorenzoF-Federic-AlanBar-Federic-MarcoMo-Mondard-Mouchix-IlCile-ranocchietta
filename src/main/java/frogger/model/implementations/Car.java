@@ -9,12 +9,12 @@ public class Car extends MovingObjectImpl {
     public Car(Position pos, Pair dimension, float speed, Direction direction) {
         super(pos, dimension, speed, direction);
 
-        super.setImage(getClass().getResourceAsStream(findImg()));
+        super.setImage(findImg());
         
     }
 
     private String findImg() {
-        String result = "/";
+        String result = "";
         if (this.getDimension().width() > 1) {
             result += "truk";
         } else {

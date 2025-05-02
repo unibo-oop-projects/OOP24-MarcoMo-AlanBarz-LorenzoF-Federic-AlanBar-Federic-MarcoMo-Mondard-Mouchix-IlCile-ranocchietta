@@ -3,6 +3,7 @@ package frogger.model.implementations;
 import java.util.Optional;
 
 import frogger.common.Direction;
+import frogger.common.LoadSave;
 import frogger.common.Pair;
 import frogger.common.Position;
 import frogger.model.interfaces.Carrier;
@@ -13,7 +14,8 @@ public class Trunk extends MovingObjectImpl implements Carrier<PlayerObjectImpl>
 
     public Trunk(Position pos, Pair dimension, float speed, Direction direction) {
         super(pos, dimension, speed, direction);
-        super.setImage(getClass().getResourceAsStream("/trunk.png"));
+        // super.setImage(getClass().getResourceAsStream("/trunk.png"));
+        super.setImage("trunk.png");
     }
 
     public void setObj(PlayerObjectImpl frog) {

@@ -97,8 +97,7 @@ public class LevelPainter {
     }
 
     public void importImg() {
-        InputStream isFrog = getClass().getResourceAsStream("/ranocchietta.png");
-        getController().getGame().getPlayer().setImage(isFrog);
+        getController().getGame().getPlayer().setImage("ranocchietta.png");
         InputStream backgroundStream = getClass().getResourceAsStream("/background.png");
         InputStream heartStream = getClass().getResourceAsStream("/heart.png");
         InputStream deathStream = getClass().getResourceAsStream("/death.png");

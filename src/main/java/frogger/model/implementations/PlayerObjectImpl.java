@@ -17,7 +17,7 @@ public class PlayerObjectImpl extends GameObjectImpl implements PlayerObject{
     
     public PlayerObjectImpl(Pair dimension) {
         super(new Position(0, -6), dimension);
-        super.setImage(getClass().getResourceAsStream("/ranocchietta.png"));
+        super.setImage("ranocchietta.png");
         this.lives = 3;
         this.score = 0;
         this.direction = Direction.UP;

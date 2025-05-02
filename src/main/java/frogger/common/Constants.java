@@ -5,10 +5,10 @@ import java.awt.Toolkit;
 
 public class Constants {
     //scale the dimention of the frame 
-    private final static Dimension screen = Toolkit.getDefaultToolkit().getScreenSize(); 
+    private final static Dimension SCREEN = Toolkit.getDefaultToolkit().getScreenSize(); 
     //private final static int sw = (int) screen.getWidth();
-    private final static  int sh = (int) screen.getHeight();
-    private final static double scale = 0.8;
+    private final static  int SH = (int) SCREEN.getHeight();
+    private final static double SCALE = 0.8;
 
     public final static int MIN_OBSTACLES_NUMBER = 2;
     public final static int MAX_OBSTACLES_NUMBER = 3;
@@ -46,7 +46,7 @@ public class Constants {
     public final static int N_ROW = ROAD_LANES + RIVER_LANES + GROUND_LANES;
     public final static int N_COLUMN = Math.abs(MAX_X) + Math.abs(MIN_X) + 1;
 
-    public final static int FRAME_HEIGHT = (int) (sh * scale);
+    public final static int FRAME_HEIGHT = (int) (SH * SCALE);
     public final static int BLOCK_HEIGHT = FRAME_HEIGHT / N_ROW;
     public final static int FRAME_WIDTH = BLOCK_HEIGHT * N_COLUMN;
     public final static int BLOCK_WIDTH = FRAME_WIDTH / N_COLUMN;
