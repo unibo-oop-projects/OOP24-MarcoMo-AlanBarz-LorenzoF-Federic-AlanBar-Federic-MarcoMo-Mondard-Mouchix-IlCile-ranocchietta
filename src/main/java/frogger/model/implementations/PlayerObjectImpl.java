@@ -13,9 +13,12 @@ public class PlayerObjectImpl extends GameObjectImpl implements PlayerObject{
     private int lives;
     private int score;
     private boolean attached;
+    private boolean isHit = false;
+    private boolean isRespawning = false;
     
     public PlayerObjectImpl(Pair dimension) {
         super(new Position(0, -6), dimension);
+        super.setImage(getClass().getResourceAsStream("/ranocchietta.png"));
         this.lives = 3;
         this.score = 0;
         this.direction = Direction.UP;
@@ -29,7 +32,8 @@ public class PlayerObjectImpl extends GameObjectImpl implements PlayerObject{
 
     @Override
     public void getHit() {
-        this.resetPosition();
+        this.isHit = true;
+        this.isRespawning = true;
         this.lives--;
     }
 
@@ -72,6 +76,8 @@ public class PlayerObjectImpl extends GameObjectImpl implements PlayerObject{
     public void resetPosition() {
         setLookingUp();
         setPos(startPosition);
+        this.isHit = false;
+        this.isRespawning = false;
     }
 
     @Override
@@ -82,5 +88,15 @@ public class PlayerObjectImpl extends GameObjectImpl implements PlayerObject{
     @Override
     public void setAttached(boolean b) {
         this.attached = b;
+    }
+
+    @Override
+    public boolean isHit() {
+        return this.isHit;
+    }
+
+    @Override
+    public boolean isRespawning() {
+        return this.isRespawning;
     }
 }

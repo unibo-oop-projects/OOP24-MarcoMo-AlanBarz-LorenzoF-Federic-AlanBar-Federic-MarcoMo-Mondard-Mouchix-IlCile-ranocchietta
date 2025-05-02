@@ -31,7 +31,7 @@ public class ShopImpl implements Shop{
                 String line = r.readLine();
                 String[] values = line.split(" ");
                 if(values[0] == "Skin"){
-                    this.purchasableObjects.add(factory.createSkin(Integer.parseInt(values[1]), ImageIO.read(getClass().getResourceAsStream(System.getProperty(Constants.PROP_FILE_SEPARATOR) + values[2]))));
+                    this.purchasableObjects.add(factory.createSkin(Integer.parseInt(values[1]), ImageIO.read(getClass().getResourceAsStream(values[2]))));
                 }
             }
         } catch (IOException e) {

@@ -25,7 +25,10 @@ public class GamePanel extends JPanel{
     private BufferedImage[] idleAni;
     private int aniTick;
     private int aniIndex;
-    private int aniSpeed = 15;   
+    private int aniSpeed = 15;  
+    private BufferedImage deathImage;
+    private long deathTime;
+    private final int respawnDelay = 20000; // 2 secondi
 
     public GamePanel() {
         setFocusable(true);
@@ -34,17 +37,20 @@ public class GamePanel extends JPanel{
     }
 
     private void importImg() {
-        InputStream isFrog = getClass().getResourceAsStream("/ranocchietta.png");
-        controller.getGame().getPlayer().setImage(isFrog);
         InputStream isImg = getClass().getResourceAsStream("/sprites.png");
         InputStream backgroundStream = getClass().getResourceAsStream("/background.png");
         InputStream heartStream = getClass().getResourceAsStream("/heart.png");
-        
+        InputStream deathStream = getClass().getResourceAsStream("/death.png");
         
         try {
+            if (isImg == null || backgroundStream == null || heartStream == null || deathStream == null) {
+                throw new IOException("One or more resource files not found in the classpath.");
+            }
+
             img = ImageIO.read(isImg);
             background = ImageIO.read(backgroundStream);
             heart = ImageIO.read(heartStream); 
+            deathImage = ImageIO.read(deathStream);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -97,23 +103,36 @@ public class GamePanel extends JPanel{
         int playerWidth = player.getDimension().width() * Constants.BLOCK_WIDTH;
         int playerHeight = player.getDimension().height() * Constants.BLOCK_HEIGHT;
 
-        // Calculate the rotation angle based on the direction
-        double angle = switch (player.getDirection()) {
-            case Direction.UP -> Math.PI;
-            case Direction.RIGHT -> -Math.PI / 2;
-            case Direction.DOWN -> 0;
-            case Direction.LEFT -> Math.PI / 2;
-            default -> 0; // No rotation by default
-        };
+        if(player.isRespawning()){
+            if (deathTime == 0) { // Imposta deathTime solo la prima volta
+                deathTime = System.currentTimeMillis();
+            }
+            g.drawImage(deathImage, playerX, playerY, Constants.BLOCK_WIDTH, Constants.BLOCK_HEIGHT, null);
 
-        // Apply the rotation
-        g2d.rotate(angle, playerX + playerWidth / 2.0, playerY + playerHeight / 2.0);
-        g2d.drawImage(playerImage, playerX, playerY, playerWidth, playerHeight, null);
-        g2d.rotate(-angle, playerX + playerWidth / 2.0, playerY + playerHeight / 2.0); // Restore the rotation
+            // Controlla se è ora di far ricomparire il giocatore
+            if (System.currentTimeMillis() - deathTime >= respawnDelay) {
+                player.resetPosition(); // Metodo per ripristinare la posizione del giocatore
+                deathTime = 0; // Resetta deathTime per la prossima collisione
+            } 
+        } else {
+            // Calculate the rotation angle based on the direction
+            double angle = switch (player.getDirection()) {
+                case Direction.UP -> Math.PI;
+                case Direction.RIGHT -> -Math.PI / 2;
+                case Direction.DOWN -> 0;
+                case Direction.LEFT -> Math.PI / 2;
+                default -> 0; // No rotation by default
+            };
+
+            // Apply the rotation
+            g2d.rotate(angle, playerX + playerWidth / 2.0, playerY + playerHeight / 2.0);
+            g2d.drawImage(playerImage, playerX, playerY, playerWidth, playerHeight, null);
+            g2d.rotate(-angle, playerX + playerWidth / 2.0, playerY + playerHeight / 2.0); // Restore the rotation
+        }
 
         g.setColor(Color.WHITE);
         g.setFont(myFont);
-        g.drawString("Punteggio: " + this.controller.getGame().getPlayer().getScore(), (int)this.controller.getXinPixel(Constants.MAX_X - 3), (int)this.controller.getYinPixel(Constants.MAX_Y - 0.5));
+        g.drawString("Score: " + this.controller.getGame().getPlayer().getScore(), (int)this.controller.getXinPixel(Constants.MAX_X - 3), (int)this.controller.getYinPixel(Constants.MAX_Y - 0.5));
     }
 
     private void loadAnimations() {

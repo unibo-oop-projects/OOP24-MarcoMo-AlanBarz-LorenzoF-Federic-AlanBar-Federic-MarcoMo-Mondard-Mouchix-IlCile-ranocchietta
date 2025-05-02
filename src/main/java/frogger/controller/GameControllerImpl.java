@@ -53,9 +53,7 @@ public class GameControllerImpl extends AbstractController implements GameContro
         this.game.checkNewLevel();
         this.game.checkEagleTrigger();
         this.game.getObstacles().forEach(a -> a.move()); //moving all obstacles
-    
         this.scenePanel.repaint();
-
     }
 
     @Override
@@ -81,6 +79,7 @@ public class GameControllerImpl extends AbstractController implements GameContro
         return this.inputController;
     }
 
+    @Override
     public KeyListener getKeyListener() {
         return keyInput;
     }

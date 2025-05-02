@@ -27,4 +27,8 @@ public interface PlayerObject extends GameObject{
     boolean isAttached();
 
     void setAttached(boolean b);
+
+    boolean isHit();
+
+    boolean isRespawning();
 }
