@@ -42,8 +42,7 @@ public class ScenePanel extends JPanel{
     }
 
     private void importImg() {
-        InputStream isFrog = getClass().getResourceAsStream("/ranocchietta.png");
-        controller.getGame().getPlayer().setImage(isFrog);
+        controller.getGame().getPlayer().setImage("ranocchietta.png");
         InputStream isImg = getClass().getResourceAsStream("/sprites.png");
         InputStream backgroundStream = getClass().getResourceAsStream("/background.png");
         InputStream heartStream = getClass().getResourceAsStream("/heart.png");

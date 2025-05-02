@@ -21,5 +21,5 @@ public interface GameObject {
 
     public BufferedImage getImage();
 
-    public void setImage(InputStream is);
+    public void setImage(String fileName);
 }

@@ -7,6 +7,7 @@ import java.io.InputStream;
 
 import javax.imageio.ImageIO;
 
+import frogger.common.LoadSave;
 import frogger.common.Pair;
 import frogger.common.Position;
 import frogger.model.interfaces.GameObject;
@@ -64,12 +65,8 @@ public abstract class GameObjectImpl implements GameObject {
         return img;
     }
 
-    public void setImage(InputStream is) {
-        try {
-            img = ImageIO.read(is);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public void setImage(String fileName) {
+        img = LoadSave.GetSprite(fileName);
     }
 
 }
