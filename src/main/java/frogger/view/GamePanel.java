@@ -11,7 +11,7 @@ public class GamePanel extends AbstractPanel<GameControllerImpl>{
     public GamePanel() {
         setFocusable(true);
         setPanelSize();
-         setBackground(Color.BLACK);
+        setBackground(Color.BLACK);
     }
 
     public void paintComponent(final Graphics g) {

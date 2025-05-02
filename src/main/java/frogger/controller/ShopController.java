@@ -1,7 +1,8 @@
 package frogger.controller;
 
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 import java.io.BufferedReader;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.HashSet;
@@ -9,18 +10,32 @@ import java.util.Set;
 
 import javax.imageio.ImageIO;
 
-import frogger.common.Constants;
+import frogger.common.GameState;
+import frogger.common.input.MouseInput;
+import frogger.model.implementations.GameImpl;
+import frogger.model.implementations.Menu;
 import frogger.model.implementations.PurchasableObjectFactoryImpl;
 import frogger.model.interfaces.PurchasableObject;
+import frogger.view.GameScene;
+import frogger.view.ShopPanel;
 
-public class ShopController {
+public class ShopController extends AbstractController implements MenuController {
 
-    private static final String FILE_NAME = "shop.txt";
-    private final Set<PurchasableObject> purchasableObjects = new HashSet<>();
-    private final PurchasableObjectFactoryImpl factory = new PurchasableObjectFactoryImpl();
+    private static final String FILE_NAME = "/shop.txt";
+    private Set<PurchasableObject> purchasableObjects;
+    private PurchasableObjectFactoryImpl factory;
+    private ShopPanel shopPanel;
+    private MouseInput mouseInput;
 
-    public ShopController() {
-        shopInit();
+    @Override
+    public void init(GameScene gameScene) {
+        this.shopInit();
+        this.shopPanel = new ShopPanel();
+        this.shopPanel.setController(this);
+        this.purchasableObjects = new HashSet<>();
+        this.factory = new PurchasableObjectFactoryImpl();
+        this.mouseInput = new MouseInput(this);
+        gameScene.setPanel(shopPanel);
     }
 
     public Set<PurchasableObject> getPurchasableObject() {
@@ -28,17 +43,55 @@ public class ShopController {
     }
 
     public void shopInit() {
-        try(final BufferedReader r = new BufferedReader(new InputStreamReader(new FileInputStream(FILE_NAME ),"UTF -16 "))) {
-            while(!r.readLine().isEmpty()){
-                String line = r.readLine();
+        try(final BufferedReader r = new BufferedReader(new InputStreamReader(getClass().getResourceAsStream(FILE_NAME ),"UTF-16"))) {
+            String line;
+            while((line = r.readLine()) != null){
                 String[] values = line.split(" ");
-                if(values[0] == "Skin"){
-                    this.purchasableObjects.add(factory.createSkin(Integer.parseInt(values[1]), ImageIO.read(getClass().getResourceAsStream(values[2]))));
+                if("Skin".equals(values[0])){
+                    this.purchasableObjects.add(factory.createSkin(
+                        Integer.parseInt(values[1]), 
+                        ImageIO.read(getClass().getResourceAsStream(values[2])),
+                        Boolean.parseBoolean(values[3])
+                    ));
+                    System.out.println("Skin: " + values[1] + " " + values[2] + " " + values[3]);
                 }
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public GameImpl getGame() {
+        return null;
+    }
+
+    @Override
+    public Menu getMenu() { 
+        return null;
+    }
+
+    @Override
+    protected void core() {
+        this.shopPanel.repaint();
+    }
+
+    @Override
+    protected boolean loopCondition() {
+        return GameState.state == GameState.SHOP;
+    }
+
+    @Override
+    protected void changesLoopEnd() {}
+
+    @Override
+    public MouseMotionListener getMouseMotionListener() {
+        return this.mouseInput;
+    }
+
+    @Override
+    public MouseListener getMouseListener() {
+        return this.mouseInput;
     }
 
     

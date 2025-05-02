@@ -4,5 +4,5 @@ import java.awt.image.BufferedImage;
 
 public interface PurchasableObjectFactory {
 
-    PurchasableObject createSkin(int prize, BufferedImage img);
+    PurchasableObject createSkin(int prize, BufferedImage img, boolean isBought);
 }

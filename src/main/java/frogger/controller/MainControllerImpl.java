@@ -18,6 +18,9 @@ public class MainControllerImpl {
                 case MENU -> {
                     controller = new MenuControllerImpl();
                 }
+                case SHOP -> {
+                    controller = new ShopController();
+                }
                 default -> System.exit(0);
             }
             

@@ -1,28 +1,44 @@
 package frogger.view;
 
-import javax.swing.JPanel;
  
+import java.awt.Color;
+import java.util.concurrent.atomic.AtomicInteger;
+
 import frogger.controller.ShopController;
 
 public class ShopPanel extends AbstractPanel<ShopController>{
 
-    private final ShopController controller;
-
     public ShopPanel() {
-        this.controller = new ShopController();
+        setFocusable(true);
+        setPanelSize();
+        setBackground(Color.CYAN);
     }
 
     @Override
     protected void setInputListener() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'setInputListener'");
+        this.addMouseListener(this.getController().getMouseListener());
+        this.addMouseMotionListener(this.getController().getMouseMotionListener());     
+    }
+
+    @Override
+    public void paintComponent(final java.awt.Graphics g) {
+        //AtomicInteger counterX = new AtomicInteger(0);
+        //AtomicInteger counterY = new AtomicInteger(0);
+        /*this.getController().getPurchasableObject().stream().forEach(purchasableObject -> {
+            purchasableObject.draw(g, counterX.get(), counterY.get());
+            if(counterY.get() < 3){
+                counterY.incrementAndGet();
+            } else {
+                counterY.set(0);
+                counterX.incrementAndGet();
+            }
+            counterX.incrementAndGet();
+        });*/
+        //this.getController().getPurchasableObject().stream().findFirst().get().draw(g, 0, 0);
     }
 
     @Override
     protected void importImg() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'importImg'");
+        // No images to import for the shop panel
     }
-
-
 }

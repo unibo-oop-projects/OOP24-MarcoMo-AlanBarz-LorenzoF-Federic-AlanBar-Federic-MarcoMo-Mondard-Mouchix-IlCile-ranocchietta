@@ -8,7 +8,7 @@ import frogger.model.interfaces.PurchasableObjectFactory;
 public class PurchasableObjectFactoryImpl implements PurchasableObjectFactory{
 
     @Override
-    public PurchasableObject createSkin(int prize, BufferedImage img) {
-        return new Skin(prize, img);
+    public PurchasableObject createSkin(int prize, BufferedImage img, boolean isBought) {
+        return new Skin(prize, img, isBought);
     }
 }
