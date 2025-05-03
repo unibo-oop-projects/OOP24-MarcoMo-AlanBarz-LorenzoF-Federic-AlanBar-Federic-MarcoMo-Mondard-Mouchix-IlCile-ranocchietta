@@ -9,5 +9,7 @@ public interface PurchasableObject {
 
     BufferedImage getBufferedImage();
 
+    boolean isAvailable();
+
     void draw(Graphics g, int x, int y);
 }

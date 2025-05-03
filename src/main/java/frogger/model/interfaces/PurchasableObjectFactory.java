@@ -2,7 +2,9 @@ package frogger.model.interfaces;
 
 import java.awt.image.BufferedImage;
 
+import frogger.model.implementations.Skin;
+
 public interface PurchasableObjectFactory {
 
-    PurchasableObject createSkin(int prize, BufferedImage img, boolean isBought);
+    Skin createSkin(int prize, BufferedImage img, boolean isBought);
 }

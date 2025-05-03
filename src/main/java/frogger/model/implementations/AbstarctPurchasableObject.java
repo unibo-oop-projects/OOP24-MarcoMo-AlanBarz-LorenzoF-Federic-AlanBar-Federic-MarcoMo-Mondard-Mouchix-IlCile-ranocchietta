@@ -37,4 +37,9 @@ public abstract class AbstarctPurchasableObject implements PurchasableObject {
         return this.img;
     }
 
+    @Override
+    public boolean isAvailable() {
+        return this.isBought;
+    }
+
 }

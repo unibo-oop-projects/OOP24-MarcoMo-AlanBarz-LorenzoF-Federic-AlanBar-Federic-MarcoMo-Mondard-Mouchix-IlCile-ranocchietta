@@ -9,12 +9,6 @@ import frogger.controller.MenuController;
 
 
 public class MouseInput implements MouseMotionListener, MouseListener {
-
-    /*private final ScenePanel scenePanel;
-    public MouseInput(ScenePanel scenePanel) {
-        this.scenePanel = scenePanel;
-    }*/
-
     private final MenuController controller;
     
     public MouseInput(MenuController controller) {

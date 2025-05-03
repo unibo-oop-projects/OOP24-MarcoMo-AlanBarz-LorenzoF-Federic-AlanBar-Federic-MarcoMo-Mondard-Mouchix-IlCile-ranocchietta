@@ -33,7 +33,7 @@ public class ShopPanel extends AbstractPanel<ShopController>{
             }
             counterX.incrementAndGet();
         });*/
-        //this.getController().getPurchasableObject().stream().findFirst().get().draw(g, 0, 0);
+        this.getController().getPurchasableObject().stream().findFirst().get().draw(g, 0, 0);
     }
 
     @Override

@@ -28,11 +28,11 @@ public class ShopController extends AbstractController implements MenuController
 
     @Override
     public void init(GameScene gameScene) {
+        this.purchasableObjects = new HashSet<>();
+        this.factory = new PurchasableObjectFactoryImpl();
         this.shopInit();
         this.shopPanel = new ShopPanel();
         this.shopPanel.setController(this);
-        this.purchasableObjects = new HashSet<>();
-        this.factory = new PurchasableObjectFactoryImpl();
         this.mouseInput = new MouseInput(this);
         gameScene.setPanel(shopPanel);
     }
@@ -42,7 +42,7 @@ public class ShopController extends AbstractController implements MenuController
     }
 
     public void shopInit() {
-        try(final BufferedReader r = new BufferedReader(new InputStreamReader(getClass().getResourceAsStream(FILE_NAME ),"UTF-16"))) {
+        try(final BufferedReader r = new BufferedReader(new InputStreamReader(getClass().getResourceAsStream(FILE_NAME )))) {
             String line;
             while((line = r.readLine()) != null){
                 String[] values = line.split(" ");
