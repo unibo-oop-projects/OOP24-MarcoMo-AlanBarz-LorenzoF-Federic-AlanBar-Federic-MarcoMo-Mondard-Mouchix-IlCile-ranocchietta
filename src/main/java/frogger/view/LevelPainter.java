@@ -2,7 +2,7 @@ package frogger.view;
 
 import frogger.common.Constants;
 import frogger.common.Direction;
-import frogger.controller.Controller;
+import frogger.controller.GameController;
 import frogger.model.interfaces.PlayerObject;
 
 import java.awt.Color;
@@ -16,13 +16,13 @@ import java.io.InputStream;
 import javax.imageio.ImageIO;
 
 public class LevelPainter {
-    private final Controller controller;
+    private final GameController controller;
     private final Font myFont = new Font("MyFont", 1, Constants.BLOCK_HEIGHT/2);
     private BufferedImage background;
     private BufferedImage heart;
     private BufferedImage death;
     
-    public LevelPainter(Controller controller) {
+    public LevelPainter(GameController controller) {
         this.controller = controller;
         // this.g = g;
         importImg();
@@ -111,8 +111,8 @@ public class LevelPainter {
         }
     }
 
-    private Controller getController() {
-        return controller;
+    private GameController getController() {
+        return this.controller;
     }
 }
 

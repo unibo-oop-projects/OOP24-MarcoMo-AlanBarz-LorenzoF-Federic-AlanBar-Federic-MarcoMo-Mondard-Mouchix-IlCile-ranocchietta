@@ -2,10 +2,6 @@ package frogger.model.implementations;
 
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.io.InputStream;
-
-import javax.imageio.ImageIO;
 
 import frogger.common.LoadSave;
 import frogger.common.Pair;

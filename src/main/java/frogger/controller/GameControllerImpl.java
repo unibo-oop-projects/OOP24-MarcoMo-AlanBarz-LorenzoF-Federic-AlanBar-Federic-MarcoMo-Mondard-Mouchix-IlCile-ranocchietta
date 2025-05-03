@@ -9,7 +9,7 @@ import frogger.common.input.InputController;
 import frogger.common.input.InputControllerImpl;
 import frogger.common.input.KeyInput;
 import frogger.model.implementations.GameImpl;
-import frogger.model.implementations.Menu;
+import frogger.model.interfaces.Game;
 import frogger.view.GamePanel;
 import frogger.view.GameScene;
 
@@ -18,12 +18,10 @@ public class GameControllerImpl extends AbstractController implements GameContro
     private GameImpl game;
     private InputControllerImpl inputController;
     private GamePanel scenePanel;
-    private GameScene gameScene;
     private KeyInput keyInput = new KeyInput(this);
 
     public void init(GameScene gameScene) {
         game = new GameImpl(new Pair(Constants.PLAYER_WIDTH,Constants.PLAYER_HEIGHT));
-    
         scenePanel = new GamePanel();
         scenePanel.setController(this);
         gameScene.setPanel(scenePanel);
@@ -67,7 +65,8 @@ public class GameControllerImpl extends AbstractController implements GameContro
         GameState.state = GameState.DEAD;
     }
 
-    public GameImpl getGame() {
+    @Override
+    public Game getGame() {
         return game;
     }
 
@@ -83,11 +82,6 @@ public class GameControllerImpl extends AbstractController implements GameContro
     @Override
     public KeyListener getKeyListener() {
         return keyInput;
-    }
-
-    @Override
-    public Menu getMenu() {
-        throw new UnsupportedOperationException("Not supported yet.");
     }
 }
 

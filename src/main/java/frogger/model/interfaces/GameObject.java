@@ -2,7 +2,6 @@ package frogger.model.interfaces;
 
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
-import java.io.InputStream;
 
 import frogger.common.Pair;
 import frogger.common.Position;

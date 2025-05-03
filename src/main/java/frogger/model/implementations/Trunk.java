@@ -3,7 +3,6 @@ package frogger.model.implementations;
 import java.util.Optional;
 
 import frogger.common.Direction;
-import frogger.common.LoadSave;
 import frogger.common.Pair;
 import frogger.common.Position;
 import frogger.model.interfaces.Carrier;

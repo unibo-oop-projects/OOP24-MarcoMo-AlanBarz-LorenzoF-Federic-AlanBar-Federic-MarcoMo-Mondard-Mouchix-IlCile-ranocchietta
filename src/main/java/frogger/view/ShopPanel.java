@@ -2,7 +2,6 @@ package frogger.view;
 
  
 import java.awt.Color;
-import java.util.concurrent.atomic.AtomicInteger;
 
 import frogger.controller.ShopController;
 

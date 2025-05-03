@@ -12,7 +12,6 @@ import javax.imageio.ImageIO;
 
 import frogger.common.GameState;
 import frogger.common.input.MouseInput;
-import frogger.model.implementations.GameImpl;
 import frogger.model.implementations.Menu;
 import frogger.model.implementations.PurchasableObjectFactoryImpl;
 import frogger.model.interfaces.PurchasableObject;
@@ -62,16 +61,6 @@ public class ShopController extends AbstractController implements MenuController
     }
 
     @Override
-    public GameImpl getGame() {
-        return null;
-    }
-
-    @Override
-    public Menu getMenu() { 
-        return null;
-    }
-
-    @Override
     protected void core() {
         this.shopPanel.repaint();
     }
@@ -92,6 +81,11 @@ public class ShopController extends AbstractController implements MenuController
     @Override
     public MouseListener getMouseListener() {
         return this.mouseInput;
+    }
+
+    @Override
+    public Menu getMenu() {
+        return null;
     }
 
     

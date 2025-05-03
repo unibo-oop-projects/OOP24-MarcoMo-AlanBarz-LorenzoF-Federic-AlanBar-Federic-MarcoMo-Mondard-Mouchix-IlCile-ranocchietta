@@ -5,7 +5,7 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
 import frogger.common.GameState;
-import frogger.controller.Controller;
+import frogger.controller.MenuController;
 
 
 public class MouseInput implements MouseMotionListener, MouseListener {
@@ -15,10 +15,10 @@ public class MouseInput implements MouseMotionListener, MouseListener {
         this.scenePanel = scenePanel;
     }*/
 
-    private final Controller controller;
+    private final MenuController controller;
     
-    public MouseInput(Controller controller) {
-         this.controller = controller;
+    public MouseInput(MenuController controller) {
+        this.controller = controller;
     }
 
     @Override

@@ -3,9 +3,13 @@ package frogger.controller;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
-public interface MenuController {
+import frogger.model.implementations.Menu;
 
-    public MouseMotionListener getMouseMotionListener();
+public interface MenuController extends Controller {
 
-    public MouseListener getMouseListener();
+    MouseMotionListener getMouseMotionListener();
+
+    MouseListener getMouseListener();
+
+    Menu getMenu();
 }

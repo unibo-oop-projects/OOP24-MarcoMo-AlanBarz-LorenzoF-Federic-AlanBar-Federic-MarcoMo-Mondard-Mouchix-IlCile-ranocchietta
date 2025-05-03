@@ -3,10 +3,13 @@ package frogger.controller;
 import java.awt.event.KeyListener;
 
 import frogger.common.input.InputController;
+import frogger.model.interfaces.Game;
 
-public interface GameController {
+public interface GameController extends Controller {
     
-    public InputController getInputController();
+    InputController getInputController();
 
-    public KeyListener getKeyListener();
+    KeyListener getKeyListener();
+
+    Game getGame();
 }

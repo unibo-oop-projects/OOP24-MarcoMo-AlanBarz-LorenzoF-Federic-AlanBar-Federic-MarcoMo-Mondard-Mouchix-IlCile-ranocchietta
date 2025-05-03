@@ -5,7 +5,6 @@ import java.awt.event.MouseMotionListener;
 
 import frogger.common.GameState;
 import frogger.common.input.MouseInput;
-import frogger.model.implementations.GameImpl;
 import frogger.model.implementations.Menu;
 import frogger.view.GameScene;
 import frogger.view.MenuPanel;
@@ -15,14 +14,11 @@ public class MenuControllerImpl extends AbstractController implements MenuContro
     private MenuPanel scenePanel;
     private Menu menu;
 
-    private GameScene gameScene;
-
     private final MouseInput mouseInput = new MouseInput(this);
 
     @Override
     public void init(GameScene gameScene) {
         menu = new Menu();
-        this.gameScene = gameScene;
         scenePanel = new MenuPanel();
         scenePanel.setController(this);
         gameScene.setPanel(scenePanel);        
@@ -74,10 +70,5 @@ public class MenuControllerImpl extends AbstractController implements MenuContro
     @Override
     public MouseListener getMouseListener() {
         return mouseInput;
-    }
-
-    @Override
-    public GameImpl getGame() {
-        throw new UnsupportedOperationException("Not supported yet.");
     }
 }
