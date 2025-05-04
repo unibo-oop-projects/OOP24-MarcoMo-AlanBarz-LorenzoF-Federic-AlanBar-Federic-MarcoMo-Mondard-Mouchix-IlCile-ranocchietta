@@ -136,7 +136,6 @@ public class LevelFactoryImpl implements LevelFactory {
                 usedPositions.add(pos);
             }
         }
-        System.out.println(eagles.size());
         return new ArrayList<>(eagles);
     }
 
