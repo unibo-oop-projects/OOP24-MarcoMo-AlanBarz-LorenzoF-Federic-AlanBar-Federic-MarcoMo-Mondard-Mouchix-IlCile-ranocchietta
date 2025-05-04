@@ -49,9 +49,10 @@ public class LevelFactoryImpl implements LevelFactory {
         }
         Lane end = new Ground();
         level.addLane(end);
+        /*
         if (laneIndex != Constants.MAX_Y) {
             throw new IllegalStateException("Number of lanes is invalid.");
-        }
+        }*/
         return level;
     }
 
@@ -68,10 +69,8 @@ public class LevelFactoryImpl implements LevelFactory {
         Lane lane;
         if (type.equals(Road.class)) {
             lane = new Road(speed, dir);
-        } else if (type.equals(River.class)) {
-            lane = new River(speed, dir);
         } else {
-            throw new IllegalArgumentException("This type of lane is not valid.");
+            lane = new River(speed, dir);
         }
         return lane;
     }
@@ -88,14 +87,14 @@ public class LevelFactoryImpl implements LevelFactory {
         Set<MovingObject> obstacles = new HashSet<>();
         List<Float> usedPositions = new ArrayList<>();
         MovingObjectFactory obstaclesFactory = new MovingObjectFactoryImpl();
-        int nOfObstacles = ran.nextBoolean() ? Constants.MIN_OBSTACLES_NUMBER : Constants.MAX_OBSTACLES_NUMBER;
+        int nOfObstacles = ran.nextInt(Constants.MAX_OBSTACLES_NUMBER - Constants.MIN_OBSTACLES_NUMBER + 1) + Constants.MIN_OBSTACLES_NUMBER;
 
         while (obstacles.size() != nOfObstacles) {
             int width;
             if (type.equals(Car.class)) {
-                width = ran.nextBoolean() ? Constants.MIN_CAR_WIDTH : Constants.MAX_CAR_WIDTH;
+                width = ran.nextInt(Constants.MAX_CAR_WIDTH - Constants.MIN_CAR_WIDTH + 1) + Constants.MIN_CAR_WIDTH;
             } else {
-                width = ran.nextBoolean() ? Constants.MIN_TRUNK_WIDTH : Constants.MAX_TRUNK_WIDTH;
+                width = ran.nextInt(Constants.MAX_TRUNK_WIDTH - Constants.MIN_TRUNK_WIDTH + 1) + Constants.MIN_TRUNK_WIDTH;
             }
             Pair dim = new Pair(width, Constants.OBJECT_HEIGHT);
             Position pos = new Position(randomX(), y);
@@ -119,7 +118,7 @@ public class LevelFactoryImpl implements LevelFactory {
         List<Eagle> eagles = new ArrayList<>();
         List<Position> usedPositions = new ArrayList<>();
         MovingObjectFactory obstaclesFactory = new MovingObjectFactoryImpl();
-        int n = ran.nextBoolean() ? Constants.MIN_EAGLES_NUMBER : Constants.MAX_EAGLES_NUMBER;
+        int n = ran.nextInt(Constants.MAX_EAGLES_NUMBER - Constants.MIN_EAGLES_NUMBER + 1) + Constants.MIN_EAGLES_NUMBER;
         while (eagles.size() != n) {
             int y = ran.nextBoolean() ? Constants.MIN_Y -1 : Constants.MAX_Y +1;
             Position pos = new Position(randomX(), y);
@@ -137,13 +136,14 @@ public class LevelFactoryImpl implements LevelFactory {
                 usedPositions.add(pos);
             }
         }
+        System.out.println(eagles.size());
         return new ArrayList<>(eagles);
     }
 
     private List<PowerUp> createPowerUp() {
         List<PowerUp> powerUp = new ArrayList<>();
         List<Position> usedPositions = new ArrayList<>();
-        int n = ran.nextInt(Constants.MAX_POWER_UP_NUMBER - 1) + Constants.MIN_POWER_UP_NUMBER;
+        int n = ran.nextInt(Constants.MAX_POWER_UP_NUMBER - Constants.MIN_POWER_UP_NUMBER + 1) + Constants.MIN_POWER_UP_NUMBER;
         while (powerUp.size() != n) {
             Position pos = new Position(randomX(), randomY());
             if (!usedPositions.contains(pos)) {
