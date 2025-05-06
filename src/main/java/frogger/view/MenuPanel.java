@@ -9,6 +9,7 @@ import frogger.common.LoadSave;
 import frogger.controller.MenuControllerImpl;
 
 public class MenuPanel extends AbstractPanel<MenuControllerImpl>{
+    private BufferedImage buttonBack;
     private BufferedImage background;
 
     public MenuPanel() {
@@ -25,13 +26,19 @@ public class MenuPanel extends AbstractPanel<MenuControllerImpl>{
 
     @Override
     public void paintComponent(final Graphics g) {
-        g.drawImage(background, (Constants.FRAME_WIDTH/2 -  (background.getWidth()+30)/2), (Constants.FRAME_HEIGHT/2 -  (background.getHeight()+30)/2), 
-                        background.getWidth()+30, background.getHeight()+30, null);
+        paintBackground(g);
+        g.drawImage(buttonBack, (Constants.FRAME_WIDTH/2 -  (buttonBack.getWidth()+30)/2), (Constants.FRAME_HEIGHT/2 -  (buttonBack.getHeight()+30)/2), 
+                        buttonBack.getWidth()+30, buttonBack.getHeight()+30, null);
         this.getController().getMenu().draw(g);
     }
-    
+
+    public void paintBackground(Graphics g) {
+        g.drawImage(background, 0 , 0, Constants.FRAME_WIDTH, Constants.FRAME_HEIGHT, null);
+    }
+
     @Override
     protected void importImg() {
-        background = LoadSave.GetSprite(LoadSave.MENU_BACKGROUND);
+        buttonBack = LoadSave.GetSprite(LoadSave.MENU_BUTTONBACK);
+        background = LoadSave.GetSprite(LoadSave.GAME_BACKGROUND);
     };
 }
