@@ -74,7 +74,7 @@ public class ScenePanel extends JPanel{
                 this.paintLevel(g);
             }
             case MENU -> {
-                BufferedImage mb = LoadSave.GetSprite(LoadSave.MENU_BACKGROUND);
+                BufferedImage mb = LoadSave.GetSprite(LoadSave.MENU_BUTTONBACK);
                 g.drawImage(mb, 
                            (Constants.FRAME_WIDTH/2 -  (mb.getWidth()+30)/2), (Constants.FRAME_HEIGHT/2 -  (mb.getHeight()+30)/2), 
                            mb.getWidth()+30, mb.getHeight()+30, null);

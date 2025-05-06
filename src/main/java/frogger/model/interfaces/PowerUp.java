@@ -1,7 +1,7 @@
 package frogger.model.interfaces;
 
 
-public interface PowerUp {
+public interface PowerUp extends GameObject {
     
     /**
      * Activates the power-up, triggering its specific effect or behavior.
@@ -15,4 +15,11 @@ public interface PowerUp {
      * Sets the image associated with the power-up. 
      */
     void setImage();
+
+    /**
+     * Sets the player object associated with the power-up.
+     * @param player The player object to associate with the power-up.
+     */
+    void setPlayer(PlayerObject player);
+
 }
