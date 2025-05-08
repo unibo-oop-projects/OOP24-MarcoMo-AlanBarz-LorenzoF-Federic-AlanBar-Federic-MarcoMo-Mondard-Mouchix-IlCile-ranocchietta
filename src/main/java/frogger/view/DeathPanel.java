@@ -26,15 +26,20 @@ public class DeathPanel extends AbstractPanel<DeathController>{
 
     @Override
     public void paintComponent(final Graphics g) {
-        g.drawImage(buttonBack, (Constants.FRAME_WIDTH/2 -  (buttonBack.getWidth()+30)/2), (Constants.FRAME_HEIGHT/2 -  (buttonBack.getHeight()+30)/2), 
-                        buttonBack.getWidth()+30, buttonBack.getHeight()+30, null);
+        paintBackground(g);
+        // g.drawImage(buttonBack, (Constants.FRAME_WIDTH/2 -  (buttonBack.getWidth()+30)/2), (Constants.FRAME_HEIGHT/2 -  (buttonBack.getHeight()+30)/2), 
+                        // buttonBack.getWidth()+30, buttonBack.getHeight()+30, null);
         this.getController().getMenu().draw(g);
+    }
+
+    public void paintBackground(Graphics g) {
+        g.drawImage(background, 0 , 0, Constants.FRAME_WIDTH, Constants.FRAME_HEIGHT, null);
     }
 
     @Override
     protected void importImg() {
-        buttonBack = LoadSave.GetSprite(LoadSave.MENU_BUTTONBACK);
-        background = LoadSave.GetSprite(LoadSave.GAME_BACKGROUND);
+        // buttonBack = LoadSave.GetSprite(LoadSave.MENU_BUTTONBACK);
+        background = LoadSave.GetSprite("death_background.png");
     };
 
 }
