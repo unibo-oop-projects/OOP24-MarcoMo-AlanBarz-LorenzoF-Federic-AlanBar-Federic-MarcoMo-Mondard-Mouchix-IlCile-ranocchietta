@@ -25,6 +25,7 @@ public class MainControllerImpl {
                 }
                 case DEAD -> {
                     controller = new DeathController();
+                    gameController = new GameControllerImpl();
                 }
                 case PAUSE -> {
                     controller = new PauseController();
