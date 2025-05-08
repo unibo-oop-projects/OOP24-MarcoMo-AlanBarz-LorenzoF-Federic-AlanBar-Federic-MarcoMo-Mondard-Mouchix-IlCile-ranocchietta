@@ -9,7 +9,7 @@ import frogger.model.implementations.Menu;
 import frogger.view.GameScene;
 import frogger.view.MenuPanel;
 
-public class MenuControllerImpl extends AbstractController implements MenuController{
+public class MenuControllerImpl extends AbstractController implements MenuController<Menu>{
  
     private MenuPanel scenePanel;
     private Menu menu;
@@ -64,11 +64,11 @@ public class MenuControllerImpl extends AbstractController implements MenuContro
 
     @Override
     public MouseMotionListener getMouseMotionListener() {
-        return mouseInput;
+        return this.mouseInput;
     }
 
     @Override
     public MouseListener getMouseListener() {
-        return mouseInput;
+        return this.mouseInput;
     }
 }

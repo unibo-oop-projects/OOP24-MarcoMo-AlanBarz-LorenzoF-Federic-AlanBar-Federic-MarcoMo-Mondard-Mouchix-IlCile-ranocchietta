@@ -21,6 +21,9 @@ public class MainControllerImpl {
                 case SHOP -> {
                     controller = new ShopController();
                 }
+                case DEAD -> {
+                    controller = new DeathController();
+                }
                 default -> System.exit(0);
             }
             

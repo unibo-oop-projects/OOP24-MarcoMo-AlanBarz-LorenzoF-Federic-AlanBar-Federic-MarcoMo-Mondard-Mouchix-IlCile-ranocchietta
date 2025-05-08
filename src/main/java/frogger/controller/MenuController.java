@@ -5,11 +5,11 @@ import java.awt.event.MouseMotionListener;
 
 import frogger.model.implementations.Menu;
 
-public interface MenuController extends Controller {
+public interface MenuController<X> extends Controller {
 
     MouseMotionListener getMouseMotionListener();
 
     MouseListener getMouseListener();
 
-    Menu getMenu();
+    X getMenu();
 }
