@@ -36,9 +36,7 @@ public class PauseController extends AbstractController implements MenuControlle
     }
 
     @Override
-    protected void changesLoopEnd() {
-        GameState.state = GameState.PLAYING;
-    }
+    protected void changesLoopEnd() {}
 
     @Override
     public MouseMotionListener getMouseMotionListener() {

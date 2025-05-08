@@ -20,8 +20,12 @@ public class GameControllerImpl extends AbstractController implements GameContro
     private GamePanel scenePanel;
     private KeyInput keyInput = new KeyInput(this);
 
-    public void init(GameScene gameScene) {
+    public GameControllerImpl() {
         game = new GameImpl(new Pair(Constants.PLAYER_WIDTH,Constants.PLAYER_HEIGHT));
+    }
+
+    public void init(GameScene gameScene) {
+        //game = new GameImpl(new Pair(Constants.PLAYER_WIDTH,Constants.PLAYER_HEIGHT));
         scenePanel = new GamePanel();
         scenePanel.setController(this);
         gameScene.setPanel(scenePanel);

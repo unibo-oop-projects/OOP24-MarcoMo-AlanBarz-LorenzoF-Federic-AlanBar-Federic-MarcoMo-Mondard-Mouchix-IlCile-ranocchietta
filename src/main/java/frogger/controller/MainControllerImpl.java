@@ -7,13 +7,15 @@ public class MainControllerImpl {
     private GameScene frame;
     // private MenuPanel panel = new MenuPanel();
     private Controller controller;
+    private Controller gameController = new GameControllerImpl();
 
     public void choosePanel() {
         frame = new GameScene();
         while (true) {
             switch (GameState.state) {
                 case PLAYING -> {
-                    controller = new GameControllerImpl();
+                    //controller = new GameControllerImpl();
+                    controller = gameController;
                 }
                 case MENU -> {
                     controller = new MenuControllerImpl();

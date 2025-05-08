@@ -27,7 +27,7 @@ public class PausePanel extends AbstractPanel<PauseController>{
 
     @Override
     protected void importImg() {
-        background = LoadSave.GetSprite("death_background.png");
+        background = LoadSave.GetSprite("pause_background.jpg");
     }
 
     @Override
