@@ -1,4 +1,4 @@
-package frogger.view;
+package frogger.model.implementations;
 
 import java.awt.Graphics;
 import java.awt.Rectangle;
@@ -7,8 +7,9 @@ import java.awt.image.BufferedImage;
 import frogger.common.Constants;
 import frogger.common.GameState;
 import frogger.common.LoadSave;
+import frogger.model.interfaces.Button;
 
-public class MenuButtons{
+public class MenuButtons implements Button{
 
     private final int xPos, yPos, rowIndex;
     private int index;
@@ -39,10 +40,12 @@ public class MenuButtons{
         bounds = new Rectangle(xPos- Constants.B_WIDTH/2, yPos, Constants.B_WIDTH, Constants.B_HEIGHT);
     }
 
+    @Override
     public void draw(Graphics g){
         g.drawImage(imgs[index], xPos - Constants.B_WIDTH/2, yPos, Constants.B_WIDTH, Constants.B_HEIGHT, null);
     }
     
+    @Override
     public void update(){
         index = 0;
         if(mouseOver){
@@ -53,30 +56,37 @@ public class MenuButtons{
         }
     }
 
+    @Override
     public boolean isMouseOver() {
         return mouseOver;
     }
 
+    @Override
     public void setMouseOver(boolean mouseOver) {
         this.mouseOver = mouseOver;
     }
 
+    @Override
     public boolean isMousePressed() {
         return mousePressed;
     }
 
+    @Override
     public void setMousePressed(boolean mousePressed) {
         this.mousePressed = mousePressed;
     }
 
+    @Override
     public Rectangle getBounds() {
         return bounds;
     }
 
+    @Override
     public void applyGameState(){
         GameState.state = state;
     }
 
+    @Override
     public void resetBools(){
         mouseOver = false;
         mousePressed = false;

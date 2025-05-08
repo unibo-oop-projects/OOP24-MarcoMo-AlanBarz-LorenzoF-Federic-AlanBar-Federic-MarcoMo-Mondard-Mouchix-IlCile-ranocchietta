@@ -1,15 +1,17 @@
 package frogger.model.implementations;
 
 import java.awt.Graphics;
+import java.awt.List;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
 import frogger.common.Constants;
 import frogger.common.GameState;
-import frogger.view.MenuButtons;
+import frogger.model.interfaces.Button;
 
 public class Menu{
 
-    private final MenuButtons[] buttons = new MenuButtons[3];
+    private final Button[] buttons = new MenuButtons[3];
 
     public Menu() {
         loadButtons();
@@ -21,20 +23,24 @@ public class Menu{
         buttons[2] = new MenuButtons((int)(Constants.FRAME_WIDTH/2), (int)(Constants.FRAME_HEIGHT/2 + 70), 2, GameState.QUIT);
     }
 
+    public Button[] getButtonList(){        
+        return buttons;
+    }
+
     public void update(){
-        for(MenuButtons button : buttons){
+        for(Button button : buttons){
             button.update();
         }
     }
 
     public void draw(Graphics g){
-        for(MenuButtons button : buttons){
+        for(Button button : buttons){
             button.draw(g);
         }
     }
 
     public void mousePressed(MouseEvent e){
-       for(MenuButtons button : buttons){
+       for(Button button : buttons){
             if(isIn(e, button)){
                 button.setMousePressed(true);
                 break;
@@ -42,7 +48,7 @@ public class Menu{
         } 
     }
     public void mouseReleased(MouseEvent e){
-       for(MenuButtons button : buttons){
+       for(Button button : buttons){
             if(isIn(e, button)){
                 if(button.isMousePressed()){
                     button.applyGameState();
@@ -54,10 +60,10 @@ public class Menu{
     }
 
     public void mouseMoved(MouseEvent e){
-        for(MenuButtons button : buttons){
+        for(Button button : buttons){
             button.setMouseOver(false);
         }
-        for(MenuButtons button : buttons){
+        for(Button button : buttons){
             if(isIn(e, button)){
                 button.setMouseOver(true);
                 break;
@@ -66,12 +72,12 @@ public class Menu{
     }
 
     private void resetButtons() {
-       for(MenuButtons button : buttons){
+       for(Button button : buttons){
             button.resetBools();      
         } 
     }
 
-    public boolean isIn(MouseEvent e, MenuButtons button) {
+    public boolean isIn(MouseEvent e, Button button) {
         return button.getBounds().contains(e.getX(), e.getY());
     }
 
