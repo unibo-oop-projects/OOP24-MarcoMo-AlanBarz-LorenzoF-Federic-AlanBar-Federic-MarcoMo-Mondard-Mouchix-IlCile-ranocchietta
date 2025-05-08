@@ -8,14 +8,14 @@ import java.util.Optional;
 import frogger.common.GameState;
 import frogger.controller.AbstractController;
 import frogger.controller.DeathController;
-import frogger.controller.MenuController;
 import frogger.controller.MenuControllerImpl;
-import frogger.model.implementations.Menu;
+import frogger.controller.PauseController;
 
 
 public class MouseInput implements MouseMotionListener, MouseListener {
     private Optional<MenuControllerImpl> menuController = Optional.empty();
     private Optional<DeathController> deathController = Optional.empty();
+    private Optional<PauseController> pauseController = Optional.empty();
     
     public <X extends AbstractController> MouseInput(X controller) {
         switch (GameState.state) {
@@ -29,7 +29,10 @@ public class MouseInput implements MouseMotionListener, MouseListener {
             case DEAD -> {
             // Handle quit event
                 this.deathController = Optional.of((DeathController)controller);
-            }     
+            }    
+            case PAUSE -> {
+                this.pauseController = Optional.of((PauseController)controller);
+            } 
             default -> {
                 this.menuController = Optional.of((MenuControllerImpl)controller);
                 // Handle default case
@@ -63,7 +66,10 @@ public class MouseInput implements MouseMotionListener, MouseListener {
             }
             case DEAD -> {
                 deathController.get().getMenu().mousePressed(e);
-            }     
+            } 
+            case PAUSE -> {
+                pauseController.get().getMenu().mousePressed(e);
+            }   
             default -> {
                 // Handle default case
             }       
@@ -81,6 +87,9 @@ public class MouseInput implements MouseMotionListener, MouseListener {
             }
             case DEAD -> {
                 deathController.get().getMenu().mouseReleased(e);
+            }
+            case PAUSE -> {
+                pauseController.get().getMenu().mouseReleased(e);
             }
             default -> {
                 // Handle default case
@@ -121,7 +130,9 @@ public class MouseInput implements MouseMotionListener, MouseListener {
                 // }
                 deathController.get().getMenu().mouseMoved(e);
             }            
-
+            case PAUSE -> {
+                pauseController.get().getMenu().mouseMoved(e);
+            }
             default -> {
                 // Handle default case
             }

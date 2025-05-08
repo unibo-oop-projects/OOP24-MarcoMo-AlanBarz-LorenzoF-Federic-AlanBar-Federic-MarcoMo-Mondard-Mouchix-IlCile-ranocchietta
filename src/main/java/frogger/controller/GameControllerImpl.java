@@ -57,12 +57,14 @@ public class GameControllerImpl extends AbstractController implements GameContro
 
     @Override
     public boolean loopCondition() {
-        return !game.isGameOver();
+        return !game.isGameOver() && !game.gameIsPaused();
     }
 
     @Override
     public void changesLoopEnd() {
-        GameState.state = GameState.DEAD;
+        if (!game.gameIsPaused()) {
+            GameState.state = GameState.DEAD;
+        }
     }
 
     @Override

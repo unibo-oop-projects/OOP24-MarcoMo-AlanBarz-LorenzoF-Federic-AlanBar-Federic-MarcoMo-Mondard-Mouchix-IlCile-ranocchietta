@@ -24,6 +24,9 @@ public class MainControllerImpl {
                 case DEAD -> {
                     controller = new DeathController();
                 }
+                case PAUSE -> {
+                    controller = new PauseController();
+                }
                 default -> System.exit(0);
             }
             

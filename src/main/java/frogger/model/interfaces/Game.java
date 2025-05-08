@@ -36,4 +36,10 @@ public interface Game {
      * Check if the current lane is already completed, if not add points to the frog
      */
     void checkProgress();
+
+    /**
+     * Check if the game is currently paused
+     * @return true if it is, false otherwise
+     */
+    boolean gameIsPaused();
 }

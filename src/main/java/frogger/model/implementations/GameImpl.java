@@ -3,6 +3,7 @@ package frogger.model.implementations;
 import java.util.List;
 
 import frogger.common.Constants;
+import frogger.common.GameState;
 import frogger.common.Pair;
 import frogger.model.interfaces.Game;
 import frogger.model.interfaces.Lane;
@@ -120,5 +121,10 @@ public class GameImpl implements Game{
                 eagle.start();
             }
         }
+    }
+
+    @Override
+    public boolean gameIsPaused() {
+        return GameState.state == GameState.PAUSE;
     }
 }
