@@ -71,10 +71,10 @@ public class LevelPainter {
 
     private double calculateRotation(PlayerObject player) {
         return switch (player.getDirection()) {
-            case Direction.UP -> Math.PI;
-            case Direction.RIGHT -> -Math.PI / 2;
-            case Direction.DOWN -> 0;
-            case Direction.LEFT -> Math.PI / 2;
+            case Direction.UP -> 0;
+            case Direction.RIGHT -> Math.PI / 2;
+            case Direction.DOWN -> Math.PI;
+            case Direction.LEFT -> -Math.PI / 2;
             default -> 0; // No rotation by default
         };
     }
@@ -97,7 +97,7 @@ public class LevelPainter {
     }
 
     public void importImg() {
-        getController().getGame().getPlayer().setImage("ranocchietta.png");
+        //getController().getGame().getPlayer().setImage("ranocchietta.png");
         InputStream backgroundStream = getClass().getResourceAsStream("/background.png");
         InputStream heartStream = getClass().getResourceAsStream("/heart.png");
         InputStream deathStream = getClass().getResourceAsStream("/death.png");

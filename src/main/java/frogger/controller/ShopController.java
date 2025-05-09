@@ -1,7 +1,5 @@
 package frogger.controller;
 
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -11,20 +9,17 @@ import java.util.Set;
 import javax.imageio.ImageIO;
 
 import frogger.common.GameState;
-import frogger.common.input.MouseInput;
-import frogger.model.implementations.Menu;
 import frogger.model.implementations.PurchasableObjectFactoryImpl;
 import frogger.model.interfaces.PurchasableObject;
 import frogger.view.GameScene;
 import frogger.view.ShopPanel;
 
-public class ShopController extends AbstractController implements MenuController {
+public class ShopController extends AbstractController {
 
     private static final String FILE_NAME = "/shop.txt";
     private Set<PurchasableObject> purchasableObjects;
     private PurchasableObjectFactoryImpl factory;
     private ShopPanel shopPanel;
-    private MouseInput mouseInput;
 
     @Override
     public void init(GameScene gameScene) {
@@ -33,7 +28,6 @@ public class ShopController extends AbstractController implements MenuController
         this.shopInit();
         this.shopPanel = new ShopPanel();
         this.shopPanel.setController(this);
-        this.mouseInput = new MouseInput(this);
         gameScene.setPanel(shopPanel);
     }
 
@@ -72,21 +66,4 @@ public class ShopController extends AbstractController implements MenuController
 
     @Override
     protected void changesLoopEnd() {}
-
-    @Override
-    public MouseMotionListener getMouseMotionListener() {
-        return this.mouseInput;
-    }
-
-    @Override
-    public MouseListener getMouseListener() {
-        return this.mouseInput;
-    }
-
-    @Override
-    public Menu getMenu() {
-        return null;
-    }
-
-    
 }
