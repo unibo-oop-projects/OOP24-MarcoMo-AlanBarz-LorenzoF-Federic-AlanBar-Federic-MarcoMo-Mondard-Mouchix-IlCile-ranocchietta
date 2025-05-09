@@ -8,9 +8,19 @@ import frogger.common.Position;
 import frogger.model.interfaces.PowerUp;
 
 public abstract class AbstractPowerUp extends GameObjectImpl implements PowerUp {    
-    BufferedImage img;
+    protected  BufferedImage img;
+    protected PlayerObjectImpl player;
 
     public AbstractPowerUp(Position pos, Pair dimension) {
         super(pos, dimension);
     }
+    
+    public void setPlayer(PlayerObjectImpl player) {
+        this.player = player;
+    }    
+
+    @Override
+    public BufferedImage getImage(){
+        return img;
+    };
 }

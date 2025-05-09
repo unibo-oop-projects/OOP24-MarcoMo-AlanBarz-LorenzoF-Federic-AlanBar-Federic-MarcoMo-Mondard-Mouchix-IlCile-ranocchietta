@@ -19,7 +19,6 @@ public class InputControllerImpl implements InputController{
         Command input = inputQueue.poll();
 		if (input != null){
 			input.execute(game);
-
 		}
     }
 

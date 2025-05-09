@@ -1,25 +1,22 @@
 package frogger.model.implementations;
 
 import java.awt.Graphics;
-import java.awt.List;
 import java.awt.event.MouseEvent;
-import java.util.ArrayList;
 
 import frogger.common.Constants;
 import frogger.common.GameState;
 import frogger.model.interfaces.Button;
 
-public class Menu{
-
+public class DeathMenu {
     private final Button[] buttons = new MenuButtons[3];
 
-    public Menu() {
+    public DeathMenu() {
         loadButtons();
     }
-
+    
     private void loadButtons() {
         buttons[0] = new MenuButtons((int)(Constants.FRAME_WIDTH/2), (int)(Constants.FRAME_HEIGHT/2 - 70), 0, GameState.PLAYING);
-        buttons[1] = new MenuButtons((int)(Constants.FRAME_WIDTH/2), (int)(Constants.FRAME_HEIGHT/2),      1, GameState.SHOP);  
+        buttons[1] = new MenuButtons((int)(Constants.FRAME_WIDTH/2), (int)(Constants.FRAME_HEIGHT/2),      1, GameState.MENU);  
         buttons[2] = new MenuButtons((int)(Constants.FRAME_WIDTH/2), (int)(Constants.FRAME_HEIGHT/2 + 70), 2, GameState.QUIT);
     }
 
@@ -47,6 +44,7 @@ public class Menu{
             }
         } 
     }
+
     public void mouseReleased(MouseEvent e){
        for(Button button : buttons){
             if(isIn(e, button)){
@@ -80,5 +78,4 @@ public class Menu{
     public boolean isIn(MouseEvent e, Button button) {
         return button.getBounds().contains(e.getX(), e.getY());
     }
-
 }

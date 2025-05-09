@@ -19,10 +19,11 @@ public class KeyInput implements KeyListener{
     @Override
     public void keyPressed(KeyEvent e) {
         switch (e.getKeyCode()) {
-            case 38 -> this.controller.getInputController().notifyCommand(new MoveUp());
-            case 40 -> this.controller.getInputController().notifyCommand(new MoveDown());
-            case 39 -> this.controller.getInputController().notifyCommand(new MoveRight());
-            case 37 -> this.controller.getInputController().notifyCommand(new MoveLeft());
+            case KeyEvent.VK_UP -> this.controller.getInputController().notifyCommand(new MoveUp());
+            case KeyEvent.VK_DOWN -> this.controller.getInputController().notifyCommand(new MoveDown());
+            case KeyEvent.VK_RIGHT -> this.controller.getInputController().notifyCommand(new MoveRight());
+            case KeyEvent.VK_LEFT -> this.controller.getInputController().notifyCommand(new MoveLeft());
+            case KeyEvent.VK_ESCAPE -> this.controller.getInputController().notifyCommand(new Pause());
         }
     }
 

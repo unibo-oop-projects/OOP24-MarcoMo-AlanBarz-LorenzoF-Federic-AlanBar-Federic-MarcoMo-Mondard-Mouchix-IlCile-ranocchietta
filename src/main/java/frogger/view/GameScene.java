@@ -23,9 +23,11 @@ public class GameScene{
     }
 
     public void setPanel(JPanel panel) {
-        this.frame.getContentPane().add(panel);
+        this.frame.setContentPane(panel);
+        this.frame.revalidate();
+        this.frame.repaint();
         panel.requestFocus();
-        frame.pack();
-        frame.setVisible(true);
+        this.frame.pack();
+        this.frame.setVisible(true);
     }
 }

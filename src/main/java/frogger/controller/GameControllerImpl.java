@@ -20,8 +20,12 @@ public class GameControllerImpl extends AbstractController implements GameContro
     private GamePanel scenePanel;
     private KeyInput keyInput = new KeyInput(this);
 
-    public void init(GameScene gameScene) {
+    public GameControllerImpl() {
         game = new GameImpl(new Pair(Constants.PLAYER_WIDTH,Constants.PLAYER_HEIGHT));
+    }
+
+    public void init(GameScene gameScene) {
+        //game = new GameImpl(new Pair(Constants.PLAYER_WIDTH,Constants.PLAYER_HEIGHT));
         scenePanel = new GamePanel();
         scenePanel.setController(this);
         gameScene.setPanel(scenePanel);
@@ -43,12 +47,14 @@ public class GameControllerImpl extends AbstractController implements GameContro
 
     @Override
     public boolean loopCondition() {
-        return !game.isGameOver();
+        return !game.isGameOver() && !game.gameIsPaused();
     }
 
     @Override
     public void changesLoopEnd() {
-        GameState.state = GameState.DEAD;
+        if (!game.gameIsPaused()) {
+            GameState.state = GameState.DEAD;
+        }
     }
 
     @Override

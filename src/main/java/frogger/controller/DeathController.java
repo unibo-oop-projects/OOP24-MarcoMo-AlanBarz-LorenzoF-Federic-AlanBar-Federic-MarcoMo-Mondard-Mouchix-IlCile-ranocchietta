@@ -5,23 +5,23 @@ import java.awt.event.MouseMotionListener;
 
 import frogger.common.GameState;
 import frogger.common.input.MouseInput;
-import frogger.model.implementations.Menu;
+import frogger.model.implementations.DeathMenu;
 import frogger.view.GameScene;
-import frogger.view.MenuPanel;
+import frogger.view.DeathPanel;
 
-public class MenuControllerImpl extends AbstractController implements MenuController<Menu>{
- 
-    private MenuPanel scenePanel;
-    private Menu menu;
+public class DeathController extends AbstractController implements MenuController<DeathMenu>{
+    private DeathPanel scenePanel;
+    private DeathMenu menu;
 
     private final MouseInput mouseInput = new MouseInput(this);
 
     @Override
     public void init(GameScene gameScene) {
-        menu = new Menu();
-        scenePanel = new MenuPanel();
+        menu = new DeathMenu();
+        scenePanel = new DeathPanel();
         scenePanel.setController(this);
-        gameScene.setPanel(scenePanel);        
+        gameScene.setPanel(scenePanel); 
+        // scenePanel.requestFocusInWindow();
     }
 
     @Override
@@ -31,18 +31,17 @@ public class MenuControllerImpl extends AbstractController implements MenuContro
     }
 
     @Override
+    public DeathMenu getMenu() {
+        return this.menu;
+    }
+
+    @Override
     protected boolean loopCondition() {
-        return GameState.state == GameState.MENU;
+        return GameState.state == GameState.DEAD;
     }
 
     @Override
     protected void changesLoopEnd() {}
-
-
-    @Override
-    public Menu getMenu() {
-        return menu;
-    }
 
     @Override
     public MouseMotionListener getMouseMotionListener() {
@@ -53,4 +52,5 @@ public class MenuControllerImpl extends AbstractController implements MenuContro
     public MouseListener getMouseListener() {
         return this.mouseInput;
     }
+
 }

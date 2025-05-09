@@ -6,20 +6,20 @@ import java.awt.image.BufferedImage;
 
 import frogger.common.Constants;
 import frogger.common.LoadSave;
-import frogger.controller.MenuControllerImpl;
+import frogger.controller.DeathController;
 
-public class MenuPanel extends AbstractPanel<MenuControllerImpl>{
+public class DeathPanel extends AbstractPanel<DeathController>{
+
     private BufferedImage buttonBack;
     private BufferedImage background;
 
-    public MenuPanel() {
+    public DeathPanel() {
         setFocusable(true);
         setPanelSize();
         setBackground(Color.BLACK);
     }
-
     @Override
-    protected void setInputListener(){
+    protected void setInputListener() {
         this.addMouseListener(this.getController().getMouseListener());
         this.addMouseMotionListener(this.getController().getMouseMotionListener());
     }
@@ -27,8 +27,8 @@ public class MenuPanel extends AbstractPanel<MenuControllerImpl>{
     @Override
     public void paintComponent(final Graphics g) {
         paintBackground(g);
-        g.drawImage(buttonBack, (Constants.FRAME_WIDTH/2 -  (buttonBack.getWidth()+30)/2), (Constants.FRAME_HEIGHT/2 -  (buttonBack.getHeight()+30)/2), 
-                        buttonBack.getWidth()+30, buttonBack.getHeight()+30, null);
+        // g.drawImage(buttonBack, (Constants.FRAME_WIDTH/2 -  (buttonBack.getWidth()+30)/2), (Constants.FRAME_HEIGHT/2 -  (buttonBack.getHeight()+30)/2), 
+                        // buttonBack.getWidth()+30, buttonBack.getHeight()+30, null);
         this.getController().getMenu().draw(g);
     }
 
@@ -38,7 +38,8 @@ public class MenuPanel extends AbstractPanel<MenuControllerImpl>{
 
     @Override
     protected void importImg() {
-        buttonBack = LoadSave.GetSprite(LoadSave.MENU_BUTTONBACK);
-        background = LoadSave.GetSprite(LoadSave.GAME_BACKGROUND);
+        // buttonBack = LoadSave.GetSprite(LoadSave.MENU_BUTTONBACK);
+        background = LoadSave.GetSprite("death_background.png");
     };
+
 }

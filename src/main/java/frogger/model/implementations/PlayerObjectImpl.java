@@ -25,6 +25,10 @@ public class PlayerObjectImpl extends GameObjectImpl implements PlayerObject{
         this.dead = false;
     }
 
+    public void addLive(){
+        this.lives++;
+    }
+    
     @Override
     public int getLives() {
         return this.lives;
@@ -97,4 +101,5 @@ public class PlayerObjectImpl extends GameObjectImpl implements PlayerObject{
         this.dead = false;
         resetPosition();
     }
+
 }
