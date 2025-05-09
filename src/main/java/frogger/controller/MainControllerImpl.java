@@ -5,7 +5,6 @@ import frogger.view.GameScene;
 
 public class MainControllerImpl {
     private GameScene frame;
-    // private MenuPanel panel = new MenuPanel();
     private Controller controller;
 
     public void choosePanel() {

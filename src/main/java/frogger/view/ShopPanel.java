@@ -1,7 +1,7 @@
 package frogger.view;
 
- 
 import java.awt.Color;
+import java.awt.Graphics;
 
 import frogger.controller.ShopController;
 
@@ -20,7 +20,7 @@ public class ShopPanel extends AbstractPanel<ShopController>{
     }
 
     @Override
-    public void paintComponent(final java.awt.Graphics g) {
+    public void paintComponent(final Graphics g) {
         //AtomicInteger counterX = new AtomicInteger(0);
         //AtomicInteger counterY = new AtomicInteger(0);
         /*this.getController().getPurchasableObject().stream().forEach(purchasableObject -> {

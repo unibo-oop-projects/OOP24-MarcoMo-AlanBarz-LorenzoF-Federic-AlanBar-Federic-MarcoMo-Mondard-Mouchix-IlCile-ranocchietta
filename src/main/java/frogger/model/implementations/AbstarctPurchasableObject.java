@@ -23,7 +23,7 @@ public abstract class AbstarctPurchasableObject implements PurchasableObject {
 
     @Override
     public void draw(Graphics g, int x, int y) {
-        System.out.println("Drawing purchasable object at: " + x + ", " + y);
+        //System.out.println("Drawing purchasable object at: " + x + ", " + y);
         g.drawImage(this.img, x, y, img.getWidth(), img.getHeight(), null);
         if(this.isBought){
             g.drawString("Bought", 0, 0);

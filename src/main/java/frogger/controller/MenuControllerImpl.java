@@ -24,24 +24,6 @@ public class MenuControllerImpl extends AbstractController implements MenuContro
         gameScene.setPanel(scenePanel);        
     }
 
-    // @Override
-    // public void loop(){
-    //     double timePerFrame = 10000000.0 / FPS_SET;
-    //     long lastFrame = System.nanoTime();
-    //     long now;
-
-    //     while (GameState.state == GameState.MENU){
-    //         now = System.nanoTime(); 
-            
-    //         if (now - lastFrame >= timePerFrame) {
-    //             this.game.getMenu().update();
-            
-    //             this.scenePanel.repaint();
-    //             lastFrame = now;
-    //         }
-    //     }
-    // }
-
     @Override
     protected void core() {
         this.getMenu().update();

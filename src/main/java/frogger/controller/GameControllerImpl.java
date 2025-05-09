@@ -28,25 +28,11 @@ public class GameControllerImpl extends AbstractController implements GameContro
         inputController = new InputControllerImpl();
     }
 
-    // public void loop(){
-    //     double timePerFrame = 1000000000.0 / FPS_SET;
-    //     long lastFrame = System.nanoTime();
-    //     long now;
-
-    //     while (!game.isGameOver()){
-    //         now = System.nanoTime(); 
-    //         this.inputController.processInput(this.game);
-            
-    //         if (now - lastFrame >= timePerFrame) {
-    //             lastFrame = now;
-    //         }
-    //     }
-    //     // GameState.state = GameState.DEAD;
-    // }
-
     @Override
     public void core() {
-        this.inputController.processInput(this.game);
+        if(!this.game.getPlayer().isDead()){
+            this.inputController.processInput(this.game);
+        }
         this.game.checkCollision();
         this.game.checkProgress();
         this.game.checkNewLevel();
