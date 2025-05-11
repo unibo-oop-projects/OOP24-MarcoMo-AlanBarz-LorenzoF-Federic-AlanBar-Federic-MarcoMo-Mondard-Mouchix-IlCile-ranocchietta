@@ -32,17 +32,17 @@ public class MenuButtons implements Button{
         imgs = new BufferedImage[3];
         BufferedImage temp = LoadSave.GetSprite(LoadSave.MENU_BUTTONS);
         for(int i = 0; i < imgs.length; i++){
-            imgs[i] = temp.getSubimage(i * Constants.B_WIDTH_DEFAULT, rowIndex * Constants.B_HEIGHT_DEFAULT, Constants.B_WIDTH_DEFAULT, Constants.B_HEIGHT_DEFAULT);
+            imgs[i] = temp.getSubimage(i * Constants.BUTTON_WIDTH_DEFAULT, rowIndex * Constants.BUTTON_HEIGHT_DEFAULT, Constants.BUTTON_WIDTH_DEFAULT, Constants.BUTTON_HEIGHT_DEFAULT);
         }
     }
 
     private void initBounds() {       
-        bounds = new Rectangle(xPos- Constants.B_WIDTH/2, yPos, Constants.B_WIDTH, Constants.B_HEIGHT);
+        bounds = new Rectangle(xPos- Constants.BUTTON_WIDTH/2, yPos, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
     }
 
     @Override
     public void draw(Graphics g){
-        g.drawImage(imgs[index], xPos - Constants.B_WIDTH/2, yPos, Constants.B_WIDTH, Constants.B_HEIGHT, null);
+        g.drawImage(imgs[index], xPos - Constants.BUTTON_WIDTH/2, yPos, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT, null);
     }
     
     @Override

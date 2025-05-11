@@ -27,7 +27,7 @@ public class MainControllerImpl {
                     gameController = new GameControllerImpl();
                 }
                 case PAUSE -> {
-                    controller = new PauseController();
+                    // controller = new PauseController();
                 }
                 default -> System.exit(0);
             }

@@ -1,33 +1,35 @@
 package frogger.model.implementations;
 
 import java.awt.Graphics;
-import java.awt.List;
+import java.util.List;
 import java.awt.event.MouseEvent;
-import java.util.ArrayList;
+import java.util.LinkedList;
 
 import frogger.common.Constants;
 import frogger.common.GameState;
 import frogger.model.interfaces.Button;
 
 public class Menu{
+    private final List<Button> buttons = new LinkedList<>();
 
-    private final Button[] buttons = new MenuButtons[3];
-
-    public Menu() {
-        loadButtons();
+    public Menu(GameState ... states) {
+        loadButtons(states);
     }
 
-    private void loadButtons() {
-        buttons[0] = new MenuButtons((int)(Constants.FRAME_WIDTH/2), (int)(Constants.FRAME_HEIGHT/2 - 70), 0, GameState.PLAYING);
-        buttons[1] = new MenuButtons((int)(Constants.FRAME_WIDTH/2), (int)(Constants.FRAME_HEIGHT/2),      1, GameState.SHOP);  
-        buttons[2] = new MenuButtons((int)(Constants.FRAME_WIDTH/2), (int)(Constants.FRAME_HEIGHT/2 + 70), 2, GameState.QUIT);
+    private void loadButtons(GameState ... states) {
+        int xPos = (int)(Constants.FRAME_WIDTH/2);
+        int yPos = (int)(Constants.FRAME_HEIGHT/2);
+        for (int i = 0; i < states.length; i++) {
+            int offset = (i - (int)(states.length / 2)) * (Constants.BUTTON_HEIGHT + Constants.BUTTONS_DISTANCE);
+            buttons.add(new MenuButtons(xPos, yPos + offset, i, states[i]));
+        }
     }
 
-    public Button[] getButtonList(){        
+    public List<Button> getButtonList() {        
         return buttons;
     }
 
-    public void update(){
+    public void update() {
         for(Button button : buttons){
             button.update();
         }

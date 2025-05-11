@@ -7,6 +7,7 @@ import frogger.common.Constants;
 import frogger.common.GameState;
 import frogger.model.interfaces.Button;
 
+@Deprecated
 public class PauseMenu {
 private final Button[] buttons = new MenuButtons[3];
 

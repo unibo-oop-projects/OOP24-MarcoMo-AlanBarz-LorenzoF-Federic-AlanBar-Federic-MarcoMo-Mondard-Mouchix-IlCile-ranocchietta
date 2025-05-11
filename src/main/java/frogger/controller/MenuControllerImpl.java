@@ -6,11 +6,12 @@ import java.awt.event.MouseMotionListener;
 import frogger.common.GameState;
 import frogger.common.input.MouseInput;
 import frogger.model.implementations.Menu;
+import frogger.model.implementations.MenuFactory;
 import frogger.view.GameScene;
 import frogger.view.MenuPanel;
 
-public class MenuControllerImpl extends AbstractController implements MenuController<Menu>{
- 
+public class MenuControllerImpl extends AbstractController implements MenuController{
+    private final MenuFactory menuFactory = new MenuFactory();
     private MenuPanel scenePanel;
     private Menu menu;
 
@@ -18,7 +19,7 @@ public class MenuControllerImpl extends AbstractController implements MenuContro
 
     @Override
     public void init(GameScene gameScene) {
-        menu = new Menu();
+        menu = menuFactory.MainMenu();
         scenePanel = new MenuPanel();
         scenePanel.setController(this);
         gameScene.setPanel(scenePanel);        
