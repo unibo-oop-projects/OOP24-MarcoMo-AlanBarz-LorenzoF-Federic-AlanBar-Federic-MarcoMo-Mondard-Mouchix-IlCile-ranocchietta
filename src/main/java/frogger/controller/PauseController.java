@@ -14,8 +14,17 @@ public class PauseController extends AbstractController implements MenuControlle
     private final MenuFactory menuFactory = new MenuFactory();
     private PausePanel scenePanel;
     private Menu menu;
+    private final Controller gc;
 
     private final MouseInput mouseInput = new MouseInput(this);
+
+    public PauseController(Controller gc) {
+        this.gc = gc;
+    }
+
+    public Controller getGameController() {
+        return this.gc;
+    }
 
     @Override
     public void init(GameScene gameScene) {

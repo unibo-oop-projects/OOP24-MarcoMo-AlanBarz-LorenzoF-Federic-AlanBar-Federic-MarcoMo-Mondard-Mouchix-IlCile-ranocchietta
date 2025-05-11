@@ -13,11 +13,11 @@ public class MainControllerImpl {
         while (true) {
             switch (GameState.state) {
                 case PLAYING -> {
-                    //controller = new GameControllerImpl();
                     controller = gameController;
                 }
                 case MENU -> {
                     controller = new MenuControllerImpl();
+                    gameController = new GameControllerImpl();
                 }
                 case SHOP -> {
                     controller = new ShopController();
@@ -27,7 +27,7 @@ public class MainControllerImpl {
                     gameController = new GameControllerImpl();
                 }
                 case PAUSE -> {
-                    // controller = new PauseController();
+                    controller = new PauseController(gameController);
                 }
                 default -> System.exit(0);
             }
