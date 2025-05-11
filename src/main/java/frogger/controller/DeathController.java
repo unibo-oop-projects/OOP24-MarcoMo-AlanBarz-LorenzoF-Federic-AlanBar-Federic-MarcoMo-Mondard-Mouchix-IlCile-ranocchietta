@@ -5,7 +5,6 @@ import java.awt.event.MouseMotionListener;
 
 import frogger.common.GameState;
 import frogger.common.input.MouseInput;
-import frogger.model.implementations.DeathMenu;
 import frogger.model.implementations.Menu;
 import frogger.model.implementations.MenuFactory;
 import frogger.view.GameScene;
@@ -20,7 +19,6 @@ public class DeathController extends AbstractController implements MenuControlle
 
     @Override
     public void init(GameScene gameScene) {
-        
         menu = menuFactory.DeathMenu();
         scenePanel = new DeathPanel();
         scenePanel.setController(this);
