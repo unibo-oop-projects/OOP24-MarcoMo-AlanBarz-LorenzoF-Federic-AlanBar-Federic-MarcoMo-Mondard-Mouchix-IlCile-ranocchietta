@@ -22,7 +22,7 @@ public class DeathController extends AbstractController implements MenuControlle
         menu = menuFactory.DeathMenu();
         scenePanel = new DeathPanel();
         scenePanel.setController(this);
-        gameScene.setPanel(scenePanel); 
+        gameScene.setPanel(scenePanel);
         // scenePanel.requestFocusInWindow();
     }
 

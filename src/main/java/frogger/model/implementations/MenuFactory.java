@@ -8,7 +8,7 @@ public class MenuFactory {
     }
 
     public Menu PauseMenu() {
-        return new Menu(/*GameState.PLAYING, GameState.SHOP, GameState.QUIT*/);
+        return new Menu(/*stati da raggiungere dal menu di pausa*/);
     }
 
     public Menu DeathMenu() {

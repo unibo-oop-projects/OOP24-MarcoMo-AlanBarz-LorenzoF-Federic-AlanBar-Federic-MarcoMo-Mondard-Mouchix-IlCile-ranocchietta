@@ -17,6 +17,7 @@ public class DeathPanel extends AbstractPanel<DeathController>{
         setFocusable(true);
         setPanelSize();
         setBackground(Color.BLACK);
+        this.setOpaque(false);
     }
     @Override
     protected void setInputListener() {
