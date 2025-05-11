@@ -39,7 +39,7 @@ public class DeathPanel extends AbstractPanel<DeathController>{
 
     @Override
     protected void importImg() {
-        // buttonBack = LoadSave.GetSprite(LoadSave.MENU_BUTTONBACK);
+        // buttonBack = LoadSave.GetSprite("death_background.png");
         background = LoadSave.GetSprite("death_background.png");
     };
 
