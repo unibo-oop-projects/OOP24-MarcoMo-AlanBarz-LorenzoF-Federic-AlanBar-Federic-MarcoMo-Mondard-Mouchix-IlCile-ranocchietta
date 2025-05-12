@@ -9,11 +9,17 @@ public class Road extends AbstractLaneImpl {
         super(speed, direction);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void addCar(MovingObject obstacle) {
         super.obstacles.add((Car)obstacle);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void addTrunk(MovingObject obstacle) {
         throw new IllegalStateException("Wrong type of obstacle.");

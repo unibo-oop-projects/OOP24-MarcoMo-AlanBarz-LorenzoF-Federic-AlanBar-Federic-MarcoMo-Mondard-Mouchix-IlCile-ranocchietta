@@ -13,17 +13,26 @@ public class RandomEaglesSpawner extends AbstractRandomEntitySpawner<Eagle>{
 
     private final MovingObjectFactory obstaclesFactory = new MovingObjectFactoryImpl();
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected boolean isValidPosition(Position pos, Set<Position> used) {
         return !used.contains(pos);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected Position generatePosition() {
         int y = ran.nextBoolean() ? Constants.MIN_Y -1 : Constants.MAX_Y +1;
         return new Position(RandomUtils.randomX(), y);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected Eagle createEntity(Position pos) {
         Pair dim = new Pair(Constants.EAGLE_WIDTH, Constants.EAGLE_HEIGHT);

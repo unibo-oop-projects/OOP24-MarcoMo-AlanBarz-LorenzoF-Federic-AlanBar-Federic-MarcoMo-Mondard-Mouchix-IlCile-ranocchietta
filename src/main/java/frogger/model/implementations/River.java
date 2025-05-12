@@ -9,11 +9,17 @@ public class River extends AbstractLaneImpl {
         super(speed, direction);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void addCar(MovingObject obstacle) {
         throw new IllegalStateException("Wrong type of obstacle.");    
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void addTrunk(final MovingObject obstacle) {
         super.obstacles.add((Trunk)obstacle);

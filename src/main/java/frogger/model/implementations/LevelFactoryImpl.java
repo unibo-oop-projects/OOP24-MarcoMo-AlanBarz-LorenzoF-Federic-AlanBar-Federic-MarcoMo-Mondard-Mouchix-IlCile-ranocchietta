@@ -14,13 +14,16 @@ public class LevelFactoryImpl implements LevelFactory {
 
     private Random ran = new Random();
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Level randomLevel() {
         Level level = new LevelImpl();
         int laneIndex = Constants.MIN_Y;
         EntitySpawner<Eagle> eagleSpawner = new RandomEaglesSpawner();
         EntitySpawner<PowerUp> powerUpSpawner = new RandomPowerUpsSpawner();
-        
+
         eagleSpawner.spawn(Constants.MIN_EAGLES_NUMBER, Constants.MAX_EAGLES_NUMBER).forEach(eagle -> level.addEagle(eagle));
         powerUpSpawner.spawn(Constants.MIN_POWER_UP_NUMBER, Constants.MAX_POWER_UP_NUMBER).forEach(p -> level.addPowerUp(p));
         

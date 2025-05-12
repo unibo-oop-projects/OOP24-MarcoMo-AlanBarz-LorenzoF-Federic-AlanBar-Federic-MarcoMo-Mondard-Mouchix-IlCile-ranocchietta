@@ -16,36 +16,57 @@ public class LevelImpl implements Level{
     private final List<Eagle> eagles = new ArrayList<>();
     private final List<PowerUp> powerUp = new ArrayList<>();
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public List<Lane> getLanes() {
         return new ArrayList<>(lanes);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public List<MovingObject> getAllObstacles() {
         return Stream.concat(lanes.stream().flatMap(elem -> elem.getLaneObstacles().stream()), this.eagles.stream()).collect(Collectors.toList());
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void addLane(Lane lane) {
         lanes.add(lane);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void addEagle(Eagle eagle) {
         this.eagles.add((Eagle)eagle);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public List<Eagle> getEagles() {
         return new ArrayList<>(this.eagles);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public List<PowerUp> getPowerUp() {
         return new ArrayList<>(this.powerUp);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void addPowerUp(PowerUp p) {
         this.powerUp.add(p);

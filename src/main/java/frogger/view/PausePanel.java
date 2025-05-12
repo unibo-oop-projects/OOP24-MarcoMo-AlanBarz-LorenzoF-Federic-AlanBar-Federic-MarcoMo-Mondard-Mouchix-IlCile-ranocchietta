@@ -17,24 +17,33 @@ public class PausePanel extends AbstractPanel<PauseController>{
         setPanelSize();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void setInputListener() {
         this.addMouseListener(this.getController().getMouseListener());
         this.addMouseMotionListener(this.getController().getMouseMotionListener());
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void importImg() {
         background = LoadSave.GetSprite("pause_background.jpg");
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void paintComponent(final Graphics g) {
         paintBackground(g);
         this.getController().getMenu().draw(g);
     }
 
-    public void paintBackground(Graphics g) {
+    private void paintBackground(Graphics g) {
         LevelPainter p = new LevelPainter((GameController)getController().getGameController());
         p.paintLevel(g);
         g.drawImage(background, (int)getController().getXinPixel(-3.5) , (int)getController().getYinPixel(3), 

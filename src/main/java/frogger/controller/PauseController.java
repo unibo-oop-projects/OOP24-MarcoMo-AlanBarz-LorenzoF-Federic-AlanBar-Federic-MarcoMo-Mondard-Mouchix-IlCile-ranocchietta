@@ -22,10 +22,17 @@ public class PauseController extends AbstractController implements MenuControlle
         this.gc = gc;
     }
 
+    /**
+     * Return the game controller
+     * @return the game controller
+     */
     public Controller getGameController() {
         return this.gc;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void init(GameScene gameScene) {
         menu = menuFactory.PauseMenu();
@@ -34,30 +41,48 @@ public class PauseController extends AbstractController implements MenuControlle
         gameScene.setPanel(scenePanel);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void core() {
         this.getMenu().update();
         this.scenePanel.repaint();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected boolean loopCondition() {
         return GameState.state == GameState.PAUSE;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void changesLoopEnd() {}
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public MouseMotionListener getMouseMotionListener() {
         return this.mouseInput;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public MouseListener getMouseListener() {
         return this.mouseInput;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Menu getMenu() {
         return this.menu;

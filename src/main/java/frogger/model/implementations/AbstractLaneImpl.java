@@ -30,6 +30,9 @@ public abstract class AbstractLaneImpl implements Lane {
      */
     public abstract void addTrunk(MovingObject obstacle);
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void addMovingObject(final MovingObject obstacle) {
         if (obstacle instanceof Car) {
@@ -41,26 +44,41 @@ public abstract class AbstractLaneImpl implements Lane {
         } 
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public float getSpeed() {
         return this.speed;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Direction getDirection() {
         return this.direction;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Set<MovingObject> getLaneObstacles() {
         return new HashSet<>(obstacles);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean isCompleted() {
         return this.completed;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void setCompleted() {
         this.completed = true;

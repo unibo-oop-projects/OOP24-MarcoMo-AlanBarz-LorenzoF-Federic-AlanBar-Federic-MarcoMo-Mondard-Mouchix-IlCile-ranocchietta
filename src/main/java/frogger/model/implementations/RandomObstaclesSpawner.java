@@ -19,6 +19,13 @@ public class RandomObstaclesSpawner<X extends MovingObjectImpl> extends Abstract
     private final MovingObjectFactory obstaclesFactory = new MovingObjectFactoryImpl();
     private int width;
 
+    /**
+     * Since speed, y and direction don't depend on this class they need to be passed.
+     * @param type the type of obstacle that will be created
+     * @param y the y coordinate of the position
+     * @param speed the speed of the obstacle
+     * @param direction the direction of the obstacle
+     */
     public RandomObstaclesSpawner(Class<X> type, int y, float speed, Direction direction) {
         this.type = type;
         this.y = y;
@@ -26,23 +33,36 @@ public class RandomObstaclesSpawner<X extends MovingObjectImpl> extends Abstract
         this.direction = direction;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected Position generatePosition() {
         this.width = getWidth();
         return new Position(RandomUtils.randomX(), this.y);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected boolean isValidPosition(Position pos, Set<Position> used) {
         return IntStream.range(0, this.width).noneMatch(i -> used.contains(new Position(pos.x() + i, this.y)));
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected X createEntity(Position pos) {
        Pair dim = new Pair(this.width, Constants.OBJECT_HEIGHT);
        return obstaclesFactory.createMovingObject(pos, dim, speed, direction, type);
     }
 
+    /**
+     * return the width of the obstacle based on the type, Car o Trunk
+     * @return
+     */
     private int getWidth() {
         if (this.type.equals(Car.class)) {
             return ran.nextInt(Constants.MAX_CAR_WIDTH - Constants.MIN_CAR_WIDTH + 1) + Constants.MIN_CAR_WIDTH;
@@ -51,8 +71,13 @@ public class RandomObstaclesSpawner<X extends MovingObjectImpl> extends Abstract
         }
     }
 
+    /**
+     * {@inheritDoc}
+     * <p>
+     * Modified the default behaviour to add more positions to the list of used positions instead of just one, in particular add n = width positions
+     */
     @Override
-    protected void addPos(Position pos, Set<Position> usedPositions, X entity) {
+    protected void addPos(Position pos, Set<Position> usedPositions) {
         IntStream.range(0, this.width).forEach(i -> usedPositions.add(new Position(pos.x() + i, this.y)));
     }
 
