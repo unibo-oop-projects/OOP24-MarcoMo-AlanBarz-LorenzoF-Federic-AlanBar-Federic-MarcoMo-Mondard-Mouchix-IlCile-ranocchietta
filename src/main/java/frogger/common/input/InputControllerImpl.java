@@ -3,7 +3,7 @@ package frogger.common.input;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 
-import frogger.model.implementations.GameImpl;
+import frogger.model.interfaces.Game;
 
 public class InputControllerImpl implements InputController{
 
@@ -15,7 +15,7 @@ public class InputControllerImpl implements InputController{
     }
 
     @Override
-    public void processInput(GameImpl game) {
+    public void processInput(Game game) {
         Command input = inputQueue.poll();
 		if (input != null){
 			input.execute(game);

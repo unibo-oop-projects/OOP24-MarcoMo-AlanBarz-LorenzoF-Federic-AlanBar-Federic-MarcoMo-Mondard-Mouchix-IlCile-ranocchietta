@@ -6,6 +6,8 @@ import frogger.view.GameScene;
 public class MainControllerImpl {
     private GameScene frame;
     private Controller controller;
+    private String skin;
+    private int coins;
     private Controller gameController = new GameControllerImpl();
 
     public void choosePanel() {
@@ -20,7 +22,7 @@ public class MainControllerImpl {
                     gameController = new GameControllerImpl();
                 }
                 case SHOP -> {
-                    controller = new ShopController();
+                    controller = new ShopController(this);
                 }
                 case DEAD -> {
                     controller = new DeathController();
@@ -35,5 +37,21 @@ public class MainControllerImpl {
             controller.init(frame);
             controller.loop();
         }
+    }
+
+    public void setSkin(String image) {
+        this.skin = image;
+    }
+
+    public String getSkin() {
+        return this.skin;
+    }
+
+    public int getCoins() {
+        return this.coins;
+    }
+
+    public void setCoins(int i) {
+        this.coins = i;
     }
 }

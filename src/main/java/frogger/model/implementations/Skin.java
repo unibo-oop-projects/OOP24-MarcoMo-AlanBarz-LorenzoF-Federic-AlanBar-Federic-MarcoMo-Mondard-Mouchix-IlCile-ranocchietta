@@ -1,10 +1,8 @@
 package frogger.model.implementations;
 
-import java.awt.image.BufferedImage;
+public class Skin extends AbstractPurchasableObject{
 
-public class Skin extends AbstarctPurchasableObject{
-
-    public Skin(int prize, BufferedImage img, boolean isBought) {
+    public Skin(int prize, String img, boolean isBought) {
         super(prize, img, isBought);
     }
 }

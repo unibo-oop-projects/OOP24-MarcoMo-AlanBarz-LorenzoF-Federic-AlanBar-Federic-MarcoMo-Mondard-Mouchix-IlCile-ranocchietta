@@ -7,11 +7,10 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-import javax.imageio.ImageIO;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import frogger.controller.MainControllerImpl;
 import frogger.controller.ShopController;
 import frogger.model.implementations.PurchasableObjectFactoryImpl;
 import frogger.model.implementations.Skin;
@@ -25,13 +24,15 @@ public class ShopInitTest {
 
     @BeforeEach
     void setUp() {
-        this.shopController = new ShopController();
+        this.shopController = new ShopController(new MainControllerImpl());
         this.shopController.shopInit();
         this.factory = new PurchasableObjectFactoryImpl();
+        System.out.println("ShopInitTest setUp");
     }
 
     @Test
     void testShopInit() {
+        this.factory = new PurchasableObjectFactoryImpl();
         try(final BufferedReader r = new BufferedReader(new InputStreamReader(getClass().getResourceAsStream(FILE_NAME )))) {
             String line = r.readLine();
             assertEquals("Skin 10 /ranocchietta.png true", line);
@@ -41,9 +42,9 @@ public class ShopInitTest {
             assertEquals("/ranocchietta.png", values[2]); 
             assertTrue(Boolean.parseBoolean(values[3]));
 
-            Skin skin = factory.createSkin(
+            Skin skin = this.factory.createSkin(
                 Integer.parseInt(values[1]), 
-                ImageIO.read(getClass().getResourceAsStream(values[2])),
+                values[2],
                 Boolean.parseBoolean(values[3])
             );
 

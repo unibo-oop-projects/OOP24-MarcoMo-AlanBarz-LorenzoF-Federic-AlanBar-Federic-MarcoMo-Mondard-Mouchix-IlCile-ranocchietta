@@ -1,7 +1,7 @@
 package frogger.common.input;
 
-import frogger.model.implementations.GameImpl;
+import frogger.model.interfaces.Game;
 
 public interface Command {
-    void execute(GameImpl game);
+    void execute(Game game);
 }

@@ -7,6 +7,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 import javax.swing.JButton;
 
+import frogger.common.LoadSave;
 import frogger.controller.ShopController;
 import frogger.model.interfaces.PurchasableObject;
 
@@ -36,30 +37,33 @@ public class ShopPanel extends AbstractPanel<ShopController>{
     }
 
     private void drawObject(PurchasableObject purchasableObject, Graphics g, AtomicInteger x, AtomicInteger y) {
-        BufferedImage img = purchasableObject.getBufferedImage();
+        String img = purchasableObject.getImage();
+        BufferedImage bufferedImage = LoadSave.GetSprite(img);
         int imgX = (int) this.getController().getXinPixel(x.get());
         int imgY = (int) this.getController().getYinPixel(y.get());
 
         // Disegna l'immagine
-        g.drawImage(img, imgX, imgY, img.getWidth(), img.getHeight(), null);
+        g.drawImage(bufferedImage, imgX, imgY, bufferedImage.getWidth(), bufferedImage.getHeight(), null);
 
         // Calcola la posizione del bottone sotto l'immagine
         int buttonX = imgX;
-        int buttonY = imgY + img.getHeight() + 10; // 10 pixel di margine sotto l'immagine
+        int buttonY = imgY + bufferedImage.getHeight() + 10; // 10 pixel di margine sotto l'immagine
 
         // Crea il bottone
         JButton jb;
         if (purchasableObject.isAvailable()) {
             jb = new JButton("Equip");
             jb.addActionListener((e) -> {
-                // Handle equip action
-                System.out.println("Equip button clicked for " + purchasableObject);
+                this.getController().getMainController().setSkin(purchasableObject.getImage());
             });
         } else {
             jb = new JButton("Buy " + purchasableObject.getPrize());
             jb.addActionListener((e) -> {
-                // Handle buy action
-                System.out.println("Buy button clicked for " + purchasableObject);
+                if(this.getController().getMainController().getCoins() >= purchasableObject.getPrize()) {
+                    this.getController().getMainController().setCoins(
+                        this.getController().getMainController().getCoins() - purchasableObject.getPrize());
+                    this.getController().getMainController().setSkin(purchasableObject.getImage());
+                }
             });
         }
 

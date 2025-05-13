@@ -1,13 +1,11 @@
 package frogger.model.implementations;
 
-import java.awt.image.BufferedImage;
-
 import frogger.model.interfaces.PurchasableObjectFactory;
 
 public class PurchasableObjectFactoryImpl implements PurchasableObjectFactory{
 
     @Override
-    public Skin createSkin(int prize, BufferedImage img, boolean isBought) {
+    public Skin createSkin(int prize, String img, boolean isBought) {
         return new Skin(prize, img, isBought);
     }
 }

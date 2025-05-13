@@ -6,8 +6,6 @@ import java.io.InputStreamReader;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.imageio.ImageIO;
-
 import frogger.common.GameState;
 import frogger.model.implementations.PurchasableObjectFactoryImpl;
 import frogger.model.interfaces.PurchasableObject;
@@ -20,6 +18,15 @@ public class ShopController extends AbstractController {
     private Set<PurchasableObject> purchasableObjects;
     private PurchasableObjectFactoryImpl factory;
     private ShopPanel shopPanel;
+    private final MainControllerImpl mainController;
+
+    public ShopController(MainControllerImpl mainController) {
+        this.mainController = mainController;
+    }
+    
+    public MainControllerImpl getMainController() {
+        return mainController;
+    }
 
     @Override
     public void init(GameScene gameScene) {
@@ -43,7 +50,7 @@ public class ShopController extends AbstractController {
                 if("Skin".equals(values[0])){
                     this.purchasableObjects.add(factory.createSkin(
                         Integer.parseInt(values[1]), 
-                        ImageIO.read(getClass().getResourceAsStream(values[2])),
+                        values[2],
                         Boolean.parseBoolean(values[3])
                     ));
                     System.out.println("Skin: " + values[1] + " " + values[2] + " " + values[3]);

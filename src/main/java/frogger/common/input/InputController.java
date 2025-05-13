@@ -1,10 +1,10 @@
 package frogger.common.input;
 
-import frogger.model.implementations.GameImpl;
+import frogger.model.interfaces.Game;
 
 public interface InputController {
     
-    void processInput(GameImpl game);
+    void processInput(Game game);
 
     void notifyCommand(Command input);
 }
