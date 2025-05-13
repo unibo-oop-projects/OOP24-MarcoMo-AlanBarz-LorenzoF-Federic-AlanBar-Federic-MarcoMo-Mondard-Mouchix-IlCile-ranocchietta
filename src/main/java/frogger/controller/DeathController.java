@@ -14,13 +14,18 @@ public class DeathController extends AbstractController implements MenuControlle
     private DeathPanel scenePanel;
     private final MenuFactory menuFactory = new MenuFactory();
     private Menu menu;
+    private final int score;
 
     private final MouseInput mouseInput = new MouseInput(this);
+
+    public DeathController(int score) {
+        this.score = score;
+    }
 
     @Override
     public void init(GameScene gameScene) {
         menu = menuFactory.DeathMenu();
-        scenePanel = new DeathPanel();
+        scenePanel = new DeathPanel(score);
         scenePanel.setController(this);
         gameScene.setPanel(scenePanel);
         // scenePanel.requestFocusInWindow();

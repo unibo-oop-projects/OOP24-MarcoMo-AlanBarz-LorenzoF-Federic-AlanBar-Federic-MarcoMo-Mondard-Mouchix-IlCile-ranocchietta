@@ -31,7 +31,6 @@ public class LevelPainter {
     public void paintLevel( Graphics g) {
         paintBackground(g);
         paintLives(g);
-        
         paintObstacles(g);
         paintPlayer(g);
         paintScore(g);

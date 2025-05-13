@@ -23,7 +23,7 @@ public class MainControllerImpl {
                     controller = new ShopController();
                 }
                 case DEAD -> {
-                    controller = new DeathController();
+                    controller = new DeathController(((GameController)gameController).getGame().getScore());
                     gameController = new GameControllerImpl();
                 }
                 case PAUSE -> {
