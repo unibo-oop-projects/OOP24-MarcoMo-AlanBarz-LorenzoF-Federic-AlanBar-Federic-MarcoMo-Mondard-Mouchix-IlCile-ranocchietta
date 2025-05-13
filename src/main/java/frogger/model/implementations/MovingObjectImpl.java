@@ -8,16 +8,16 @@ import frogger.model.interfaces.MovingObject;
 
 public class MovingObjectImpl extends GameObjectImpl implements MovingObject{
     private Direction direction;
-    private float speed;
+    private final float speed;
 
-    public MovingObjectImpl(Position pos, Pair dimension, float speed, Direction direction) {
+    public MovingObjectImpl(final Position pos, final Pair dimension, final float speed, final Direction direction) {
         super(pos, dimension);
         this.direction = direction; 
         this.speed = speed;
     }
 
     @Override
-    public void setDirection(Direction direction) {
+    public void setDirection(final Direction direction) {
         this.direction = direction;
     }
 
@@ -49,7 +49,7 @@ public class MovingObjectImpl extends GameObjectImpl implements MovingObject{
 
             //to stop the eagles once they are arrived at the end of the column
             if(this instanceof Eagle) {
-                Eagle e = (Eagle)this;
+                final Eagle e = (Eagle)this;
                 e.stop();
             }
         }

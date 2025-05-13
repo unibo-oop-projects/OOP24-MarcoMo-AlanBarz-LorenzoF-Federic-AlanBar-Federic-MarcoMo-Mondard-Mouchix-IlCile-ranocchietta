@@ -6,12 +6,12 @@ import frogger.common.Position;
 import frogger.model.interfaces.Startable;
 
 public class Eagle extends MovingObjectImpl implements Startable<Integer> {
-    private boolean started = false; 
-    private int triggerRow = 0;
+    private boolean started; 
+    private int triggerRow;
 
-    public Eagle(Position pos, Pair dimension, float speed, Direction direction) {
+    public Eagle(final Position pos, final Pair dimension, final float speed, final Direction direction) {
         super(pos, dimension, speed, direction);
-        super.setImage(this.getDirection().equals(Direction.UP) ? "eagleUp.png" : "eagleDown.png");
+        super.setImage(super.getDirection().equals(Direction.UP) ? "eagleUp.png" : "eagleDown.png");
     }
 
     @Override
@@ -37,7 +37,7 @@ public class Eagle extends MovingObjectImpl implements Startable<Integer> {
     }
 
     @Override
-    public void setTrigger(Integer trigger) {
+    public void setTrigger(final Integer trigger) {
         this.triggerRow = trigger;
     }
 }

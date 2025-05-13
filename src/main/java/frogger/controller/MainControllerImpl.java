@@ -4,12 +4,11 @@ import frogger.common.GameState;
 import frogger.view.GameScene;
 
 public class MainControllerImpl {
-    private GameScene frame;
     private Controller controller;
     private Controller gameController = new GameControllerImpl();
 
     public void choosePanel() {
-        frame = new GameScene();
+        GameScene frame = new GameScene();
         while (true) {
             switch (GameState.state) {
                 case PLAYING -> {

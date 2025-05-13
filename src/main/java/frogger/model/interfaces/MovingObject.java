@@ -3,11 +3,24 @@ package frogger.model.interfaces;
 import frogger.common.Direction;
 
 public interface MovingObject extends GameObject{
-    public void setDirection(Direction direction);
+    /**
+     * set the direction from @class frogger.common.Direction in whitch the Moving Object will move
+     * @param direction the direction choosed
+     */
+    void setDirection(final Direction direction);
 
-    public Direction getDirection();
+    /** 
+     * @return the direction settled to the object
+     */
+    Direction getDirection();
 
-    public float getSpeed();
+    /**
+     * @return the speed settled to the object 
+     */
+    float getSpeed();
 
-    public void move();
+    /**
+     * change the position of the object in base of his direction and speed
+     */
+    void move();
 }

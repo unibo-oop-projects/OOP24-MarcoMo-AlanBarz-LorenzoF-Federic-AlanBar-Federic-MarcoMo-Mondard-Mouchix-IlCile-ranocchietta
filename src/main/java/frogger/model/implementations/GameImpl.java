@@ -12,14 +12,13 @@ import frogger.model.interfaces.MovingObject;
 import frogger.model.interfaces.PlayerObject;
 
 public class GameImpl implements Game{
-
+    private final static int RESPAWN_DELAY = 1000; // 2 secondi
     private final LevelFactoryImpl levelFactory = new LevelFactoryImpl();
     private PlayerObjectImpl player;
     private Level level;
     private long deathTime = 0;
-    private final int respawnDelay = 1000; // 2 secondi
 
-    public GameImpl(Pair dimension){       
+    public GameImpl(final Pair dimension){       
         this.player = new PlayerObjectImpl(dimension);
         level = levelFactory.randomLevel();
     }
@@ -40,7 +39,7 @@ public class GameImpl implements Game{
         if (this.player.isDead()) {
             if (deathTime == 0) {
                 deathTime = System.currentTimeMillis();
-            } else if (System.currentTimeMillis() - deathTime >= respawnDelay) {
+            } else if (System.currentTimeMillis() - deathTime >= RESPAWN_DELAY) {
                 this.player.respawn();
                 deathTime = 0;
             }
@@ -116,7 +115,7 @@ public class GameImpl implements Game{
     }
 
     public void checkEagleTrigger() {
-        for (var eagle : this.level.getEagles()) {
+        for (final var eagle : this.level.getEagles()) {
             if(eagle.getTrigger() == this.getPlayer().getPos().y()) { 
                 eagle.start();
             }

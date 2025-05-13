@@ -18,14 +18,20 @@ public class MovingObjectFactoryImpl implements MovingObjectFactory{
      * @return An object of type X that extends MovingObject
      */
     @Override
-    public <X extends MovingObjectImpl> X createMovingObject(Position pos, Pair dimension, 
-        float speed, Direction direction, Class<X> c) {
+    public <X extends MovingObjectImpl> X createMovingObject(final Position pos, final Pair dimension, 
+        final float speed, final Direction direction, final Class<X> c) {
         
         try {
             return c.getConstructor(Position.class, Pair.class, float.class, Direction.class)
             .newInstance(pos, dimension, speed, direction);
+        } catch (NullPointerException ex) {
+            System.out.println("error: " + ex.getMessage());
+            return null;
+        } catch (RuntimeException ex) {
+            System.out.println("error: " + ex.getMessage());
+            return null;
         } catch (Exception ex) {
-            System.out.println("errore: " + ex.getMessage());
+            System.out.println("error: " + ex.getMessage());
             return null;
         }
     }
