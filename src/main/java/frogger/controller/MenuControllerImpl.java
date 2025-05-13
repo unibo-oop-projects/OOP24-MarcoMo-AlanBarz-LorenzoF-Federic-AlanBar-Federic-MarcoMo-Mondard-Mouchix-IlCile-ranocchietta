@@ -18,7 +18,7 @@ public class MenuControllerImpl extends AbstractController implements MenuContro
     private final MouseInput mouseInput = new MouseInput(this);
 
     @Override
-    public void init(GameScene gameScene) {
+    public void init(final GameScene gameScene) {
         menu = menuFactory.MainMenu();
         scenePanel = new MenuPanel();
         scenePanel.setController(this);

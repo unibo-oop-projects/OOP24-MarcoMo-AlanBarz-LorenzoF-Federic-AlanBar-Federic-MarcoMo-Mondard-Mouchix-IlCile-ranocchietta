@@ -8,19 +8,19 @@ import frogger.common.Position;
 import frogger.model.interfaces.Carrier;
 
 public class Trunk extends MovingObjectImpl implements Carrier<PlayerObjectImpl> {
-
     private Optional<PlayerObjectImpl> frog = Optional.empty();
 
-    public Trunk(Position pos, Pair dimension, float speed, Direction direction) {
+    public Trunk(final Position pos, final Pair dimension, final float speed, final Direction direction) {
         super(pos, dimension, speed, direction);
-        // super.setImage(getClass().getResourceAsStream("/trunk.png"));
         super.setImage("trunk.png");
     }
 
-    public void setObj(PlayerObjectImpl frog) {
+    @Override
+    public void setObj(final PlayerObjectImpl frog) {
         this.frog = Optional.of(frog);
     }
 
+    @Override
     public void removeObj() {
         this.frog = Optional.empty();
     }

@@ -6,27 +6,25 @@ import frogger.common.Position;
 
 public class Car extends MovingObjectImpl {
     
-    public Car(Position pos, Pair dimension, float speed, Direction direction) {
+    public Car(final Position pos, final Pair dimension, final float speed, final Direction direction) {
         super(pos, dimension, speed, direction);
-
-        super.setImage(findImg());
-        
+        super.setImage(findImg().toString());
     }
 
-    private String findImg() {
-        String result = "";
-        if (this.getDimension().width() > 1) {
-            result += "truk";
+    private StringBuilder findImg() {
+        StringBuilder result = new StringBuilder();
+        if (super.getDimension().width() > 1) {
+            result.append("truk");
         } else {
-            result += "car";
+            result.append("car");
         }
 
-        if (this.getDirection().equals(Direction.LEFT)) {
-            result += "Left";
+        if (super.getDirection().equals(Direction.LEFT)) {
+            result.append("Left");
         } else {
-            result += "Right";
+            result.append("Right");
         }
-        result += ".png";
+        result.append("png");
         return result;
     }
 }

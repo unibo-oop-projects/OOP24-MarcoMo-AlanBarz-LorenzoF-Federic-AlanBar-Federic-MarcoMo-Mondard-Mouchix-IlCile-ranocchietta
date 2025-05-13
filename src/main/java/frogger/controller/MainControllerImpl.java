@@ -4,14 +4,13 @@ import frogger.common.GameState;
 import frogger.view.GameScene;
 
 public class MainControllerImpl {
-    private GameScene frame;
     private Controller controller;
     private String skin;
     private int coins;
     private Controller gameController = new GameControllerImpl();
 
     public void choosePanel() {
-        frame = new GameScene();
+        GameScene frame = new GameScene();
         while (true) {
             switch (GameState.state) {
                 case PLAYING -> {
@@ -25,7 +24,7 @@ public class MainControllerImpl {
                     controller = new ShopController(this);
                 }
                 case DEAD -> {
-                    controller = new DeathController();
+                    controller = new DeathController(((GameController)gameController).getGame().getScore());
                     gameController = new GameControllerImpl();
                 }
                 case PAUSE -> {

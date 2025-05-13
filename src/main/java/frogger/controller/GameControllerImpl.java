@@ -10,26 +10,26 @@ import frogger.common.input.InputControllerImpl;
 import frogger.common.input.KeyInput;
 import frogger.model.implementations.GameImpl;
 import frogger.model.interfaces.Game;
+import frogger.model.interfaces.MovingObject;
 import frogger.view.GamePanel;
 import frogger.view.GameScene;
 
 public class GameControllerImpl extends AbstractController implements GameController{
-
-    private GameImpl game;
-    private InputControllerImpl inputController;
+    private final GameImpl game;
+    private final InputControllerImpl inputController = new InputControllerImpl();
+    private final KeyInput keyInput = new KeyInput(this);
     private GamePanel scenePanel;
-    private KeyInput keyInput = new KeyInput(this);
 
     public GameControllerImpl() {
         game = new GameImpl(new Pair(Constants.PLAYER_WIDTH,Constants.PLAYER_HEIGHT));
     }
 
-    public void init(GameScene gameScene) {
+    @Override
+    public void init(final GameScene gameScene) {
         //game = new GameImpl(new Pair(Constants.PLAYER_WIDTH,Constants.PLAYER_HEIGHT));
         scenePanel = new GamePanel();
         scenePanel.setController(this);
         gameScene.setPanel(scenePanel);
-        inputController = new InputControllerImpl();
     }
 
     @Override
@@ -41,7 +41,7 @@ public class GameControllerImpl extends AbstractController implements GameContro
         this.game.checkProgress();
         this.game.checkNewLevel();
         this.game.checkEagleTrigger();
-        this.game.getObstacles().forEach(a -> a.move()); //moving all obstacles
+        this.game.getObstacles().forEach(MovingObject::move); //moving all obstacles
         this.scenePanel.repaint();
     }
 
