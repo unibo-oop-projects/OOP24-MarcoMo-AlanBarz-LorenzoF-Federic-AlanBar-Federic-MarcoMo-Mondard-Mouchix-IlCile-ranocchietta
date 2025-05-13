@@ -24,7 +24,7 @@ public class Car extends MovingObjectImpl {
         } else {
             result.append("Right");
         }
-        result.append("png");
+        result.append(".png");
         return result;
     }
 }
