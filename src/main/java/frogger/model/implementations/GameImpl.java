@@ -17,6 +17,7 @@ public class GameImpl implements Game{
     private PlayerObjectImpl player;
     private Level level;
     private long deathTime = 0;
+    private int coins = 50;
 
     public GameImpl(final Pair dimension){       
         this.player = new PlayerObjectImpl(dimension);
@@ -125,5 +126,15 @@ public class GameImpl implements Game{
     @Override
     public boolean gameIsPaused() {
         return GameState.state == GameState.PAUSE;
+    }
+
+    @Override
+    public int getCoins() {
+        return this.coins;
+    }
+
+    @Override
+    public void setCoins(int coins) {
+        this.coins = coins;
     }
 }

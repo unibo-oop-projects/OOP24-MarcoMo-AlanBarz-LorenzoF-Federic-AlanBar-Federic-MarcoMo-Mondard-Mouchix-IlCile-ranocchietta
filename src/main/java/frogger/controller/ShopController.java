@@ -18,14 +18,14 @@ public class ShopController extends AbstractController {
     private Set<PurchasableObject> purchasableObjects;
     private PurchasableObjectFactoryImpl factory;
     private ShopPanel shopPanel;
-    private final MainControllerImpl mainController;
+    private final GameController gameController;
 
-    public ShopController(MainControllerImpl mainController) {
-        this.mainController = mainController;
+    public ShopController(GameController gc) {
+        this.gameController = gc;
     }
     
-    public MainControllerImpl getMainController() {
-        return mainController;
+    public GameController getGameController() {
+        return this.gameController;
     }
 
     @Override
@@ -43,7 +43,7 @@ public class ShopController extends AbstractController {
     }
 
     public void shopInit() {
-        try(final BufferedReader r = new BufferedReader(new InputStreamReader(getClass().getResourceAsStream(FILE_NAME )))) {
+        try(final BufferedReader r = new BufferedReader(new InputStreamReader(getClass().getResourceAsStream(FILE_NAME)))) {
             String line;
             while((line = r.readLine()) != null){
                 String[] values = line.split(" ");

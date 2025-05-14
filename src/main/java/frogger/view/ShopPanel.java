@@ -54,15 +54,15 @@ public class ShopPanel extends AbstractPanel<ShopController>{
         if (purchasableObject.isAvailable()) {
             jb = new JButton("Equip");
             jb.addActionListener((e) -> {
-                this.getController().getMainController().setSkin(purchasableObject.getImage());
+                this.getController().getGameController().getGame().getPlayer().setImage(img);
             });
         } else {
             jb = new JButton("Buy " + purchasableObject.getPrize());
             jb.addActionListener((e) -> {
-                if(this.getController().getMainController().getCoins() >= purchasableObject.getPrize()) {
-                    this.getController().getMainController().setCoins(
-                        this.getController().getMainController().getCoins() - purchasableObject.getPrize());
-                    this.getController().getMainController().setSkin(purchasableObject.getImage());
+                if(this.getController().getGameController().getGame().getCoins() >= purchasableObject.getPrize()) {
+                    this.getController().getGameController().getGame().setCoins(
+                        this.getController().getGameController().getGame().getCoins() - purchasableObject.getPrize());
+                    this.getController().getGameController().getGame().getPlayer().setImage(img);
                 }
             });
         }
