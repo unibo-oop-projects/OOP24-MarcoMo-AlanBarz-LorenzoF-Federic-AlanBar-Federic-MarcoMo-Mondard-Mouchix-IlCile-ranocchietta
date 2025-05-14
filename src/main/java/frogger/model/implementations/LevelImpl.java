@@ -36,7 +36,7 @@ public class LevelImpl implements Level{
      * {@inheritDoc}
      */
     @Override
-    public void addLane(Lane lane) {
+    public void addLane(final Lane lane) {
         lanes.add(lane);
     }
 
@@ -44,8 +44,8 @@ public class LevelImpl implements Level{
      * {@inheritDoc}
      */
     @Override
-    public void addEagle(Eagle eagle) {
-        this.eagles.add((Eagle)eagle);
+    public void addEagle(final Eagle eagle) {
+        this.eagles.add(eagle);
     }
 
     /**
@@ -68,7 +68,7 @@ public class LevelImpl implements Level{
      * {@inheritDoc}
      */
     @Override
-    public void addPowerUp(PowerUp p) {
+    public void addPowerUp(final PowerUp p) {
         this.powerUp.add(p);
     }
 }

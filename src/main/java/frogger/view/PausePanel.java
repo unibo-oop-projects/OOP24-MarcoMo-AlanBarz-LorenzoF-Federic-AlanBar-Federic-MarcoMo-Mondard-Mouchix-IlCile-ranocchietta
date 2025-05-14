@@ -8,7 +8,7 @@ import frogger.common.LoadSave;
 import frogger.controller.GameController;
 import frogger.controller.PauseController;
 
-public class PausePanel extends AbstractPanel<PauseController>{
+public class PausePanel extends AbstractPanel<PauseController> {
 
     private BufferedImage background;
 
@@ -43,10 +43,10 @@ public class PausePanel extends AbstractPanel<PauseController>{
         this.getController().getMenu().draw(g);
     }
 
-    private void paintBackground(Graphics g) {
-        LevelPainter p = new LevelPainter((GameController)getController().getGameController());
+    private void paintBackground(final Graphics g) {
+        final LevelPainter p = new LevelPainter((GameController) getController().getGameController());
         p.paintLevel(g);
-        g.drawImage(background, (int)getController().getXinPixel(-3.5) , (int)getController().getYinPixel(3), 
+        g.drawImage(background, (int) getController().getXinPixel(-3.5), (int) getController().getYinPixel(3), 
         Constants.FRAME_WIDTH / 2, Constants.FRAME_HEIGHT / 2, null);
     }
 

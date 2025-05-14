@@ -17,15 +17,15 @@ public abstract class AbstractRandomEntitySpawner<X> implements EntitySpawner<X>
      * {@inheritDoc}
      */
     @Override
-    public List<X> spawn(int min, int max) {
-        List<X> result = new ArrayList<>();
-        Set<Position> usedPositions = new HashSet<>();
-        int count = ran.nextInt(max - min + 1) + min;
+    public List<X> spawn(final int min, final int max) {
+        final List<X> result = new ArrayList<>();
+        final Set<Position> usedPositions = new HashSet<>();
+        final int count = ran.nextInt(max - min + 1) + min;
 
         while (result.size() < count) {
-            Position pos = generatePosition();
+            final Position pos = generatePosition();
             if (isValidPosition(pos, usedPositions)) {
-                X entity = createEntity(pos);
+                final X entity = createEntity(pos);
                 result.add(entity);
                 addPos(pos, usedPositions);
             }
@@ -60,7 +60,7 @@ public abstract class AbstractRandomEntitySpawner<X> implements EntitySpawner<X>
      * @param pos the position to add
      * @param usedPositions the list of positions already occupied
      */
-    protected void addPos(Position pos, Set<Position> usedPositions) {
+    protected void addPos(final Position pos, final Set<Position> usedPositions) {
         usedPositions.add(pos);
     }
 }

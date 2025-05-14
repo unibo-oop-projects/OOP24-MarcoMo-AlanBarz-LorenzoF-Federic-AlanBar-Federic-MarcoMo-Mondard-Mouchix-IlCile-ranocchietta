@@ -12,9 +12,9 @@ public abstract class AbstractLaneImpl implements Lane {
     protected final Set<MovingObject> obstacles = new HashSet<>();
     private final float speed;
     private final Direction direction;
-    private boolean completed = false;
+    private boolean completed;
 
-    public AbstractLaneImpl(float speed, Direction direction) {
+    public AbstractLaneImpl(final float speed, final Direction direction) {
         this.speed = speed;
         this.direction = direction;
     }
