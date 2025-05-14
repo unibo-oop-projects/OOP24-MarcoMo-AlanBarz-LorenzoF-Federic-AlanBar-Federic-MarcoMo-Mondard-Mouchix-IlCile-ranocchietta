@@ -33,8 +33,8 @@ public class LaneTest {
 
     @BeforeEach
     void setUp() {
-        final float speed = Constants.MIN_SPEED;
-        final Direction dir = Direction.LEFT;
+        speed = Constants.MIN_SPEED;
+        dir = Direction.LEFT;
         final Pair dim = new Pair(Constants.EAGLE_WIDTH, Constants.EAGLE_HEIGHT);
         final Position pos = new Position(0, 0);
         final MovingObjectFactory obstaclesFactory = new MovingObjectFactoryImpl();

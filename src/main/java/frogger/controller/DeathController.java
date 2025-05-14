@@ -24,7 +24,7 @@ public class DeathController extends AbstractController implements MenuControlle
 
     @Override
     public void init(GameScene gameScene) {
-        menu = menuFactory.DeathMenu();
+        menu = menuFactory.deathMenu();
         scenePanel = new DeathPanel(score);
         scenePanel.setController(this);
         gameScene.setPanel(scenePanel);

@@ -2,14 +2,17 @@ package frogger.common;
 
 import java.util.Random;
 
+/**
+ * Utility class for random position.
+ */
 public final class RandomUtils {
 
     private static final Random RAN = new Random();
 
-    private RandomUtils() {}
+    private RandomUtils() { }
 
     /**
-     * Utility method
+     * Utility method.
      * @return a random x beetwen the min and max value of x
      */
     public static int randomX() {
@@ -19,7 +22,7 @@ public final class RandomUtils {
     }
 
     /**
-     * Utility method
+     * Utility method.
      * @return a random y beetwen the min and max value of y
      */
     public static int randomY() {

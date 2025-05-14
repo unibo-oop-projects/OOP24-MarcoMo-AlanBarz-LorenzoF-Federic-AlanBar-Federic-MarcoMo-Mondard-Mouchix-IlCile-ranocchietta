@@ -1,5 +1,6 @@
 package frogger.model.implementations;
 
+import java.util.Random;
 import java.util.Set;
 
 import frogger.common.Constants;
@@ -14,6 +15,7 @@ import frogger.model.interfaces.MovingObjectFactory;
  */
 public class RandomEaglesSpawner extends AbstractRandomEntitySpawner<Eagle> {
 
+    private final Random ran = new Random();
     private final MovingObjectFactory obstaclesFactory = new MovingObjectFactoryImpl();
 
     /**

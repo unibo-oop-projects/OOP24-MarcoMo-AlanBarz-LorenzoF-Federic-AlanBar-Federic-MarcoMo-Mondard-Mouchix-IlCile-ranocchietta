@@ -8,6 +8,11 @@ import frogger.model.interfaces.MovingObject;
  */
 public class River extends AbstractLaneImpl {
 
+    /**
+     * Initialize the field of the super class.
+     * @param speed the speed of the lane
+     * @param direction the direction of the lane
+     */
     public River(final float speed, final Direction direction) {
         super(speed, direction);
     }
@@ -25,6 +30,6 @@ public class River extends AbstractLaneImpl {
      */
     @Override
     public void addTrunk(final MovingObject obstacle) {
-        super.obstacles.add((Trunk) obstacle);
+        super.getObstacles().add((Trunk) obstacle);
     }
 }

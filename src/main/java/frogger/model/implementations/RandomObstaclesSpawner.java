@@ -1,5 +1,6 @@
 package frogger.model.implementations;
 
+import java.util.Random;
 import java.util.Set;
 import java.util.stream.IntStream;
 
@@ -12,9 +13,11 @@ import frogger.model.interfaces.MovingObjectFactory;
 
 /**
  * Class that extends AbstractRandomEntitySpawner to specify the behaviour spawning type MovingObject (Car or Trunk) entity.
+ * @param <X> generic type that extends MovingObjectImpl (Trunk or Car)
  */
 public class RandomObstaclesSpawner<X extends MovingObjectImpl> extends AbstractRandomEntitySpawner<X> {
 
+    private final Random ran = new Random();
     private final Class<X> type;
     private final int y;
     private final float speed;

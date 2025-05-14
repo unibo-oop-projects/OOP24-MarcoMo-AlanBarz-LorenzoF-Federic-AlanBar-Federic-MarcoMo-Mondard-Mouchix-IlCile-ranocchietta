@@ -13,8 +13,8 @@ public class PausePanel extends AbstractPanel<PauseController> {
     private BufferedImage background;
 
     public PausePanel() {
-        setFocusable(true);
-        setPanelSize();
+        super.setFocusable(true);
+        super.setPanelSize();
     }
 
     /**

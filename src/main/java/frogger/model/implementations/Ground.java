@@ -7,10 +7,13 @@ import frogger.common.Direction;
 import frogger.model.interfaces.Lane;
 import frogger.model.interfaces.MovingObject;
 
-public class Ground implements Lane{
+/**
+ * Implements the interface Lane, model the start, mid and last lane of the level.
+ */
+public final class Ground implements Lane {
 
     @Override
-    public void addMovingObject(MovingObject obstacle) {
+    public void addMovingObject(final MovingObject obstacle) {
         throw new UnsupportedOperationException("The ground lane must not have any obstacles.");
     }
 
@@ -35,6 +38,6 @@ public class Ground implements Lane{
     }
 
     @Override
-    public void setCompleted() {}
-    
+    public void setCompleted() { }
+
 }
