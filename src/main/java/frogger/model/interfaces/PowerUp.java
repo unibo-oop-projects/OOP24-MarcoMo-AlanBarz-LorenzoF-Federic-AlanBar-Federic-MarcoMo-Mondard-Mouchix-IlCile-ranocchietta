@@ -11,10 +11,10 @@ public interface PowerUp extends GameObject {
      * Deactivates the power-up, reverting any effects it may have applied.
      */
     void deactivate();
-    /**
-     * Sets the image associated with the power-up. 
-     */
-    void setImage();
+    // /**
+    //  * Sets the image associated with the power-up. 
+    //  */
+    // void setImage();
 
     /**
      * Sets the player object associated with the power-up.

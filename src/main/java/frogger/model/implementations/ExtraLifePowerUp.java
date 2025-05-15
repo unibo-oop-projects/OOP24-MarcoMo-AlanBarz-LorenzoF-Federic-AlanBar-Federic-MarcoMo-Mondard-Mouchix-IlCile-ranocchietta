@@ -9,12 +9,13 @@ public class ExtraLifePowerUp extends AbstractPowerUp {
 
     public ExtraLifePowerUp(Position pos, Pair dimension) {
         super(pos, dimension);
+        this.setImage(LoadSave.EXTRA_LIFE);
     }
 
-    @Override
-    public void setImage() {
-        img = LoadSave.GetSprite(LoadSave.EXTRA_LIFE); 
-    }
+    // @Override
+    // public void setImage() {
+    //     img = LoadSave.GetSprite(LoadSave.EXTRA_LIFE); 
+    // }
 
     @Override
     public void activate() {

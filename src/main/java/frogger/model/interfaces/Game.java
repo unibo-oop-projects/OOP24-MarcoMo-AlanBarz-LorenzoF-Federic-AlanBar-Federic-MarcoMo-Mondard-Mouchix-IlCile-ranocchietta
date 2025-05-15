@@ -46,4 +46,6 @@ public interface Game {
     int getCoins();
     
     void setCoins(int coins);
+    
+    List<PowerUp> getPowerUps();
 }

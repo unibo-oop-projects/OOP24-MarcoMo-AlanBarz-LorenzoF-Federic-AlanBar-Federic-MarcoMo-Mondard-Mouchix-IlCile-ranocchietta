@@ -10,6 +10,7 @@ import frogger.model.interfaces.Lane;
 import frogger.model.interfaces.Level;
 import frogger.model.interfaces.MovingObject;
 import frogger.model.interfaces.PlayerObject;
+import frogger.model.interfaces.PowerUp;
 
 public class GameImpl implements Game{
     private final static int RESPAWN_DELAY = 1000; // 2 secondi
@@ -136,5 +137,10 @@ public class GameImpl implements Game{
     @Override
     public void setCoins(int coins) {
         this.coins = coins;
+    }
+
+    @Override
+    public List<PowerUp> getPowerUps(){
+        return this.level.getPowerUp();
     }
 }

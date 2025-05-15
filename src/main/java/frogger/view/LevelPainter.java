@@ -1,10 +1,5 @@
 package frogger.view;
 
-import frogger.common.Constants;
-import frogger.common.Direction;
-import frogger.controller.GameController;
-import frogger.model.interfaces.PlayerObject;
-
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -14,6 +9,11 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import javax.imageio.ImageIO;
+
+import frogger.common.Constants;
+import frogger.common.Direction;
+import frogger.controller.GameController;
+import frogger.model.interfaces.PlayerObject;
 
 public class LevelPainter {
     private final GameController controller;
@@ -34,6 +34,7 @@ public class LevelPainter {
         paintObstacles(g);
         paintPlayer(g);
         paintScore(g);
+        paintPowerUp(g);
     }
 
     public void paintObstacles(Graphics g) {
@@ -93,6 +94,15 @@ public class LevelPainter {
         g.setFont(myFont);
         g.drawString("Punteggio: " + this.getController().getGame().getPlayer().getScore(), 
         (int)this.getController().getXinPixel(Constants.MAX_X - 3), (int)this.getController().getYinPixel(Constants.MAX_Y - 0.5));
+    }
+
+    public void paintPowerUp(Graphics g) {
+        for(var powerUp : getController().getGame().getPowerUps()) {
+            g.drawImage(powerUp.getImage(), (int)this.getController().getXinPixel(powerUp.getPos().x()), 
+                (int)this.getController().getYinPixel(powerUp.getPos().y()), 
+                powerUp.getDimension().width() * Constants.BLOCK_WIDTH, 
+                powerUp.getDimension().height() * Constants.BLOCK_HEIGHT, null);
+        }
     }
 
     public void importImg() {
