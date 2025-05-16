@@ -10,6 +10,9 @@ import frogger.model.implementations.MenuFactory;
 import frogger.view.GameScene;
 import frogger.view.PausePanel;
 
+/**
+ * {@inheritDoc}.
+ */
 public class PauseController extends AbstractController implements MenuController {
     private final MenuFactory menuFactory = new MenuFactory();
     private PausePanel scenePanel;
@@ -18,12 +21,16 @@ public class PauseController extends AbstractController implements MenuControlle
 
     private final MouseInput mouseInput = new MouseInput(this);
 
-    public PauseController(Controller gc) {
+    /**
+     * Initialize the field.
+     * @param gc the game controller.
+     */
+    public PauseController(final Controller gc) {
         this.gc = gc;
     }
 
     /**
-     * Return the game controller
+     * Return the game controller.
      * @return the game controller
      */
     public Controller getGameController() {
@@ -34,8 +41,8 @@ public class PauseController extends AbstractController implements MenuControlle
      * {@inheritDoc}
      */
     @Override
-    public void init(GameScene gameScene) {
-        menu = menuFactory.PauseMenu();
+    public void init(final GameScene gameScene) {
+        menu = menuFactory.pauseMenu();
         scenePanel = new PausePanel();
         scenePanel.setController(this);
         gameScene.setPanel(scenePanel);
@@ -62,7 +69,7 @@ public class PauseController extends AbstractController implements MenuControlle
      * {@inheritDoc}
      */
     @Override
-    protected void changesLoopEnd() {}
+    protected void changesLoopEnd() { }
 
     /**
      * {@inheritDoc}

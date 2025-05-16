@@ -15,8 +15,10 @@ public class PowerUpFactory {
     }
 
     public static PowerUpType getRandomPowerUpType() {
-        PowerUpType[] powerUpTypes = PowerUpType.values();
-        int randomIndex = (int) (Math.random() * powerUpTypes.length);
-        return powerUpTypes[randomIndex];
+        // PowerUpType[] powerUpTypes = PowerUpType.values();
+        // java.util.Random random = new java.util.Random();
+        // int randomIndex = random.nextInt(powerUpTypes.length);
+        // return powerUpTypes[randomIndex];
+        return PowerUpType.EXTRA_LIFE; // For now, only one power-up type is available
     }
 }

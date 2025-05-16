@@ -8,13 +8,16 @@ import frogger.common.Position;
 import frogger.common.RandomUtils;
 import frogger.model.interfaces.PowerUp;
 
-public class RandomPowerUpsSpawner extends AbstractRandomEntitySpawner<PowerUp>{
+/**
+ * Class that extends AbstractRandomEntitySpawner to specify the behaviour spawning type PowerUp entity.
+ */
+public class RandomPowerUpsSpawner extends AbstractRandomEntitySpawner<PowerUp> {
 
     /**
      * {@inheritDoc}
      */
     @Override
-    protected boolean isValidPosition(Position pos, Set<Position> used) {
+    protected boolean isValidPosition(final Position pos, final Set<Position> used) {
         return !used.contains(pos);
     }
 
@@ -30,9 +33,9 @@ public class RandomPowerUpsSpawner extends AbstractRandomEntitySpawner<PowerUp>{
      * {@inheritDoc}
      */
     @Override
-    protected PowerUp createEntity(Position pos) {
-        PowerUpType type = PowerUpFactory.getRandomPowerUpType();
-        Pair dim = new Pair(Constants.POWER_UP_WIDTH, Constants.POWER_UP_HEIGHT);
+    protected PowerUp createEntity(final Position pos) {
+        final PowerUpType type = PowerUpFactory.getRandomPowerUpType();
+        final Pair dim = new Pair(Constants.POWER_UP_WIDTH, Constants.POWER_UP_HEIGHT);
         return PowerUpFactory.createPowerUp(type, pos, dim);
     }
 

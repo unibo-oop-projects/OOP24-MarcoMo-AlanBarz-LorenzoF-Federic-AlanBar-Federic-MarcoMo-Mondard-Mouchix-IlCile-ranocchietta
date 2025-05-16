@@ -56,11 +56,12 @@ public abstract class GameObjectImpl implements GameObject {
     //     g.drawImage(img, x, y, this.getDimension().width() * Constants.BLOCK_WIDTH, 
     //     this.getDimension().height() * Constants.BLOCK_HEIGHT, null);
     // }
-
+    
+    @Override
     public BufferedImage getImage() {
         return img;
     }
-
+    @Override
     public void setImage(String fileName) {
         img = LoadSave.GetSprite(fileName);
     }

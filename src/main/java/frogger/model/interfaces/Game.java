@@ -42,4 +42,6 @@ public interface Game {
      * @return true if it is, false otherwise
      */
     boolean gameIsPaused();
+
+    List<PowerUp> getPowerUps();
 }

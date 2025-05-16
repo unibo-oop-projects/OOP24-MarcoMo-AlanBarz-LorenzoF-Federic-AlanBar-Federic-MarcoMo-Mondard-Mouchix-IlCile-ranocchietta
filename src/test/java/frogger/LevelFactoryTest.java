@@ -11,17 +11,20 @@ import frogger.common.Constants;
 import frogger.model.implementations.Eagle;
 import frogger.model.implementations.Ground;
 import frogger.model.implementations.LevelFactoryImpl;
+import frogger.model.interfaces.GameObject;
 import frogger.model.interfaces.Level;
 import frogger.model.interfaces.LevelFactory;
 
+/**
+ * Test class for LevelFactoryImpl.
+ */
 public class LevelFactoryTest {
 
-    private LevelFactory fact;
     private Level level;
 
     @BeforeEach
     void setUp() {
-        fact = new LevelFactoryImpl();
+        final LevelFactory fact = new LevelFactoryImpl();
         level = fact.randomLevel();
     }
 
@@ -38,19 +41,22 @@ public class LevelFactoryTest {
                 && lane.getLaneObstacles().size() >= Constants.MIN_OBSTACLES_NUMBER);
             }
         });
-        assertTrue(level.getAllObstacles().stream().map(o -> o.getPos()).distinct().count() == level.getAllObstacles().size());
+        assertEquals(level.getAllObstacles().stream().map(GameObject::getPos).distinct().count(),
+        level.getAllObstacles().size());
     }
 
     @Test
     void eagleTest() {
-        assertTrue(level.getEagles().size() <= Constants.MAX_EAGLES_NUMBER && level.getEagles().size() >= Constants.MIN_EAGLES_NUMBER);
+        assertTrue(level.getEagles().size() <= Constants.MAX_EAGLES_NUMBER &&
+        level.getEagles().size() >= Constants.MIN_EAGLES_NUMBER);
         level.getEagles().forEach(e -> assertTrue(e.getTrigger() != Constants.MAX_Y && e.getTrigger() != Constants.MIN_Y));
-        assertTrue(level.getEagles().stream().map(Eagle::getPos).distinct().count() == level.getEagles().size());
+        assertEquals(level.getEagles().stream().map(Eagle::getPos).distinct().count(), level.getEagles().size());
     }
 
     @Test
     void powerUpTest() {
-        assertTrue(level.getPowerUp().size() <= Constants.MAX_POWER_UP_NUMBER && level.getEagles().size() >= Constants.MIN_POWER_UP_NUMBER);
+        assertTrue(level.getPowerUp().size() <= Constants.MAX_POWER_UP_NUMBER
+        && level.getEagles().size() >= Constants.MIN_POWER_UP_NUMBER);
     }
 
 }

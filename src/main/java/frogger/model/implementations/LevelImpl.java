@@ -10,7 +10,10 @@ import frogger.model.interfaces.Level;
 import frogger.model.interfaces.MovingObject;
 import frogger.model.interfaces.PowerUp;
 
-public class LevelImpl implements Level{
+/**
+ * {@inheritDoc}.
+ */
+public class LevelImpl implements Level {
 
     private final List<Lane> lanes = new ArrayList<>();
     private final List<Eagle> eagles = new ArrayList<>();
@@ -29,14 +32,15 @@ public class LevelImpl implements Level{
      */
     @Override
     public List<MovingObject> getAllObstacles() {
-        return Stream.concat(lanes.stream().flatMap(elem -> elem.getLaneObstacles().stream()), this.eagles.stream()).collect(Collectors.toList());
+        return Stream.concat(lanes.stream().flatMap(elem -> elem.getLaneObstacles().stream()),
+        this.eagles.stream()).collect(Collectors.toList());
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public void addLane(Lane lane) {
+    public void addLane(final Lane lane) {
         lanes.add(lane);
     }
 
@@ -44,8 +48,8 @@ public class LevelImpl implements Level{
      * {@inheritDoc}
      */
     @Override
-    public void addEagle(Eagle eagle) {
-        this.eagles.add((Eagle)eagle);
+    public void addEagle(final Eagle eagle) {
+        this.eagles.add(eagle);
     }
 
     /**
@@ -68,7 +72,7 @@ public class LevelImpl implements Level{
      * {@inheritDoc}
      */
     @Override
-    public void addPowerUp(PowerUp p) {
+    public void addPowerUp(final PowerUp p) {
         this.powerUp.add(p);
     }
 }

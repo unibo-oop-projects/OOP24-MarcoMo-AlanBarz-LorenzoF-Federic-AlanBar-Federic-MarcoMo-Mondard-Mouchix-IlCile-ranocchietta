@@ -1,5 +1,6 @@
 package frogger.model.implementations;
 
+import java.util.Random;
 import java.util.Set;
 import java.util.stream.IntStream;
 
@@ -10,8 +11,13 @@ import frogger.common.Position;
 import frogger.common.RandomUtils;
 import frogger.model.interfaces.MovingObjectFactory;
 
-public class RandomObstaclesSpawner<X extends MovingObjectImpl> extends AbstractRandomEntitySpawner<X>{
+/**
+ * Class that extends AbstractRandomEntitySpawner to specify the behaviour spawning type MovingObject (Car or Trunk) entity.
+ * @param <X> generic type that extends MovingObjectImpl (Trunk or Car)
+ */
+public class RandomObstaclesSpawner<X extends MovingObjectImpl> extends AbstractRandomEntitySpawner<X> {
 
+    private final Random ran = new Random();
     private final Class<X> type;
     private final int y;
     private final float speed;
@@ -26,7 +32,7 @@ public class RandomObstaclesSpawner<X extends MovingObjectImpl> extends Abstract
      * @param speed the speed of the obstacle
      * @param direction the direction of the obstacle
      */
-    public RandomObstaclesSpawner(Class<X> type, int y, float speed, Direction direction) {
+    public RandomObstaclesSpawner(final Class<X> type, final int y, final float speed, final Direction direction) {
         this.type = type;
         this.y = y;
         this.speed = speed;
@@ -46,7 +52,7 @@ public class RandomObstaclesSpawner<X extends MovingObjectImpl> extends Abstract
      * {@inheritDoc}
      */
     @Override
-    protected boolean isValidPosition(Position pos, Set<Position> used) {
+    protected boolean isValidPosition(final Position pos, final Set<Position> used) {
         return IntStream.range(0, this.width).noneMatch(i -> used.contains(new Position(pos.x() + i, this.y)));
     }
 
@@ -54,14 +60,14 @@ public class RandomObstaclesSpawner<X extends MovingObjectImpl> extends Abstract
      * {@inheritDoc}
      */
     @Override
-    protected X createEntity(Position pos) {
-       Pair dim = new Pair(this.width, Constants.OBJECT_HEIGHT);
+    protected X createEntity(final Position pos) {
+       final Pair dim = new Pair(this.width, Constants.OBJECT_HEIGHT);
        return obstaclesFactory.createMovingObject(pos, dim, speed, direction, type);
     }
 
     /**
-     * return the width of the obstacle based on the type, Car o Trunk
-     * @return
+     * return the width of the obstacle based on the type, Car o Trunk.
+     * @return the width
      */
     private int getWidth() {
         if (this.type.equals(Car.class)) {
@@ -74,10 +80,11 @@ public class RandomObstaclesSpawner<X extends MovingObjectImpl> extends Abstract
     /**
      * {@inheritDoc}
      * <p>
-     * Modified the default behaviour to add more positions to the list of used positions instead of just one, in particular add n = width positions
+     * Modified the default behaviour to add more positions to the list of used positions instead of just one,
+     * in particular add n = width positions.
      */
     @Override
-    protected void addPos(Position pos, Set<Position> usedPositions) {
+    protected void addPos(final Position pos, final Set<Position> usedPositions) {
         IntStream.range(0, this.width).forEach(i -> usedPositions.add(new Position(pos.x() + i, this.y)));
     }
 

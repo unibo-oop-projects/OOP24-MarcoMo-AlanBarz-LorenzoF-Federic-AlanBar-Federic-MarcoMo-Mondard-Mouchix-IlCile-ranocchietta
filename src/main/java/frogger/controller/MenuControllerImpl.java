@@ -19,7 +19,7 @@ public class MenuControllerImpl extends AbstractController implements MenuContro
 
     @Override
     public void init(final GameScene gameScene) {
-        menu = menuFactory.MainMenu();
+        menu = menuFactory.mainMenu();
         scenePanel = new MenuPanel();
         scenePanel.setController(this);
         gameScene.setPanel(scenePanel);        
