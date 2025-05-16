@@ -15,18 +15,15 @@ import frogger.view.GamePanel;
 import frogger.view.GameScene;
 
 public class GameControllerImpl extends AbstractController implements GameController{
-    private final GameImpl game;
+    private GameImpl game;
     private final InputControllerImpl inputController = new InputControllerImpl();
     private final KeyInput keyInput = new KeyInput(this);
     private GamePanel scenePanel;
-
-    public GameControllerImpl() {
-        game = new GameImpl(new Pair(Constants.PLAYER_WIDTH,Constants.PLAYER_HEIGHT));
-    }
+    private int coins = 50;
+    private String skin = "ranocchietta.png";
 
     @Override
     public void init(final GameScene gameScene) {
-        //game = new GameImpl(new Pair(Constants.PLAYER_WIDTH,Constants.PLAYER_HEIGHT));
         scenePanel = new GamePanel();
         scenePanel.setController(this);
         gameScene.setPanel(scenePanel);
@@ -74,6 +71,31 @@ public class GameControllerImpl extends AbstractController implements GameContro
     @Override
     public KeyListener getKeyListener() {
         return keyInput;
+    }
+
+    @Override
+    public void newGame() {
+        this.game = new GameImpl(new Pair(Constants.PLAYER_WIDTH,Constants.PLAYER_HEIGHT), this.skin);
+    }
+
+    @Override
+    public int getCoins() {
+        return this.coins;
+    }
+
+    @Override
+    public void setCoins(int coins) {
+        this.coins = coins;
+    }
+
+    @Override
+    public String getSkin() {
+        return skin;
+    }
+
+    @Override
+    public void setSkin(String skin) {
+        this.skin = skin;
     }
 }
 

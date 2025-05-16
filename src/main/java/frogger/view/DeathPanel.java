@@ -3,7 +3,6 @@ package frogger.view;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
-import java.awt.image.BufferedImage;
 
 import frogger.common.Constants;
 import frogger.common.LoadSave;
@@ -15,7 +14,6 @@ public class DeathPanel extends AbstractPanel<DeathController>{
 
     private final int score;
     private final Font myFont = new Font("MyFont", 1, Constants.BLOCK_HEIGHT);
-    private BufferedImage background;
 
     public DeathPanel(int score) {
         setFocusable(true);
@@ -47,14 +45,10 @@ public class DeathPanel extends AbstractPanel<DeathController>{
         (int)this.getController().getXinPixel(FONT_POS.x()), (int)this.getController().getYinPixel(FONT_POS.y()));
     }
 
-    public void paintBackground(Graphics g) {
-        g.drawImage(background, 0 , 0, Constants.FRAME_WIDTH, Constants.FRAME_HEIGHT, null);
-    }
-
     @Override
     protected void importImg() {
         // buttonBack = LoadSave.GetSprite("death_background.png");
-        background = LoadSave.GetSprite("death_background.png");
+        this.setBackgroundImage(LoadSave.GetSprite("death_background.png"));
     };
 
 }

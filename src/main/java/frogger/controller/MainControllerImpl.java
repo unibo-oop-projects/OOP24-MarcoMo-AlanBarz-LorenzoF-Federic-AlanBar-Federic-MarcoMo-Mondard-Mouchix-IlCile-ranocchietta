@@ -6,33 +6,37 @@ import frogger.view.GameScene;
 public class MainControllerImpl {
     private Controller controller;
     private GameController gameController = new GameControllerImpl();
+    private ShopController shopController = new ShopController(gameController);
 
     public void choosePanel() {
         GameScene frame = new GameScene();
         while (true) {
             switch (GameState.state) {
                 case PLAYING -> {
-                    controller = gameController;
+                    this.controller = this.gameController;
+                    if(this.controller instanceof GameController) {
+                        System.out.println(((GameController)controller).getSkin());
+                    }
                 }
                 case MENU -> {
-                    controller = new MenuControllerImpl();
-                    gameController = new GameControllerImpl();
+                    this.controller = new MenuControllerImpl();
+                    this.gameController.newGame();
                 }
                 case SHOP -> {
-                    controller = new ShopController(gameController);
+                    this.controller = this.shopController;
                 }
                 case DEAD -> {
-                    controller = new DeathController(((GameController)gameController).getGame().getScore());
-                    gameController = new GameControllerImpl();
+                    this.controller = new DeathController(((GameController)gameController).getGame().getScore());
+                    this.gameController.newGame();
                 }
                 case PAUSE -> {
-                    controller = new PauseController(gameController);
+                    this.controller = new PauseController(gameController);
                 }
                 default -> System.exit(0);
             }
             
-            controller.init(frame);
-            controller.loop();
+            this.controller.init(frame);
+            this.controller.loop();
         }
     }
 }

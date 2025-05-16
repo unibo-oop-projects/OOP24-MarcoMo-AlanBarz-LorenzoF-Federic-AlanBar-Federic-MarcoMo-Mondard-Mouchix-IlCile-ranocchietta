@@ -12,4 +12,14 @@ public interface GameController extends Controller {
     KeyListener getKeyListener();
 
     Game getGame();
+
+    int getCoins();
+
+    void setCoins(int coins);
+
+    void newGame();
+
+    String getSkin();
+
+    void setSkin(String skin);
 }

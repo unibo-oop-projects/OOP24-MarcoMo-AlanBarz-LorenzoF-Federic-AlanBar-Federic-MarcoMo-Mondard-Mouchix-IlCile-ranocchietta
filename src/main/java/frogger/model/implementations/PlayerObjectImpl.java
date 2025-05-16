@@ -15,9 +15,9 @@ public class PlayerObjectImpl extends GameObjectImpl implements PlayerObject{
     private boolean attached;
     private boolean dead;
     
-    public PlayerObjectImpl(Pair dimension) {
+    public PlayerObjectImpl(final Pair dimension, String skin) {
         super(new Position(0, -6), dimension);
-        super.setImage("ranocchietta.png");
+        super.setImage(skin);
         this.lives = 3;
         this.score = 0;
         this.direction = Direction.UP;
@@ -66,7 +66,7 @@ public class PlayerObjectImpl extends GameObjectImpl implements PlayerObject{
     }
 
     @Override
-    public void addPoints(int points) {
+    public void addPoints(final int points) {
         this.score+=points;
     }
 
@@ -87,7 +87,7 @@ public class PlayerObjectImpl extends GameObjectImpl implements PlayerObject{
     }
 
     @Override
-    public void setAttached(boolean b) {
+    public void setAttached(final boolean b) {
         this.attached = b;
     }
 
@@ -101,5 +101,4 @@ public class PlayerObjectImpl extends GameObjectImpl implements PlayerObject{
         this.dead = false;
         resetPosition();
     }
-
 }

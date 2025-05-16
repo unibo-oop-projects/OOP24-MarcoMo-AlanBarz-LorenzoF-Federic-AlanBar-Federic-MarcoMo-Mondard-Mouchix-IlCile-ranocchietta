@@ -10,7 +10,6 @@ import frogger.controller.MenuControllerImpl;
 
 public class MenuPanel extends AbstractPanel<MenuControllerImpl>{
     private BufferedImage buttonBack;
-    private BufferedImage background;
 
     public MenuPanel() {
         setFocusable(true);
@@ -32,13 +31,9 @@ public class MenuPanel extends AbstractPanel<MenuControllerImpl>{
         this.getController().getMenu().draw(g);
     }
 
-    public void paintBackground(Graphics g) {
-        g.drawImage(background, 0 , 0, Constants.FRAME_WIDTH, Constants.FRAME_HEIGHT, null);
-    }
-
     @Override
     protected void importImg() {
         buttonBack = LoadSave.GetSprite(LoadSave.MENU_BUTTONBACK);
-        background = LoadSave.GetSprite(LoadSave.GAME_BACKGROUND);
+        this.setBackgroundImage(LoadSave.GetSprite(LoadSave.GAME_BACKGROUND));
     };
 }

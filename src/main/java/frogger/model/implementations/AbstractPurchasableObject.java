@@ -5,7 +5,7 @@ import frogger.model.interfaces.PurchasableObject;
 public abstract class AbstractPurchasableObject implements PurchasableObject {
     private final int prize;
     private final String img;
-    private final boolean isBought;
+    private boolean isBought;
 
     public AbstractPurchasableObject(int prize, String img, boolean isBought) {
         this.prize = prize;
@@ -28,4 +28,13 @@ public abstract class AbstractPurchasableObject implements PurchasableObject {
         return this.isBought;
     }
 
+    @Override
+    public void setAvailable(boolean b) {
+        this.isBought = b;
+    }   
+
+    @Override 
+    public String toString() {
+        return this.getClass() + " " + this.prize + " " + this.img + " " + this.isBought;
+    }
 }

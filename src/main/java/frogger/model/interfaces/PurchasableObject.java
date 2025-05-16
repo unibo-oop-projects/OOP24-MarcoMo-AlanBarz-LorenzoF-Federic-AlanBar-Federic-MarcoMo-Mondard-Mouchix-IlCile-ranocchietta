@@ -7,4 +7,6 @@ public interface PurchasableObject {
     String getImage();
 
     boolean isAvailable();
+
+    void setAvailable(boolean b);
 }

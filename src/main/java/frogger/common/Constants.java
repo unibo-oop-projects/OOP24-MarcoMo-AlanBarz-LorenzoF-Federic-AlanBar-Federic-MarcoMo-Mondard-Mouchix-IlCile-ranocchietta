@@ -4,7 +4,7 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 
 public class Constants {
-    //scale the dimention of the frame 
+    //scale the dimension of the frame 
     private final static Dimension SCREEN = Toolkit.getDefaultToolkit().getScreenSize(); 
     //private final static int sw = (int) screen.getWidth();
     private final static  int SH = (int) SCREEN.getHeight();

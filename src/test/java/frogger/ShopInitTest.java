@@ -53,8 +53,8 @@ public class ShopInitTest {
             assertEquals(1, skin.getPrize());
             assertTrue(skin.isAvailable());
 
-            ShopInitTest.gameController.getGame().setCoins(10);
-            assertEquals(10, ShopInitTest.gameController.getGame().getCoins());
+            ShopInitTest.gameController.setCoins(10);
+            assertEquals(10, ShopInitTest.gameController.getCoins());
 
             
 

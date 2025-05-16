@@ -42,8 +42,4 @@ public interface Game {
      * @return true if it is, false otherwise
      */
     boolean gameIsPaused();
-
-    int getCoins();
-    
-    void setCoins(int coins);
 }
