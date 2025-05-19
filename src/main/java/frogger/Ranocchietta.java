@@ -2,10 +2,18 @@ package frogger;
 
 import frogger.controller.MainControllerImpl;
 
-public class Ranochietta {
+/**
+ * Entry point for the Ranocchietta game application.
+ */
+public class Ranocchietta {
 
-    public static void main(String[] args) {
-        MainControllerImpl mainController = new MainControllerImpl();
+    /**
+     * Main method. Launches the application by creating the main controller and showing the initial panel.
+     *
+     * @param args the command-line arguments (not used)
+     */
+    public static void main(final String[] args) {
+        final MainControllerImpl mainController = new MainControllerImpl();
         mainController.choosePanel();
     }
 }

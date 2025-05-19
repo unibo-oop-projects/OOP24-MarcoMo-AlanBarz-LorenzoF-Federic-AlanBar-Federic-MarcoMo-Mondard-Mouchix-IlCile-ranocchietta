@@ -5,15 +5,22 @@ import frogger.common.Position;
 import frogger.model.interfaces.Game;
 import frogger.model.interfaces.PlayerObject;
 
-public class MoveDown implements Command{
+/**
+ * Command to move the player one unit down, if possible.
+ */
+public class MoveDown implements Command {
 
+    /**
+     * {@inheritDoc}
+     * Moves the player down if not at the minimum Y boundary.
+     */
     @Override
-    public void execute(Game game) {
-        PlayerObject player = game.getPlayer();
-		if(player.getPos().y() > Constants.MIN_Y){
+    public void execute(final Game game) {
+        final PlayerObject player = game.getPlayer();
+        if (player.getPos().y() > Constants.MIN_Y) {
             player.setLookingDown();
-			player.setPos(new Position(player.getPos().x(), player.getPos().y() - 1));
-		}
+            player.setPos(new Position(player.getPos().x(), player.getPos().y() - 1));
+        }
     }
 
 }

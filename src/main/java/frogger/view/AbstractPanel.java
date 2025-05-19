@@ -15,7 +15,7 @@ public abstract class AbstractPanel<X> extends JPanel{
 
     protected abstract void importImg();
 
-    public void setController(X controller) {
+    public void setController(final X controller) {
         this.controller = controller;
         this.importImg();
         this.setInputListener();
@@ -29,7 +29,7 @@ public abstract class AbstractPanel<X> extends JPanel{
         return controller;
     }
 
-    protected void paintBackground(Graphics g) {
+    protected void paintBackground(final Graphics g) {
         g.drawImage(background, 0 , 0, Constants.FRAME_WIDTH, Constants.FRAME_HEIGHT, null);
     }
 
@@ -37,7 +37,7 @@ public abstract class AbstractPanel<X> extends JPanel{
         return background;
     }
 
-    protected void setBackgroundImage(BufferedImage background) {
+    protected void setBackgroundImage(final BufferedImage background) {
         this.background = background;
     }
 }

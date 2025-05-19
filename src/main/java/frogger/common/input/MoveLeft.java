@@ -5,15 +5,22 @@ import frogger.common.Position;
 import frogger.model.interfaces.Game;
 import frogger.model.interfaces.PlayerObject;
 
-public class MoveLeft implements Command{
+/**
+ * Command to move the player one unit to the left, if possible.
+ */
+public class MoveLeft implements Command {
 
+    /**
+     * {@inheritDoc}
+     * Moves the player left if not at the minimum X boundary.
+     */
     @Override
-    public void execute(Game game) {
-        PlayerObject player = game.getPlayer();
-		if(player.getPos().x() > Constants.MIN_X){
+    public void execute(final Game game) {
+        final PlayerObject player = game.getPlayer();
+        if (player.getPos().x() > Constants.MIN_X) {
             player.setLookingLeft();
-			player.setPos(new Position(player.getPos().x() - 1, player.getPos().y()));
-		}
+            player.setPos(new Position(player.getPos().x() - 1, player.getPos().y()));
+        }
     }
 
 }

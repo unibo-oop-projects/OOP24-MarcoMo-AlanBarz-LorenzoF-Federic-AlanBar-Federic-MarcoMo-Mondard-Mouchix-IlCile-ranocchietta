@@ -49,7 +49,7 @@ public class GameImpl implements Game{
         
         if(this.player.getPos().y() > -6 && this.player.getPos().y() < 1){
             if(this.level.getAllObstacles().stream().anyMatch(x -> x.getHitBox().intersects(this.player.getHitBox()))){
-                this.player.getHit();
+                this.player.playerHit();
             }
         }else if(this.player.getPos().y() > 0 && this.player.getPos().y() < 6){
 
@@ -69,11 +69,11 @@ public class GameImpl implements Game{
                             this.player.setAttached(true);
                         }
                     } else if(x instanceof Eagle ){
-                        this.player.getHit();
+                        this.player.playerHit();
                     }
                 });
             } else {
-               this.player.getHit(); 
+               this.player.playerHit(); 
             }
         }
     }

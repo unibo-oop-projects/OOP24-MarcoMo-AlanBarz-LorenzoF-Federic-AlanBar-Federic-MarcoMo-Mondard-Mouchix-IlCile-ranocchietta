@@ -62,4 +62,7 @@ public class Constants {
     public final static int BUTTON_WIDTH = (int)(BUTTON_WIDTH_DEFAULT * 1); // ! This is temporary
     public final static int BUTTON_HEIGHT = (int)(BUTTON_HEIGHT_DEFAULT * 1);   // ! This is temporary
     public final static int BUTTONS_DISTANCE = 10;
+
+    public final static int BUTTON_WIDTH_IN_PIXEL = 100;
+    public final static int BUTTON_HEIGHT_IN_PIXEL = 30;
 }

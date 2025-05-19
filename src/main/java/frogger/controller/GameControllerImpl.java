@@ -31,9 +31,7 @@ public class GameControllerImpl extends AbstractController implements GameContro
 
     @Override
     public void core() {
-        if(!this.game.getPlayer().isDead()){
-            this.inputController.processInput(this.game);
-        }
+        this.inputController.processInput(this.game);
         this.game.checkCollision();
         this.game.checkProgress();
         this.game.checkNewLevel();
