@@ -1,5 +1,7 @@
 package frogger.view;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.util.List;
@@ -20,6 +22,7 @@ import frogger.model.interfaces.PurchasableObject;
 public class ShopPanel extends AbstractPanel<ShopController> {
 
     private static final long serialVersionUID = 1L;
+    private final Font myFont = new Font("MyFont", 1, Constants.BLOCK_HEIGHT/2);
 
     /**
      * Constructs a new ShopPanel and sets its properties.
@@ -127,6 +130,7 @@ public class ShopPanel extends AbstractPanel<ShopController> {
     public void paintComponent(final Graphics g) {
         super.paintComponent(g);
         paintBackground(g);
+        paintCoins(g);
         final List<PurchasableObject> objects = this.getController().getPurchasableObject();
         for (int i = 0; i < objects.size(); i++) {
             final Position p = getGridPosition(i);
@@ -170,5 +174,12 @@ public class ShopPanel extends AbstractPanel<ShopController> {
         final int x = index % columns * 2 - 5; // -5, -3, -1, 1
         final int y = 5 - index / columns * 2;
         return new Position(x, y);
+    }
+
+    private void paintCoins(Graphics g) {
+        g.setColor(Color.WHITE);
+        g.setFont(myFont);
+        g.drawString("Coins: " + this.getController().getGameController().getCoins(), 
+        (int)this.getController().getXinPixel(Constants.MAX_X - 2), (int)this.getController().getYinPixel(Constants.MAX_Y - 0.5));
     }
 }
