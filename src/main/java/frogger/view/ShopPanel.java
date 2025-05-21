@@ -50,7 +50,7 @@ public class ShopPanel extends AbstractPanel<ShopController> {
         }
 
         final JButton backButton = new JButton("Menu");
-        backButton.addActionListener((_) -> {
+        backButton.addActionListener((e) -> {
             GameState.state = GameState.MENU;
         });
 
@@ -88,14 +88,14 @@ public class ShopPanel extends AbstractPanel<ShopController> {
                 jb = new JButton("Equipped");
             } else {
                 jb = new JButton("Equip");
-                jb.addActionListener((_) -> {
+                jb.addActionListener((e) -> {
                     this.getController().getGameController().setSkin(img);
                     this.updateButtons();
                 });
             }
         } else {
             jb = new JButton("Buy " + purchasableObject.getPrize());
-            jb.addActionListener((_) -> {
+            jb.addActionListener((e) -> {
                 if (this.getController().getGameController().getCoins() >= purchasableObject.getPrize()) {
                     this.getController().getGameController().setCoins(
                         this.getController().getGameController().getCoins() - purchasableObject.getPrize());

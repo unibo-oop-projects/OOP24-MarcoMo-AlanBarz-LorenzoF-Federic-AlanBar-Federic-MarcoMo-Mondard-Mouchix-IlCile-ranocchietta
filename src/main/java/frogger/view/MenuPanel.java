@@ -26,8 +26,8 @@ public class MenuPanel extends AbstractPanel<MenuControllerImpl>{
     @Override
     public void paintComponent(final Graphics g) {
         paintBackground(g);
-        g.drawImage(buttonBack, (Constants.FRAME_WIDTH/2 -  (buttonBack.getWidth()+30)/2), (Constants.FRAME_HEIGHT/2 -  (buttonBack.getHeight()+30)/2), 
-                        buttonBack.getWidth()+30, buttonBack.getHeight()+30, null);
+        g.drawImage(buttonBack, (Constants.FRAME_WIDTH / 2 - (buttonBack.getWidth() + 30) / 2), (Constants.FRAME_HEIGHT / 2 - (buttonBack.getHeight() + 30) / 2), 
+                        buttonBack.getWidth() + 30, buttonBack.getHeight() + 30, null);
         this.getController().getMenu().draw(g);
     }
 
