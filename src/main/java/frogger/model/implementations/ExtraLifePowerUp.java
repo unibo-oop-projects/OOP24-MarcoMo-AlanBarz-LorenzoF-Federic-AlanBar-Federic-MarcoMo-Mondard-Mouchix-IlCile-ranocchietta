@@ -9,13 +9,8 @@ public class ExtraLifePowerUp extends AbstractPowerUp {
 
     public ExtraLifePowerUp(Position pos, Pair dimension) {
         super(pos, dimension);
-        this.setImage(LoadSave.EXTRA_LIFE);
+        super.setImage(LoadSave.EXTRA_LIFE);
     }
-
-    // @Override
-    // public void setImage() {
-    //     img = LoadSave.GetSprite(LoadSave.EXTRA_LIFE); 
-    // }
 
     @Override
     public void activate() {
@@ -26,7 +21,7 @@ public class ExtraLifePowerUp extends AbstractPowerUp {
     public void deactivate() {}
 
     @Override
-    public void setPlayer(PlayerObject player) {      
+    public void setPlayer(PlayerObject player) {
         if (player instanceof PlayerObjectImpl playerObjectImpl) {
             this.player = playerObjectImpl;
         } else {

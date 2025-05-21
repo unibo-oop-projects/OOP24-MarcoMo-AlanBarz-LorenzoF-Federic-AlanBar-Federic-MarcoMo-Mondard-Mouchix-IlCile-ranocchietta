@@ -75,4 +75,12 @@ public class LevelImpl implements Level {
     public void addPowerUp(final PowerUp p) {
         this.powerUp.add(p);
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void removePowerUp(final PowerUp p) {
+        this.powerUp.remove(p);
+    }
 }

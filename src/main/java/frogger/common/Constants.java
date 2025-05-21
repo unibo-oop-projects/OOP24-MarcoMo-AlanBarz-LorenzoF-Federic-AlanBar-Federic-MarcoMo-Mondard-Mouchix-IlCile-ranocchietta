@@ -47,13 +47,14 @@ public final class Constants {
     public static final float MAX_SPEED = 0.03f;
 
     /** Minimum number of power-ups. */
-    public static final int MIN_POWER_UP_NUMBER = 2;
+    public static final int MIN_POWER_UP_NUMBER = 1;
     /** Maximum number of power-ups. */
-    public static final int MAX_POWER_UP_NUMBER = 5;
+    public static final int MAX_POWER_UP_NUMBER = 3;
     /** Power-up width (in grid units). */
-    public static final int POWER_UP_WIDTH = 1;
+    public static final int POWER_UP_WIDTH = 7;
     /** Power-up height (in grid units). */
-    public static final int POWER_UP_HEIGHT = 1;
+    public static final int POWER_UP_HEIGHT = 7;
+
 
     /** Height of a generic object (in grid units). */
     public static final int OBJECT_HEIGHT = 1;
