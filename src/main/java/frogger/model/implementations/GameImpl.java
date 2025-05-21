@@ -51,6 +51,7 @@ public class GameImpl implements Game{
             getPowerUps().stream().filter(x -> x.getHitBox().intersects(this.player.getHitBox())).forEach(x ->{
                 x.setPlayer(player);
                 x.activate();
+                this.level.removePowerUp(x);
             });
         }
 

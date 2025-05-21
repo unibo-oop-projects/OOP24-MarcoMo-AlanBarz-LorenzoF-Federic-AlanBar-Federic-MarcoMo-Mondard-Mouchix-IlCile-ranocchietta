@@ -50,4 +50,10 @@ public interface Level {
      * @param p the power up to be added
      */
     void addPowerUp(PowerUp p);
+
+    /**
+     * Remove a power up from the list.
+     * @param p the power up to be removed
+     */
+    void removePowerUp(PowerUp p);
 }
