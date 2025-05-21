@@ -4,11 +4,9 @@ import java.util.Random;
 
 import frogger.common.Constants;
 import frogger.common.Direction;
-import frogger.model.interfaces.EntitySpawner;
 import frogger.model.interfaces.Lane;
 import frogger.model.interfaces.Level;
 import frogger.model.interfaces.LevelFactory;
-import frogger.model.interfaces.PowerUp;
 
 /**
  * {@inheritDoc}.
@@ -22,22 +20,20 @@ public class LevelFactoryImpl implements LevelFactory {
      */
     @Override
     public Level randomLevel() {
+        final RandomSpawnerFactoryImpl fact = new RandomSpawnerFactoryImpl();
         final Level level = new LevelImpl();
         int laneIndex = Constants.MIN_Y;
-        final EntitySpawner<Eagle> eagleSpawner = new RandomEaglesSpawner();
-        final EntitySpawner<PowerUp> powerUpSpawner = new RandomPowerUpsSpawner();
 
-        eagleSpawner.spawn(Constants.MIN_EAGLES_NUMBER, Constants.MAX_EAGLES_NUMBER).forEach(level::addEagle);
-        powerUpSpawner.spawn(Constants.MIN_POWER_UP_NUMBER, Constants.MAX_POWER_UP_NUMBER).forEach(level::addPowerUp);
+        fact.randomEagleSpawner().spawn(Constants.MIN_EAGLES_NUMBER, Constants.MAX_EAGLES_NUMBER).forEach(level::addEagle);
+        fact.randomPowerUpSpawner().spawn(Constants.MIN_POWER_UP_NUMBER, Constants.MAX_POWER_UP_NUMBER).forEach(level::addPowerUp);
 
         final Lane start = new Ground();
         level.addLane(start);
         laneIndex++;
         for (int i = 0; i < Constants.ROAD_LANES; i++) {
             final Lane road = createLane(Road.class, laneIndex);
-            final EntitySpawner<Car> spawner = new RandomObstaclesSpawner<>(Car.class, laneIndex,
-            road.getSpeed(), road.getDirection());
-            spawner.spawn(Constants.MIN_OBSTACLES_NUMBER, Constants.MAX_OBSTACLES_NUMBER).forEach(road::addMovingObject);
+            fact.randomCarSpawner(laneIndex, road.getSpeed(), road.getDirection()).spawn(Constants.MIN_OBSTACLES_NUMBER,
+            Constants.MAX_OBSTACLES_NUMBER).forEach(road::addMovingObject);
             level.addLane(road);
             laneIndex++;
         }
@@ -46,9 +42,8 @@ public class LevelFactoryImpl implements LevelFactory {
         laneIndex++;
         for (int i = 0; i < Constants.RIVER_LANES; i++) {
             final Lane river = createLane(River.class, laneIndex);
-            final EntitySpawner<Trunk> spawner = new RandomObstaclesSpawner<>(Trunk.class, laneIndex,
-            river.getSpeed(), river.getDirection());
-            spawner.spawn(Constants.MIN_OBSTACLES_NUMBER, Constants.MAX_OBSTACLES_NUMBER).forEach(river::addMovingObject);
+            fact.randomTrunkSpawner(laneIndex, river.getSpeed(), river.getDirection()).spawn(Constants.MIN_OBSTACLES_NUMBER,
+            Constants.MAX_OBSTACLES_NUMBER).forEach(river::addMovingObject);
             level.addLane(river);
             laneIndex++;
         }
