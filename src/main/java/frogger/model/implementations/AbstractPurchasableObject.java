@@ -57,7 +57,7 @@ public abstract class AbstractPurchasableObject implements PurchasableObject {
     @Override
     public void setAvailable(final boolean b) {
         this.isBought = b;
-    }   
+    }
 
     /**
      * Returns a string representation of this purchasable object.

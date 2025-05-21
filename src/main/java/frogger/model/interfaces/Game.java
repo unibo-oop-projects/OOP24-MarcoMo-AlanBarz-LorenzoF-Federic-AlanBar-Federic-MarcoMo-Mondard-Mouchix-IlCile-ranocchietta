@@ -2,46 +2,80 @@ package frogger.model.interfaces;
 
 import java.util.List;
 
+/**
+ * Represents the main game logic and state.
+ * Provides access to the player, obstacles, level, power-ups, and game status.
+ */
 public interface Game {
 
+    /**
+     * Checks if the game is over.
+     *
+     * @return true if the game is over, false otherwise
+     */
     boolean isGameOver();
 
+    /**
+     * Returns the current score of the player.
+     *
+     * @return the player's score
+     */
     int getScore();
 
+    /**
+     * Returns the player object.
+     *
+     * @return the player
+     */
     PlayerObject getPlayer();
 
     /**
-     * Get all the obstacles in the level
+     * Returns all the obstacles in the current level.
+     *
      * @return the list of obstacles
      */
     List<MovingObject> getObstacles();
 
     /**
-     * Get the level
+     * Returns the current level.
+     *
      * @return the level
      */
     Level getLevel();
 
+    /**
+     * Checks for collisions between the player and obstacles or other objects.
+     */
     void checkCollision();
 
+    /**
+     * Checks if the player has reached a new level and updates the game state accordingly.
+     */
     void checkNewLevel();
 
     /**
-     * Get the lane where the frog is at the moment
-     * @return the lane
+     * Returns the lane where the frog is at the moment.
+     *
+     * @return the current lane
      */
     Lane getCurrentLane();
 
     /**
-     * Check if the current lane is already completed, if not add points to the frog
+     * Checks if the current lane is already completed, and if not, adds points to the frog.
      */
     void checkProgress();
 
     /**
-     * Check if the game is currently paused
-     * @return true if it is, false otherwise
+     * Checks if the game is currently paused.
+     *
+     * @return true if the game is paused, false otherwise
      */
     boolean gameIsPaused();
 
+    /**
+     * Returns the list of power-ups currently available in the game.
+     *
+     * @return the list of power-ups
+     */
     List<PowerUp> getPowerUps();
 }

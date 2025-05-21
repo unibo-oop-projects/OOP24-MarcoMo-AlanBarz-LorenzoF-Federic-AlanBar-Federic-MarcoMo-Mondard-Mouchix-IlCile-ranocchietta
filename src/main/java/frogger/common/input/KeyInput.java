@@ -15,6 +15,7 @@ public class KeyInput implements KeyListener {
 
     /**
      * Constructs a new KeyInput handler with the specified game controller.
+     * The passed GameController reference is stored and may be modified externally.
      *
      * @param controller the game controller to notify of input commands
      */
@@ -45,6 +46,9 @@ public class KeyInput implements KeyListener {
                 case KeyEvent.VK_RIGHT -> this.controller.getInputController().notifyCommand(new MoveRight());
                 case KeyEvent.VK_LEFT -> this.controller.getInputController().notifyCommand(new MoveLeft());
                 case KeyEvent.VK_ESCAPE -> this.controller.getInputController().notifyCommand(new Pause());
+                default -> {
+                    // Handle other keys if needed
+                }
             }
         }
     }

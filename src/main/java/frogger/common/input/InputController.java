@@ -7,7 +7,7 @@ import frogger.model.interfaces.Game;
  * Implementations manage the reception and processing of input commands.
  */
 public interface InputController {
-    
+
     /**
      * Processes the next input command, if any, and executes it on the given game instance.
      *

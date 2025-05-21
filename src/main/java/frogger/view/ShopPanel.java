@@ -41,6 +41,7 @@ public class ShopPanel extends AbstractPanel<ShopController> {
      * Updates the buttons for all purchasable objects and adds the menu button.
      * Removes all existing buttons and recreates them based on the current state.
      */
+    @SuppressWarnings("unused") // Suppress unused warning for the lambda parameter in addActionListener
     public void updateButtons() {
         this.removeAll(); // Remove all existing buttons
         final List<PurchasableObject> objects = this.getController().getPurchasableObject();
@@ -50,7 +51,7 @@ public class ShopPanel extends AbstractPanel<ShopController> {
         }
 
         final JButton backButton = new JButton("Menu");
-        backButton.addActionListener((_) -> {
+        backButton.addActionListener((e) -> {
             GameState.state = GameState.MENU;
         });
 
@@ -70,6 +71,7 @@ public class ShopPanel extends AbstractPanel<ShopController> {
      * @param x the x grid coordinate
      * @param y the y grid coordinate
      */
+    @SuppressWarnings("unused")
     private void addButtonForObject(final PurchasableObject purchasableObject, final int x, final int y) {
         // Crea e posiziona il bottone come già fai
         final String img = purchasableObject.getImage();
@@ -88,14 +90,14 @@ public class ShopPanel extends AbstractPanel<ShopController> {
                 jb = new JButton("Equipped");
             } else {
                 jb = new JButton("Equip");
-                jb.addActionListener((_) -> {
+                jb.addActionListener((e) -> {
                     this.getController().getGameController().setSkin(img);
                     this.updateButtons();
                 });
             }
         } else {
             jb = new JButton("Buy " + purchasableObject.getPrize());
-            jb.addActionListener((_) -> {
+            jb.addActionListener((e) -> {
                 if (this.getController().getGameController().getCoins() >= purchasableObject.getPrize()) {
                     this.getController().getGameController().setCoins(
                         this.getController().getGameController().getCoins() - purchasableObject.getPrize());

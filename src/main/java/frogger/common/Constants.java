@@ -3,66 +3,124 @@ package frogger.common;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 
-public class Constants {
-    //scale the dimension of the frame 
-    private final static Dimension SCREEN = Toolkit.getDefaultToolkit().getScreenSize(); 
-    //private final static int sw = (int) screen.getWidth();
-    private final static  int SH = (int) SCREEN.getHeight();
-    private final static double SCALE = 0.8;
+/**
+ * Utility class containing game-wide constants for dimensions, gameplay, and UI.
+ * <p>
+ * This class is not meant to be instantiated or extended.
+ * </p>
+ */
+public final class Constants {
+    /** The screen dimension as detected from the system. */
+    private static final Dimension SCREEN = Toolkit.getDefaultToolkit().getScreenSize();
+    /** The screen height. */
+    private static final int SH = (int) SCREEN.getHeight();
+    /** The scale factor for the game window. */
+    private static final double SCALE = 0.8;
 
-    public final static int MIN_OBSTACLES_NUMBER = 2;
-    public final static int MAX_OBSTACLES_NUMBER = 3;
-    public final static int MIN_EAGLES_NUMBER = 5;
-    public final static int MAX_EAGLES_NUMBER = 6;
+    /** Minimum number of obstacles per lane. */
+    public static final int MIN_OBSTACLES_NUMBER = 2;
+    /** Maximum number of obstacles per lane. */
+    public static final int MAX_OBSTACLES_NUMBER = 3;
+    /** Minimum number of eagles. */
+    public static final int MIN_EAGLES_NUMBER = 5;
+    /** Maximum number of eagles. */
+    public static final int MAX_EAGLES_NUMBER = 6;
 
-    public final static int MIN_CAR_WIDTH = 1;
-    public final static int MAX_CAR_WIDTH = 2;
+    /** Minimum car width (in grid units). */
+    public static final int MIN_CAR_WIDTH = 1;
+    /** Maximum car width (in grid units). */
+    public static final int MAX_CAR_WIDTH = 2;
 
-    public final static int MIN_TRUNK_WIDTH = 1;
-    public final static int MAX_TRUNK_WIDTH = 2;
+    /** Minimum trunk width (in grid units). */
+    public static final int MIN_TRUNK_WIDTH = 1;
+    /** Maximum trunk width (in grid units). */
+    public static final int MAX_TRUNK_WIDTH = 2;
 
-    public final static int EAGLE_WIDTH = 1;
-    public final static int EAGLE_HEIGHT = 1;
+    /** Eagle width (in grid units). */
+    public static final int EAGLE_WIDTH = 1;
+    /** Eagle height (in grid units). */
+    public static final int EAGLE_HEIGHT = 1;
 
-    public final static float MIN_SPEED = 0.01f;
-    public final static float MAX_SPEED = 0.03f;
+    /** Minimum speed for moving objects. */
+    public static final float MIN_SPEED = 0.01f;
+    /** Maximum speed for moving objects. */
+    public static final float MAX_SPEED = 0.03f;
 
-    public final static int MIN_POWER_UP_NUMBER = 2;
-    public final static int MAX_POWER_UP_NUMBER = 5;
-    public final static int POWER_UP_WIDTH = 1;
-    public final static int POWER_UP_HEIGHT = 1;
+    /** Minimum number of power-ups. */
+    public static final int MIN_POWER_UP_NUMBER = 2;
+    /** Maximum number of power-ups. */
+    public static final int MAX_POWER_UP_NUMBER = 5;
+    /** Power-up width (in grid units). */
+    public static final int POWER_UP_WIDTH = 1;
+    /** Power-up height (in grid units). */
+    public static final int POWER_UP_HEIGHT = 1;
 
-    public final static int OBJECT_HEIGHT = 1;
+    /** Height of a generic object (in grid units). */
+    public static final int OBJECT_HEIGHT = 1;
 
-    public final static int LANE_HEIGHT = 1;
+    /** Height of a lane (in grid units). */
+    public static final int LANE_HEIGHT = 1;
 
-    public final static int ROAD_LANES = 5;
-    public final static int RIVER_LANES = 5;
-    public final static int GROUND_LANES = 3;
-    public final static int MAX_X = 6;
-    public final static int MIN_X = -7;
-    public final static int MAX_Y = RIVER_LANES + 1;
-    public final static int MIN_Y = - (ROAD_LANES + 1);
-    public final static int N_ROW = ROAD_LANES + RIVER_LANES + GROUND_LANES;
-    public final static int N_COLUMN = Math.abs(MAX_X) + Math.abs(MIN_X) + 1;
+    /** Number of road lanes. */
+    public static final int ROAD_LANES = 5;
+    /** Number of river lanes. */
+    public static final int RIVER_LANES = 5;
+    /** Number of ground lanes. */
+    public static final int GROUND_LANES = 3;
 
-    public final static int FRAME_HEIGHT = (int) (SH * SCALE);
-    public final static int BLOCK_HEIGHT = FRAME_HEIGHT / N_ROW;
-    public final static int FRAME_WIDTH = BLOCK_HEIGHT * N_COLUMN;
-    public final static int BLOCK_WIDTH = FRAME_WIDTH / N_COLUMN;
+    /** Maximum X coordinate in the grid. */
+    public static final int MAX_X = 6;
+    /** Minimum X coordinate in the grid. */
+    public static final int MIN_X = -7;
+    /** Maximum Y coordinate in the grid. */
+    public static final int MAX_Y = RIVER_LANES + 1;
+    /** Minimum Y coordinate in the grid. */
+    public static final int MIN_Y = -(ROAD_LANES + 1);
 
-    public final static int PLAYER_WIDTH = 1;
-    public final static int PLAYER_HEIGHT = 1;
+    /** Total number of rows in the game grid. */
+    public static final int N_ROW = ROAD_LANES + RIVER_LANES + GROUND_LANES;
+    /** Total number of columns in the game grid. */
+    public static final int N_COLUMN = Math.abs(MAX_X) + Math.abs(MIN_X) + 1;
 
-    public final static int POINT_PER_LANE = 10;
-    public final static int POINT_LEVEL_COMPLETED = 100;
+    /** Height of the game frame in pixels. */
+    public static final int FRAME_HEIGHT = (int) (SH * SCALE);
+    /** Height of a single block in pixels. */
+    public static final int BLOCK_HEIGHT = FRAME_HEIGHT / N_ROW;
+    /** Width of the game frame in pixels. */
+    public static final int FRAME_WIDTH = BLOCK_HEIGHT * N_COLUMN;
+    /** Width of a single block in pixels. */
+    public static final int BLOCK_WIDTH = FRAME_WIDTH / N_COLUMN;
 
-    public final static int BUTTON_WIDTH_DEFAULT = 166; // ! This is temporary
-    public final static int BUTTON_HEIGHT_DEFAULT = 61;   // ! This is temporary
-    public final static int BUTTON_WIDTH = (int)(BUTTON_WIDTH_DEFAULT * 1); // ! This is temporary
-    public final static int BUTTON_HEIGHT = (int)(BUTTON_HEIGHT_DEFAULT * 1);   // ! This is temporary
-    public final static int BUTTONS_DISTANCE = 10;
+    /** Player width (in grid units). */
+    public static final int PLAYER_WIDTH = 1;
+    /** Player height (in grid units). */
+    public static final int PLAYER_HEIGHT = 1;
 
-    public final static int BUTTON_WIDTH_IN_PIXEL = 100;
-    public final static int BUTTON_HEIGHT_IN_PIXEL = 30;
+    /** Points awarded per lane crossed. */
+    public static final int POINT_PER_LANE = 10;
+    /** Points awarded for completing a level. */
+    public static final int POINT_LEVEL_COMPLETED = 100;
+
+    /** Default button width in pixels (temporary). */
+    public static final int BUTTON_WIDTH_DEFAULT = 166;
+    /** Default button height in pixels (temporary). */
+    public static final int BUTTON_HEIGHT_DEFAULT = 61;
+    /** Button width in pixels (temporary, may be scaled). */
+    public static final int BUTTON_WIDTH = BUTTON_WIDTH_DEFAULT * 1;
+    /** Button height in pixels (temporary, may be scaled). */
+    public static final int BUTTON_HEIGHT = BUTTON_HEIGHT_DEFAULT * 1;
+    /** Distance between buttons in pixels. */
+    public static final int BUTTONS_DISTANCE = 10;
+
+    /** Button width in pixels for shop and menu. */
+    public static final int BUTTON_WIDTH_IN_PIXEL = 100;
+    /** Button height in pixels for shop and menu. */
+    public static final int BUTTON_HEIGHT_IN_PIXEL = 30;
+
+    /**
+     * Private constructor to prevent instantiation.
+     */
+    private Constants() {
+        throw new UnsupportedOperationException("Utility class");
+    }
 }

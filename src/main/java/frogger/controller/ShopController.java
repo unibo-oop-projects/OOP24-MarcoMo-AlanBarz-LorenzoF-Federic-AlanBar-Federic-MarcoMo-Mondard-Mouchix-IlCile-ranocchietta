@@ -102,7 +102,7 @@ public class ShopController extends AbstractController {
      * Populates the internal list of purchasable objects.
      */
     public void shopInit() {
-        InputStream is = null;
+        final InputStream is;
         try {
             final File saveFile = new File(SAVE_FILE);
             if (saveFile.exists()) {

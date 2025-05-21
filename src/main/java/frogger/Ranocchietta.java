@@ -5,7 +5,12 @@ import frogger.controller.MainControllerImpl;
 /**
  * Entry point for the Ranocchietta game application.
  */
-public class Ranocchietta {
+public final class Ranocchietta {
+
+    /**
+     * Private constructor to prevent instantiation of this utility class.
+     */
+    private Ranocchietta() { }
 
     /**
      * Main method. Launches the application by creating the main controller and showing the initial panel.
