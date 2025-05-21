@@ -27,10 +27,11 @@ public class Constants {
     public final static float MIN_SPEED = 0.01f;
     public final static float MAX_SPEED = 0.03f;
 
-    public final static int MIN_POWER_UP_NUMBER = 2;
-    public final static int MAX_POWER_UP_NUMBER = 5;
-    public final static int POWER_UP_WIDTH = 1;
-    public final static int POWER_UP_HEIGHT = 1;
+    public final static int MIN_POWER_UP_NUMBER = 1;
+    public final static int MAX_POWER_UP_NUMBER = 3;
+    public final static int POWER_UP_WIDTH = 7;
+    public final static int POWER_UP_HEIGHT = 7;
+
 
     public final static int OBJECT_HEIGHT = 1;
 

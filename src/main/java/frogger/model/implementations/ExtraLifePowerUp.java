@@ -21,7 +21,7 @@ public class ExtraLifePowerUp extends AbstractPowerUp {
     public void deactivate() {}
 
     @Override
-    public void setPlayer(PlayerObject player) {      
+    public void setPlayer(PlayerObject player) {
         if (player instanceof PlayerObjectImpl playerObjectImpl) {
             this.player = playerObjectImpl;
         } else {

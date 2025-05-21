@@ -47,6 +47,13 @@ public class GameImpl implements Game{
             return; // Evita ulteriori controlli durante il respawn
         }
         
+        if(this.level.getPowerUp().stream().anyMatch(x -> x.getHitBox().intersects(this.player.getHitBox()))){
+            getPowerUps().stream().filter(x -> x.getHitBox().intersects(this.player.getHitBox())).forEach(x ->{
+                x.setPlayer(player);
+                x.activate();
+            });
+        }
+
         if(this.player.getPos().y() > -6 && this.player.getPos().y() < 1){
             if(this.level.getAllObstacles().stream().anyMatch(x -> x.getHitBox().intersects(this.player.getHitBox()))){
                 this.player.playerHit();
@@ -56,16 +63,16 @@ public class GameImpl implements Game{
             this.player.setAttached(false);
 
             getObstacles().stream().forEach(x -> {
-                if(x instanceof Trunk){
-                    ((Trunk)x).removeObj();
+                if(x instanceof Trunk trunk){
+                    trunk.removeObj();
                 }
             });
             
             if(this.level.getAllObstacles().stream().anyMatch(x -> x.getHitBox().intersects(this.player.getHitBox()))){
                 getObstacles().stream().filter(x -> x.getHitBox().intersects(this.player.getHitBox())).forEach(x ->{
-                    if(x instanceof Trunk){
+                    if(x instanceof Trunk trunk){
                         if(!this.player.isAttached()){
-                            ((Trunk)x).setObj(this.player);
+                            trunk.setObj(this.player);
                             this.player.setAttached(true);
                         }
                     } else if(x instanceof Eagle ){
