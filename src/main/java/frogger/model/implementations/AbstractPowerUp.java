@@ -13,6 +13,10 @@ public abstract class AbstractPowerUp extends GameObjectImpl implements PowerUp 
     }
     
     public void setPlayer(PlayerObjectImpl player) {
-        this.player = player;
+        if (player instanceof PlayerObjectImpl playerObjectImpl) {
+            this.player = playerObjectImpl;
+        } else {
+            throw new IllegalArgumentException("Invalid player object type");
+        }
     }    
 }

@@ -98,10 +98,10 @@ public class LevelPainter {
 
     public void paintPowerUp(Graphics g) {
         for(var powerUp : getController().getGame().getPowerUps()) {
-            g.drawImage(powerUp.getImage(), (int)this.getController().getXinPixel(powerUp.getPos().x()), 
+            g.drawImage(powerUp.getImage(), 
+                (int)this.getController().getXinPixel(powerUp.getPos().x()), 
                 (int)this.getController().getYinPixel(powerUp.getPos().y()), 
-                powerUp.getDimension().width() * Constants.POWER_UP_WIDTH, 
-                powerUp.getDimension().height() * Constants.POWER_UP_HEIGHT, null);
+                null);
         }
     }
 

@@ -75,13 +75,22 @@ public class GameImpl implements Game {
             return; // Avoid further checks during respawn
         }
 
-        if(this.level.getPowerUp().stream().anyMatch(x -> x.getHitBox().intersects(this.player.getHitBox()))){
-            getPowerUps().stream().filter(x -> x.getHitBox().intersects(this.player.getHitBox())).forEach(x ->{
-                x.setPlayer(player);
-                x.activate();
+        this.level.getPowerUp().stream()
+            .filter(x -> x.getHitBox().intersects(this.player.getHitBox()))
+            .findFirst()
+            .ifPresent(x -> {
+                switch (x) {
+                    case FreezePowerUp freezePowerUp -> freezePowerUp.activate();
+                    case ExtraLifePowerUp extraLifePowerUp -> {
+                        extraLifePowerUp.setPlayer(player);
+                        extraLifePowerUp.activate();
+                    }
+                    default -> throw new IllegalArgumentException("Unknown power-up type: " + x.getClass());
+                }
+                System.out.println("Player hitbox: " + player.getHitBox());
+                System.out.println("PowerUp hitbox: " + x.getHitBox());
                 this.level.removePowerUp(x);
             });
-        }
 
         if (this.player.getPos().y() > Constants.MIN_Y && this.player.getPos().y() < 1) {
             if (this.level.getAllObstacles().stream().anyMatch(x -> x.getHitBox().intersects(this.player.getHitBox()))) {

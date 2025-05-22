@@ -51,9 +51,9 @@ public final class Constants {
     /** Maximum number of power-ups. */
     public static final int MAX_POWER_UP_NUMBER = 3;
     /** Power-up width (in grid units). */
-    public static final int POWER_UP_WIDTH = 7;
+    public static final int POWER_UP_WIDTH = 1;
     /** Power-up height (in grid units). */
-    public static final int POWER_UP_HEIGHT = 7;
+    public static final int POWER_UP_HEIGHT = 1;
 
 
     /** Height of a generic object (in grid units). */
