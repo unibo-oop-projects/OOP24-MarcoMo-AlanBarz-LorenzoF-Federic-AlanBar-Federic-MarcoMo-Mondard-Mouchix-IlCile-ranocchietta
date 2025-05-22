@@ -25,7 +25,7 @@ import frogger.model.interfaces.PowerUp;
 /**
  * Test class for the concept of Level.
  */
-public class LevelTest {
+final class LevelTest {
 
     private Level level;
 

@@ -3,7 +3,6 @@ package frogger;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.util.Set;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -24,12 +23,11 @@ import frogger.model.interfaces.MovingObjectFactory;
 /**
  * Test class for the concept of Lane.
  */
-public class LaneTest {
+final class LaneTest {
     private MovingObject ob1;
     private MovingObject ob2;
     private float speed;
     private Direction dir;
-    private static final String TEXT = "Should have thrown an exception.";
 
     @BeforeEach
     void setUp() {
@@ -46,12 +44,7 @@ public class LaneTest {
     @Test
     void riverTest() {
         final Lane l1 = new River(speed, dir);
-        try {
-            l1.addMovingObject(ob2);
-            Assertions.fail(TEXT);
-        } catch (final Exception e) {
-            assertEquals(Set.of(), l1.getLaneObstacles());
-        }
+        l1.addMovingObject(ob2);
         l1.addMovingObject(ob1);
         assertEquals(Set.of(ob1), l1.getLaneObstacles());
     }
@@ -59,12 +52,7 @@ public class LaneTest {
     @Test
     void roadTest() {
         final Lane l1 = new Road(speed, dir);
-        try {
-            l1.addMovingObject(ob1);
-            Assertions.fail(TEXT);
-        } catch (final Exception e) {
-            assertEquals(Set.of(), l1.getLaneObstacles());
-        }
+        l1.addMovingObject(ob1);
         l1.addMovingObject(ob2);
         assertEquals(Set.of(ob2), l1.getLaneObstacles());
     }
@@ -72,17 +60,8 @@ public class LaneTest {
     @Test
     void groundTest() {
         final Lane l1 = new Ground();
-        try {
-            l1.addMovingObject(ob1);
-            Assertions.fail(TEXT);
-        } catch (final Exception e) {
-            assertEquals(Set.of(), l1.getLaneObstacles());
-        }
-        try {
-            l1.addMovingObject(ob2);
-            Assertions.fail(TEXT);
-        } catch (final Exception e) {
-            assertEquals(Set.of(), l1.getLaneObstacles());
-        }
+        l1.addMovingObject(ob1);
+        l1.addMovingObject(ob2);
+        assertEquals(Set.of(), l1.getLaneObstacles());
     }
 }

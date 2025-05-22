@@ -18,7 +18,7 @@ public class RandomPowerUpsSpawner extends AbstractRandomEntitySpawner<PowerUp> 
      */
     @Override
     protected boolean isValidPosition(final Position pos, final Set<Position> used) {
-        return !used.contains(pos) || pos.y() == Constants.MIN_Y;
+        return !used.contains(pos) || pos.y() != Constants.MIN_Y;
     }
 
     /**
