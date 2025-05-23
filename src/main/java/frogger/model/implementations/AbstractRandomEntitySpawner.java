@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.Set;
 
+import frogger.common.Constants;
 import frogger.common.Position;
 import frogger.model.interfaces.EntitySpawner;
 
@@ -15,7 +16,15 @@ import frogger.model.interfaces.EntitySpawner;
  */
 public abstract class AbstractRandomEntitySpawner<X> implements EntitySpawner<X> {
 
-    private final Random ran = new Random();
+    private final Random ran;
+
+    /**
+     * This purpose of this constructor is to make deterministic the random to be able to test it.
+     * @param ran
+     */
+    public AbstractRandomEntitySpawner(final Random ran) {
+        this.ran = ran;
+    }
 
     /**
      * {@inheritDoc}
@@ -36,6 +45,22 @@ public abstract class AbstractRandomEntitySpawner<X> implements EntitySpawner<X>
         }
 
         return result;
+    }
+
+    /**
+     * Utility method to generate a random value beetwen the max and min y.
+     * @return the random value
+     */
+    public final int randomY() {
+        return ran.nextInt(Constants.MAX_Y - Constants.MIN_Y + 1) + Constants.MIN_Y;
+    }
+
+    /**
+     * Utility method to generate a random value beetwen the max and min x.
+     * @return the random value
+     */
+    public final int randomX() {
+        return ran.nextInt(Constants.MAX_X - Constants.MIN_X + 1) + Constants.MIN_X;
     }
 
     /**

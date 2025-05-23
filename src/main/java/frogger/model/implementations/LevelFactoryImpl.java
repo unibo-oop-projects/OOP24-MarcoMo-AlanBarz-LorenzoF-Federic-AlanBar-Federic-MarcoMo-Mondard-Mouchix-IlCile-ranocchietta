@@ -28,7 +28,7 @@ public class LevelFactoryImpl implements LevelFactory {
         fact.randomEagleSpawner().spawn(Constants.MIN_EAGLES_NUMBER, Constants.MAX_EAGLES_NUMBER).forEach(level::addEagle);
         fact.randomPowerUpSpawner().spawn(Constants.MIN_POWER_UP_NUMBER, Constants.MAX_POWER_UP_NUMBER)
         .forEach(level::addPowerUp);
-        
+
         final Lane start = new Ground();
         level.addLane(start);
         laneIndex++;

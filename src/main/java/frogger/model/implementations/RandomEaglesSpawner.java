@@ -7,7 +7,6 @@ import frogger.common.Constants;
 import frogger.common.Direction;
 import frogger.common.Pair;
 import frogger.common.Position;
-import frogger.common.RandomUtils;
 import frogger.model.interfaces.MovingObjectFactory;
 
 /**
@@ -17,6 +16,14 @@ public class RandomEaglesSpawner extends AbstractRandomEntitySpawner<Eagle> {
 
     private final Random ran = new Random();
     private final MovingObjectFactory obstaclesFactory = new MovingObjectFactoryImpl();
+
+    /**
+     * Just recall the superclass constructor.
+     * @param ran random injection useful for testing
+     */
+    public RandomEaglesSpawner(final Random ran) {
+        super(ran);
+    }
 
     /**
      * {@inheritDoc}
@@ -32,7 +39,7 @@ public class RandomEaglesSpawner extends AbstractRandomEntitySpawner<Eagle> {
     @Override
     protected Position generatePosition() {
         final int y = ran.nextBoolean() ? Constants.MIN_Y - 1 : Constants.MAX_Y + 1;
-        return new Position(RandomUtils.randomX(), y);
+        return new Position(randomX(), y);
     }
 
     /**
@@ -44,7 +51,7 @@ public class RandomEaglesSpawner extends AbstractRandomEntitySpawner<Eagle> {
         final Direction dir = pos.y() == Constants.MIN_Y - 1 ? Direction.UP : Direction.DOWN;
         int triggerRow = Constants.MIN_Y;
         while (triggerRow == Constants.MIN_Y || triggerRow == Constants.MAX_Y) {
-            triggerRow = RandomUtils.randomY();
+            triggerRow = randomY();
         }
         final float speed = ran.nextFloat(Constants.MIN_SPEED, Constants.MAX_SPEED);
         final Eagle eagle = obstaclesFactory.createMovingObject(pos, dim, speed, dir, Eagle.class);

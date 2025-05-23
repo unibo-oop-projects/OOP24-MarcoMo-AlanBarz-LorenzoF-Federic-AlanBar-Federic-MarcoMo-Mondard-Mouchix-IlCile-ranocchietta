@@ -32,11 +32,13 @@ public interface RandomSpawnerFactory {
 
     /**
      * return a spawner for Eagle entity.
+     * @return the spawner object
      */
     EntitySpawner<Eagle> randomEagleSpawner();
 
     /**
      * return a spawner for PowerUp entity.
+     * @return the spawner object
      */
     EntitySpawner<PowerUp> randomPowerUpSpawner();
 }

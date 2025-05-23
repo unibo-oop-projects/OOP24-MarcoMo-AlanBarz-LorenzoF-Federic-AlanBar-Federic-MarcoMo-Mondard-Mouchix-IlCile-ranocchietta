@@ -1,21 +1,25 @@
 package frogger.model.implementations;
 
+import java.util.Random;
+
 import frogger.common.Direction;
 import frogger.model.interfaces.EntitySpawner;
 import frogger.model.interfaces.PowerUp;
 import frogger.model.interfaces.RandomSpawnerFactory;
 
 /**
- * {@inheritDoc}
+ * {@inheritDoc}.
  */
 public class RandomSpawnerFactoryImpl implements RandomSpawnerFactory {
-    
+
+    private final Random ran = new Random();
+
     /**
      * {@inheritDoc}
      */
     @Override
     public EntitySpawner<Car> randomCarSpawner(final int laneIndex, final float speed, final Direction direction) {
-        return new RandomObstaclesSpawner<>(Car.class, laneIndex, speed, direction);
+        return new RandomObstaclesSpawner<>(Car.class, laneIndex, speed, direction, ran);
     }
 
     /**
@@ -23,7 +27,7 @@ public class RandomSpawnerFactoryImpl implements RandomSpawnerFactory {
      */
     @Override
     public EntitySpawner<Trunk> randomTrunkSpawner(final int laneIndex, final float speed, final Direction direction) {
-        return new RandomObstaclesSpawner<>(Trunk.class, laneIndex, speed, direction);
+        return new RandomObstaclesSpawner<>(Trunk.class, laneIndex, speed, direction, ran);
     }
 
     /**
@@ -31,7 +35,7 @@ public class RandomSpawnerFactoryImpl implements RandomSpawnerFactory {
      */
     @Override
     public EntitySpawner<Eagle> randomEagleSpawner() {
-        return new RandomEaglesSpawner();
+        return new RandomEaglesSpawner(ran);
     }
 
     /**
@@ -39,6 +43,6 @@ public class RandomSpawnerFactoryImpl implements RandomSpawnerFactory {
      */
     @Override
     public EntitySpawner<PowerUp> randomPowerUpSpawner() {
-        return new RandomPowerUpsSpawner();
+        return new RandomPowerUpsSpawner(ran);
     }
 }
