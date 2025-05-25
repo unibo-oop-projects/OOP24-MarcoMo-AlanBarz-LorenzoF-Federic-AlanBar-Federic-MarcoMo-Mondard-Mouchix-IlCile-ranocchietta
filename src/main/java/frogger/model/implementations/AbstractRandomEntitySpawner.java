@@ -28,20 +28,29 @@ public abstract class AbstractRandomEntitySpawner<X> implements EntitySpawner<X>
 
     /**
      * {@inheritDoc}
+     * <p>
+     * If a valid position cannot be found after a certain number of attempts, the method
+     * will stop trying and return an empty list.
      */
     @Override
     public List<X> spawn(final int min, final int max) {
         final List<X> result = new ArrayList<>();
         final Set<Position> usedPositions = new HashSet<>();
         final int count = ran.nextInt(max - min + 1) + min;
+        int it = 0;
 
         while (result.size() < count) {
+            if (it >= Constants.MAX_ITERATIONS_NUMBER) {
+                return List.of();
+            }
+
             final Position pos = generatePosition();
             if (isValidPosition(pos, usedPositions)) {
                 final X entity = createEntity(pos);
                 result.add(entity);
                 addPos(pos, usedPositions);
             }
+            it++;
         }
 
         return result;

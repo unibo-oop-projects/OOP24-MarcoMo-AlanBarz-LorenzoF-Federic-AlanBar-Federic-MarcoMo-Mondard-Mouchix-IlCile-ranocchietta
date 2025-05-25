@@ -14,7 +14,7 @@ import frogger.model.interfaces.MovingObjectFactory;
  */
 public class RandomEaglesSpawner extends AbstractRandomEntitySpawner<Eagle> {
 
-    private final Random ran = new Random();
+    private final Random ran;
     private final MovingObjectFactory obstaclesFactory = new MovingObjectFactoryImpl();
 
     /**
@@ -23,6 +23,7 @@ public class RandomEaglesSpawner extends AbstractRandomEntitySpawner<Eagle> {
      */
     public RandomEaglesSpawner(final Random ran) {
         super(ran);
+        this.ran = ran;
     }
 
     /**
@@ -49,9 +50,14 @@ public class RandomEaglesSpawner extends AbstractRandomEntitySpawner<Eagle> {
     protected Eagle createEntity(final Position pos) {
         final Pair dim = new Pair(Constants.EAGLE_WIDTH, Constants.EAGLE_HEIGHT);
         final Direction dir = pos.y() == Constants.MIN_Y - 1 ? Direction.UP : Direction.DOWN;
+        int it = 0;
         int triggerRow = Constants.MIN_Y;
         while (triggerRow == Constants.MIN_Y || triggerRow == Constants.MAX_Y) {
+            if (it >= Constants.MAX_ITERATIONS_NUMBER) {
+                triggerRow = Constants.MIN_Y - 1; //impossible value just useful for testing
+            }
             triggerRow = randomY();
+            it++;
         }
         final float speed = ran.nextFloat(Constants.MIN_SPEED, Constants.MAX_SPEED);
         final Eagle eagle = obstaclesFactory.createMovingObject(pos, dim, speed, dir, Eagle.class);

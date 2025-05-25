@@ -1,0 +1,157 @@
+package frogger;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+
+import java.util.HashSet;
+import java.util.List;
+import java.util.Random;
+import java.util.Set;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import frogger.common.Constants;
+import frogger.common.Position;
+import frogger.model.implementations.Eagle;
+import frogger.model.implementations.RandomEaglesSpawner;
+import frogger.model.interfaces.EntitySpawner;
+
+/**
+ * Test class for RanodomEaglesSpawner.
+ */
+public class RandomEaglesSpawnerTest {
+
+    private Random mockRandom;
+    private int bound;
+
+    @BeforeEach
+    void setUp() {
+        mockRandom = mock(Random.class);
+        bound = Constants.MAX_EAGLES_NUMBER - Constants.MIN_EAGLES_NUMBER + 1;
+    }
+
+    @Test
+    void numberTest() {
+        List<Eagle> entity;
+
+        EntitySpawner<Eagle> spawner = new RandomEaglesSpawner(mockRandom) {
+            @Override
+            protected boolean isValidPosition(final Position pos, final Set<Position> used) {
+                return true;
+            }
+        };
+
+        final int boundY = Constants.MAX_Y - Constants.MIN_Y + 1;
+        when(mockRandom.nextInt(boundY)).thenReturn(1);
+
+        //Check with 0, should return the minimum value
+        when(mockRandom.nextInt(bound)).thenReturn(0);  
+        entity = spawner.spawn(Constants.MIN_EAGLES_NUMBER, Constants.MAX_EAGLES_NUMBER);
+        assertEquals(entity.size(), Constants.MIN_EAGLES_NUMBER);
+
+        //Check with bound - 1, should return the maximum value
+        when(mockRandom.nextInt(bound)).thenReturn(bound - 1);
+        entity = spawner.spawn(Constants.MIN_EAGLES_NUMBER, Constants.MAX_EAGLES_NUMBER);
+        assertEquals(entity.size(), Constants.MAX_EAGLES_NUMBER);
+    }
+
+    @Test
+    void generatePositionTest() {
+        final int boundY = Constants.MAX_Y - Constants.MIN_Y + 1;
+        final int boundX = Constants.MAX_X - Constants.MIN_X + 1;
+        
+        //Just checking if the position generated is correct, so is always valid
+        EntitySpawner<Eagle> spawner = new RandomEaglesSpawner(mockRandom) {
+            @Override
+            protected boolean isValidPosition(final Position pos, final Set<Position> used) {
+                return true;
+            }
+        };
+
+        when(mockRandom.nextInt(boundY)).thenReturn(1);
+
+        //Check the x coordinate:
+
+        //Check with 0, should return the minimum value
+        when(mockRandom.nextInt(boundX)).thenReturn(0);
+        spawner.spawn(Constants.MIN_EAGLES_NUMBER, Constants.MAX_EAGLES_NUMBER)
+        .forEach(e -> assertTrue(e.getPos().x() == Constants.MIN_X));
+
+        //Check with bound - 1, should return the maximum value
+        when(mockRandom.nextInt(boundX)).thenReturn(boundX - 1);
+        spawner.spawn(Constants.MIN_EAGLES_NUMBER, Constants.MAX_EAGLES_NUMBER)
+        .forEach(e -> assertTrue(e.getPos().x() == Constants.MAX_X));
+
+        //Check the y coordinate:
+
+        //Check with true, should return Constants.MIN_Y - 1
+        when(mockRandom.nextBoolean()).thenReturn(true);
+        spawner.spawn(Constants.MIN_EAGLES_NUMBER, Constants.MAX_EAGLES_NUMBER)
+        .forEach(e -> assertTrue(e.getPos().y() == Constants.MIN_Y - 1));
+
+        //Check with false, should return Constants.MAX_Y + 1
+        when(mockRandom.nextBoolean()).thenReturn(false);
+        spawner.spawn(Constants.MIN_EAGLES_NUMBER, Constants.MAX_EAGLES_NUMBER)
+        .forEach(e -> assertTrue(e.getPos().y() == Constants.MAX_Y + 1));
+    }
+
+    @Test
+    void validPositionTest() {
+        final int boundY = Constants.MAX_Y - Constants.MIN_Y + 1;
+        List<Eagle> entity;
+
+        when(mockRandom.nextInt(boundY)).thenReturn(1);
+
+        //Checking if it works with a scenario where there is no overlap
+        EntitySpawner<Eagle> spawner = new RandomEaglesSpawner(mockRandom) {
+            private final int i = 0;
+            @Override
+            protected Position generatePosition() {
+                super.generatePosition();
+                return new Position(i, 0);
+            }
+        };
+
+        entity = spawner.spawn(Constants.MIN_EAGLES_NUMBER, Constants.MAX_EAGLES_NUMBER);
+
+        final Set<Position> occupied = new HashSet<>();
+        entity.forEach(e -> occupied.add(e.getPos()));
+        
+        assertEquals(occupied.size(), entity.size());
+
+        //Checking if it works with a scenario where there is an overlap
+        EntitySpawner<Eagle> spawner1 = new RandomEaglesSpawner(mockRandom) {
+            @Override
+            protected Position generatePosition() {
+                super.generatePosition();
+                return new Position(0, 0);
+            }
+        };
+
+        //In case of an overlap the method should cycle until the overlap it's fixed,
+        //but since the position is fixed it exceed the max number of iterations,
+        //returning an empty list.
+        assertEquals(List.of(), spawner1.spawn(Constants.MIN_EAGLES_NUMBER, Constants.MAX_EAGLES_NUMBER));
+    }
+
+    @Test
+    void triggerRowTest() {
+        final int boundY = Constants.MAX_Y - Constants.MIN_Y + 1;
+        final int errorValue = Constants.MIN_Y - 1;
+
+        EntitySpawner<Eagle> spawner = new RandomEaglesSpawner(mockRandom);
+
+        //Check with Constants.MIN_Y, should return the errorValue
+        when(mockRandom.nextInt(boundY)).thenReturn(Constants.MIN_Y);
+        spawner.spawn(Constants.MIN_EAGLES_NUMBER, Constants.MAX_EAGLES_NUMBER)
+        .forEach(e -> assertTrue(e.getPos().y() == errorValue));
+
+        //Check with Constants.MAX_Y, should return the errorValue
+        when(mockRandom.nextInt(boundY)).thenReturn(Constants.MAX_Y);
+        spawner.spawn(Constants.MIN_EAGLES_NUMBER, Constants.MAX_EAGLES_NUMBER)
+        .forEach(e -> assertTrue(e.getPos().y() == errorValue));
+    }
+}

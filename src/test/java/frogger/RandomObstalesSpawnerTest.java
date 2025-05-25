@@ -1,12 +1,10 @@
 package frogger;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTimeoutPreemptively;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-import java.time.Duration;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
@@ -124,14 +122,14 @@ public class RandomObstalesSpawnerTest {
         final EntitySpawner<Car> spawner1 = new RandomObstaclesSpawner<>(Car.class, 0, speed, dir, mockRandom) {
             @Override
             protected Position generatePosition() {
+                super.generatePosition();
                 return new Position(0, 0);
             }
         };
 
         //In case of an overlap the method should cycle until the overlap it's fixed,
-        //but since the position is fixed it will go in time-out
-        assertTimeoutPreemptively(Duration.ofSeconds(2), () -> {
-            spawner1.spawn(Constants.MAX_OBSTACLES_NUMBER, Constants.MAX_OBSTACLES_NUMBER);
-        });
+        //but since the position is fixed it exceed the max number of iterations,
+        //returning an empty list.
+        assertEquals(List.of(), spawner1.spawn(Constants.MAX_OBSTACLES_NUMBER, Constants.MAX_OBSTACLES_NUMBER));
     }
 }

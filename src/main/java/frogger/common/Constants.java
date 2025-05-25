@@ -17,6 +17,8 @@ public final class Constants {
     /** The scale factor for the game window. */
     private static final double SCALE = 0.8;
 
+    /** Maximum number of iterations when spawning random entities. */
+    public static final int MAX_ITERATIONS_NUMBER = 200;
     /** Minimum number of obstacles per lane. */
     public static final int MIN_OBSTACLES_NUMBER = 2;
     /** Maximum number of obstacles per lane. */

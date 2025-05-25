@@ -85,6 +85,7 @@ public class RandomObstaclesSpawner<X extends MovingObjectImpl> extends Abstract
      * <p>
      * Modified the default behaviour to add more positions to the list of used positions instead of just one,
      * in particular add n = width positions.
+     * </p>
      */
     @Override
     protected void addPos(final Position pos, final Set<Position> usedPositions) {
