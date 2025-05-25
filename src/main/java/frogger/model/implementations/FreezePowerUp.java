@@ -5,9 +5,9 @@ import frogger.common.Position;
 import frogger.model.interfaces.PlayerObject;
 
 public class FreezePowerUp extends  AbstractPowerUp {
-    private static final int FREEZE_DURATION = 5000; // Duration in milliseconds
-    private boolean isActive = false; // Indicates if the power-up is currently active
-    private long freezeStartTime;
+    private static final int duration = 5000; // Duration in milliseconds
+    private boolean active = false; // Indicates if the power-up is currently active
+    private long startTime;
 
     public FreezePowerUp(Position pos, Pair dimension) {
         super(pos, dimension);
@@ -15,29 +15,27 @@ public class FreezePowerUp extends  AbstractPowerUp {
     }
     
   
-    public boolean update() {
-        if (isActive && (System.currentTimeMillis() - freezeStartTime >= FREEZE_DURATION)) {
-            deactivate();
-            return true; // Power-up effect has ended
-        }
-        return false; // Power-up effect is still active
-    }
 
     @Override
+    public boolean isActive() {
+        if (active && System.currentTimeMillis() - startTime >= duration) {
+            deactivate();
+        }
+        return active; 
+    }
+    
+    @Override
     public void activate() {        
-        isActive = true;
-        freezeStartTime = System.currentTimeMillis();
+        active = true;
+        startTime = System.currentTimeMillis();
     }
 
     @Override
     public void deactivate() {
-        this.isActive = false;
+        this.active = false;
     }
 
     @Override
-    public void setPlayer(PlayerObject player) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'setPlayer'");
-    }
+    public void setPlayer(PlayerObject player) {}
 
 }

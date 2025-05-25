@@ -28,5 +28,12 @@ public class ExtraLifePowerUp extends AbstractPowerUp {
             throw new IllegalArgumentException("Invalid player object type");
         }
     }
+
+    @Override
+    public boolean isActive() {
+        // ExtraLifePowerUp does not have an active state, it is consumed immediately upon activation
+        return false;
+    }    
 }
+
     
