@@ -22,7 +22,7 @@ import frogger.model.interfaces.PowerUp;
 /**
  * Test class for RandomPowerUps.
  */
-public class RandomPowerUpsSpawnerTest {
+final class RandomPowerUpsSpawnerTest {
 
     private Random mockRandom;
     private int bound;
@@ -32,11 +32,11 @@ public class RandomPowerUpsSpawnerTest {
         mockRandom = mock(Random.class);
         bound = Constants.MAX_POWER_UP_NUMBER - Constants.MIN_POWER_UP_NUMBER + 1;
     }
-    
+
     @Test
     void numberTest() {
         List<PowerUp> entity;
-        
+
         //just checking if the number is right, so the position is always valid
         final EntitySpawner<PowerUp> spawner = new RandomPowerUpsSpawner(mockRandom) {
             @Override
@@ -46,7 +46,7 @@ public class RandomPowerUpsSpawnerTest {
         };
 
         //Check with 0, should return the minimum value
-        when(mockRandom.nextInt(bound)).thenReturn(0);  
+        when(mockRandom.nextInt(bound)).thenReturn(0);
         entity = spawner.spawn(Constants.MIN_POWER_UP_NUMBER, Constants.MAX_POWER_UP_NUMBER);
         assertEquals(entity.size(), Constants.MIN_POWER_UP_NUMBER);
 
@@ -96,14 +96,13 @@ public class RandomPowerUpsSpawnerTest {
 
     @Test
     void validPositionOverlapTest() {
-        List<PowerUp> entity;
-       
+        final List<PowerUp> entity;
+
         //Checking if it works with a scenario where there is no overlap
         final EntitySpawner<PowerUp> spawner = new RandomPowerUpsSpawner(mockRandom) {
             private final int i = 0;
             @Override
             protected Position generatePosition() {
-                super.generatePosition();
                 return new Position(i, 0);
             }
         };
@@ -112,7 +111,7 @@ public class RandomPowerUpsSpawnerTest {
 
         final Set<Position> occupied = new HashSet<>();
         entity.forEach(e -> occupied.add(e.getPos()));
-        
+
         assertEquals(occupied.size(), entity.size());
 
         //forcing the max number of power up, if it was just one there wouldn't be an overlap

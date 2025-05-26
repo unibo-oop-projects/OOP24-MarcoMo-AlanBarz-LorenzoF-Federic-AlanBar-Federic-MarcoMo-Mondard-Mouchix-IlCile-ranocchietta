@@ -24,7 +24,7 @@ import frogger.model.interfaces.EntitySpawner;
 /**
  * Test class for RandomObstalesSpawner, the type tested is always Car but it works the same way with Trunk.
  */
-public class RandomObstalesSpawnerTest {
+final class RandomObstalesSpawnerTest {
 
     private float speed;
     private Direction dir;
@@ -51,7 +51,7 @@ public class RandomObstalesSpawnerTest {
         };
 
         //Check with 0, should return the minimum value
-        when(mockRandom.nextInt(bound)).thenReturn(0);  
+        when(mockRandom.nextInt(bound)).thenReturn(0);
         entity = spawner.spawn(Constants.MIN_OBSTACLES_NUMBER, Constants.MAX_OBSTACLES_NUMBER);
         assertEquals(entity.size(), Constants.MIN_OBSTACLES_NUMBER);
 
@@ -93,14 +93,14 @@ public class RandomObstalesSpawnerTest {
     @Test
     void validPositionTest() {
         final int bound = Constants.MAX_CAR_WIDTH - Constants.MIN_CAR_WIDTH + 1;
-        List<Car> entity;
+        final List<Car> entity;
 
         //Check with the max width to have the worst case scenario
         when(mockRandom.nextInt(bound)).thenReturn(bound - 1);
 
         //Checking if it works with a scenario where there is no overlap
         final EntitySpawner<Car> spawner = new RandomObstaclesSpawner<>(Car.class, 0, speed, dir, mockRandom) {
-            private int i = 0;
+            private int i;
             @Override
             protected Position generatePosition() {
                 super.generatePosition();
@@ -115,7 +115,7 @@ public class RandomObstalesSpawnerTest {
         final Set<Position> occupied = new HashSet<>();
         entity.forEach(e -> IntStream.range(0, e.getDimension().width())
         .forEach(i -> occupied.add(new Position(e.getPos().x() + i, e.getPos().y()))));
-        
+
         assertEquals(occupied.size(), Constants.MAX_CAR_WIDTH * entity.size());
 
         //Checking if it works with a scenario where there is an overlap

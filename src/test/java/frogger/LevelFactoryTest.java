@@ -64,16 +64,12 @@ final class LevelFactoryTest {
                 && lane.getLaneObstacles().size() >= Constants.MIN_OBSTACLES_NUMBER);
             }
         });
-        //assertEquals(level.getAllObstacles().stream().map(GameObject::getPos).distinct().count(),
-        //level.getAllObstacles().size());
     }
 
     @Test
     void eagleTest() {
         assertTrue(level.getEagles().size() <= Constants.MAX_EAGLES_NUMBER
         && level.getEagles().size() >= Constants.MIN_EAGLES_NUMBER);
-        //level.getEagles().forEach(e -> assertTrue(e.getTrigger() != Constants.MAX_Y && e.getTrigger() != Constants.MIN_Y));
-        //assertEquals(level.getEagles().stream().map(Eagle::getPos).distinct().count(), level.getEagles().size());
     }
 
     @Test
