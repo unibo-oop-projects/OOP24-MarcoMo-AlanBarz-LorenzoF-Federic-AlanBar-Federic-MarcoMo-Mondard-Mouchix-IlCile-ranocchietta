@@ -5,24 +5,33 @@ import javax.swing.JPanel;
 
 import frogger.common.Constants;
 
-public class GameScene{
+/**
+ * Represents the main game window of the Frogger game.
+ * Manages the JFrame and allows setting and switching of game panels.
+ */
+public class GameScene {
     private JFrame frame;
-    
-    public GameScene(/*JPanel panel*/) {
-        frame = new JFrame("Ranocchietta");
 
+    /**
+     * Constructs the game window (JFrame) with predefined dimensions and settings.
+     * The window is titled "Ranocchietta", not resizable by default, and centered on screen.
+     */
+    public GameScene() {
+        frame = new JFrame("Ranocchietta");
         frame.setSize(Constants.FRAME_WIDTH, Constants.FRAME_HEIGHT);
         this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(true);
-        
-        // this.frame.getContentPane().add(panel);
-        // panel.requestFocus();
-
         frame.setLocationRelativeTo(null);
-        
     }
 
-    public void setPanel(JPanel panel) {
+    /**
+     * Sets the current content pane of the JFrame to the given JPanel.
+     * It also makes the window visible, requests focus for user input, 
+     * and refreshes the frame to reflect changes.
+     *
+     * @param panel the new {@link JPanel} to display in the game window
+     */
+    public void setPanel(final JPanel panel) {
         this.frame.setContentPane(panel);
         this.frame.revalidate();
         this.frame.repaint();

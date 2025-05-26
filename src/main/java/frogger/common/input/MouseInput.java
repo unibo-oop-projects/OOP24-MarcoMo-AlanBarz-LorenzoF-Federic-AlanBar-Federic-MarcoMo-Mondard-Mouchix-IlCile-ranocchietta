@@ -4,7 +4,6 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
-import frogger.common.GameState;
 import frogger.controller.MenuController;
 
 
@@ -16,19 +15,7 @@ public class MouseInput implements MouseMotionListener, MouseListener {
     }
 
     @Override
-    public void mouseClicked(MouseEvent e) {
-        switch (GameState.state) {           
-            case SHOP -> {       
-            // Handle shop event    
-            }
-            case DEAD -> {
-            // Handle quit event
-            } 
-            default -> {
-                // Handle default case
-            }           
-        }
-    }
+    public void mouseClicked(MouseEvent e) { }
 
     @Override
     public void mousePressed(MouseEvent e) {
@@ -41,19 +28,13 @@ public class MouseInput implements MouseMotionListener, MouseListener {
     }
 
     @Override
-    public void mouseEntered(MouseEvent e) {
-        // Handle mouse enter event
-    }
+    public void mouseEntered(MouseEvent e) { }
 
     @Override
-    public void mouseExited(MouseEvent e) {
-        // Handle mouse exit event
-    }
+    public void mouseExited(MouseEvent e) { }
 
     @Override
-    public void mouseDragged(MouseEvent e) {
-        // Handle mouse drag event
-    }
+    public void mouseDragged(MouseEvent e) { }
 
     @Override
     public void mouseMoved(MouseEvent e) {

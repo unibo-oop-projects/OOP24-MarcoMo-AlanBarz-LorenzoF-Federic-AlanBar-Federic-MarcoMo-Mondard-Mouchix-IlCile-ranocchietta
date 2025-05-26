@@ -10,7 +10,11 @@ import frogger.model.implementations.MenuFactory;
 import frogger.view.GameScene;
 import frogger.view.DeathPanel;
 
-public class DeathController extends AbstractController implements MenuController{
+/**
+ * Implementation of the {@link MenuController} interface.
+ * Manages the death logic showing the menu whene the game come to an end.
+ */
+public class DeathController extends AbstractController implements MenuController {
     private DeathPanel scenePanel;
     private final MenuFactory menuFactory = new MenuFactory();
     private Menu menu;
@@ -18,43 +22,67 @@ public class DeathController extends AbstractController implements MenuControlle
 
     private final MouseInput mouseInput = new MouseInput(this);
 
-    public DeathController(int score) {
+    /**
+     * Inizialize the fild.
+     * @param score the score made in the last match
+     */
+    public DeathController(final int score) {
         this.score = score;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public void init(GameScene gameScene) {
+    public void init(final GameScene gameScene) {
         menu = menuFactory.deathMenu();
         scenePanel = new DeathPanel(score);
         scenePanel.setController(this);
         gameScene.setPanel(scenePanel);
-        // scenePanel.requestFocusInWindow();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void core() {
         this.getMenu().update();
         this.scenePanel.repaint();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Menu getMenu() {
         return this.menu;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected boolean loopCondition() {
         return GameState.state == GameState.DEAD;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    protected void changesLoopEnd() {}
+    protected void changesLoopEnd() { }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public MouseMotionListener getMouseMotionListener() {
         return this.mouseInput;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public MouseListener getMouseListener() {
         return this.mouseInput;

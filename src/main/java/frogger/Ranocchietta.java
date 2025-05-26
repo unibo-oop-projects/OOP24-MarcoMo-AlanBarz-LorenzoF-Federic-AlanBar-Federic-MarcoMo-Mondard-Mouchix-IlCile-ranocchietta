@@ -19,6 +19,6 @@ public final class Ranocchietta {
      */
     public static void main(final String[] args) {
         final MainControllerImpl mainController = new MainControllerImpl();
-        mainController.choosePanel();
+        mainController.mainLoop();
     }
 }

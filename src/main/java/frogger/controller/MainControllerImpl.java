@@ -3,19 +3,26 @@ package frogger.controller;
 import frogger.common.GameState;
 import frogger.view.GameScene;
 
+/**
+ * Is the Controller that start at the beginning of the program and his loop is always activated.
+ * Choose the right controller based on GameState anche give to him the frame. 
+ */
 public class MainControllerImpl {
     private Controller controller;
     private GameController gameController = new GameControllerImpl();
     private ShopController shopController = new ShopController(gameController);
 
-    public void choosePanel() {
-        GameScene frame = new GameScene();
+    /**
+     * main loop that choose the controller based on Game actual State
+     */
+    public void mainLoop() {
+        final GameScene frame = new GameScene();
         while (true) {
             switch (GameState.state) {
                 case PLAYING -> {
                     this.controller = this.gameController;
-                    if(this.controller instanceof GameController) {
-                        System.out.println(((GameController)controller).getSkin());
+                    if (this.controller instanceof GameController) {
+                        System.out.println(((GameController) controller).getSkin());
                     }
                 }
                 case MENU -> {
@@ -34,7 +41,6 @@ public class MainControllerImpl {
                 }
                 default -> System.exit(0);
             }
-            
             this.controller.init(frame);
             this.controller.loop();
         }

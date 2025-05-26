@@ -61,7 +61,7 @@ public class GameControllerImpl extends AbstractController implements GameContro
         this.game.checkProgress();
         this.game.checkNewLevel();
         this.game.checkEagleTrigger();
-        if(!powerUpMenager.getActivePowerUps().stream().anyMatch(p -> p instanceof FreezePowerUp)) {
+        if (!powerUpMenager.getActivePowerUps().stream().anyMatch(p -> p instanceof FreezePowerUp)) {
             this.game.getObstacles().forEach(MovingObject::move); // moving all obstacles
         }
         this.scenePanel.repaint();

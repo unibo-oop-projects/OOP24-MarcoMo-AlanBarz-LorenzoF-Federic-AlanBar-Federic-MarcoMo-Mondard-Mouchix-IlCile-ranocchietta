@@ -5,10 +5,13 @@ import frogger.common.Pair;
 import frogger.common.Position;
 import frogger.model.implementations.MovingObjectImpl;
 
+/**
+ * The factory for moving object, you can create all the type of moving object, Car, Eagle, Trunk.
+ */
 public interface MovingObjectFactory {
 
     /**
-     * generic method to create a MovingObject element
+     * generic method to create a MovingObject element.
      * @param <X> type of the MovingObject
      * @param pos
      * @param dimension
