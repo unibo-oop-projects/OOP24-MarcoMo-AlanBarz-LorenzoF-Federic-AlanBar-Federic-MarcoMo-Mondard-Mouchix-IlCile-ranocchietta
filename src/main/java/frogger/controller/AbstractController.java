@@ -14,9 +14,6 @@ public abstract class AbstractController implements Controller{
     /** One second in nanoseconds, used to calculate frame duration.*/
     private final static double SET = 1000000000.0;
 
-    /** The game scene associated with this controller.*/
-    private GameScene gameScene;
-
     /**
      * {@inheritDoc}
      */
@@ -67,8 +64,7 @@ public abstract class AbstractController implements Controller{
      * {@inheritDoc}
      */
     @Override
-    public void setFrame(final GameScene gameScene) {
-        this.gameScene = gameScene;    
+    public void setFrame(final GameScene gameScene) {    
     }
 
     /**

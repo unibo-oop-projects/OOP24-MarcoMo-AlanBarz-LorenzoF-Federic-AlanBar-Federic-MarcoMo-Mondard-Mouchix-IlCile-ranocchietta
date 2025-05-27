@@ -30,9 +30,6 @@ public class MainControllerImpl {
             switch (GameState.state) {
                 case PLAYING -> {
                     this.controller = this.gameController;
-                    if (this.controller instanceof GameController) {
-                        System.out.println(((GameController) controller).getSkin());
-                    }
                 }
                 case MENU -> {
                     this.controller = new MenuControllerImpl();

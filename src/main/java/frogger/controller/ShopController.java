@@ -1,23 +1,12 @@
 package frogger.controller;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.nio.charset.StandardCharsets;
-import java.util.LinkedList;
+
 import java.util.List;
-import java.util.logging.Logger;
-import java.util.logging.Level;
 
 import frogger.common.GameState;
-import frogger.model.implementations.PurchasableObjectFactoryImpl;
+import frogger.model.implementations.ShopImpl;
 import frogger.model.interfaces.PurchasableObject;
+import frogger.model.interfaces.Shop;
 import frogger.view.GameScene;
 import frogger.view.ShopPanel;
 
@@ -27,16 +16,7 @@ import frogger.view.ShopPanel;
  */
 public class ShopController extends AbstractController {
 
-    /** Name of the default shop resource file (read-only). */
-    private static final String FILE_NAME = "/shop.txt";
-    /** Name of the save file for shop data (writable). */
-    private static final String SAVE_FILE = "shop_save.txt";
-    /** Logger for this class. */
-    private static final Logger LOGGER = Logger.getLogger(ShopController.class.getName());
-    /** List of purchasable objects available in the shop. */
-    private final List<PurchasableObject> purchasableObjects;
-    /** Factory for creating purchasable objects. */
-    private final PurchasableObjectFactoryImpl factory;
+    private Shop shop;
     /** Reference to the shop panel UI. */
     private ShopPanel shopPanel;
     /** Reference to the main game controller. */
@@ -50,18 +30,8 @@ public class ShopController extends AbstractController {
      * @param gc the main game controller
      */
     public ShopController(final GameController gc) {
-        final File saveFile = new File(SAVE_FILE);
-        if (saveFile.exists()) {
-            if (!saveFile.delete()) {
-                LOGGER.log(Level.WARNING, "Failed to delete the existing save file.");
-            } else {
-                LOGGER.log(Level.INFO, "Existing save file deleted successfully.");
-            }
-        }
-
+        this.shop = new ShopImpl();
         this.gameController = gc;
-        this.purchasableObjects = new LinkedList<>();
-        this.factory = new PurchasableObjectFactoryImpl();
     }
 
     /**
@@ -93,7 +63,7 @@ public class ShopController extends AbstractController {
      * @return a new list containing the purchasable objects
      */
     public List<PurchasableObject> getPurchasableObject() {
-        return new LinkedList<>(this.purchasableObjects);
+        return this.shop.getPurchasableObjects();
     }
 
     /**
@@ -102,32 +72,7 @@ public class ShopController extends AbstractController {
      * Populates the internal list of purchasable objects.
      */
     public void shopInit() {
-        final InputStream is;
-        try {
-            final File saveFile = new File(SAVE_FILE);
-            if (saveFile.exists()) {
-                is = new FileInputStream(saveFile);
-            } else {
-                is = ShopController.class.getResourceAsStream(FILE_NAME);
-            }
-
-            try (BufferedReader r = new BufferedReader(new InputStreamReader(is, StandardCharsets.UTF_8))) {
-                String line = r.readLine();
-                while (line != null) {
-                    final String[] values = line.split(" ");
-                    if ("Skin".equals(values[0])) {
-                        this.purchasableObjects.add(factory.createSkin(
-                            Integer.parseInt(values[1]), 
-                            values[2],
-                            Boolean.parseBoolean(values[3])
-                        ));
-                    }
-                    line = r.readLine();
-                }
-            }
-        } catch (final IOException e) {
-            LOGGER.log(Level.SEVERE, "Error reading the shop file", e);
-        }
+        this.shop.init();
     }
 
     /**
@@ -159,15 +104,7 @@ public class ShopController extends AbstractController {
      * Saves the current state of purchasable objects to the shop save file.
      * Uses UTF-8 encoding for writing.
      */
-    public void updateShop() {
-        try (BufferedWriter w = new BufferedWriter(
-            new OutputStreamWriter(new FileOutputStream(SAVE_FILE), StandardCharsets.UTF_8))) {
-            for (final PurchasableObject purchasableObject : this.purchasableObjects) {
-                w.write(purchasableObject.toString());
-                w.newLine();
-            }
-        } catch (final IOException e) {
-            LOGGER.log(Level.SEVERE, "Error writing to the shop save file", e);
-        }
+    public void updateShop() { 
+        this.shop.update();
     }
 }

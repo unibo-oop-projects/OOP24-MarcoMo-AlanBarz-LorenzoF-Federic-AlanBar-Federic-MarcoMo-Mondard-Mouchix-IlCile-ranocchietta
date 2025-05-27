@@ -26,7 +26,6 @@ public class InputTest {
      void testInput(){
         assertEquals(new Position(0, -6), this.controller.getGame().getPlayer().getPos());
 
-        System.out.println(KeyEvent.getKeyText(KeyEvent.VK_UP).toString());
         this.controller.getKeyListener().keyPressed(new KeyEvent(new Button(), KeyEvent.KEY_PRESSED, System.currentTimeMillis(), 0, KeyEvent.VK_UP, 'S'));
         //this.controller.getInputController().notifyCommand(new MoveUp());
         this.controller.getInputController().processInput(this.controller.getGame());
