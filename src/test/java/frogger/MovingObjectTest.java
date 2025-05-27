@@ -71,5 +71,19 @@ public class MovingObjectTest {
         movingObject.setPos(newPos);
         movingObject.move();
         assertEquals(movingObject.getPos(), new Position(newPos.x(), Constants.MIN_Y - 1));
+    
+        //check left
+        newPos = new Position(Constants.MIN_X - 1, 0);
+        movingObject.setDirection(Direction.LEFT);
+        movingObject.setPos(newPos);
+        movingObject.move();
+        assertEquals(movingObject.getPos(), new Position(Constants.MAX_X + 1, newPos.y()));
+    
+        //check bottom
+        newPos = new Position(0, Constants.MIN_Y - 1);
+        movingObject.setDirection(Direction.DOWN);
+        movingObject.setPos(newPos);
+        movingObject.move();
+        assertEquals(movingObject.getPos(), new Position(newPos.x(), Constants.MAX_Y + 1));
     }
 }

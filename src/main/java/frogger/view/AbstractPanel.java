@@ -39,7 +39,6 @@ public abstract class AbstractPanel<X> extends JPanel {
     /**
      * Sets the controller for this panel and initializes the panel.
      * @param controller the controller to associate with this panel
-     * @inheritDoc
      */
     public void setController(final X controller) {
         this.controller = controller;
