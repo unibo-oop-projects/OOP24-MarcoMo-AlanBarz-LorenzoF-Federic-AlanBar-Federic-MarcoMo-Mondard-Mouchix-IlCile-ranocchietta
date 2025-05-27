@@ -8,7 +8,6 @@ import frogger.common.Constants;
 import frogger.common.Direction;
 import frogger.common.Pair;
 import frogger.common.Position;
-import frogger.common.RandomUtils;
 import frogger.model.interfaces.MovingObjectFactory;
 
 /**
@@ -17,7 +16,7 @@ import frogger.model.interfaces.MovingObjectFactory;
  */
 public class RandomObstaclesSpawner<X extends MovingObjectImpl> extends AbstractRandomEntitySpawner<X> {
 
-    private final Random ran = new Random();
+    private final Random ran;
     private final Class<X> type;
     private final int y;
     private final float speed;
@@ -31,8 +30,12 @@ public class RandomObstaclesSpawner<X extends MovingObjectImpl> extends Abstract
      * @param y the y coordinate of the position
      * @param speed the speed of the obstacle
      * @param direction the direction of the obstacle
+     * @param ran random injection to be able to test it
      */
-    public RandomObstaclesSpawner(final Class<X> type, final int y, final float speed, final Direction direction) {
+    public RandomObstaclesSpawner(final Class<X> type, final int y, final float speed, final Direction direction,
+    final Random ran) {
+        super(ran);
+        this.ran = ran;
         this.type = type;
         this.y = y;
         this.speed = speed;
@@ -45,7 +48,7 @@ public class RandomObstaclesSpawner<X extends MovingObjectImpl> extends Abstract
     @Override
     protected Position generatePosition() {
         this.width = getWidth();
-        return new Position(RandomUtils.randomX(), this.y);
+        return new Position(randomX(), this.y);
     }
 
     /**
@@ -82,6 +85,7 @@ public class RandomObstaclesSpawner<X extends MovingObjectImpl> extends Abstract
      * <p>
      * Modified the default behaviour to add more positions to the list of used positions instead of just one,
      * in particular add n = width positions.
+     * </p>
      */
     @Override
     protected void addPos(final Position pos, final Set<Position> usedPositions) {

@@ -15,20 +15,35 @@ import frogger.common.Direction;
 import frogger.controller.GameController;
 import frogger.model.interfaces.PlayerObject;
 
+/**
+ * class in charge of paint the Level of the Game.
+ */
 public class LevelPainter {
     private final GameController controller;
-    private final Font myFont = new Font("MyFont", 1, Constants.BLOCK_HEIGHT/2);
+    private final Font myFont = new Font("MyFont", 1, Constants.BLOCK_HEIGHT / 2);
     private BufferedImage background;
     private BufferedImage heart;
     private BufferedImage death;
-    
-    public LevelPainter(GameController controller) {
+
+    /**
+     * Constructs a LevelPainter with the specified GameController.
+     * Initializes required images.
+     *
+     * @param controller the GameController managing the game state
+     */
+    public LevelPainter(final GameController controller) {
         this.controller = controller;
         // this.g = g;
         importImg();
     }
 
-    public void paintLevel( Graphics g) {
+    /**
+     * Paints the entire level including background, lives, obstacles, player,
+     * score, and power-ups.
+     *
+     * @param g the Graphics context to draw on
+     */
+    public void paintLevel(final Graphics g) {
         paintBackground(g);
         paintLives(g);
         paintObstacles(g);
@@ -37,39 +52,57 @@ public class LevelPainter {
         paintPowerUp(g);
     }
 
-    public void paintObstacles(Graphics g) {
-        for(var obstacle : getController().getGame().getObstacles()) {
-            g.drawImage(obstacle.getImage(), (int)this.getController().getXinPixel(obstacle.getPos().x()), 
-                (int)this.getController().getYinPixel(obstacle.getPos().y()), 
+    /**
+     * Paints all obstacles present in the game.
+     *
+     * @param g the Graphics context to draw on
+     */
+    public void paintObstacles(final Graphics g) {
+        for (final var obstacle : getController().getGame().getObstacles()) {
+            g.drawImage(obstacle.getImage(), (int) this.getController().getXinPixel(obstacle.getPos().x()), 
+                (int) this.getController().getYinPixel(obstacle.getPos().y()), 
                 obstacle.getDimension().width() * Constants.BLOCK_WIDTH, 
                 obstacle.getDimension().height() * Constants.BLOCK_HEIGHT, null);
         }
     }
 
-    public void paintPlayer(Graphics g) {
-        Graphics2D g2d = (Graphics2D) g;
-        var player = getController().getGame().getPlayer();
-        BufferedImage playerImage = player.getImage(); 
-        int playerX = (int) getController().getXinPixel(player.getPos().x());
-        int playerY = (int) getController().getYinPixel(player.getPos().y());
-        int playerWidth = player.getDimension().width() * Constants.BLOCK_WIDTH;
-        int playerHeight = player.getDimension().height() * Constants.BLOCK_HEIGHT;
+    /**
+     * Paints the player character on the screen.
+     * If the player is dead, it displays a death image.
+     * Otherwise, it rotates the player's image based on their direction.
+     *
+     * @param g the Graphics context to draw on
+     */
+    public void paintPlayer(final Graphics g) {
+        final Graphics2D g2d = (Graphics2D) g;
+        final var player = getController().getGame().getPlayer();
+        final BufferedImage playerImage = player.getImage(); 
+        final int playerX = (int) getController().getXinPixel(player.getPos().x());
+        final int playerY = (int) getController().getYinPixel(player.getPos().y());
+        final int playerWidth = player.getDimension().width() * Constants.BLOCK_WIDTH;
+        final int playerHeight = player.getDimension().height() * Constants.BLOCK_HEIGHT;
 
-        if(player.isDead()){
+        if (player.isDead()) {
             g.drawImage(death, playerX, playerY, Constants.BLOCK_WIDTH, Constants.BLOCK_HEIGHT, null);
         } else {
             // Calculate the rotation angle based on the direction
-            double angle = calculateRotation(getController().getGame().getPlayer());
+            final double angle = calculateRotation(getController().getGame().getPlayer());
 
             // Apply the rotation
             g2d.rotate(angle, playerX + playerWidth / 2.0, playerY + playerHeight / 2.0);
             g2d.drawImage(playerImage, playerX, playerY, playerWidth, playerHeight, null);
             g2d.rotate(-angle, playerX + playerWidth / 2.0, playerY + playerHeight / 2.0); // Restore the rotation
         }
-        
+
     }
 
-    private double calculateRotation(PlayerObject player) {
+    /**
+     * Calculates the rotation angle for the player based on their current direction.
+     *
+     * @param player the player object whose direction is used to compute rotation
+     * @return the rotation angle in radians
+     */
+    private double calculateRotation(final PlayerObject player) {
         return switch (player.getDirection()) {
             case Direction.UP -> 0;
             case Direction.RIGHT -> Math.PI / 2;
@@ -79,47 +112,75 @@ public class LevelPainter {
         };
     }
 
-    public void paintBackground(Graphics g) {
-        g.drawImage(background, 0 , 0, Constants.FRAME_WIDTH, Constants.FRAME_HEIGHT, null);
+    /**
+     * Paints the background image of the game.
+     *
+     * @param g the Graphics context to draw on
+     */
+    public void paintBackground(final Graphics g) {
+        g.drawImage(background, 0, 0, Constants.FRAME_WIDTH, Constants.FRAME_HEIGHT, null);
     }
 
-    public void paintLives(Graphics g) {
-        for(int i = 0; i < this.getController().getGame().getPlayer().getLives(); i++){
-            g.drawImage(heart, (int)this.getController().getXinPixel(i + Constants.MIN_X) , 0, null);
+    /**
+     * Paints the player's remaining lives as heart icons.
+     *
+     * @param g the Graphics context to draw on
+     */
+    public void paintLives(final Graphics g) {
+        for (int i = 0; i < this.getController().getGame().getPlayer().getLives(); i++) {
+            g.drawImage(heart, (int) this.getController().getXinPixel(i + Constants.MIN_X) , 0, null);
         }
     }
 
-    public void paintScore(Graphics g) {
+    /**
+     * Paints the current score of the player.
+     *
+     * @param g the Graphics context to draw on
+     */
+    public void paintScore(final Graphics g) {
         g.setColor(Color.WHITE);
         g.setFont(myFont);
         g.drawString("Punteggio: " + this.getController().getGame().getPlayer().getScore(), 
-        (int)this.getController().getXinPixel(Constants.MAX_X - 3), (int)this.getController().getYinPixel(Constants.MAX_Y - 0.5));
+        (int) this.getController().getXinPixel(Constants.MAX_X - 3), (int) this.getController().getYinPixel(Constants.MAX_Y - 0.5));
     }
 
-    public void paintPowerUp(Graphics g) {
-        for(var powerUp : getController().getGame().getPowerUps()) {
-            g.drawImage(powerUp.getImage(), (int)this.getController().getXinPixel(powerUp.getPos().x()), 
-                (int)this.getController().getYinPixel(powerUp.getPos().y()), 
-                powerUp.getDimension().width() * Constants.POWER_UP_WIDTH, 
-                powerUp.getDimension().height() * Constants.POWER_UP_HEIGHT, null);
+    /**
+     * Paints all power-ups currently present in the level.
+     *
+     * @param g the Graphics context to draw on
+     */
+    public void paintPowerUp(final Graphics g) {
+        for (final var powerUp : getController().getGame().getPowerUps()) {
+            g.drawImage(powerUp.getImage(), 
+                (int) this.getController().getXinPixel(powerUp.getPos().x()), 
+                (int) this.getController().getYinPixel(powerUp.getPos().y()), 
+                null);
         }
     }
 
+    /**
+     * Imports required images such as the background, heart (life), and death image.
+     * Loads resources from the classpath.
+     */
     public void importImg() {
-        //getController().getGame().getPlayer().setImage("ranocchietta.png");
-        InputStream backgroundStream = getClass().getResourceAsStream("/background.png");
-        InputStream heartStream = getClass().getResourceAsStream("/heart.png");
-        InputStream deathStream = getClass().getResourceAsStream("/death.png");
-        
+        final InputStream backgroundStream = getClass().getResourceAsStream("/background.png");
+        final InputStream heartStream = getClass().getResourceAsStream("/heart.png");
+        final InputStream deathStream = getClass().getResourceAsStream("/death.png");
+
         try {
             background = ImageIO.read(backgroundStream);
             heart = ImageIO.read(heartStream);
             death = ImageIO.read(deathStream);
-        } catch (IOException e) {
+        } catch (final IOException e) {
             e.printStackTrace();
         }
     }
 
+    /**
+     * Returns the GameController associated with this painter.
+     *
+     * @return the game controller
+     */
     private GameController getController() {
         return this.controller;
     }

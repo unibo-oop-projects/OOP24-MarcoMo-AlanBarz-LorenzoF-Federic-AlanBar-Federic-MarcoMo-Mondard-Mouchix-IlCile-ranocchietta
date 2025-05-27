@@ -5,10 +5,14 @@ import frogger.common.Pair;
 import frogger.common.Position;
 import frogger.model.interfaces.MovingObjectFactory;
 
-public class MovingObjectFactoryImpl implements MovingObjectFactory{
+/**
+ * The factory for moving object, you can create all the type of moving object, Car, Eagle, Trunk.
+ * implement MovingObjectFactory
+ */
+public class MovingObjectFactoryImpl implements MovingObjectFactory {
 
     /**
-     * generic method to create a MovingObject element
+     * generic method to create a MovingObject element.
      * @param <X> type of the MovingObject
      * @param pos
      * @param dimension
@@ -20,17 +24,17 @@ public class MovingObjectFactoryImpl implements MovingObjectFactory{
     @Override
     public <X extends MovingObjectImpl> X createMovingObject(final Position pos, final Pair dimension, 
         final float speed, final Direction direction, final Class<X> c) {
-        
+
         try {
             return c.getConstructor(Position.class, Pair.class, float.class, Direction.class)
             .newInstance(pos, dimension, speed, direction);
-        } catch (NullPointerException ex) {
+        } catch (final NullPointerException ex) {
             System.out.println("error: " + ex.getMessage());
             return null;
-        } catch (RuntimeException ex) {
+        } catch (final RuntimeException ex) {
             System.out.println("error: " + ex.getMessage());
             return null;
-        } catch (Exception ex) {
+        } catch (final Exception ex) {
             System.out.println("error: " + ex.getMessage());
             return null;
         }

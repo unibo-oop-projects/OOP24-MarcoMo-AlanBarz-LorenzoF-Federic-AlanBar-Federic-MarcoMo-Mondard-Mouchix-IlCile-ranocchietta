@@ -23,14 +23,16 @@ public abstract class AbstractPanel<X> extends JPanel {
      * The background image for this panel.
      */
     private BufferedImage background;
-
+    
     /**
-     * Sets up the input listeners for the panel.
+     * Sets up input listeners.
+     * This method must be implemented by subclasses to handle user input.
      */
     protected abstract void setInputListener();
 
     /**
-     * Imports the background image for the panel.
+     * Imports all necessary images for this panel.
+     * This method must be implemented by subclasses to load resources.
      */
     protected abstract void importImg();
 
@@ -46,7 +48,7 @@ public abstract class AbstractPanel<X> extends JPanel {
     }
 
     /**
-     * Sets the preferred size of the panel based on the constants defined in {@link frogger.common.Constants}.
+     * Sets the preferred size of the panel based on predefined constants.
      */
     protected void setPanelSize() {
         setPreferredSize(new Dimension(Constants.FRAME_WIDTH, Constants.FRAME_HEIGHT));

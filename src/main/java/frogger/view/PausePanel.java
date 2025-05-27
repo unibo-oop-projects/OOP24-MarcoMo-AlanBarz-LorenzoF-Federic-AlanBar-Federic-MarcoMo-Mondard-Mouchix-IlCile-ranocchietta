@@ -44,7 +44,7 @@ public class PausePanel extends AbstractPanel<PauseController> {
     }
 
     protected void paintBackground(Graphics g) {
-        LevelPainter p = new LevelPainter((GameController)getController().getGameController());
+        LevelPainter p = new LevelPainter((GameController) getController().getGameController());
         p.paintLevel(g);
         g.drawImage(background, (int) getController().getXinPixel(-3.5), (int) getController().getYinPixel(3), 
         Constants.FRAME_WIDTH / 2, Constants.FRAME_HEIGHT / 2, null);

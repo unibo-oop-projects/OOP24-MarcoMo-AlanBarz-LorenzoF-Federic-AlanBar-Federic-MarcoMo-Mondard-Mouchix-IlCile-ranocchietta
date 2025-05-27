@@ -40,6 +40,10 @@ dependencies {
     // when dependencies share the same version, grouping in a val helps to keep them in sync
     testImplementation("org.junit.jupiter:junit-jupiter-api:$jUnitVersion")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:$jUnitVersion")
+
+    //Mockito for testing random object
+    val mockitoVersion = "5.12.0"
+    testImplementation("org.mockito:mockito-core:$mockitoVersion")
 }
 
 application {

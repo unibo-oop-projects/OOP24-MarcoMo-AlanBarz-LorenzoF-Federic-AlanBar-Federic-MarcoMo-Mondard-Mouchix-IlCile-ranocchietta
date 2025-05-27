@@ -1,11 +1,11 @@
 package frogger.model.implementations;
 
+import java.util.Random;
 import java.util.Set;
 
 import frogger.common.Constants;
 import frogger.common.Pair;
 import frogger.common.Position;
-import frogger.common.RandomUtils;
 import frogger.model.interfaces.PowerUp;
 
 /**
@@ -14,11 +14,19 @@ import frogger.model.interfaces.PowerUp;
 public class RandomPowerUpsSpawner extends AbstractRandomEntitySpawner<PowerUp> {
 
     /**
+     * Just recall the superclass constructor.
+     * @param ran random injection useful for testing
+     */
+    public RandomPowerUpsSpawner(final Random ran) {
+        super(ran);
+    }
+
+    /**
      * {@inheritDoc}
      */
     @Override
     protected boolean isValidPosition(final Position pos, final Set<Position> used) {
-        return !used.contains(pos) || pos.y() == Constants.MIN_Y;
+        return !used.contains(pos) && pos.y() != Constants.MIN_Y && pos.y() != Constants.MAX_Y;
     }
 
     /**
@@ -26,7 +34,7 @@ public class RandomPowerUpsSpawner extends AbstractRandomEntitySpawner<PowerUp> 
      */
     @Override
     protected Position generatePosition() {
-        return new Position(RandomUtils.randomX(), RandomUtils.randomY());
+        return new Position(randomX(), randomY());
     }
 
     /**

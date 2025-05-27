@@ -22,14 +22,14 @@ public class Road extends AbstractLaneImpl {
      */
     @Override
     public void addCar(final MovingObject obstacle) {
-        super.getObstacles().add((Car) obstacle);
+        if (obstacle instanceof Car) {
+            super.getObstacles().add((Car) obstacle);
+        }
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public void addTrunk(final MovingObject obstacle) {
-        throw new IllegalStateException("Wrong type of obstacle.");
-    }
+    public void addTrunk(final MovingObject obstacle) { }
 }

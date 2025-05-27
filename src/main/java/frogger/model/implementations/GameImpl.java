@@ -11,6 +11,7 @@ import frogger.model.interfaces.Level;
 import frogger.model.interfaces.MovingObject;
 import frogger.model.interfaces.PlayerObject;
 import frogger.model.interfaces.PowerUp;
+import frogger.model.interfaces.PowerUpMenager;
 
 /**
  * Implementation of the {@link Game} interface.
@@ -29,6 +30,8 @@ public class GameImpl implements Game {
     private Level level;
     /** Timestamp of the player's death, used for respawn timing. */
     private long deathTime;
+
+    private final PowerUpMenager powerUpMenager = new PowerUpMenagerImpl();
 
     /**
      * Constructs a new GameImpl instance with the specified player dimension and skin.
@@ -75,13 +78,23 @@ public class GameImpl implements Game {
             return; // Avoid further checks during respawn
         }
 
-        if (this.level.getPowerUp().stream().anyMatch(x -> x.getHitBox().intersects(this.player.getHitBox()))) {
-            getPowerUps().stream().filter(x -> x.getHitBox().intersects(this.player.getHitBox())).forEach(x -> {
-                x.setPlayer(player);
-                x.activate();
+        this.getPowerUps().stream()
+            .filter(x -> x.getHitBox().intersects(this.player.getHitBox()))
+            .findFirst()
+            .ifPresent(x -> {
+                switch (x) {
+                    case FreezePowerUp freezePowerUp ->{ freezePowerUp.activate();
+                    powerUpMenager.addPowerUp(x);}
+                    case ExtraLifePowerUp extraLifePowerUp -> {
+                        extraLifePowerUp.setPlayer(player);
+                        extraLifePowerUp.activate();
+                    }
+                    default -> throw new IllegalArgumentException("Unknown power-up type: " + x.getClass());
+                }
+                System.out.println("Player hitbox: " + player.getHitBox());
+                System.out.println("PowerUp hitbox: " + x.getHitBox());
                 this.level.removePowerUp(x);
             });
-        }
 
         if (this.player.getPos().y() > Constants.MIN_Y && this.player.getPos().y() < 1) {
             if (this.level.getAllObstacles().stream().anyMatch(x -> x.getHitBox().intersects(this.player.getHitBox()))) {
@@ -202,5 +215,9 @@ public class GameImpl implements Game {
     @Override
     public List<PowerUp> getPowerUps() {
         return this.level.getPowerUp();
+    }
+
+    public PowerUpMenager getPowerUpMenager() {
+        return this.powerUpMenager;
     }
 }

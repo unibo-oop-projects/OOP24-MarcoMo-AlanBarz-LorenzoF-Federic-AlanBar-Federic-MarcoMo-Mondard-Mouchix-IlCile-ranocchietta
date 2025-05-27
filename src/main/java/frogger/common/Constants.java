@@ -17,6 +17,8 @@ public final class Constants {
     /** The scale factor for the game window. */
     private static final double SCALE = 0.8;
 
+    /** Maximum number of iterations when spawning random entities. */
+    public static final int MAX_ITERATIONS_NUMBER = 200;
     /** Minimum number of obstacles per lane. */
     public static final int MIN_OBSTACLES_NUMBER = 2;
     /** Maximum number of obstacles per lane. */
@@ -51,9 +53,9 @@ public final class Constants {
     /** Maximum number of power-ups. */
     public static final int MAX_POWER_UP_NUMBER = 3;
     /** Power-up width (in grid units). */
-    public static final int POWER_UP_WIDTH = 7;
+    public static final int POWER_UP_WIDTH = 1;
     /** Power-up height (in grid units). */
-    public static final int POWER_UP_HEIGHT = 7;
+    public static final int POWER_UP_HEIGHT = 1;
 
 
     /** Height of a generic object (in grid units). */

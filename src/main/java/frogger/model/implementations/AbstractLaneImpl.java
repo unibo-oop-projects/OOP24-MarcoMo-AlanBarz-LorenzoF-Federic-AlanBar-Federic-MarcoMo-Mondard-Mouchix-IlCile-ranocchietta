@@ -55,9 +55,7 @@ public abstract class AbstractLaneImpl implements Lane {
             addCar(obstacle);
         } else if (obstacle instanceof Trunk) {
             addTrunk(obstacle);
-        } else {
-            throw new IllegalArgumentException("Wrong type of MovingObject.");
-        } 
+        }
     }
 
     /**

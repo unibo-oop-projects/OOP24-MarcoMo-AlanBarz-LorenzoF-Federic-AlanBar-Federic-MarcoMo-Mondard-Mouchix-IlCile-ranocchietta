@@ -4,8 +4,8 @@ import frogger.common.GameState;
 import frogger.view.GameScene;
 
 /**
- * Main controller implementation that manages the switching between different game panels
- * based on the current {@link GameState}.
+ * Is the Controller that start at the beginning of the program and his loop is always activated.
+ * Choose the right controller based on GameState anche give to him the frame. 
  */
 public class MainControllerImpl {
     /**
@@ -22,16 +22,17 @@ public class MainControllerImpl {
     private final ShopController shopController = new ShopController(gameController);
 
     /**
-     * Chooses and initializes the appropriate panel/controller based on the current game state.
-     * This method contains the main loop of the application.
-     * @inheritDoc
+     * main loop that choose the controller based on Game actual State
      */
-    public void choosePanel() {
+    public void mainLoop() {
         final GameScene frame = new GameScene();
         while (true) {
             switch (GameState.state) {
                 case PLAYING -> {
                     this.controller = this.gameController;
+                    if (this.controller instanceof GameController) {
+                        System.out.println(((GameController) controller).getSkin());
+                    }
                 }
                 case MENU -> {
                     this.controller = new MenuControllerImpl();
@@ -49,7 +50,6 @@ public class MainControllerImpl {
                 }
                 default -> System.exit(0);
             }
-
             this.controller.init(frame);
             this.controller.loop();
         }

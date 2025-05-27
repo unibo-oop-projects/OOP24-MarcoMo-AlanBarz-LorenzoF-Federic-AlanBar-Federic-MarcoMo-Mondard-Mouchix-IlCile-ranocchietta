@@ -7,6 +7,7 @@ import frogger.common.Direction;
 import frogger.model.interfaces.Lane;
 import frogger.model.interfaces.Level;
 import frogger.model.interfaces.LevelFactory;
+import frogger.model.interfaces.RandomSpawnerFactory;
 
 /**
  * {@inheritDoc}.
@@ -20,12 +21,13 @@ public class LevelFactoryImpl implements LevelFactory {
      */
     @Override
     public Level randomLevel() {
-        final RandomSpawnerFactoryImpl fact = new RandomSpawnerFactoryImpl();
+        final RandomSpawnerFactory fact = new RandomSpawnerFactoryImpl();
         final Level level = new LevelImpl();
         int laneIndex = Constants.MIN_Y;
 
         fact.randomEagleSpawner().spawn(Constants.MIN_EAGLES_NUMBER, Constants.MAX_EAGLES_NUMBER).forEach(level::addEagle);
-        fact.randomPowerUpSpawner().spawn(Constants.MIN_POWER_UP_NUMBER, Constants.MAX_POWER_UP_NUMBER).forEach(level::addPowerUp);
+        fact.randomPowerUpSpawner().spawn(Constants.MIN_POWER_UP_NUMBER, Constants.MAX_POWER_UP_NUMBER)
+        .forEach(level::addPowerUp);
 
         final Lane start = new Ground();
         level.addLane(start);

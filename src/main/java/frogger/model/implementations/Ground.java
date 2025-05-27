@@ -13,9 +13,7 @@ import frogger.model.interfaces.MovingObject;
 public final class Ground implements Lane {
 
     @Override
-    public void addMovingObject(final MovingObject obstacle) {
-        throw new UnsupportedOperationException("The ground lane must not have any obstacles.");
-    }
+    public void addMovingObject(final MovingObject obstacle) { }
 
     @Override
     public float getSpeed() {

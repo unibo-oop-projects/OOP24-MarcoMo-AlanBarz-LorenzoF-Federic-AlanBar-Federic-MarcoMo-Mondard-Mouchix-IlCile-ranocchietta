@@ -21,15 +21,15 @@ public class River extends AbstractLaneImpl {
      * {@inheritDoc}
      */
     @Override
-    public void addCar(final MovingObject obstacle) {
-        throw new IllegalStateException("Wrong type of obstacle.");
-    }
+    public void addCar(final MovingObject obstacle) { }
 
     /**
      * {@inheritDoc}
      */
     @Override
     public void addTrunk(final MovingObject obstacle) {
-        super.getObstacles().add((Trunk) obstacle);
+        if (obstacle instanceof Trunk) {
+            super.getObstacles().add((Trunk) obstacle);
+        }
     }
 }
