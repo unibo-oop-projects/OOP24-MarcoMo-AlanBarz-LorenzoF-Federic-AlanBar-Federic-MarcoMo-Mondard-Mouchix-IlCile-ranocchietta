@@ -77,5 +77,5 @@ public interface Game {
      *
      * @return the list of power-ups
      */
-    List<PowerUp> getPowerUps();
+    List<PickableObject> getPickableObjects();
 }

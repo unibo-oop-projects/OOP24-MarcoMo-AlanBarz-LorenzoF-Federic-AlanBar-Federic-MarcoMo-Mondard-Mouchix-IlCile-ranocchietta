@@ -13,6 +13,8 @@ import javax.imageio.ImageIO;
 import frogger.common.Constants;
 import frogger.common.Direction;
 import frogger.controller.GameController;
+import frogger.model.implementations.PickableObjectImpl;
+import frogger.model.interfaces.GameObject;
 import frogger.model.interfaces.PlayerObject;
 
 /**
@@ -150,10 +152,10 @@ public class LevelPainter {
      * @param g the Graphics context to draw on
      */
     public void paintPowerUp(final Graphics g) {
-        for (final var powerUp : getController().getGame().getPowerUps()) {
-            g.drawImage(powerUp.getImage(), 
-                (int) this.getController().getXinPixel(powerUp.getPos().x()), 
-                (int) this.getController().getYinPixel(powerUp.getPos().y()), 
+        for (final PickableObjectImpl obj : getController().getGame().getPickableObjects()) {
+            g.drawImage((obj).getImage(), 
+                (int) this.getController().getXinPixel((obj).getPos().x()), 
+                (int) this.getController().getYinPixel((obj).getPos().y()), 
                 null);
         }
     }
