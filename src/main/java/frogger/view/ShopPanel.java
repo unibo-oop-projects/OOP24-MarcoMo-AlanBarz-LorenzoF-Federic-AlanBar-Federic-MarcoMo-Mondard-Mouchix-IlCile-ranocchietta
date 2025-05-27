@@ -22,7 +22,7 @@ import frogger.model.interfaces.PurchasableObject;
 public class ShopPanel extends AbstractPanel<ShopController> {
 
     private static final long serialVersionUID = 1L;
-    private final Font myFont = new Font("MyFont", 1, Constants.BLOCK_HEIGHT/2);
+    private final Font myFont = new Font("MyFont", 1, Constants.BLOCK_HEIGHT / 2);
 
     /**
      * Constructs a new ShopPanel and sets its properties.
@@ -76,15 +76,14 @@ public class ShopPanel extends AbstractPanel<ShopController> {
      */
     @SuppressWarnings("unused")
     private void addButtonForObject(final PurchasableObject purchasableObject, final int x, final int y) {
-        // Crea e posiziona il bottone come già fai
         final String img = purchasableObject.getImage();
         final BufferedImage bufferedImage = LoadSave.GetSprite(img);
         final int imgX = (int) this.getController().getXinPixel(x);
         final int imgY = (int) this.getController().getYinPixel(y);
 
-        // Calcola la posizione del bottone sotto l'immagine
-        final int buttonX = imgX;
-        final int buttonY = imgY + bufferedImage.getHeight() + 10; // 10 pixel di margine sotto l'immagine
+        // Calculate the position of the button below the image
+        final int buttonX = imgX - bufferedImage.getWidth() / 2 + 7;
+        final int buttonY = imgY + bufferedImage.getHeight() + 10;
 
         // Create the button
         final JButton jb;
@@ -176,10 +175,10 @@ public class ShopPanel extends AbstractPanel<ShopController> {
         return new Position(x, y);
     }
 
-    private void paintCoins(Graphics g) {
+    private void paintCoins(final Graphics g) {
         g.setColor(Color.WHITE);
         g.setFont(myFont);
         g.drawString("Coins: " + this.getController().getGameController().getCoins(), 
-        (int)this.getController().getXinPixel(Constants.MAX_X - 2), (int)this.getController().getYinPixel(Constants.MAX_Y - 0.5));
+        (int) this.getController().getXinPixel(Constants.MAX_X - 2), (int) this.getController().getYinPixel(Constants.MAX_Y - 0.5));
     }
 }

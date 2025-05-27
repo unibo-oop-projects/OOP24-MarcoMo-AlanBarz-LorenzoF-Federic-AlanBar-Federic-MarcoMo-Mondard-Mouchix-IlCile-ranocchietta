@@ -3,20 +3,35 @@ package frogger.controller;
 import frogger.common.GameState;
 import frogger.view.GameScene;
 
+/**
+ * Main controller implementation that manages the switching between different game panels
+ * based on the current {@link GameState}.
+ */
 public class MainControllerImpl {
+    /**
+     * The current active controller.
+     */
     private Controller controller;
-    private GameController gameController = new GameControllerImpl();
-    private ShopController shopController = new ShopController(gameController);
+    /**
+     * The controller responsible for the game logic.
+     */
+    private final GameController gameController = new GameControllerImpl();
+    /**
+     * The controller responsible for the shop logic.
+     */
+    private final ShopController shopController = new ShopController(gameController);
 
+    /**
+     * Chooses and initializes the appropriate panel/controller based on the current game state.
+     * This method contains the main loop of the application.
+     * @inheritDoc
+     */
     public void choosePanel() {
-        GameScene frame = new GameScene();
+        final GameScene frame = new GameScene();
         while (true) {
             switch (GameState.state) {
                 case PLAYING -> {
                     this.controller = this.gameController;
-                    if(this.controller instanceof GameController) {
-                        System.out.println(((GameController)controller).getSkin());
-                    }
                 }
                 case MENU -> {
                     this.controller = new MenuControllerImpl();
@@ -26,7 +41,7 @@ public class MainControllerImpl {
                     this.controller = this.shopController;
                 }
                 case DEAD -> {
-                    this.controller = new DeathController(((GameController)gameController).getGame().getScore());
+                    this.controller = new DeathController(((GameController) gameController).getGame().getScore());
                     this.gameController.newGame();
                 }
                 case PAUSE -> {
@@ -34,7 +49,7 @@ public class MainControllerImpl {
                 }
                 default -> System.exit(0);
             }
-            
+
             this.controller.init(frame);
             this.controller.loop();
         }

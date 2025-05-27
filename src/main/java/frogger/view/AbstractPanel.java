@@ -8,35 +8,79 @@ import javax.swing.JPanel;
 
 import frogger.common.Constants;
 
-public abstract class AbstractPanel<X> extends JPanel{
+/**
+ * Abstract base class for all panels in the Frogger game.
+ * Provides common functionality for background image handling and controller management.
+ *
+ * @param <X> the type of the controller associated with this panel
+ */
+public abstract class AbstractPanel<X> extends JPanel {
+    /**
+     * The controller associated with this panel.
+     */
     private X controller;
+    /**
+     * The background image for this panel.
+     */
     private BufferedImage background;
+
+    /**
+     * Sets up the input listeners for the panel.
+     */
     protected abstract void setInputListener();
 
+    /**
+     * Imports the background image for the panel.
+     */
     protected abstract void importImg();
 
+    /**
+     * Sets the controller for this panel and initializes the panel.
+     * @param controller the controller to associate with this panel
+     * @inheritDoc
+     */
     public void setController(final X controller) {
         this.controller = controller;
         this.importImg();
         this.setInputListener();
     }
 
+    /**
+     * Sets the preferred size of the panel based on the constants defined in {@link frogger.common.Constants}.
+     */
     protected void setPanelSize() {
         setPreferredSize(new Dimension(Constants.FRAME_WIDTH, Constants.FRAME_HEIGHT));
     }
 
+    /**
+     * Returns the controller associated with this panel.
+     * @return the controller
+     * @inheritDoc
+     */
     protected X getController() {
         return controller;
     }
 
+    /**
+     * Paints the background image onto the panel.
+     * @param g the Graphics context to use for painting
+     */
     protected void paintBackground(final Graphics g) {
-        g.drawImage(background, 0 , 0, Constants.FRAME_WIDTH, Constants.FRAME_HEIGHT, null);
+        g.drawImage(background, 0, 0, Constants.FRAME_WIDTH, Constants.FRAME_HEIGHT, null);
     }
 
+    /**
+     * Returns the background image of the panel.
+     * @return the background image
+     */
     protected BufferedImage getBackgroundImage() {
         return background;
     }
 
+    /**
+     * Sets the background image for the panel.
+     * @param background the BufferedImage to set as background
+     */
     protected void setBackgroundImage(final BufferedImage background) {
         this.background = background;
     }
