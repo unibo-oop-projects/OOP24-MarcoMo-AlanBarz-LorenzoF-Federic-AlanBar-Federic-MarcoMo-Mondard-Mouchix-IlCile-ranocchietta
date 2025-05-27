@@ -9,9 +9,8 @@ import frogger.model.interfaces.Game;
 import frogger.model.interfaces.Lane;
 import frogger.model.interfaces.Level;
 import frogger.model.interfaces.MovingObject;
+import frogger.model.interfaces.PickableObject;
 import frogger.model.interfaces.PlayerObject;
-import frogger.model.interfaces.PowerUp;
-import frogger.model.interfaces.PowerUpMenager;
 
 /**
  * Implementation of the {@link Game} interface.
@@ -31,7 +30,7 @@ public class GameImpl implements Game {
     /** Timestamp of the player's death, used for respawn timing. */
     private long deathTime;
 
-    private final PowerUpMenager powerUpMenager = new PowerUpMenagerImpl();
+    private final PickableObjectManagerImpl pickableObjectManager = new PickableObjectManagerImpl();
 
     /**
      * Constructs a new GameImpl instance with the specified player dimension and skin.
@@ -78,23 +77,15 @@ public class GameImpl implements Game {
             return; // Avoid further checks during respawn
         }
 
-        this.getPowerUps().stream()
+        this.getPickableObjects().stream()
+            .map(x -> PickableObjectImpl.class.cast(x))
             .filter(x -> x.getHitBox().intersects(this.player.getHitBox()))
             .findFirst()
             .ifPresent(x -> {
-                switch (x) {
-                    case FreezePowerUp freezePowerUp ->{ freezePowerUp.activate();
-                    powerUpMenager.addPowerUp(x);}
-                    case ExtraLifePowerUp extraLifePowerUp -> {
-                        extraLifePowerUp.setPlayer(player);
-                        extraLifePowerUp.activate();
-                    }
-                    default -> throw new IllegalArgumentException("Unknown power-up type: " + x.getClass());
-                }
-                System.out.println("Player hitbox: " + player.getHitBox());
-                System.out.println("PowerUp hitbox: " + x.getHitBox());
+                this.pickableObjectManager.addPickableObject(x);                
                 this.level.removePowerUp(x);
-            });
+            }                
+        );
 
         if (this.player.getPos().y() > Constants.MIN_Y && this.player.getPos().y() < 1) {
             if (this.level.getAllObstacles().stream().anyMatch(x -> x.getHitBox().intersects(this.player.getHitBox()))) {
@@ -213,11 +204,11 @@ public class GameImpl implements Game {
      * {@inheritDoc}
      */
     @Override
-    public List<PowerUp> getPowerUps() {
+    public List<PickableObject> getPickableObjects() {
         return this.level.getPowerUp();
     }
 
-    public PowerUpMenager getPowerUpMenager() {
-        return this.powerUpMenager;
+    public PickableObjectManagerImpl getPickableObjectManager() {
+        return this.pickableObjectManager;
     }
 }

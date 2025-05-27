@@ -44,7 +44,7 @@ public class PlayerObjectImpl extends GameObjectImpl implements PlayerObject {
     /**
      * Adds one life to the player.
      */
-    public void addLive() {
+    public void addLife() {
         this.lives++;
     }
 

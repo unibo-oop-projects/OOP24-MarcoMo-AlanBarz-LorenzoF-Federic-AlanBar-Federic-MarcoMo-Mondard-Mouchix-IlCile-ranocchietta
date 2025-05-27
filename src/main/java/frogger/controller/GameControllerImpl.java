@@ -10,9 +10,9 @@ import frogger.common.input.InputControllerImpl;
 import frogger.common.input.KeyInput;
 import frogger.model.implementations.FreezePowerUp;
 import frogger.model.implementations.GameImpl;
+import frogger.model.implementations.PickableObjectManagerImpl;
 import frogger.model.interfaces.Game;
 import frogger.model.interfaces.MovingObject;
-import frogger.model.interfaces.PowerUpMenager;
 import frogger.view.GamePanel;
 import frogger.view.GameScene;
 
@@ -35,7 +35,7 @@ public class GameControllerImpl extends AbstractController implements GameContro
     /** The identifier or path of the currently equipped skin. */
     private String skin = "ranocchietta.png";
 
-    private PowerUpMenager powerUpMenager;
+    private PickableObjectManagerImpl pickableObjectManager;
 
     /**
      * {@inheritDoc}
@@ -46,7 +46,7 @@ public class GameControllerImpl extends AbstractController implements GameContro
         scenePanel = new GamePanel();
         scenePanel.setController(this);
         gameScene.setPanel(scenePanel);
-        powerUpMenager = game.getPowerUpMenager();
+        PickableObjectManagerImpl pickableObjectManager = game.getPickableObjectManager();
     }
 
     /**
@@ -61,7 +61,10 @@ public class GameControllerImpl extends AbstractController implements GameContro
         this.game.checkProgress();
         this.game.checkNewLevel();
         this.game.checkEagleTrigger();
-        if (!powerUpMenager.getActivePowerUps().stream().anyMatch(p -> p instanceof FreezePowerUp)) {
+        if (!pickableObjectManager.getActivePowerUps().stream()
+            .filter(powerUp -> powerUp instanceof FreezePowerUp)
+            .anyMatch(powerUp -> ((FreezePowerUp) powerUp).isFrozen()))
+        {
             this.game.getObstacles().forEach(MovingObject::move); // moving all obstacles
         }
         this.scenePanel.repaint();
