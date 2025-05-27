@@ -2,40 +2,32 @@ package frogger.model.implementations;
 
 import frogger.common.Pair;
 import frogger.common.Position;
-import frogger.model.interfaces.PlayerObject;
 
-public class FreezePowerUp extends  AbstractPowerUp {
-    private static final int duration = 5000; // Duration in milliseconds
-    private boolean active = false; // Indicates if the power-up is currently active
-    private long startTime;
+public class FreezePowerUp extends  TimedPowerUp {
 
-    public FreezePowerUp(Position pos, Pair dimension) {
-        super(pos, dimension);
-        super.setImage("freezePowerUp.png");
+    private boolean freeze = false;
+
+    public FreezePowerUp(Position pos, Pair dimension, int duration) {
+        super(pos, dimension, duration);
+        super.setImage("freeze_powerup.png");
+    }
+
+    @Override
+    public void applyEffect() {
+        freeze = true;
+    }
+
+    @Override
+    public void removeEffect() {
+        freeze = false;
     }
     
-  
-
-    @Override
-    public boolean isActive() {
-        if (active && System.currentTimeMillis() - startTime >= duration) {
-            deactivate();
-        }
-        return active; 
-    }
-    
-    @Override
-    public void activate() {        
-        active = true;
-        startTime = System.currentTimeMillis();
+    public boolean isFrozen() {
+        return freeze;
     }
 
     @Override
-    public void deactivate() {
-        this.active = false;
+    public PickableObjectDependency getRequiredDependencies() {
+        return null;
     }
-
-    @Override
-    public void setPlayer(PlayerObject player) {}
-
 }
