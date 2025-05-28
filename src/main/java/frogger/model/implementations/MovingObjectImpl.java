@@ -57,9 +57,17 @@ public class MovingObjectImpl extends GameObjectImpl implements MovingObject {
      */
     @Override
     public void move() {
+        this.step();
+        this.checkRestart();
+    }
+
+    /**
+     * Moves the object in its current direction by its speed.
+     * This method updates the position of the object based on its direction and speed.
+     */
+    protected void step() {
         this.setPos(new Position(this.getPos().x() + this.getDirectionValue().x() * this.getSpeed(), 
         this.getPos().y() + this.getDirectionValue().y() * this.getSpeed()));
-        this.checkRestart();
     }
 
     /**

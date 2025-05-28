@@ -48,7 +48,7 @@ public class Trunk extends MovingObjectImpl implements Carrier<PlayerObjectImpl>
      * {@inheritDoc}
      */
     @Override
-    public void move() {
+    protected void step() {
         if (frog.isPresent()) {
             if (frog.get().getPos().y() != this.getPos().y()) {
                 this.removeObj();
@@ -57,7 +57,7 @@ public class Trunk extends MovingObjectImpl implements Carrier<PlayerObjectImpl>
                 frog.get().getPos().y() + this.getDirectionValue().y() * this.getSpeed()));
             }
         }
-        super.move();
+        super.step();
     }
 
 }
