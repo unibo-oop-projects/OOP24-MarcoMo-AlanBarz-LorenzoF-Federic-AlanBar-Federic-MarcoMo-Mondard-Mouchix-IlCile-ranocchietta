@@ -1,15 +1,12 @@
 package frogger.model.implementations;
 
-import java.util.Optional;
-import java.util.Set;
-
 import frogger.common.Pair;
 import frogger.common.Position;
 import frogger.model.interfaces.PickableObject;
 
 public abstract class PickableObjectImpl extends GameObjectImpl implements PickableObject{
 
-    protected Object relatedEntity = Optional.empty();
+    protected Object relatedEntity = null; 
 
     public PickableObjectImpl(Position pos, Pair dimension) {
         super(pos, dimension);

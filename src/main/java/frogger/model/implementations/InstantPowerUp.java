@@ -12,7 +12,20 @@ public abstract class InstantPowerUp extends PickableObjectImpl implements Power
 
     @Override
     public void onPick() {
+       activate();    
+    }
+
+    @Override
+    public void activate() {
         applyEffect();
+    }
+
+    @Override
+    public void deactivate() { }
+
+    @Override
+    public boolean isActive() {
+        return false;
     }
 
     abstract public void applyEffect(); 

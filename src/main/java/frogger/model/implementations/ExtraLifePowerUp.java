@@ -22,6 +22,7 @@ public class ExtraLifePowerUp extends InstantPowerUp {
     public PickableObjectDependency getRequiredDependencies() {
         return PickableObjectDependency.PLAYER;
     }
+    
 }
 
     
