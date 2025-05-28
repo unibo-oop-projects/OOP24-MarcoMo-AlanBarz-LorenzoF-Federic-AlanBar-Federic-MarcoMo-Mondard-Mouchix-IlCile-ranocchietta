@@ -43,7 +43,7 @@ public class RandomSpawnerFactoryImpl implements RandomSpawnerFactory {
      */
     @Override
     public EntitySpawner<PickableObject> randomPowerUpSpawner() {
-        return new RandomPickableSpawner(ran, InstantPowerUp.class);
+        return new RandomPickableSpawner(ran, PowerUpImpl.class);
     }
 
     /**

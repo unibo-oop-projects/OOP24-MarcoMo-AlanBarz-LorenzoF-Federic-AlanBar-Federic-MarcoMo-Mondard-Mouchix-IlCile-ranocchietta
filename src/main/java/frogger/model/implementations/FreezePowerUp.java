@@ -3,7 +3,7 @@ package frogger.model.implementations;
 import frogger.common.Pair;
 import frogger.common.Position;
 
-public class FreezePowerUp extends  TimedPowerUp {
+public class FreezePowerUp extends PowerUpImpl {
 
     private boolean freeze = false;
 
@@ -28,6 +28,6 @@ public class FreezePowerUp extends  TimedPowerUp {
 
     @Override
     public PickableObjectDependency getRequiredDependencies() {
-        return null;
+        return PickableObjectDependency.NULL;
     }
 }

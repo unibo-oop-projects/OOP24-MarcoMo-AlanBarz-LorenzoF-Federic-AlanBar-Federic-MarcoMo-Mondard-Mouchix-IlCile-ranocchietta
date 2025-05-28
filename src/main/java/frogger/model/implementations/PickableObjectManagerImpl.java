@@ -10,7 +10,7 @@ import frogger.model.interfaces.PickableObjectManager;
 import frogger.model.interfaces.PowerUp;
 
 public class PickableObjectManagerImpl implements PickableObjectManager {
-    private final List<TimedPowerUp> activePowerUps = new ArrayList<>();
+    private final List<PowerUp> activePowerUps = new ArrayList<>();
     private final GameImpl game;
     private Controller controller;
 
@@ -28,7 +28,7 @@ public class PickableObjectManagerImpl implements PickableObjectManager {
     @Override
     public void addPickableObject(PickableObjectImpl x) {
         if (x != null) {
-            if(x instanceof  TimedPowerUp timedPowerUp){
+            if(x instanceof PowerUp timedPowerUp){
                 activePowerUps.add(timedPowerUp);           
             }    
             
@@ -36,6 +36,7 @@ public class PickableObjectManagerImpl implements PickableObjectManager {
                 case PLAYER -> x.setRelatedEntity(game.getPlayer());
                 case OBSTACLE -> x.setRelatedEntity(game.getObstacles());
                 case GAME_CONTROLLER -> x.setRelatedEntity(controller);
+                default -> {}
             }            
 
             x.onPick(); // Trigger the pick action

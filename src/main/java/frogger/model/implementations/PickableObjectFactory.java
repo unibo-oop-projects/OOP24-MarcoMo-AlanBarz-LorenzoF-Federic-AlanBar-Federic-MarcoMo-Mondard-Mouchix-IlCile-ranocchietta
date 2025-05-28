@@ -11,7 +11,7 @@ public class PickableObjectFactory {
     public static PickableObject createPickableObject(Class<? extends PickableObject> type, Position position, Pair dimension) {
         return switch (type.getSimpleName()) {
             case "Coin" -> new Coin(position, dimension);
-            case "PowerUp" -> getRandomPowerUpType(position, dimension);
+            case "PowerUpImpl" -> getRandomPowerUpType(position, dimension);
             default -> null;
         };
     }
@@ -23,7 +23,7 @@ public class PickableObjectFactory {
         PowerUpType selectedType = powerUpTypes[randomIndex];
         return switch (selectedType) {
             case FREEZE -> new FreezePowerUp(position, dimension, 3);
-            case EXTRA_LIFE -> new ExtraLifePowerUp(position, dimension);
+            case EXTRA_LIFE -> new ExtraLifePowerUp(position, dimension, 0);
         };
     }
     
