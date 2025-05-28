@@ -8,6 +8,9 @@ import frogger.common.Pair;
 import frogger.common.Position;
 import frogger.model.interfaces.PickableObject;
 
+/**
+ * Class that extends AbstractRandomEntitySpawner to specify the behaviour spawning PickableObjects entity.
+ */
 public class RandomPickableSpawner extends AbstractRandomEntitySpawner<PickableObject> {
 
     private final Class<? extends PickableObject> type;

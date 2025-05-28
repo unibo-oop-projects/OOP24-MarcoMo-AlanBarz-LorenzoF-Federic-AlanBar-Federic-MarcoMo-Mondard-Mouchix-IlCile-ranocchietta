@@ -39,7 +39,7 @@ public abstract class AbstractLaneImpl implements Lane {
     public abstract void addTrunk(MovingObject obstacle);
 
     /**
-     * Protected method to let the class that extends this add obstacle to the list.
+     * Protected method to let the class that extends this abstract class add obstacle to the list.
      * @return the list itself.
      */
     protected Set<MovingObject> getObstacles() {

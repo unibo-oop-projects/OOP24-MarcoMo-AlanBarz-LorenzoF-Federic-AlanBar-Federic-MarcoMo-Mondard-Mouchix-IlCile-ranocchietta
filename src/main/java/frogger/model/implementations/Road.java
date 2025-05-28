@@ -22,9 +22,7 @@ public class Road extends AbstractLaneImpl {
      */
     @Override
     public void addCar(final MovingObject obstacle) {
-        if (obstacle instanceof Car) {
-            super.getObstacles().add((Car) obstacle);
-        }
+        super.getObstacles().add(obstacle);
     }
 
     /**

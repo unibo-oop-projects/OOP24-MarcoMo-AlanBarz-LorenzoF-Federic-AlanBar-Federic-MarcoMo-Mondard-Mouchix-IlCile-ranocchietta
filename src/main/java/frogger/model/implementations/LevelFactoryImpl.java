@@ -34,6 +34,7 @@ public class LevelFactoryImpl implements LevelFactory {
         fact.randomCoinSpawner().spawn(Constants.MIN_COIN_NUMBER, Constants.MAX_COIN_NUMBER)
         .forEach(level::addPickableObject);
 
+        //build the level and abb obstacle to the lane
         final Lane start = new Ground();
         level.addLane(start);
         laneIndex++;
