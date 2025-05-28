@@ -8,22 +8,19 @@ import frogger.controller.GameControllerImpl;
 
 public class Coin extends PickableObjectImpl {
 
-    private static int coinValue = 1; // Value of the coin
+    private int coinValue; // Value of the coin
 
     public Coin(Position pos, Pair dimension) {
         super(pos, dimension);
         super.setImage("coin.png");
-        coinValue = randomCoinValue();
     }
 
     @Override
     public void onPick() {
         if (relatedEntity instanceof GameControllerImpl game) {
-            coinValue = game.getCoins() + coinValue;
-            game.setCoins(coinValue);
-        }            
-        
-        System.out.println("Coin picked! Value: " + coinValue);
+            coinValue = randomCoinValue();
+            game.setCoins(game.getCoins() + coinValue);
+        }                    
     }
 
     @Override
