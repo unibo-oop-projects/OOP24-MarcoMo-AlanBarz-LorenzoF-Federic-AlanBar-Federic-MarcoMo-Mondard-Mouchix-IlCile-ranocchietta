@@ -4,19 +4,18 @@ package frogger.model.implementations;
 import java.util.ArrayList;
 import java.util.List;
 
-import frogger.model.interfaces.MovingObject;
+import frogger.controller.Controller;
+import frogger.controller.GameControllerImpl;
 import frogger.model.interfaces.PickableObjectManager;
 import frogger.model.interfaces.PowerUp;
 
 public class PickableObjectManagerImpl implements PickableObjectManager {
     private final List<TimedPowerUp> activePowerUps = new ArrayList<>();
-    PlayerObjectImpl player;
-    List<MovingObject> obstacles; 
-    
-    public PickableObjectManagerImpl() {}
-    public PickableObjectManagerImpl(PlayerObjectImpl player, List<MovingObject> obstacles) {
-        this.player = player;
-        this.obstacles = obstacles;
+    private final GameImpl game;
+    private Controller controller;
+
+    public PickableObjectManagerImpl(GameImpl game) {
+        this.game = game;
     }
     
     @Override
@@ -34,11 +33,18 @@ public class PickableObjectManagerImpl implements PickableObjectManager {
             }    
             
             switch (x.getRequiredDependencies()) {
-                case PLAYER -> x.setRelatedEntity(this.player);
-                case OBSTACLE -> x.setRelatedEntity(this.obstacles);
+                case PLAYER -> x.setRelatedEntity(game.getPlayer());
+                case OBSTACLE -> x.setRelatedEntity(game.getObstacles());
+                case GAME_CONTROLLER -> x.setRelatedEntity(controller);
             }            
 
             x.onPick(); // Trigger the pick action
+        }
+    }
+
+    public void setController(Controller controller) {
+        if (controller instanceof GameControllerImpl gameController) {
+            this.controller = gameController;
         }
     }
 }

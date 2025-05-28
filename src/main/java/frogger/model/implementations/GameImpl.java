@@ -30,7 +30,7 @@ public class GameImpl implements Game {
     /** Timestamp of the player's death, used for respawn timing. */
     private long deathTime;
 
-    private final PickableObjectManagerImpl pickableObjectManager = new PickableObjectManagerImpl();
+    private final PickableObjectManagerImpl pickableObjectManager;
 
     /**
      * Constructs a new GameImpl instance with the specified player dimension and skin.
@@ -41,6 +41,7 @@ public class GameImpl implements Game {
     public GameImpl(final Pair dimension, final String skin) { 
         this.player = new PlayerObjectImpl(dimension, skin);
         level = levelFactory.randomLevel();
+        pickableObjectManager = new PickableObjectManagerImpl(this);
     }
 
     /**

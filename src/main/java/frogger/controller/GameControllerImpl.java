@@ -46,7 +46,8 @@ public class GameControllerImpl extends AbstractController implements GameContro
         scenePanel = new GamePanel();
         scenePanel.setController(this);
         gameScene.setPanel(scenePanel);
-        PickableObjectManagerImpl pickableObjectManager = game.getPickableObjectManager();
+        pickableObjectManager = game.getPickableObjectManager();
+        pickableObjectManager.setController(this);
     }
 
     /**
