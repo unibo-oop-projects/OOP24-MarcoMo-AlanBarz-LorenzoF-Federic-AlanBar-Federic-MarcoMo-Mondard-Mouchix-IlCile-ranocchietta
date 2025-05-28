@@ -83,17 +83,6 @@ public class GameControllerImpl extends AbstractController implements GameContro
 
     /**
      * {@inheritDoc}
-     * Sets the game state to DEAD if the game is not paused at the end of the loop.
-     */
-    @Override
-    public void changesLoopEnd() {
-        if (!game.gameIsPaused()) {
-            GameState.state = GameState.DEAD;
-        }
-    }
-
-    /**
-     * {@inheritDoc}
      * Returns the current game instance.
      */
     @Override

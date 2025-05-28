@@ -1,0 +1,6 @@
+class frogger.model.implementations.Skin 1 ranocchietta.png true
+class frogger.model.implementations.Skin 3 ranocchiettaBN.png true
+class frogger.model.implementations.Skin 10 elefante.png true
+class frogger.model.implementations.Skin 20 fede.png false
+class frogger.model.implementations.Skin 20 cile.png false
+class frogger.model.implementations.Skin 20 mouchi.png true
