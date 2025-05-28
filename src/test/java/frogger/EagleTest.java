@@ -22,7 +22,7 @@ public class EagleTest {
         float speed = Constants.MIN_SPEED;
         Direction dir = Direction.DOWN;
         Pair dim = new Pair(Constants.EAGLE_WIDTH, Constants.EAGLE_HEIGHT);
-        Position pos = new Position(10, 10);
+        Position pos = new Position(0, 0);
 
         eagle = new Eagle(pos, dim, speed, dir);
     }

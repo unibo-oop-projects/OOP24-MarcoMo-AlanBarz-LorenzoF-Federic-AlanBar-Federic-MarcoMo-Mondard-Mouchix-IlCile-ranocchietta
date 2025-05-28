@@ -59,5 +59,4 @@ public class Trunk extends MovingObjectImpl implements Carrier<PlayerObjectImpl>
         }
         super.step();
     }
-
 }
