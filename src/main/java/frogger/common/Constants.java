@@ -52,6 +52,10 @@ public final class Constants {
     public static final int MIN_POWER_UP_NUMBER = 1;
     /** Maximum number of power-ups. */
     public static final int MAX_POWER_UP_NUMBER = 3;
+    /** Minimum number of coin. */
+    public static final int MIN_COIN_NUMBER = 4;
+    /** Maximum number of coin. */
+    public static final int MAX_COIN_NUMBER = 7;
     /** Power-up width (in grid units). */
     public static final int PICKALBE_OBJECT_WIDTH = 1;
     /** Power-up height (in grid units). */

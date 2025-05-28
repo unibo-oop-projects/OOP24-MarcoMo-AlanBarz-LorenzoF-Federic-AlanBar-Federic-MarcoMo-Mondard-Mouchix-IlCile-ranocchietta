@@ -1,0 +1,50 @@
+package frogger.model.implementations;
+
+import java.util.Random;
+import java.util.Set;
+
+import frogger.common.Constants;
+import frogger.common.Pair;
+import frogger.common.Position;
+import frogger.model.interfaces.PickableObject;
+
+public class RandomPickableSpawner extends AbstractRandomEntitySpawner<PickableObject> {
+
+    private final Class<? extends PickableObject> type;
+
+    /**
+     * Recall the super constructor and initializa type.
+     * @param ran random injection, useful for testing
+     * @param type the type of PickableObject to create (PowerUp or Coin)
+     */
+    public RandomPickableSpawner(Random ran, Class<? extends PickableObject> type) {
+        super(ran);
+        this.type = type;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected boolean isValidPosition(Position pos, Set<Position> used) {
+        return !used.contains(pos) && pos.y() != Constants.MIN_Y && pos.y() != Constants.MAX_Y;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected Position generatePosition() {
+        return new Position(randomX(), randomY());
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected PickableObject createEntity(Position pos) {
+        final Pair dim = new Pair(Constants.PICKALBE_OBJECT_WIDTH, Constants.PICKALBE_OBJECT_HEIGHT);
+        return PickableObjectFactory.createPickableObject(type, pos, dim);
+    }
+
+}

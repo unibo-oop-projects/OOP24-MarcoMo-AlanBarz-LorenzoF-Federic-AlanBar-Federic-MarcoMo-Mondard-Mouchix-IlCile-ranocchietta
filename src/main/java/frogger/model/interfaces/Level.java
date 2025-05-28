@@ -40,20 +40,20 @@ public interface Level {
     List<Eagle> getEagles();
 
     /**
-     * Get the list of power ups present in the current level.
+     * Get the list of pickable objects present in the current level.
      * @return the list
      */
-    List<PickableObject> getPowerUp();
+    List<PickableObject> getPickableObjects();
 
     /**
-     * Add a power up to the list.
-     * @param p the power up to be added
+     * Add a pickable objects to the list.
+     * @param p the pickable objects to be added
      */
-    void addPowerUp(PowerUp p);
+    void addPickableObject(PickableObject p);
 
     /**
-     * Remove a power up from the list.
-     * @param p the power up to be removed
+     * Remove a PickableObject from the list.
+     * @param p PickableObject up to be removed
      */
-    void removePowerUp(PickableObject p);
+    void removePickableObject(PickableObject p);
 }

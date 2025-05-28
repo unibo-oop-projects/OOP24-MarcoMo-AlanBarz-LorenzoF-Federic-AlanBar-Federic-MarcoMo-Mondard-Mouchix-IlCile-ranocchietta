@@ -86,7 +86,7 @@ public class GameImpl implements Game {
             .findFirst()
             .ifPresent(x -> {
                 this.pickableObjectManager.addPickableObject(x);                
-                this.level.removePowerUp(x);
+                this.level.removePickableObject(x);
             }                
         );
 
@@ -208,7 +208,7 @@ public class GameImpl implements Game {
      */
     @Override
     public List<PickableObject> getPickableObjects() {
-        return this.level.getPowerUp();
+        return this.level.getPickableObjects();
     }
 
     public PickableObjectManagerImpl getPickableObjectManager() {
