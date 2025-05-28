@@ -1,17 +1,30 @@
 package frogger.model.implementations;
 
 import frogger.common.GameState;
+import frogger.model.interfaces.MenuFactory;
 
-public class MenuFactory {
+public class MenuFactoryImpl implements MenuFactory {
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public Menu mainMenu() {
         return new Menu(GameState.PLAYING, GameState.SHOP, GameState.QUIT);
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public Menu pauseMenu() {
         return new Menu(GameState.PLAYING, GameState.MENU, GameState.QUIT);
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public Menu deathMenu() {
-        return new Menu(GameState.PLAYING, GameState.MENU, GameState.QUIT);
+        return this.pauseMenu();
     }
 }

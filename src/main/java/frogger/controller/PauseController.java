@@ -6,7 +6,8 @@ import java.awt.event.MouseMotionListener;
 import frogger.common.GameState;
 import frogger.common.input.MouseInput;
 import frogger.model.implementations.Menu;
-import frogger.model.implementations.MenuFactory;
+import frogger.model.implementations.MenuFactoryImpl;
+import frogger.model.interfaces.MenuFactory;
 import frogger.view.GameScene;
 import frogger.view.PausePanel;
 
@@ -14,7 +15,7 @@ import frogger.view.PausePanel;
  * {@inheritDoc}.
  */
 public class PauseController extends AbstractController implements MenuController {
-    private final MenuFactory menuFactory = new MenuFactory();
+    private final MenuFactory menuFactory = new MenuFactoryImpl();
     private PausePanel scenePanel;
     private Menu menu;
     private final Controller gc;
