@@ -61,13 +61,6 @@ public abstract class AbstractController implements Controller{
     }
 
     /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void setFrame(final GameScene gameScene) {    
-    }
-
-    /**
      * Converts a logical x-coordinate (in game units) to a pixel value on screen.
      *
      * @param x the logical x-coordinate

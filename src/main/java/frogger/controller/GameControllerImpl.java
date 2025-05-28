@@ -59,6 +59,7 @@ public class GameControllerImpl extends AbstractController implements GameContro
     public void core() {
         this.inputController.processInput(this.game);
         this.game.checkCollision();
+        this.game.checkGameOver();
         this.game.checkProgress();
         this.game.checkNewLevel();
         this.game.checkEagleTrigger();
@@ -77,7 +78,7 @@ public class GameControllerImpl extends AbstractController implements GameContro
      */
     @Override
     public boolean loopCondition() {
-        return !game.isGameOver() && !game.gameIsPaused();
+        return GameState.state == GameState.PLAYING;
     }
 
     /**

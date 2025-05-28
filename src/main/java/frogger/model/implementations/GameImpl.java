@@ -48,8 +48,10 @@ public class GameImpl implements Game {
      * {@inheritDoc}
      */
     @Override
-    public boolean isGameOver() {
-        return this.player.getLives() == 0;
+    public void checkGameOver() {
+        if(this.player.getLives() == 0) {
+            GameState.state = GameState.DEAD;
+        }
     }
 
     /**

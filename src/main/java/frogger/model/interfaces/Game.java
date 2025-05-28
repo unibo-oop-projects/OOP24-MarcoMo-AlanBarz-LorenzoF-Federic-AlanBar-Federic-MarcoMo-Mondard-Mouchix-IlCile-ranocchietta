@@ -10,10 +10,11 @@ public interface Game {
 
     /**
      * Checks if the game is over.
+     * If the player has no lives left, the game state is set to DEAD.
      *
      * @return true if the game is over, false otherwise
      */
-    boolean isGameOver();
+    void checkGameOver();
 
     /**
      * Returns the current score of the player.

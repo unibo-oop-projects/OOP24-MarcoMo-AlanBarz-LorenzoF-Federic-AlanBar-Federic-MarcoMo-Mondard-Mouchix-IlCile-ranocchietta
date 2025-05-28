@@ -8,8 +8,6 @@ public interface Controller {
 
     void loop();
 
-    void setFrame(GameScene gameScene);
-
     double getXinPixel(double x);
 
     double getYinPixel(double x);

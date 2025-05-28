@@ -44,7 +44,7 @@ public class RandomPowerUpsSpawner extends AbstractRandomEntitySpawner<PowerUp> 
     protected PowerUp createEntity(final Position pos) {
         final PowerUpType type = PowerUpFactory.getRandomPowerUpType();
         final Pair dim = new Pair(Constants.PICKALBE_OBJECT_WIDTH, Constants.PICKALBE_OBJECT_HEIGHT);
-        return (PowerUp) PowerUpFactory.createPowerUp(type, pos, dim);
+        return null; (PowerUp) PowerUpFactory.createPowerUp(type, pos, dim);
     }
 
 }
