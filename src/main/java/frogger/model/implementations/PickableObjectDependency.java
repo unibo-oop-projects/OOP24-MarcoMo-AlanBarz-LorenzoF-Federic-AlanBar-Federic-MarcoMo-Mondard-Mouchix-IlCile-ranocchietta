@@ -2,5 +2,7 @@ package frogger.model.implementations;
 
 public enum PickableObjectDependency {
     PLAYER,
-    OBSTACLE
+    OBSTACLE,
+    GAME_CONTROLLER,
+    NULL
 }

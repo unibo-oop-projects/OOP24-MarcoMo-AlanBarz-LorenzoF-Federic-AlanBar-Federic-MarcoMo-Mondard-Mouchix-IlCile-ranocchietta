@@ -37,10 +37,6 @@ public class MenuControllerImpl extends AbstractController implements MenuContro
     }
 
     @Override
-    protected void changesLoopEnd() {}
-
-
-    @Override
     public Menu getMenu() {
         return menu;
     }

@@ -70,12 +70,6 @@ public class DeathController extends AbstractController implements MenuControlle
      * {@inheritDoc}
      */
     @Override
-    protected void changesLoopEnd() { }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
     public MouseMotionListener getMouseMotionListener() {
         return this.mouseInput;
     }

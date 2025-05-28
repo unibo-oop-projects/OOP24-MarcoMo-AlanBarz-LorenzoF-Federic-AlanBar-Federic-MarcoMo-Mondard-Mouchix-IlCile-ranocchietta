@@ -46,7 +46,8 @@ public class GameControllerImpl extends AbstractController implements GameContro
         scenePanel = new GamePanel();
         scenePanel.setController(this);
         gameScene.setPanel(scenePanel);
-        PickableObjectManagerImpl pickableObjectManager = game.getPickableObjectManager();
+        pickableObjectManager = game.getPickableObjectManager();
+        pickableObjectManager.setController(this);
     }
 
     /**
@@ -58,6 +59,7 @@ public class GameControllerImpl extends AbstractController implements GameContro
     public void core() {
         this.inputController.processInput(this.game);
         this.game.checkCollision();
+        this.game.checkGameOver();
         this.game.checkProgress();
         this.game.checkNewLevel();
         this.game.checkEagleTrigger();
@@ -76,18 +78,7 @@ public class GameControllerImpl extends AbstractController implements GameContro
      */
     @Override
     public boolean loopCondition() {
-        return !game.isGameOver() && !game.gameIsPaused();
-    }
-
-    /**
-     * {@inheritDoc}
-     * Sets the game state to DEAD if the game is not paused at the end of the loop.
-     */
-    @Override
-    public void changesLoopEnd() {
-        if (!game.gameIsPaused()) {
-            GameState.state = GameState.DEAD;
-        }
+        return GameState.state == GameState.PLAYING;
     }
 
     /**

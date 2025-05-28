@@ -4,29 +4,28 @@ import java.util.Random;
 
 import frogger.common.Pair;
 import frogger.common.Position;
+import frogger.controller.GameControllerImpl;
 
 public class Coin extends PickableObjectImpl {
 
-    private static int coinValue = 1; // Value of the coin
+    private int coinValue; // Value of the coin
 
     public Coin(Position pos, Pair dimension) {
         super(pos, dimension);
         super.setImage("coin.png");
-        coinValue = randomCoinValue();
     }
 
     @Override
     public void onPick() {
-        if (relatedEntity instanceof PlayerObjectImpl player) {
-            //player.addCoin(coinValue);
-        }            
-        
-        System.out.println("Coin picked! Value: " + coinValue);
+        if (relatedEntity instanceof GameControllerImpl game) {
+            coinValue = randomCoinValue();
+            game.setCoins(game.getCoins() + coinValue);
+        }                    
     }
 
     @Override
     public PickableObjectDependency getRequiredDependencies() {
-        return PickableObjectDependency.PLAYER;
+        return PickableObjectDependency.GAME_CONTROLLER;
     }
 
     private int randomCoinValue() {

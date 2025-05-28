@@ -24,7 +24,10 @@ public interface MovingObject extends GameObject {
     float getSpeed();
 
     /**
-     * change the position of the object in base of his direction and speed.
+     * Templete method to move the object.
+     * It calls the step method, which is implemented in the MovingObjectImpl class.
+     * The step method is responsible for updating the position of the object based on its direction and speed.
+     * It also checks for boundary conditions to ensure the object does not move out of the game board.
      */
     void move();
 

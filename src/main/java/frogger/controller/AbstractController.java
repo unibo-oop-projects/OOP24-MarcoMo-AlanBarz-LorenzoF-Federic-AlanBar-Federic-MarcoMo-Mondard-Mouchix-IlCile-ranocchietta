@@ -35,12 +35,6 @@ public abstract class AbstractController implements Controller{
     protected abstract boolean loopCondition();
 
     /**
-     * Defines what happens after the game loop ends.
-     * Must be implemented by subclasses.
-     */
-    protected abstract void changesLoopEnd();
-
-    /**
      * {@inheritDoc}
      */
     @Override
@@ -57,14 +51,6 @@ public abstract class AbstractController implements Controller{
                 lastFrame = now;
             }
         }
-        changesLoopEnd();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void setFrame(final GameScene gameScene) {    
     }
 
     /**

@@ -40,5 +40,11 @@ public interface RandomSpawnerFactory {
      * return a spawner for PowerUp entity.
      * @return the spawner object
      */
-    EntitySpawner<PowerUp> randomPowerUpSpawner();
+    EntitySpawner<PickableObject> randomPowerUpSpawner();
+
+    /**
+     * return a spawner for Coin entity.
+     * @return the spawner object
+     */
+    EntitySpawner<PickableObject> randomCoinSpawner();
 }

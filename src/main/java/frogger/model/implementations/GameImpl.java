@@ -30,7 +30,7 @@ public class GameImpl implements Game {
     /** Timestamp of the player's death, used for respawn timing. */
     private long deathTime;
 
-    private final PickableObjectManagerImpl pickableObjectManager = new PickableObjectManagerImpl();
+    private final PickableObjectManagerImpl pickableObjectManager;
 
     /**
      * Constructs a new GameImpl instance with the specified player dimension and skin.
@@ -41,14 +41,17 @@ public class GameImpl implements Game {
     public GameImpl(final Pair dimension, final String skin) { 
         this.player = new PlayerObjectImpl(dimension, skin);
         level = levelFactory.randomLevel();
+        pickableObjectManager = new PickableObjectManagerImpl(this);
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public boolean isGameOver() {
-        return this.player.getLives() == 0;
+    public void checkGameOver() {
+        if(this.player.getLives() == 0) {
+            GameState.state = GameState.DEAD;
+        }
     }
 
     /**
@@ -83,7 +86,7 @@ public class GameImpl implements Game {
             .findFirst()
             .ifPresent(x -> {
                 this.pickableObjectManager.addPickableObject(x);                
-                this.level.removePowerUp(x);
+                this.level.removePickableObject(x);
             }                
         );
 
@@ -205,7 +208,7 @@ public class GameImpl implements Game {
      */
     @Override
     public List<PickableObject> getPickableObjects() {
-        return this.level.getPowerUp();
+        return this.level.getPickableObjects();
     }
 
     public PickableObjectManagerImpl getPickableObjectManager() {

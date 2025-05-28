@@ -49,9 +49,9 @@ public class Eagle extends MovingObjectImpl implements Startable<Integer> {
      * {@inheritDoc}
      */
     @Override
-    public void move() {
+    protected void step() {
         if (started) {
-            super.move();
+            super.step();
         }
     }
 

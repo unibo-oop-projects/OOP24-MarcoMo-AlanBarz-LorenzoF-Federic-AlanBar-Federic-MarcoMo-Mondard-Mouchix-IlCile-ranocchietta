@@ -94,13 +94,6 @@ public class ShopController extends AbstractController {
     }
 
     /**
-     * {@inheritDoc}
-     * No additional changes are needed at the end of the loop.
-     */
-    @Override
-    protected void changesLoopEnd() { }
-
-    /**
      * Saves the current state of purchasable objects to the shop save file.
      * Uses UTF-8 encoding for writing.
      */
