@@ -53,12 +53,12 @@ final class LevelTest {
 
     @Test
     void powerUpTest() {
-        final Pair dim = new Pair(Constants.POWER_UP_WIDTH, Constants.POWER_UP_HEIGHT);
+        final Pair dim = new Pair(Constants.PICKALBE_OBJECT_WIDTH, Constants.PICKALBE_OBJECT_HEIGHT);
 
-        final PowerUp p1 = PowerUpFactory.createPowerUp(PowerUpFactory.getRandomPowerUpType(), new Position(0, 0), dim);
-        final PowerUp p2 = PowerUpFactory.createPowerUp(PowerUpFactory.getRandomPowerUpType(), new Position(3, 4), dim);
-        final PowerUp p3 = PowerUpFactory.createPowerUp(PowerUpFactory.getRandomPowerUpType(), new Position(-1, 3), dim);
-        final PowerUp p4 = PowerUpFactory.createPowerUp(PowerUpFactory.getRandomPowerUpType(), new Position(-3, 1), dim);
+        final PowerUp p1 = (PowerUp) PowerUpFactory.createPowerUp(PowerUpFactory.getRandomPowerUpType(), new Position(0, 0), dim);
+        final PowerUp p2 = (PowerUp) PowerUpFactory.createPowerUp(PowerUpFactory.getRandomPowerUpType(), new Position(3, 4), dim);
+        final PowerUp p3 = (PowerUp) PowerUpFactory.createPowerUp(PowerUpFactory.getRandomPowerUpType(), new Position(-1, 3), dim);
+        final PowerUp p4 = (PowerUp) PowerUpFactory.createPowerUp(PowerUpFactory.getRandomPowerUpType(), new Position(-3, 1), dim);
 
         level.addPowerUp(p1);
         level.addPowerUp(p2);

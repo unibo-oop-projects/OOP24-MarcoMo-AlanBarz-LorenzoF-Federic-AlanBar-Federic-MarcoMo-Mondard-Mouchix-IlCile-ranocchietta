@@ -9,7 +9,7 @@ public class FreezePowerUp extends  TimedPowerUp {
 
     public FreezePowerUp(Position pos, Pair dimension, int duration) {
         super(pos, dimension, duration);
-        super.setImage("freeze_powerup.png");
+        super.setImage("freezePowerup.png");
     }
 
     @Override

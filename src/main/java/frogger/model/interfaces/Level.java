@@ -43,7 +43,7 @@ public interface Level {
      * Get the list of power ups present in the current level.
      * @return the list
      */
-    List<PowerUp> getPowerUp();
+    List<PickableObject> getPowerUp();
 
     /**
      * Add a power up to the list.
@@ -55,5 +55,5 @@ public interface Level {
      * Remove a power up from the list.
      * @param p the power up to be removed
      */
-    void removePowerUp(PowerUp p);
+    void removePowerUp(PickableObject p);
 }

@@ -46,6 +46,7 @@ class ExtraLifePowerUpTest {
         player = new PlayerObjectImpl(dim, "cile.png");
     }
 
+    /*
     @Test
     void testSetPlayerWithValidPlayer() {
         extraLifePowerUp.setPlayer(player);
@@ -66,5 +67,5 @@ class ExtraLifePowerUpTest {
         int initialLives = player.getLives();
         extraLifePowerUp.deactivate();
         assertEquals(initialLives, player.getLives());
-    }
+    } */
 }

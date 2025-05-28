@@ -15,6 +15,7 @@ import frogger.common.Direction;
 import frogger.controller.GameController;
 import frogger.model.implementations.PickableObjectImpl;
 import frogger.model.interfaces.GameObject;
+import frogger.model.interfaces.PickableObject;
 import frogger.model.interfaces.PlayerObject;
 
 /**
@@ -152,11 +153,13 @@ public class LevelPainter {
      * @param g the Graphics context to draw on
      */
     public void paintPowerUp(final Graphics g) {
-        for (final PickableObjectImpl obj : getController().getGame().getPickableObjects()) {
-            g.drawImage((obj).getImage(), 
-                (int) this.getController().getXinPixel((obj).getPos().x()), 
-                (int) this.getController().getYinPixel((obj).getPos().y()), 
+        for (final PickableObject obj : getController().getGame().getPickableObjects()) {
+            if (obj instanceof PickableObjectImpl o) {
+                g.drawImage((o).getImage(), 
+                (int) this.getController().getXinPixel((o).getPos().x()), 
+                (int) this.getController().getYinPixel((o).getPos().y()), 
                 null);
+            }
         }
     }
 

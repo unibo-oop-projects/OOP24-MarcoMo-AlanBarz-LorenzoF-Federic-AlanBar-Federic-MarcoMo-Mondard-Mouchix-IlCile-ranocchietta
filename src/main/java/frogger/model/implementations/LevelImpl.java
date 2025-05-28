@@ -8,6 +8,7 @@ import java.util.stream.Stream;
 import frogger.model.interfaces.Lane;
 import frogger.model.interfaces.Level;
 import frogger.model.interfaces.MovingObject;
+import frogger.model.interfaces.PickableObject;
 import frogger.model.interfaces.PowerUp;
 
 /**
@@ -17,7 +18,7 @@ public class LevelImpl implements Level {
 
     private final List<Lane> lanes = new ArrayList<>();
     private final List<Eagle> eagles = new ArrayList<>();
-    private final List<PowerUp> powerUp = new ArrayList<>();
+    private final List<PickableObject> powerUp = new ArrayList<>();
 
     /**
      * {@inheritDoc}
@@ -64,7 +65,7 @@ public class LevelImpl implements Level {
      * {@inheritDoc}
      */
     @Override
-    public List<PowerUp> getPowerUp() {
+    public List<PickableObject> getPowerUp() {
         return new ArrayList<>(this.powerUp);
     }
 
@@ -73,14 +74,14 @@ public class LevelImpl implements Level {
      */
     @Override
     public void addPowerUp(final PowerUp p) {
-        this.powerUp.add(p);
+        this.powerUp.add((PickableObject) p);
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public void removePowerUp(final PowerUp p) {
+    public void removePowerUp(final PickableObject p) {
         this.powerUp.remove(p);
     }
 }
