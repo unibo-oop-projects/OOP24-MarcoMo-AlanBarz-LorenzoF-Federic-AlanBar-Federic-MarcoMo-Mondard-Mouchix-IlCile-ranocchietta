@@ -46,7 +46,7 @@ public class RandomPickableSpawner extends AbstractRandomEntitySpawner<PickableO
      */
     @Override
     protected PickableObject createEntity(Position pos) {
-        final Pair dim = new Pair(Constants.PICKALBE_OBJECT_WIDTH, Constants.PICKALBE_OBJECT_HEIGHT);
+        final Pair dim = new Pair(Constants.PICKABLE_OBJECT_WIDTH, Constants.PICKABLE_OBJECT_HEIGHT);
         return PickableObjectFactory.createPickableObject(type, pos, dim);
     }
 

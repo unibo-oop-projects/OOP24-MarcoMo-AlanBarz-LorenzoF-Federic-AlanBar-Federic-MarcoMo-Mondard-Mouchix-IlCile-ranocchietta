@@ -57,9 +57,9 @@ public final class Constants {
     /** Maximum number of coin. */
     public static final int MAX_COIN_NUMBER = 7;
     /** Power-up width (in grid units). */
-    public static final int PICKALBE_OBJECT_WIDTH = 1;
+    public static final int PICKABLE_OBJECT_WIDTH = 1;
     /** Power-up height (in grid units). */
-    public static final int PICKALBE_OBJECT_HEIGHT = 1;
+    public static final int PICKABLE_OBJECT_HEIGHT = 1;
 
 
     /** Height of a generic object (in grid units). */
