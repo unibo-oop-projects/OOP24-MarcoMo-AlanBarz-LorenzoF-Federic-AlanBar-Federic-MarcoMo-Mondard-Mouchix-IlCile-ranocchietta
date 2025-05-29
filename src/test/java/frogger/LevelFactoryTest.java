@@ -5,6 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.stream.Collectors;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -73,9 +75,19 @@ final class LevelFactoryTest {
     }
 
     @Test
-    void powerUpTest() {
-        /* assertTrue(level.getPowerUp().size() <= Constants.MAX_POWER_UP_NUMBER
-        && level.getPowerUp().size() >= Constants.MIN_POWER_UP_NUMBER); */
+    void pickableObjectsCountTest() {
+        int pickableCount = level.getPickableObjects().size();
+        int min = Constants.MIN_POWER_UP_NUMBER + Constants.MIN_COIN_NUMBER;
+        int max = Constants.MAX_POWER_UP_NUMBER + Constants.MAX_COIN_NUMBER;
+        assertTrue(pickableCount >= min && pickableCount <= max);
+    }
+
+    @Test
+    void pickableObjectsNoOverlapTest() {
+        var positions = level.getPickableObjects().stream()
+            .map(p -> p.getPos())
+            .collect(Collectors.toSet());
+        assertEquals(level.getPickableObjects().size(), positions.size());
     }
 
 }

@@ -8,6 +8,10 @@ import frogger.model.interfaces.Game;
  */
 public final class Pause implements Command {
 
+    /**
+     * {@inheritDoc}
+     * Change the game state to pause.
+     */
     @Override
     public void execute(final Game game) {
         GameState.state = GameState.PAUSE;

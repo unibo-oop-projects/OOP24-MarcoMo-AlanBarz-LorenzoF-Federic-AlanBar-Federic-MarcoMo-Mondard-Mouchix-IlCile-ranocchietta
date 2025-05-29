@@ -21,13 +21,9 @@ public class Road extends AbstractLaneImpl {
      * {@inheritDoc}
      */
     @Override
-    public void addCar(final MovingObject obstacle) {
-        super.getObstacles().add(obstacle);
+    public void addMovingObject(MovingObject obstacle) {
+        if (obstacle instanceof Car) {
+            super.addObstacle(obstacle);
+        }
     }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void addTrunk(final MovingObject obstacle) { }
 }

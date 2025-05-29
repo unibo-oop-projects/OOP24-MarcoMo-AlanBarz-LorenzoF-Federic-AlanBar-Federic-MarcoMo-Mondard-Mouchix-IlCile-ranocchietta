@@ -11,14 +11,18 @@ import frogger.common.Constants;
 import frogger.common.Direction;
 import frogger.common.Pair;
 import frogger.common.Position;
+import frogger.model.implementations.Coin;
 import frogger.model.implementations.Eagle;
 import frogger.model.implementations.LevelImpl;
 import frogger.model.implementations.MovingObjectFactoryImpl;
+import frogger.model.implementations.PickableObjectFactory;
+import frogger.model.implementations.PowerUpImpl;
 import frogger.model.implementations.River;
 import frogger.model.implementations.Road;
 import frogger.model.interfaces.Lane;
 import frogger.model.interfaces.Level;
 import frogger.model.interfaces.MovingObjectFactory;
+import frogger.model.interfaces.PickableObject;
 
 /**
  * Test class for the concept of Level.
@@ -50,19 +54,20 @@ final class LevelTest {
     }
 
     @Test
-    void powerUpTest() {
-        /*final Pair dim = new Pair(Constants.PICKALBE_OBJECT_WIDTH, Constants.PICKALBE_OBJECT_HEIGHT);
+    void PickableObjectTest() {
+        final Pair dim = new Pair(Constants.PICKABLE_OBJECT_WIDTH, Constants.PICKABLE_OBJECT_HEIGHT);
+        final Position pos = new Position(0, 0);
 
-        final PowerUp p1 = (PowerUp) PowerUpFactory.createPowerUp(PowerUpFactory.getRandomPowerUpType(), new Position(0, 0), dim);
-        final PowerUp p2 = (PowerUp) PowerUpFactory.createPowerUp(PowerUpFactory.getRandomPowerUpType(), new Position(3, 4), dim);
-        final PowerUp p3 = (PowerUp) PowerUpFactory.createPowerUp(PowerUpFactory.getRandomPowerUpType(), new Position(-1, 3), dim);
-        final PowerUp p4 = (PowerUp) PowerUpFactory.createPowerUp(PowerUpFactory.getRandomPowerUpType(), new Position(-3, 1), dim);
+        PickableObject p1 = PickableObjectFactory.createPickableObject(PowerUpImpl.class, pos, dim);
+        PickableObject p2 = PickableObjectFactory.createPickableObject(PowerUpImpl.class, pos, dim);
+        PickableObject c1 = PickableObjectFactory.createPickableObject(Coin.class, pos, dim);
+        PickableObject c2 = PickableObjectFactory.createPickableObject(Coin.class, pos, dim);
 
-        level.addPowerUp(p1);
-        level.addPowerUp(p2);
-        level.addPowerUp(p3);
-        level.addPowerUp(p4);
-        assertEquals(List.of(p1, p2, p3, p4), level.getPowerUp());*/
+        level.addPickableObject(p1);
+        level.addPickableObject(p2);
+        level.addPickableObject(c1);
+        level.addPickableObject(c2);
+        assertEquals(List.of(p1, p2, c1, c2), level.getPickableObjects());
     }
 
     @Test

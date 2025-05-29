@@ -28,34 +28,17 @@ public abstract class AbstractLaneImpl implements Lane {
     }
 
     /**
-     * Abstact method to be implemented, add an obstacle to the list of type Car.
-     * @param obstacle the obstacle to add
+     * Adds the given obstacle to the lane's internal obstacle list.
+     * <p>
+     * This method is intended to be used by subclasses when implementing
+     * their specific logic for adding obstacles to the lane. It ensures
+     * that obstacle management remains encapsulated within the abstract class,
+     * while allowing controlled modification of the internal state.
+     * </p>
+     * @param obstacle the obstacle to be added to the lane
      */
-    public abstract void addCar(MovingObject obstacle);
-    /**
-     * Abstact method to be implemented, add an obstacle to the list of type Trunk.
-     * @param obstacle the obstacle to add
-     */
-    public abstract void addTrunk(MovingObject obstacle);
-
-    /**
-     * Protected method to let the class that extends this abstract class add obstacle to the list.
-     * @return the list itself.
-     */
-    protected Set<MovingObject> getObstacles() {
-        return this.obstacles;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void addMovingObject(final MovingObject obstacle) {
-        if (obstacle instanceof Car) {
-            addCar(obstacle);
-        } else if (obstacle instanceof Trunk) {
-            addTrunk(obstacle);
-        }
+    protected void addObstacle(MovingObject obstacle) {
+        this.obstacles.add(obstacle);
     }
 
     /**
