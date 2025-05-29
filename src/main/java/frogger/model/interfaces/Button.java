@@ -1,13 +1,17 @@
 package frogger.model.interfaces;
 
-import java.awt.Graphics;
 import java.awt.Rectangle;
+import java.awt.image.BufferedImage;
 
 public interface Button {
 
-    void draw(Graphics g);
-
     void update();
+
+    BufferedImage getCurrentImg();
+
+    int getXPos();
+
+    int getYPos();
 
     boolean isMouseOver();
 

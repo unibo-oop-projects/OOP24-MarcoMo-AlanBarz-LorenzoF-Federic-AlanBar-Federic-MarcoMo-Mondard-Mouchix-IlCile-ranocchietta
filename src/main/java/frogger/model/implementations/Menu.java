@@ -1,7 +1,7 @@
 package frogger.model.implementations;
 
-import java.awt.Graphics;
 import java.awt.event.MouseEvent;
+import static java.util.Arrays.asList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -23,7 +23,7 @@ public class Menu{
         // for (int i = 0; i < states.length; i++) {
         for (GameState state : states) {    
             int offset = (i - (int)(states.length / 2)) * (Constants.BUTTON_HEIGHT + Constants.BUTTONS_DISTANCE);
-            int mainIndex = java.util.Arrays.asList(GameState.values()).indexOf(state);
+            int mainIndex = asList(GameState.values()).indexOf(state);
             buttons.add(new MenuButtons(xPos, yPos + offset, mainIndex, states[i]));
             i++;
         }
@@ -36,12 +36,6 @@ public class Menu{
     public void update() {
         for(Button button : buttons){
             button.update();
-        }
-    }
-
-    public void draw(Graphics g){
-        for(Button button : buttons){
-            button.draw(g);
         }
     }
 
