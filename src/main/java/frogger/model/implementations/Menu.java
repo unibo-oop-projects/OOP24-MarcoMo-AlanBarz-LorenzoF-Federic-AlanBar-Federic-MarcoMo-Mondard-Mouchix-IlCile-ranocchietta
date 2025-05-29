@@ -1,9 +1,9 @@
 package frogger.model.implementations;
 
 import java.awt.Graphics;
-import java.util.List;
 import java.awt.event.MouseEvent;
 import java.util.LinkedList;
+import java.util.List;
 
 import frogger.common.Constants;
 import frogger.common.GameState;
@@ -19,9 +19,13 @@ public class Menu{
     private void loadButtons(GameState ... states) {
         int xPos = (int)(Constants.FRAME_WIDTH/2);
         int yPos = (int)(Constants.FRAME_HEIGHT/2);
-        for (int i = 0; i < states.length; i++) {
+        int i = 0;
+        // for (int i = 0; i < states.length; i++) {
+        for (GameState state : states) {    
             int offset = (i - (int)(states.length / 2)) * (Constants.BUTTON_HEIGHT + Constants.BUTTONS_DISTANCE);
-            buttons.add(new MenuButtons(xPos, yPos + offset, i, states[i]));
+            int mainIndex = java.util.Arrays.asList(GameState.values()).indexOf(state);
+            buttons.add(new MenuButtons(xPos, yPos + offset, mainIndex, states[i]));
+            i++;
         }
     }
 
