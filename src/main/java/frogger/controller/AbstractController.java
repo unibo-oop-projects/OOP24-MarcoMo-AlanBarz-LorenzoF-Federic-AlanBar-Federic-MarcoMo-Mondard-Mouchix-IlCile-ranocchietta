@@ -54,11 +54,9 @@ public abstract class AbstractController implements Controller{
     }
 
     /**
-     * Converts a logical x-coordinate (in game units) to a pixel value on screen.
-     *
-     * @param x the logical x-coordinate
-     * @return the corresponding x-coordinate in pixels
+     * {@inheritDoc}
      */
+    @Override
     public double getXinPixel(final double x) {
         final int centerX = Constants.FRAME_WIDTH / 2;
         final int ratioX = Constants.BLOCK_WIDTH;    //number of pixel per column
@@ -66,11 +64,9 @@ public abstract class AbstractController implements Controller{
     }
 
     /**
-     * Converts a logical y-coordinate (in game units) to a pixel value on screen.
-     *
-     * @param y the logical y-coordinate
-     * @return the corresponding y-coordinate in pixels
+     * {@inheritDoc}
      */
+    @Override
     public double getYinPixel(final double y) {
         final int centerY = Constants.FRAME_HEIGHT / 2 - Constants.BLOCK_HEIGHT / 2;
         final int ratioY = Constants.BLOCK_HEIGHT;  //number of pixel per row
