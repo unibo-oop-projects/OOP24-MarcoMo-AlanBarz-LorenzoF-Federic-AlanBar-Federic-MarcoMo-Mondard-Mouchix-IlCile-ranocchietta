@@ -163,7 +163,7 @@ public class LevelPainter {
     public void paintTotalCoins(final Graphics g) {
         g.setColor(Color.YELLOW);
         g.setFont(myFont);
-        g.drawString("Monete: " + this.getController().getCoins(), 
+        g.drawString("Coins: " + this.getController().getCoins(), 
         (int) this.getController().getXinPixel(Constants.MAX_X - 3), (int) this.getController().getYinPixel(Constants.MAX_Y - 1.5));
     }
 

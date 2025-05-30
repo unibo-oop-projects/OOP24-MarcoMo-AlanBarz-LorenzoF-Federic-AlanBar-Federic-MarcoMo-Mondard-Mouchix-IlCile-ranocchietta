@@ -19,6 +19,14 @@ public interface MovingObject extends GameObject {
     Direction getDirection();
 
     /**
+     * Set the speed of the moving object.
+     * The speed is a float value that determines how fast the object moves.
+     *
+     * @param speed the speed to set for the object.
+     */
+    void setSpeed(float speed);
+
+    /**
      * @return the speed settled to the object.
      */
     float getSpeed();

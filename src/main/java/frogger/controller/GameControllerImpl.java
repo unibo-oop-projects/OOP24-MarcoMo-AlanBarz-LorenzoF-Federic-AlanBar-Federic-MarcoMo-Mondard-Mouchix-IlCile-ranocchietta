@@ -8,7 +8,6 @@ import frogger.common.Pair;
 import frogger.common.input.InputController;
 import frogger.common.input.InputControllerImpl;
 import frogger.common.input.KeyInput;
-import frogger.model.implementations.FreezePowerUp;
 import frogger.model.implementations.GameImpl;
 import frogger.model.implementations.PickableObjectManagerImpl;
 import frogger.model.interfaces.Game;
@@ -43,11 +42,13 @@ public class GameControllerImpl extends AbstractController implements GameContro
      */
     @Override
     public void init(final GameScene gameScene) {
-        scenePanel = new GamePanel();
-        scenePanel.setController(this);
-        gameScene.setPanel(scenePanel);
-        pickableObjectManager = game.getPickableObjectManager();
-        pickableObjectManager.setController(this);
+        if(this.getGame() != null) {           
+            scenePanel = new GamePanel();
+            scenePanel.setController(this);
+            gameScene.setPanel(scenePanel);
+            pickableObjectManager = game.getPickableObjectManager();
+            pickableObjectManager.setController(this);
+        }
     }
 
     /**
@@ -63,12 +64,9 @@ public class GameControllerImpl extends AbstractController implements GameContro
         this.game.checkProgress();
         this.game.checkNewLevel();
         this.game.checkEagleTrigger();
-        if (!pickableObjectManager.getActivePowerUps().stream()
-            .filter(powerUp -> powerUp instanceof FreezePowerUp)
-            .anyMatch(powerUp -> ((FreezePowerUp) powerUp).isFrozen()))
-        {
-            this.game.getObstacles().forEach(MovingObject::move); // moving all obstacles
-        }
+        this.pickableObjectManager.checkPowerUps(); // check active power-ups
+        this.game.getObstacles().forEach(MovingObject::move); // moving all obstacles
+        
         this.scenePanel.repaint();
     }
 

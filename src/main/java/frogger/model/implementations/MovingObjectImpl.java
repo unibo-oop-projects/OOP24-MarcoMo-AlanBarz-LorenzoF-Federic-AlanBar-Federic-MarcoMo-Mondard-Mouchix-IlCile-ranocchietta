@@ -12,7 +12,7 @@ import frogger.model.interfaces.MovingObject;
  */
 public class MovingObjectImpl extends GameObjectImpl implements MovingObject {
     private Direction direction;
-    private final float speed;
+    private float speed;
 
     /**
      * Constructs a new MovingObjectImpl.
@@ -42,6 +42,14 @@ public class MovingObjectImpl extends GameObjectImpl implements MovingObject {
     @Override
     public Direction getDirection() {
         return direction;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void setSpeed(float speed) {
+        this.speed = speed;
     }
 
     /**
