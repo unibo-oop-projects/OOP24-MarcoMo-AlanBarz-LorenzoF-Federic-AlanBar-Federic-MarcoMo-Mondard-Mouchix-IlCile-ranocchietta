@@ -3,7 +3,7 @@ package frogger.controller;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
-import frogger.model.implementations.Menu;
+import frogger.model.interfaces.Menu;
 
 
 public interface MenuController extends Controller {

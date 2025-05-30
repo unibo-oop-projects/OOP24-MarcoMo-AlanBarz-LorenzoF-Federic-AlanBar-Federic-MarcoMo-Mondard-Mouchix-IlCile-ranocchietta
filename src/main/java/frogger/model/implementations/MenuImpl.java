@@ -8,11 +8,12 @@ import java.util.List;
 import frogger.common.Constants;
 import frogger.common.GameState;
 import frogger.model.interfaces.Button;
+import frogger.model.interfaces.Menu;
 
-public class Menu{
+public class MenuImpl implements Menu{
     private final List<Button> buttons = new LinkedList<>();
 
-    public Menu(GameState ... states) {
+    public MenuImpl(GameState ... states) {
         loadButtons(states);
     }
 
@@ -20,25 +21,27 @@ public class Menu{
         int xPos = (int)(Constants.FRAME_WIDTH/2);
         int yPos = (int)(Constants.FRAME_HEIGHT/2);
         int i = 0;
-        // for (int i = 0; i < states.length; i++) {
         for (GameState state : states) {    
             int offset = (i - (int)(states.length / 2)) * (Constants.BUTTON_HEIGHT + Constants.BUTTONS_DISTANCE);
-            int mainIndex = asList(GameState.values()).indexOf(state);
-            buttons.add(new MenuButtons(xPos, yPos + offset, mainIndex, states[i]));
+            int imgIndex = asList(GameState.values()).indexOf(state);
+            buttons.add(new MenuButtons(xPos, yPos + offset, imgIndex, states[i]));
             i++;
         }
     }
 
+    @Override
     public List<Button> getButtonList() {        
         return buttons;
     }
 
+    @Override
     public void update() {
         for(Button button : buttons){
             button.update();
         }
     }
 
+    @Override
     public void mousePressed(MouseEvent e){
        for(Button button : buttons){
             if(isIn(e, button)){
@@ -47,6 +50,8 @@ public class Menu{
             }
         } 
     }
+
+    @Override
     public void mouseReleased(MouseEvent e){
        for(Button button : buttons){
             if(isIn(e, button)){
@@ -59,6 +64,7 @@ public class Menu{
         resetButtons();
     }
 
+    @Override
     public void mouseMoved(MouseEvent e){
         for(Button button : buttons){
             button.setMouseOver(false);
@@ -70,15 +76,15 @@ public class Menu{
             }
         }
     }
+    
+    @Override
+    public boolean isIn(MouseEvent e, Button button) {
+        return button.getBounds().contains(e.getX(), e.getY());
+    }
 
     private void resetButtons() {
        for(Button button : buttons){
             button.resetBools();      
         } 
     }
-
-    public boolean isIn(MouseEvent e, Button button) {
-        return button.getBounds().contains(e.getX(), e.getY());
-    }
-
 }

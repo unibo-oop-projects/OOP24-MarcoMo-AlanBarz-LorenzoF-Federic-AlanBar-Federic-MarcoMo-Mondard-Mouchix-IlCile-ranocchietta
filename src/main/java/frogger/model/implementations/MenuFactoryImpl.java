@@ -1,6 +1,7 @@
 package frogger.model.implementations;
 
 import frogger.common.GameState;
+import frogger.model.interfaces.Menu;
 import frogger.model.interfaces.MenuFactory;
 
 public class MenuFactoryImpl implements MenuFactory {
@@ -9,7 +10,7 @@ public class MenuFactoryImpl implements MenuFactory {
      */
     @Override
     public Menu mainMenu() {
-        return new Menu(GameState.PLAYING, GameState.SHOP, GameState.QUIT);
+        return new MenuImpl(GameState.PLAYING, GameState.SHOP, GameState.QUIT);
     }
 
     /**
@@ -17,7 +18,7 @@ public class MenuFactoryImpl implements MenuFactory {
      */
     @Override
     public Menu pauseMenu() {
-        return new Menu(GameState.PLAYING, GameState.MENU, GameState.QUIT);
+        return new MenuImpl(GameState.PLAYING, GameState.MENU, GameState.QUIT);
     }
 
     /**

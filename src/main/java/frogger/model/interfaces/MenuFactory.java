@@ -1,7 +1,5 @@
 package frogger.model.interfaces;
 
-import frogger.model.implementations.Menu;
-
 public interface MenuFactory {
     /**
      * Creates the main menu with options to play, shop, or quit.
