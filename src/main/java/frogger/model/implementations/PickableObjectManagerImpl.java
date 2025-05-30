@@ -10,6 +10,9 @@ import frogger.model.interfaces.PickableObjectManager;
 import frogger.model.interfaces.PowerUp;
 
 public class PickableObjectManagerImpl implements PickableObjectManager {
+
+    // Used only for managing the lifecycle of active power-ups (add/remove), not for reading.
+    @SuppressWarnings("FieldCanBeLocal")
     private final List<PowerUp> activePowerUps = new ArrayList<>();
     private final GameImpl game;
     private Controller controller;
@@ -19,10 +22,9 @@ public class PickableObjectManagerImpl implements PickableObjectManager {
     }
     
     @Override
-    public ArrayList<PowerUp> getActivePowerUps() {    
+    public void checkPowerUps() {
         // Filter out inactive power-ups
-        activePowerUps.removeIf(powerUp -> !powerUp.isActive());   
-        return new ArrayList<>(activePowerUps);
+        this.activePowerUps.removeIf(powerUp -> !powerUp.isActive());   
     }
 
     @Override
@@ -36,7 +38,7 @@ public class PickableObjectManagerImpl implements PickableObjectManager {
                 case PLAYER -> x.setRelatedEntity(game.getPlayer());
                 case OBSTACLE -> x.setRelatedEntity(game.getObstacles());
                 case GAME_CONTROLLER -> x.setRelatedEntity(controller);
-                default -> {}
+                default -> throw new IllegalArgumentException("Unsupported dependency type: " + x.getRequiredDependencies()); 
             }            
 
             x.onPick(); // Trigger the pick action

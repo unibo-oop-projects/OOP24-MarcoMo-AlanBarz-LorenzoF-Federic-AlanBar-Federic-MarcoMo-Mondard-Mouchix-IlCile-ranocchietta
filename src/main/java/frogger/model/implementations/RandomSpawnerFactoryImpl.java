@@ -1,8 +1,10 @@
 package frogger.model.implementations;
 
 import java.util.Random;
+import java.util.Set;
 
 import frogger.common.Direction;
+import frogger.common.Position;
 import frogger.model.interfaces.EntitySpawner;
 import frogger.model.interfaces.PickableObject;
 import frogger.model.interfaces.RandomSpawnerFactory;
@@ -42,16 +44,16 @@ public class RandomSpawnerFactoryImpl implements RandomSpawnerFactory {
      * {@inheritDoc}
      */
     @Override
-    public EntitySpawner<PickableObject> randomPowerUpSpawner() {
-        return new RandomPickableSpawner(ran, PowerUpImpl.class);
+    public EntitySpawner<PickableObject> randomPowerUpSpawner(Set<Position> alreadyPresent) {
+        return new RandomPickableSpawner(ran, PowerUpImpl.class, alreadyPresent);
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public EntitySpawner<PickableObject> randomCoinSpawner() {
-        return new RandomPickableSpawner(ran, Coin.class);
+    public EntitySpawner<PickableObject> randomCoinSpawner(Set<Position> alreadyPresent) {
+        return new RandomPickableSpawner(ran, Coin.class, alreadyPresent);
     }
 
 }

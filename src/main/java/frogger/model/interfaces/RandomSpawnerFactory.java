@@ -1,6 +1,9 @@
 package frogger.model.interfaces;
 
+import java.util.Set;
+
 import frogger.common.Direction;
+import frogger.common.Position;
 import frogger.model.implementations.Car;
 import frogger.model.implementations.Eagle;
 import frogger.model.implementations.Trunk;
@@ -38,13 +41,15 @@ public interface RandomSpawnerFactory {
 
     /**
      * return a spawner for PowerUp entity.
+     * @param alreadyPresent the positions of pickable object already present in the level
      * @return the spawner object
      */
-    EntitySpawner<PickableObject> randomPowerUpSpawner();
+    EntitySpawner<PickableObject> randomPowerUpSpawner(Set<Position> alreadyPresent);
 
     /**
      * return a spawner for Coin entity.
+     * @param alreadyPresent the positions of pickable object already present in the level
      * @return the spawner object
      */
-    EntitySpawner<PickableObject> randomCoinSpawner();
+    EntitySpawner<PickableObject> randomCoinSpawner(Set<Position> alreadyPresent);
 }

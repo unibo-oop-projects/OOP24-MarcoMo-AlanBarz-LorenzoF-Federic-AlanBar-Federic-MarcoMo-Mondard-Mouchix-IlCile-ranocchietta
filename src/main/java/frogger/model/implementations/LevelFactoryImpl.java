@@ -1,12 +1,15 @@
 package frogger.model.implementations;
 
 import java.util.Random;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import frogger.common.Constants;
 import frogger.common.Direction;
 import frogger.model.interfaces.Lane;
 import frogger.model.interfaces.Level;
 import frogger.model.interfaces.LevelFactory;
+import frogger.model.interfaces.PickableObject;
 import frogger.model.interfaces.RandomSpawnerFactory;
 
 /**
@@ -28,12 +31,13 @@ public class LevelFactoryImpl implements LevelFactory {
         //add Eagles
         fact.randomEagleSpawner().spawn(Constants.MIN_EAGLES_NUMBER, Constants.MAX_EAGLES_NUMBER).forEach(level::addEagle);
         //add Power ups
-        fact.randomPowerUpSpawner().spawn(Constants.MIN_POWER_UP_NUMBER, Constants.MAX_POWER_UP_NUMBER)
+        fact.randomPowerUpSpawner(Set.of()).spawn(Constants.MIN_POWER_UP_NUMBER, Constants.MAX_POWER_UP_NUMBER)
         .forEach(level::addPickableObject);
         //add Coins
-        fact.randomCoinSpawner().spawn(Constants.MIN_COIN_NUMBER, Constants.MAX_COIN_NUMBER)
+        fact.randomCoinSpawner(level.getPickableObjects().stream().map(PickableObject::getPos).collect(Collectors.toSet())).spawn(Constants.MIN_COIN_NUMBER, Constants.MAX_COIN_NUMBER)
         .forEach(level::addPickableObject);
 
+        //build the level and abb obstacle to the lane
         final Lane start = new Ground();
         level.addLane(start);
         laneIndex++;

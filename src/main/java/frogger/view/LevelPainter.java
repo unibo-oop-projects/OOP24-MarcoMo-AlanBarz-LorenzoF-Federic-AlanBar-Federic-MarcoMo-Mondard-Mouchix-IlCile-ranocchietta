@@ -13,8 +13,6 @@ import javax.imageio.ImageIO;
 import frogger.common.Constants;
 import frogger.common.Direction;
 import frogger.controller.GameController;
-import frogger.model.implementations.PickableObjectImpl;
-import frogger.model.interfaces.GameObject;
 import frogger.model.interfaces.PickableObject;
 import frogger.model.interfaces.PlayerObject;
 
@@ -53,6 +51,7 @@ public class LevelPainter {
         paintPlayer(g);
         paintScore(g);
         paintPowerUp(g);
+        paintTotalCoins(g);
     }
 
     /**
@@ -154,13 +153,18 @@ public class LevelPainter {
      */
     public void paintPowerUp(final Graphics g) {
         for (final PickableObject obj : getController().getGame().getPickableObjects()) {
-            if (obj instanceof PickableObjectImpl o) {
-                g.drawImage((o).getImage(), 
-                (int) this.getController().getXinPixel((o).getPos().x()), 
-                (int) this.getController().getYinPixel((o).getPos().y()), 
-                null);
-            }
+            g.drawImage((obj).getImage(), 
+            (int) this.getController().getXinPixel((obj).getPos().x()), 
+            (int) this.getController().getYinPixel((obj).getPos().y()), 
+            null);
         }
+    }
+
+    public void paintTotalCoins(final Graphics g) {
+        g.setColor(Color.YELLOW);
+        g.setFont(myFont);
+        g.drawString("Coins: " + this.getController().getCoins(), 
+        (int) this.getController().getXinPixel(Constants.MAX_X - 3), (int) this.getController().getYinPixel(Constants.MAX_Y - 1.5));
     }
 
     /**

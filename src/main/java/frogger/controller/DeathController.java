@@ -5,10 +5,11 @@ import java.awt.event.MouseMotionListener;
 
 import frogger.common.GameState;
 import frogger.common.input.MouseInput;
-import frogger.model.implementations.Menu;
-import frogger.model.implementations.MenuFactory;
-import frogger.view.GameScene;
+import frogger.model.implementations.MenuFactoryImpl;
+import frogger.model.interfaces.Menu;
+import frogger.model.interfaces.MenuFactory;
 import frogger.view.DeathPanel;
+import frogger.view.GameScene;
 
 /**
  * Implementation of the {@link MenuController} interface.
@@ -16,7 +17,7 @@ import frogger.view.DeathPanel;
  */
 public class DeathController extends AbstractController implements MenuController {
     private DeathPanel scenePanel;
-    private final MenuFactory menuFactory = new MenuFactory();
+    private final MenuFactory menuFactory = new MenuFactoryImpl();
     private Menu menu;
     private final int score;
 

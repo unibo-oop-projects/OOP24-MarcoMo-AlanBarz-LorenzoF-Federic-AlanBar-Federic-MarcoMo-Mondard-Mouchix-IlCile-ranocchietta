@@ -49,7 +49,13 @@ public class DeathPanel extends AbstractPanel<DeathController> {
     public void paintComponent(final Graphics g) {
         paintBackground(g);
         paintScore(g);
-        this.getController().getMenu().draw(g);
+        paintMenu(g);
+    }
+
+    private void paintMenu(Graphics g) {
+        this.getController().getMenu().getButtonList().forEach((button) -> {
+            g.drawImage(button.getCurrentImg(), button.getXPos(), button.getYPos(), Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT, null);           
+        });
     }
 
     /**

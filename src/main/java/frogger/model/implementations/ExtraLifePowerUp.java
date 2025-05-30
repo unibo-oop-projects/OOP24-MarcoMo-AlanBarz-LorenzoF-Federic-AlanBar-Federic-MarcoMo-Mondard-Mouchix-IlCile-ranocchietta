@@ -7,7 +7,7 @@ import frogger.common.Position;
 public class ExtraLifePowerUp extends PowerUpImpl {
 
     public ExtraLifePowerUp(Position pos, Pair dimension, int duration) {
-        super(pos, dimension, duration); // Duration is not used for ExtraLifePowerUp
+        super(pos, dimension, duration); // Duration is to set to 0 for permanent effect
         super.setImage(LoadSave.EXTRA_LIFE);
     }
 

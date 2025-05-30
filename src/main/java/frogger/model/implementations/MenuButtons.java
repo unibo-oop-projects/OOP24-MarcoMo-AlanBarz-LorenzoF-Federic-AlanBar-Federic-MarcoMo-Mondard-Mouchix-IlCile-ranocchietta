@@ -1,6 +1,5 @@
 package frogger.model.implementations;
 
-import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
@@ -41,8 +40,17 @@ public class MenuButtons implements Button{
     }
 
     @Override
-    public void draw(Graphics g){
-        g.drawImage(imgs[index], xPos - Constants.BUTTON_WIDTH/2, yPos, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT, null);
+    public BufferedImage getCurrentImg() {
+        return imgs[index];
+    }
+    @Override
+    public int getXPos() {
+        return xPos - Constants.BUTTON_WIDTH/2;
+    }
+
+    @Override
+    public int getYPos() {
+        return yPos;
     }
     
     @Override

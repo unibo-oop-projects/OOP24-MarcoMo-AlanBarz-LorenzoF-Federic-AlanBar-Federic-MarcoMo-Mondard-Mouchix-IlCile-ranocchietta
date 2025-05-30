@@ -1,11 +1,13 @@
 package frogger.model.implementations;
 
+import java.util.List;
+
 import frogger.common.Pair;
 import frogger.common.Position;
 
 public class FreezePowerUp extends PowerUpImpl {
 
-    private boolean freeze = false;
+    private float[] copyEntitiesSpeed;
 
     public FreezePowerUp(Position pos, Pair dimension, int duration) {
         super(pos, dimension, duration);
@@ -14,20 +16,32 @@ public class FreezePowerUp extends PowerUpImpl {
 
     @Override
     public void applyEffect() {
-        freeze = true;
+        if (relatedEntity instanceof List<?> entities) {
+            copyEntitiesSpeed = new float[entities.size()]; // Initialize the array to store original speeds
+            int i = 0; // Index for storing speeds
+            for (Object obj : entities) {
+                if (obj instanceof MovingObjectImpl movingObjectImpl) {       
+                    copyEntitiesSpeed[i++] = (movingObjectImpl.getSpeed()); // Store the original speed             
+                    movingObjectImpl.setSpeed(0); // Stop the entity
+                }
+            }
+        }
     }
 
     @Override
     public void removeEffect() {
-        freeze = false;
-    }
-    
-    public boolean isFrozen() {
-        return freeze;
+        if (relatedEntity instanceof List<?> entities && copyEntitiesSpeed != null) {
+            int i = 0;
+            for (Object obj : entities) {
+                if (obj instanceof MovingObjectImpl movingObjectImpl) {       
+                    movingObjectImpl.setSpeed(copyEntitiesSpeed[i++]); // Restore the original speed
+                }
+            }
+        }
     }
 
     @Override
     public PickableObjectDependency getRequiredDependencies() {
-        return PickableObjectDependency.NULL;
+        return PickableObjectDependency.OBSTACLE;
     }
 }

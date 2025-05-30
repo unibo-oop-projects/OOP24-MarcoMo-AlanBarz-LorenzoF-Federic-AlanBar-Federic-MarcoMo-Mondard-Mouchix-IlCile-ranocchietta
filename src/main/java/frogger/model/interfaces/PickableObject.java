@@ -2,7 +2,7 @@ package frogger.model.interfaces;
 
 import frogger.model.implementations.PickableObjectDependency;
 
-public interface PickableObject {
+public interface PickableObject extends GameObject{
 
     Object getRelatedEntity();
 
