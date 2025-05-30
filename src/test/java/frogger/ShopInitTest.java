@@ -55,9 +55,6 @@ public class ShopInitTest {
 
             ShopInitTest.gameController.setCoins(10);
             assertEquals(10, ShopInitTest.gameController.getCoins());
-
-            
-
         } catch (IOException e) {
             e.printStackTrace();
         }

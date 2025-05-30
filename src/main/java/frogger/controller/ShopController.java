@@ -32,6 +32,7 @@ public class ShopController extends AbstractController {
     public ShopController(final GameController gc) {
         this.shop = new ShopImpl();
         this.gameController = gc;
+        this.shopInit();
     }
 
     /**
@@ -50,7 +51,6 @@ public class ShopController extends AbstractController {
      */
     @Override
     public void init(final GameScene gameScene) {
-        this.shopInit();
         this.shopPanel = new ShopPanel();
         this.shopPanel.setController(this);
         this.shopPanel.updateButtons();
