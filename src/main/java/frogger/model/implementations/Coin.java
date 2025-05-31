@@ -12,7 +12,7 @@ public class Coin extends PickableObjectImpl {
 
     public Coin(Position pos, Pair dimension) {
         super(pos, dimension);
-        super.setImage("coin.png");
+        super.setImage("coinPowerUp.png");
     }
 
     @Override

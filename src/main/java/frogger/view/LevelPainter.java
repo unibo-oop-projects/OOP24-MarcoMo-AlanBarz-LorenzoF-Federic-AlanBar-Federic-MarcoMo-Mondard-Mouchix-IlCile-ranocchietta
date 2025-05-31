@@ -12,6 +12,7 @@ import javax.imageio.ImageIO;
 
 import frogger.common.Constants;
 import frogger.common.Direction;
+import frogger.common.LoadSave;
 import frogger.controller.GameController;
 import frogger.model.interfaces.PickableObject;
 import frogger.model.interfaces.PlayerObject;
@@ -129,8 +130,19 @@ public class LevelPainter {
      * @param g the Graphics context to draw on
      */
     public void paintLives(final Graphics g) {
-        for (int i = 0; i < this.getController().getGame().getPlayer().getLives(); i++) {
-            g.drawImage(heart, (int) this.getController().getXinPixel(i + Constants.MIN_X) , 0, null);
+        // for (int i = 0; i < this.getController().getGame().getPlayer().getLives(); i++) {
+        //     g.drawImage(heart, (int) this.getController().getXinPixel(i + Constants.MIN_X) , 0, null);
+        // }
+        
+        final int lives = this.getController().getGame().getPlayer().getLives();
+        final int heartWidth = Constants.BLOCK_WIDTH;
+        final int heartHeight = Constants.BLOCK_HEIGHT;
+        // Calcola la posizione X per centrare le vite in alto
+        final int startX = 0;
+        final int y = (int) this.getController().getYinPixel(6); // In alto
+
+        for (int i = 0; i < lives; i++) {
+            g.drawImage(heart, startX + i * heartWidth, y, heartWidth, heartHeight, null);
         }
     }
 
@@ -147,6 +159,29 @@ public class LevelPainter {
     }
 
     /**
+     * Paints the total number of coins collected by the player.
+     *
+     * @param g the Graphics context to draw on
+     */
+    public void paintTotalCoins(final Graphics g) {
+
+        final int startX = (int) getController().getXinPixel(Constants.MIN_X + 0.1);
+        final int startY = (int) getController().getYinPixel(Constants.MAX_Y - 1.5);
+        final String coinText = String.valueOf(getController().getCoins());
+
+        g.setColor(Color.YELLOW);
+        g.setFont(myFont);
+        g.drawString(coinText, startX, startY);
+
+        // Draw the coin image right after the text
+        final int textWidth = g.getFontMetrics().stringWidth(coinText);
+        final int coinSize = (int) (Constants.BLOCK_HEIGHT / 1.5);
+        final int coinX = startX + textWidth + 5;
+        final int coinY = startY - coinSize + g.getFontMetrics().getDescent();
+
+        g.drawImage(LoadSave.GetSprite("coin.png"), coinX, coinY, coinSize, coinSize, null);
+    }
+    /**
      * Paints all power-ups currently present in the level.
      *
      * @param g the Graphics context to draw on
@@ -160,12 +195,6 @@ public class LevelPainter {
         }
     }
 
-    public void paintTotalCoins(final Graphics g) {
-        g.setColor(Color.YELLOW);
-        g.setFont(myFont);
-        g.drawString("Coins: " + this.getController().getCoins(), 
-        (int) this.getController().getXinPixel(Constants.MAX_X - 3), (int) this.getController().getYinPixel(Constants.MAX_Y - 1.5));
-    }
 
     /**
      * Imports required images such as the background, heart (life), and death image.
