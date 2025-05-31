@@ -17,13 +17,20 @@ public class PickableObjectFactory {
     }
 
     private static PickableObject getRandomPowerUpType(Position position, Pair dimension) {
-        PowerUpType[] powerUpTypes = PowerUpType.values();
         Random random = new Random();
-        int randomIndex = random.nextInt(powerUpTypes.length);
-        PowerUpType selectedType = powerUpTypes[randomIndex];
+        int rand = random.nextInt(1,101); // 1-100
+        PowerUpType selectedType;
+
+        if (rand < 95) { // 95% FREEZE or EXTRA_LIFE
+            selectedType = random.nextBoolean() ? PowerUpType.FREEZE : PowerUpType.EXTRA_LIFE;
+        } else { // 5% X2_SCORE
+            selectedType = PowerUpType.X2_SCORE;
+        }
+
         return switch (selectedType) {
             case FREEZE -> new FreezePowerUp(position, dimension, 3);
             case EXTRA_LIFE -> new ExtraLifePowerUp(position, dimension, 0);
+            case X2_SCORE -> new DoubleScorePowerUp(position, dimension, 0);
         };
     }
     
