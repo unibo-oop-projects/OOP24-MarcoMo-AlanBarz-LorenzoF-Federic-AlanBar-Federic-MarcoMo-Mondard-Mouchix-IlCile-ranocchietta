@@ -16,7 +16,7 @@ import frogger.model.interfaces.PowerUp;
 public abstract class PowerUpImpl extends PickableObjectImpl implements PowerUp {
 private final int duration; // Duration in seconds
     private boolean active = false; // Indicates if the power-up is currently active
-    private int startTime;
+    private long startTime;
 
     public PowerUpImpl(Position pos, Pair dimension, int duration) {
         super(pos, dimension);
@@ -31,7 +31,7 @@ private final int duration; // Duration in seconds
     @Override
     public void activate() {
         active = true;
-        startTime = (int)(System.currentTimeMillis() / 1000); // Store the start time in seconds
+        startTime = System.currentTimeMillis();
         applyEffect();
     }
 
@@ -43,10 +43,16 @@ private final int duration; // Duration in seconds
 
     @Override
     public boolean isActive() {
-        if (active && (int)(System.currentTimeMillis() / 1000) - startTime >= duration) {
+        if (active && this.getTimer() <= 0) {
             deactivate();
         }
         return active;
+    }
+
+    @Override
+    public float getTimer() {
+        float elapsedTime = (System.currentTimeMillis() - startTime) / 1000f; 
+        return duration - elapsedTime;
     }
 
     public abstract void applyEffect();

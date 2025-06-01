@@ -79,4 +79,9 @@ public interface Game {
      * @return the list of power-ups
      */
     List<PickableObject> getPickableObjects();
+
+    /**
+     * @return return the PickableObjectManager
+     */
+    PickableObjectManager getPickableObjectManager();
 }

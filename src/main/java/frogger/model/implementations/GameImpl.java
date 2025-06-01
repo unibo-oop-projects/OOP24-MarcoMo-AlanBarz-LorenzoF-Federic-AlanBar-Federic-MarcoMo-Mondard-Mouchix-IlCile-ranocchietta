@@ -211,7 +211,12 @@ public class GameImpl implements Game {
         return this.level.getPickableObjects();
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public PickableObjectManagerImpl getPickableObjectManager() {
         return this.pickableObjectManager;
     }
+
 }

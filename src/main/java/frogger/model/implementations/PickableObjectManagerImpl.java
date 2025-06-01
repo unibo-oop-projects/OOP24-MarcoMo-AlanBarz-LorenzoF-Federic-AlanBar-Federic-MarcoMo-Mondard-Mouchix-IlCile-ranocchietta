@@ -45,6 +45,11 @@ public class PickableObjectManagerImpl implements PickableObjectManager {
         }
     }
 
+    @Override
+    public ArrayList<PowerUp> getActivePowerUps() {
+        return new ArrayList<>(activePowerUps); 
+    }
+
     public void setController(Controller controller) {
         if (controller instanceof GameControllerImpl gameController) {
             this.controller = gameController;

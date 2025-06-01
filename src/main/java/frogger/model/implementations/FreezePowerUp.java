@@ -17,11 +17,11 @@ public class FreezePowerUp extends PowerUpImpl {
     @Override
     public void applyEffect() {
         if (relatedEntity instanceof List<?> entities) {
-            copyEntitiesSpeed = new float[entities.size()]; // Initialize the array to store original speeds
+            this.copyEntitiesSpeed = new float[entities.size()]; // Initialize the array to store original speeds
             int i = 0; // Index for storing speeds
             for (Object obj : entities) {
                 if (obj instanceof MovingObjectImpl movingObjectImpl) {       
-                    copyEntitiesSpeed[i++] = (movingObjectImpl.getSpeed()); // Store the original speed             
+                    this.copyEntitiesSpeed[i++] = (movingObjectImpl.getSpeed()); // Store the original speed             
                     movingObjectImpl.setSpeed(0); // Stop the entity
                 }
             }
@@ -34,7 +34,7 @@ public class FreezePowerUp extends PowerUpImpl {
             int i = 0;
             for (Object obj : entities) {
                 if (obj instanceof MovingObjectImpl movingObjectImpl) {       
-                    movingObjectImpl.setSpeed(copyEntitiesSpeed[i++]); // Restore the original speed
+                    movingObjectImpl.setSpeed(this.copyEntitiesSpeed[i++]); // Restore the original speed
                 }
             }
         }
