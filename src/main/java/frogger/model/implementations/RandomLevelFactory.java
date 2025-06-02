@@ -10,31 +10,37 @@ import frogger.model.interfaces.Lane;
 import frogger.model.interfaces.Level;
 import frogger.model.interfaces.LevelFactory;
 import frogger.model.interfaces.PickableObject;
-import frogger.model.interfaces.RandomSpawnerFactory;
+import frogger.model.interfaces.SpawnerFactory;
 
 /**
- * {@inheritDoc}.
+ * {@inheritDoc}
+ * <p>
+ * This implementation creates levels using a random generation strategy.
+ * </p>
  */
-public class LevelFactoryImpl implements LevelFactory {
+public class RandomLevelFactory implements LevelFactory {
 
     private final Random ran = new Random();
 
     /**
      * {@inheritDoc}
+     * <p>
+     * The level returned will be generated with a random logic.
+     * </p>
      */
     @Override
-    public Level randomLevel() {
-        final RandomSpawnerFactory fact = new RandomSpawnerFactoryImpl();
+    public Level createLevel() {
+        final SpawnerFactory fact = new RandomSpawnerFactory();
         final Level level = new LevelImpl();
         int laneIndex = Constants.MIN_Y;
 
         //add Eagles
-        fact.randomEagleSpawner().spawn(Constants.MIN_EAGLES_NUMBER, Constants.MAX_EAGLES_NUMBER).forEach(level::addEagle);
+        fact.eagleSpawner().spawn(Constants.MIN_EAGLES_NUMBER, Constants.MAX_EAGLES_NUMBER).forEach(level::addEagle);
         //add Power ups
-        fact.randomPowerUpSpawner(Set.of()).spawn(Constants.MIN_POWER_UP_NUMBER, Constants.MAX_POWER_UP_NUMBER)
+        fact.powerUpSpawner(Set.of()).spawn(Constants.MIN_POWER_UP_NUMBER, Constants.MAX_POWER_UP_NUMBER)
         .forEach(level::addPickableObject);
         //add Coins
-        fact.randomCoinSpawner(level.getPickableObjects().stream().map(PickableObject::getPos).collect(Collectors.toSet())).spawn(Constants.MIN_COIN_NUMBER, Constants.MAX_COIN_NUMBER)
+        fact.coinSpawner(level.getPickableObjects().stream().map(PickableObject::getPos).collect(Collectors.toSet())).spawn(Constants.MIN_COIN_NUMBER, Constants.MAX_COIN_NUMBER)
         .forEach(level::addPickableObject);
 
         //build the level and abb obstacle to the lane
@@ -43,7 +49,7 @@ public class LevelFactoryImpl implements LevelFactory {
         laneIndex++;
         for (int i = 0; i < Constants.ROAD_LANES; i++) {
             final Lane road = createLane(Road.class, laneIndex);
-            fact.randomCarSpawner(laneIndex, road.getSpeed(), road.getDirection()).spawn(Constants.MIN_OBSTACLES_NUMBER,
+            fact.carSpawner(laneIndex, road.getSpeed(), road.getDirection()).spawn(Constants.MIN_OBSTACLES_NUMBER,
             Constants.MAX_OBSTACLES_NUMBER).forEach(road::addMovingObject);
             level.addLane(road);
             laneIndex++;
@@ -53,7 +59,7 @@ public class LevelFactoryImpl implements LevelFactory {
         laneIndex++;
         for (int i = 0; i < Constants.RIVER_LANES; i++) {
             final Lane river = createLane(River.class, laneIndex);
-            fact.randomTrunkSpawner(laneIndex, river.getSpeed(), river.getDirection()).spawn(Constants.MIN_OBSTACLES_NUMBER,
+            fact.trunkSpawner(laneIndex, river.getSpeed(), river.getDirection()).spawn(Constants.MIN_OBSTACLES_NUMBER,
             Constants.MAX_OBSTACLES_NUMBER).forEach(river::addMovingObject);
             level.addLane(river);
             laneIndex++;

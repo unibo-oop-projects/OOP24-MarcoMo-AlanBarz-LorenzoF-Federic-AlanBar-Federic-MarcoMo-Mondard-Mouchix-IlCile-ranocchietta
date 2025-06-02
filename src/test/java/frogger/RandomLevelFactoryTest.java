@@ -12,23 +12,23 @@ import org.junit.jupiter.api.Test;
 
 import frogger.common.Constants;
 import frogger.model.implementations.Ground;
-import frogger.model.implementations.LevelFactoryImpl;
+import frogger.model.implementations.RandomLevelFactory;
 import frogger.model.implementations.River;
 import frogger.model.implementations.Road;
 import frogger.model.interfaces.Level;
 import frogger.model.interfaces.LevelFactory;
 
 /**
- * Test class for LevelFactoryImpl.
+ * Test class for RandomLevelFactory.
  */
-final class LevelFactoryTest {
+final class RandomLevelFactoryTest {
 
     private Level level;
 
     @BeforeEach
     void setUp() {
-        final LevelFactory fact = new LevelFactoryImpl();
-        level = fact.randomLevel();
+        final LevelFactory fact = new RandomLevelFactory();
+        level = fact.createLevel();
     }
 
     @Test

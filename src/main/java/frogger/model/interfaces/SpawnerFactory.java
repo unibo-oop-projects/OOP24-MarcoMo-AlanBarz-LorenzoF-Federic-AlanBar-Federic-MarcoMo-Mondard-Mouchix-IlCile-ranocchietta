@@ -14,7 +14,7 @@ import frogger.model.implementations.Trunk;
  * allowing for a single point of construction, the goal is to avoid code repetition and improve 
  * maintainability.
  */
-public interface RandomSpawnerFactory {
+public interface SpawnerFactory {
     /**
      * return a spawner for Car entity.
      * @param laneIndex the index of the lane
@@ -22,7 +22,7 @@ public interface RandomSpawnerFactory {
      * @param direction the direction
      * @return the spawner object
      */
-    EntitySpawner<Car> randomCarSpawner(int laneIndex, float speed, Direction direction);
+    EntitySpawner<Car> carSpawner(int laneIndex, float speed, Direction direction);
 
     /**
      * return a spawner for Trunk entity.
@@ -31,25 +31,25 @@ public interface RandomSpawnerFactory {
      * @param direction the direction
      * @return the spawner object
      */
-    EntitySpawner<Trunk> randomTrunkSpawner(int laneIndex, float speed, Direction direction);
+    EntitySpawner<Trunk> trunkSpawner(int laneIndex, float speed, Direction direction);
 
     /**
      * return a spawner for Eagle entity.
      * @return the spawner object
      */
-    EntitySpawner<Eagle> randomEagleSpawner();
+    EntitySpawner<Eagle> eagleSpawner();
 
     /**
      * return a spawner for PowerUp entity.
      * @param alreadyPresent the positions of pickable object already present in the level
      * @return the spawner object
      */
-    EntitySpawner<PickableObject> randomPowerUpSpawner(Set<Position> alreadyPresent);
+    EntitySpawner<PickableObject> powerUpSpawner(Set<Position> alreadyPresent);
 
     /**
      * return a spawner for Coin entity.
      * @param alreadyPresent the positions of pickable object already present in the level
      * @return the spawner object
      */
-    EntitySpawner<PickableObject> randomCoinSpawner(Set<Position> alreadyPresent);
+    EntitySpawner<PickableObject> coinSpawner(Set<Position> alreadyPresent);
 }
