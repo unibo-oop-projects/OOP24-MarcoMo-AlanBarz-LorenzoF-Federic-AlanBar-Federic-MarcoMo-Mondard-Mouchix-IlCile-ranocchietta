@@ -22,7 +22,7 @@ public class GameImpl implements Game {
     private static final int RESPAWN_DELAY = 1000; // 1 secondo
 
     /** Factory for generating random levels. */
-    private final LevelFactoryImpl levelFactory = new LevelFactoryImpl();
+    private final RandomLevelFactory levelFactory = new RandomLevelFactory();
     /** The player object. */
     private final PlayerObjectImpl player;
     /** The current level. */
@@ -40,7 +40,7 @@ public class GameImpl implements Game {
      */
     public GameImpl(final Pair dimension, final String skin) { 
         this.player = new PlayerObjectImpl(dimension, skin);
-        level = levelFactory.randomLevel();
+        level = levelFactory.createLevel();
         pickableObjectManager = new PickableObjectManagerImpl(this);
     }
 
@@ -147,7 +147,7 @@ public class GameImpl implements Game {
     @Override
     public void checkNewLevel() {
         if (this.player.getPos().y() == Constants.MAX_Y) {
-            this.level = this.levelFactory.randomLevel();
+            this.level = this.levelFactory.createLevel();
             this.player.addPoints(Constants.POINT_LEVEL_COMPLETED);
             this.player.resetPosition();
         }

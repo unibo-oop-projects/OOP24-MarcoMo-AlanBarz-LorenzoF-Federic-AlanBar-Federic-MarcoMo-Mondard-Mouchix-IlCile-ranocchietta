@@ -1,14 +1,21 @@
 package frogger.model.interfaces;
 
 /**
- * Factory that encapsulate the different type of level that can be created,
- * by default there is only the random type but is useful to ampliate the project if needed.
+ * Factory interface for creating {@link Level} instances.
+ * <p>
+ * This interface allows different implementations
+ * provide various strategies for level creation (e.g., random, custom).
+ * By using this abstraction, new types of levels can be introduced by simply
+ * providing new implementations of this interface, without modifying client code.
+ * </p>
  */
 public interface LevelFactory {
 
     /**
-     * Creates a level instance with a random number, width and speed of obstacles.
-     * @return the level
+     * Creates a new {@link Level} instance.
+     * The specific type and configuration of the level are determined by the concrete implementation.
+     *
+     * @return a new Level instance
      */
-    Level randomLevel();
+    Level createLevel();
 }
