@@ -24,7 +24,7 @@ import frogger.model.interfaces.PickableObject;
  * Test class for RandomPickableSpawner, the type tested is often just PowerUp,
  * the Coin test would be the same.
  */
-public class RandomPickableSpawnerTest {
+final class RandomPickableSpawnerTest {
 
     private Random mockRandom;
     private int boundPowerUp;
@@ -198,11 +198,11 @@ public class RandomPickableSpawnerTest {
         when(mockRandom.nextInt(boundPowerUp)).thenReturn(Constants.MAX_POWER_UP_NUMBER);
 
         //Simulate a position occupied by a coin
-        Position occupiedPos = new Position(0, 0);
-        Set<Position> alreadyPresent = Set.of(occupiedPos);
+        final Position occupiedPos = new Position(0, 0);
+        final Set<Position> alreadyPresent = Set.of(occupiedPos);
 
         //This spawner will try to generate a position where is already occupied
-        EntitySpawner<PickableObject> spawner = new RandomPickableSpawner(mockRandom, PowerUpImpl.class, alreadyPresent) {
+        final EntitySpawner<PickableObject> spawner = new RandomPickableSpawner(mockRandom, PowerUpImpl.class, alreadyPresent) {
             @Override
             protected Position generatePosition() {
                 return occupiedPos;
@@ -212,7 +212,7 @@ public class RandomPickableSpawnerTest {
         //In case of an overlap the method should cycle until the overlap it's fixed,
         //but since the position is fixed it exceed the max number of iterations,
         //returning an empty list.
-        List<PickableObject> entity = spawner.spawn(Constants.MIN_POWER_UP_NUMBER, Constants.MAX_POWER_UP_NUMBER);
+        final List<PickableObject> entity = spawner.spawn(Constants.MIN_POWER_UP_NUMBER, Constants.MAX_POWER_UP_NUMBER);
         assertEquals(List.of(), entity);
     }
 }

@@ -12,7 +12,7 @@ import frogger.common.Pair;
 import frogger.model.implementations.PlayerObjectImpl;
 import frogger.model.interfaces.PlayerObject;
 
-class PlayerObjectImplTest {
+class PlayerObjectTest {
 
     private static final int INITIAL_LIVES = 3;
     private static final int POINTS_5 = 5;

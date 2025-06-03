@@ -19,8 +19,9 @@ public abstract class AbstractRandomEntitySpawner<X> implements EntitySpawner<X>
     private final Random ran;
 
     /**
-     * This purpose of this constructor is to make deterministic the random to be able to test it.
-     * @param ran
+     * The purpose of this constructor is to be able to pass the random object from outside
+     * the class, it's useful to make deterministic output while testing.
+     * @param ran the random object that will be used in this class.
      */
     public AbstractRandomEntitySpawner(final Random ran) {
         this.ran = ran;

@@ -59,7 +59,7 @@ public class RandomSpawnerFactory implements SpawnerFactory {
      * </p>
      */
     @Override
-    public EntitySpawner<PickableObject> powerUpSpawner(Set<Position> alreadyPresent) {
+    public EntitySpawner<PickableObject> powerUpSpawner(final Set<Position> alreadyPresent) {
         return new RandomPickableSpawner(ran, PowerUpImpl.class, alreadyPresent);
     }
 
@@ -70,7 +70,7 @@ public class RandomSpawnerFactory implements SpawnerFactory {
      * </p>
      */
     @Override
-    public EntitySpawner<PickableObject> coinSpawner(Set<Position> alreadyPresent) {
+    public EntitySpawner<PickableObject> coinSpawner(final Set<Position> alreadyPresent) {
         return new RandomPickableSpawner(ran, Coin.class, alreadyPresent);
     }
 
