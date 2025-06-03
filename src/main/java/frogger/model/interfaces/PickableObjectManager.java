@@ -1,6 +1,6 @@
 package frogger.model.interfaces;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import frogger.model.implementations.PickableObjectImpl;
 
@@ -10,5 +10,5 @@ public interface PickableObjectManager {
 
     void addPickableObject(PickableObjectImpl x);
 
-    ArrayList<PowerUp> getActivePowerUps();
+    List<PowerUp> getActivePowerUps();
 }
