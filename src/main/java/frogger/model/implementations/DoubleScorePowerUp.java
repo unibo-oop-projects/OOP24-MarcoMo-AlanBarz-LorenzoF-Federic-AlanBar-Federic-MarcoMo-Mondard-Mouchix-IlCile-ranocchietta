@@ -24,4 +24,9 @@ public class DoubleScorePowerUp extends PowerUpImpl {
     public PickableObjectDependency getRequiredDependencies() {
         return PickableObjectDependency.PLAYER;
     }
+
+    @Override
+    public PowerUpType getPowerUpType() {
+        return PowerUpType.X2_SCORE;
+    }
 }

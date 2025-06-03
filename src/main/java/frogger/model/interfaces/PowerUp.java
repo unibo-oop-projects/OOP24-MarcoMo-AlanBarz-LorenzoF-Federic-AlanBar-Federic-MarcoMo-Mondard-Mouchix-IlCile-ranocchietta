@@ -1,5 +1,6 @@
 package frogger.model.interfaces;
 
+import frogger.model.implementations.PowerUpType;
 
 public interface PowerUp extends PickableObject {
     
@@ -25,4 +26,9 @@ public interface PowerUp extends PickableObject {
      */
     float getTimer();
 
+    /**
+     * @return the type of the power-up
+     */
+    PowerUpType getPowerUpType();
+        
 }

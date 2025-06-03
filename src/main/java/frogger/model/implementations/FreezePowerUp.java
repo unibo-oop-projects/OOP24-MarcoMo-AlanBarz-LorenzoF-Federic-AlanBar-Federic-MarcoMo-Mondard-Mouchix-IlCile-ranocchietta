@@ -17,20 +17,21 @@ public class FreezePowerUp extends PowerUpImpl {
     @Override
     public void applyEffect() {
         if (relatedEntity instanceof List<?> entities) {
-            this.copyEntitiesSpeed = new float[entities.size()]; // Initialize the array to store original speeds
+            float[] entitiesSpeed = new float[entities.size()]; // Initialize the array to store original speeds
             int i = 0; // Index for storing speeds
             for (Object obj : entities) {
                 if (obj instanceof MovingObjectImpl movingObjectImpl) {       
-                    this.copyEntitiesSpeed[i++] = (movingObjectImpl.getSpeed()); // Store the original speed             
+                    entitiesSpeed[i++] = (movingObjectImpl.getSpeed()); // Store the original speed             
                     movingObjectImpl.setSpeed(0); // Stop the entity
                 }
             }
+            setEntitiesSpeed(entitiesSpeed);
         }
     }
 
     @Override
     public void removeEffect() {
-        if (relatedEntity instanceof List<?> entities && copyEntitiesSpeed != null) {
+        if (relatedEntity instanceof List<?> entities && getEntitiesSpeed() != null) {
             int i = 0;
             for (Object obj : entities) {
                 if (obj instanceof MovingObjectImpl movingObjectImpl) {       
@@ -43,5 +44,18 @@ public class FreezePowerUp extends PowerUpImpl {
     @Override
     public PickableObjectDependency getRequiredDependencies() {
         return PickableObjectDependency.OBSTACLE;
+    }
+
+    @Override
+    public PowerUpType getPowerUpType() {
+        return PowerUpType.FREEZE;
+    }
+
+    public float[] getEntitiesSpeed() {
+        return this.copyEntitiesSpeed;
+    }
+
+    public void setEntitiesSpeed(float[] copyES) {
+        this.copyEntitiesSpeed = copyES;
     }
 }

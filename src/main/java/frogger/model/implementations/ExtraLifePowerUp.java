@@ -24,6 +24,11 @@ public class ExtraLifePowerUp extends PowerUpImpl {
     @Override
     public PickableObjectDependency getRequiredDependencies() {
         return PickableObjectDependency.PLAYER;
+    }
+
+    @Override
+    public PowerUpType getPowerUpType() {
+       return PowerUpType.EXTRA_LIFE;
     }   
 }
 
