@@ -23,7 +23,7 @@ import frogger.model.interfaces.Shop;
  * Implementation of the {@link Shop} interface.
  * Handles the logic for managing purchasable objects and shop persistence.
  */
-public class ShopImpl implements Shop{
+public class ShopImpl implements Shop {
 
     /** Logger for this class. */
     private static final Logger LOGGER = Logger.getLogger(ShopController.class.getName());

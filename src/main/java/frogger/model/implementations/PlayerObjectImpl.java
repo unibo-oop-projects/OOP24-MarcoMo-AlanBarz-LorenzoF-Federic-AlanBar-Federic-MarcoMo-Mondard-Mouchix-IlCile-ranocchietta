@@ -42,13 +42,6 @@ public class PlayerObjectImpl extends GameObjectImpl implements PlayerObject {
     }
 
     /**
-     * Adds one life to the player.
-     */
-    public void addLife() {
-        this.lives++;
-    }
-
-    /**
      * {@inheritDoc}
      */
     @Override
@@ -161,5 +154,13 @@ public class PlayerObjectImpl extends GameObjectImpl implements PlayerObject {
     public void respawn() {
         this.dead = false;
         resetPosition();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void addLife() {
+        this.lives++;
     }
 }
