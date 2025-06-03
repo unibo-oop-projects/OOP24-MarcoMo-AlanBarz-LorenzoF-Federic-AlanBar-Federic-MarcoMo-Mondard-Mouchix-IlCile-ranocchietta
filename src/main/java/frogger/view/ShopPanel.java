@@ -179,6 +179,7 @@ public class ShopPanel extends AbstractPanel<ShopController> {
         g.setColor(Color.WHITE);
         g.setFont(myFont);
         g.drawString("Coins: " + this.getController().getGameController().getCoins(), 
-        (int) this.getController().getXinPixel(Constants.MAX_X - 2), (int) this.getController().getYinPixel(Constants.MAX_Y - 0.5));
+        (int) this.getController().getXinPixel(Constants.MAX_X - 2), 
+        (int) this.getController().getYinPixel(Constants.MAX_Y - 0.5));
     }
 }

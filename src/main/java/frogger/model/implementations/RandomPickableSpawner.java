@@ -23,7 +23,7 @@ public class RandomPickableSpawner extends AbstractRandomEntitySpawner<PickableO
      * @param type the type of PickableObject to create (PowerUp or Coin)
      * @param alreadyPresent the positions of pickable objects that are already in the level (empty if there aren't)
      */
-    public RandomPickableSpawner(Random ran, Class<? extends PickableObject> type, Set<Position> alreadyPresent) {
+    public RandomPickableSpawner(final Random ran, final Class<? extends PickableObject> type, final Set<Position> alreadyPresent) {
         super(ran);
         this.type = type;
         this.alreadyPresent = new HashSet<>(alreadyPresent);
@@ -33,7 +33,7 @@ public class RandomPickableSpawner extends AbstractRandomEntitySpawner<PickableO
      * {@inheritDoc}
      */
     @Override
-    protected boolean isValidPosition(Position pos, Set<Position> used) {
+    protected boolean isValidPosition(final Position pos, final Set<Position> used) {
         used.addAll(this.alreadyPresent);
         return !used.contains(pos) && pos.y() != Constants.MIN_Y && pos.y() != Constants.MAX_Y;
     }
@@ -50,7 +50,7 @@ public class RandomPickableSpawner extends AbstractRandomEntitySpawner<PickableO
      * {@inheritDoc}
      */
     @Override
-    protected PickableObject createEntity(Position pos) {
+    protected PickableObject createEntity(final Position pos) {
         final Pair dim = new Pair(Constants.PICKABLE_OBJECT_WIDTH, Constants.PICKABLE_OBJECT_HEIGHT);
         return PickableObjectFactory.createPickableObject(type, pos, dim);
     }

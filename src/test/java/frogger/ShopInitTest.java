@@ -1,6 +1,7 @@
 package frogger;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.BufferedReader;
@@ -18,34 +19,35 @@ import frogger.model.implementations.Skin;
 import frogger.model.interfaces.PurchasableObjectFactory;
 import frogger.view.GameScene;
 
-public class ShopInitTest {
+class ShopInitTest {
 
     private ShopController shopController;
-    private static final GameController gameController = new GameControllerImpl();
     private static final String FILE_NAME = "/shop.txt";
+    private static final GameController GAME_CONTROLLER = new GameControllerImpl();
     private PurchasableObjectFactory factoryPurchasable;
 
     @BeforeEach
     void setUp() {
-        this.shopController = new ShopController(ShopInitTest.gameController);
-        this.shopController.init(new GameScene());
+        final ShopController shopController = new ShopController(GAME_CONTROLLER);
+        shopController.init(new GameScene());
         this.factoryPurchasable = new PurchasableObjectFactoryImpl();
-        this.shopController.shopInit();
+        shopController.shopInit();
+        this.shopController = shopController;
     }
 
     @Test
     void testShopInit() {
-        try(final BufferedReader r = new BufferedReader(new InputStreamReader(getClass().getResourceAsStream(FILE_NAME )))) {
-            String line = r.readLine();
+        try (BufferedReader r = new BufferedReader(new InputStreamReader(getClass().getResourceAsStream(FILE_NAME)))) {
+            final String line = r.readLine();
             assertEquals("Skin 1 ranocchietta.png true", line);
-            String[] values = line.split(" ");
+            final String[] values = line.split(" ");
             assertEquals("Skin", values[0]);
-            assertEquals(1, Integer.parseInt(values[1])); 
-            assertEquals("ranocchietta.png", values[2]); 
+            assertEquals(1, Integer.parseInt(values[1]));
+            assertEquals("ranocchietta.png", values[2]);
             assertTrue(Boolean.parseBoolean(values[3]));
 
-            Skin skin = this.factoryPurchasable.createSkin(
-                Integer.parseInt(values[1]), 
+            final Skin skin = this.factoryPurchasable.createSkin(
+                Integer.parseInt(values[1]),
                 values[2],
                 Boolean.parseBoolean(values[3])
             );
@@ -53,10 +55,40 @@ public class ShopInitTest {
             assertEquals(1, skin.getPrize());
             assertTrue(skin.isAvailable());
 
-            ShopInitTest.gameController.setCoins(10);
-            assertEquals(10, ShopInitTest.gameController.getCoins());
-        } catch (IOException e) {
-            e.printStackTrace();
+            GAME_CONTROLLER.setCoins(10);
+            assertEquals(10, GAME_CONTROLLER.getCoins());
+        } catch (final IOException e) {
+            java.util.logging.Logger.getLogger(
+                ShopInitTest.class.getName()).log(java.util.logging.Level.SEVERE, "Error reading shop.txt", e);
+        }
+    }
+
+    @Test
+    void testShopPersistence() {
+        final var objects = shopController.getPurchasableObject();
+        final Skin skin = (Skin) objects.get(0);
+        skin.setAvailable(false);
+        shopController.updateShop();
+
+        shopController.shopInit();
+        final var reloadedObjects = shopController.getPurchasableObject();
+        final Skin reloadedSkin = (Skin) reloadedObjects.get(0);
+        assertFalse(reloadedSkin.isAvailable());
+    }
+
+    @Test
+    void testShopInitWithMissingFile() {
+        final java.io.File saveFile = new java.io.File("shop_save.txt");
+        final java.io.File backup = new java.io.File("shop_save_backup.txt");
+        boolean renamed = false;
+        if (saveFile.exists()) {
+            renamed = saveFile.renameTo(backup);
+        }
+        shopController.shopInit();
+        final var objects = shopController.getPurchasableObject();
+        assertFalse(objects.isEmpty());
+        if (renamed && backup.exists()) {
+            backup.renameTo(saveFile);
         }
     }
 }

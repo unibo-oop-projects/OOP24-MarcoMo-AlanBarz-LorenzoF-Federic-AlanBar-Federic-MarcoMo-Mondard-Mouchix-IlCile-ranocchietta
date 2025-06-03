@@ -2,6 +2,10 @@ package frogger.model.interfaces;
 
 import java.util.List;
 
+/**
+ * Interface representing a shop that manages purchasable objects in the game.
+ * Provides methods for retrieving, initializing, and updating the list of purchasable objects.
+ */
 public interface Shop {
 
     /**
@@ -9,18 +13,18 @@ public interface Shop {
      *
      * @return a new list containing the purchasable objects
      */
-    public List<PurchasableObject> getPurchasableObjects();
+    List<PurchasableObject> getPurchasableObjects();
 
     /**
      * Initializes the shop by loading purchasable objects from the save file if it exists,
      * or from the default resource file otherwise.
      * Populates the internal list of purchasable objects.
      */
-    public void init();
+    void init();
 
     /**
      * Saves the current state of purchasable objects to the shop save file.
      * Uses UTF-8 encoding for writing.
      */
-    public void update();
+    void update();
 }

@@ -54,14 +54,14 @@ final class LevelTest {
     }
 
     @Test
-    void PickableObjectTest() {
+    void pickableObjectTest() {
         final Pair dim = new Pair(Constants.PICKABLE_OBJECT_WIDTH, Constants.PICKABLE_OBJECT_HEIGHT);
         final Position pos = new Position(0, 0);
 
-        PickableObject p1 = PickableObjectFactory.createPickableObject(PowerUpImpl.class, pos, dim);
-        PickableObject p2 = PickableObjectFactory.createPickableObject(PowerUpImpl.class, pos, dim);
-        PickableObject c1 = PickableObjectFactory.createPickableObject(Coin.class, pos, dim);
-        PickableObject c2 = PickableObjectFactory.createPickableObject(Coin.class, pos, dim);
+        final PickableObject p1 = PickableObjectFactory.createPickableObject(PowerUpImpl.class, pos, dim);
+        final PickableObject p2 = PickableObjectFactory.createPickableObject(PowerUpImpl.class, pos, dim);
+        final PickableObject c1 = PickableObjectFactory.createPickableObject(Coin.class, pos, dim);
+        final PickableObject c2 = PickableObjectFactory.createPickableObject(Coin.class, pos, dim);
 
         level.addPickableObject(p1);
         level.addPickableObject(p2);

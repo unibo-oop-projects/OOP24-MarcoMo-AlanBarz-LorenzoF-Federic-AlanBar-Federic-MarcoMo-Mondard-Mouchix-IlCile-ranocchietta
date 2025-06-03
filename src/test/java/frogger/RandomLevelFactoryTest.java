@@ -76,15 +76,15 @@ final class RandomLevelFactoryTest {
 
     @Test
     void pickableObjectsCountTest() {
-        int pickableCount = level.getPickableObjects().size();
-        int min = Constants.MIN_POWER_UP_NUMBER + Constants.MIN_COIN_NUMBER;
-        int max = Constants.MAX_POWER_UP_NUMBER + Constants.MAX_COIN_NUMBER;
+        final int pickableCount = level.getPickableObjects().size();
+        final int min = Constants.MIN_POWER_UP_NUMBER + Constants.MIN_COIN_NUMBER;
+        final int max = Constants.MAX_POWER_UP_NUMBER + Constants.MAX_COIN_NUMBER;
         assertTrue(pickableCount >= min && pickableCount <= max);
     }
 
     @Test
     void pickableObjectsNoOverlapTest() {
-        var positions = level.getPickableObjects().stream()
+        final var positions = level.getPickableObjects().stream()
             .map(p -> p.getPos())
             .collect(Collectors.toSet());
         assertEquals(level.getPickableObjects().size(), positions.size());

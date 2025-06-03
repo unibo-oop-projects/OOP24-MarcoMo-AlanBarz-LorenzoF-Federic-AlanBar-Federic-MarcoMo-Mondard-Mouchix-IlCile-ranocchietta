@@ -16,7 +16,7 @@ import frogger.view.ShopPanel;
  */
 public class ShopController extends AbstractController {
 
-    private Shop shop;
+    private final Shop shop;
     /** Reference to the shop panel UI. */
     private ShopPanel shopPanel;
     /** Reference to the main game controller. */
@@ -71,7 +71,7 @@ public class ShopController extends AbstractController {
      * or from the default resource file otherwise.
      * Populates the internal list of purchasable objects.
      */
-    public void shopInit() {
+    public final void shopInit() {
         this.shop.init();
     }
 

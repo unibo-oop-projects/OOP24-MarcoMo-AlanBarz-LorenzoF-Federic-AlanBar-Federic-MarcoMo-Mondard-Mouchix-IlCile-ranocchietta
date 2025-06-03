@@ -37,7 +37,7 @@ public abstract class AbstractLaneImpl implements Lane {
      * </p>
      * @param obstacle the obstacle to be added to the lane
      */
-    protected void addObstacle(MovingObject obstacle) {
+    protected void addObstacle(final MovingObject obstacle) {
         this.obstacles.add(obstacle);
     }
 

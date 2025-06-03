@@ -91,4 +91,9 @@ public interface PlayerObject extends GameObject {
      * Respawns the player, resetting its state after death.
      */
     void respawn();
+
+    /**
+     * Adds one life to the player.
+     */
+    void addLife();
 }
