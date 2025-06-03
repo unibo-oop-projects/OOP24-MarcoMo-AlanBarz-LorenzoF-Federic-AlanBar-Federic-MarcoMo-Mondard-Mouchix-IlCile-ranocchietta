@@ -7,8 +7,7 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.LinkedHashMap;
-import java.util.Map;
+import java.util.List;
 
 import javax.imageio.ImageIO;
 
@@ -54,7 +53,7 @@ public class LevelPainter {
         paintObstacles(g);
         paintPlayer(g);
         paintScore(g);
-        paintPowerUp(g);
+        paintPickableObject(g);
         paintTotalCoins(g);
         paintTimerPowerUp(g);
     }
@@ -190,7 +189,7 @@ public class LevelPainter {
      *
      * @param g the Graphics context to draw on
      */
-    public void paintPowerUp(final Graphics g) {
+    public void paintPickableObject(final Graphics g) {
         for (final PickableObject obj : getController().getGame().getPickableObjects()) {
             g.drawImage((obj).getImage(), 
             (int) this.getController().getXinPixel((obj).getPos().x()), 
@@ -205,41 +204,31 @@ public class LevelPainter {
      * @param g the Graphics context to draw on
      */
     public void paintTimerPowerUp(final Graphics g) {
-        int yOffset = 0;    
-        // We keep only unique instancesof each power-up class, 
-        // preserving the order of their first appearance.    
-        Map<Class<?>, PowerUp> uniquePowerUps = new LinkedHashMap<>();
-        for (var obj : getController().getGame().getPickableObjectManager().getActivePowerUps()) {
-            if (obj instanceof PowerUp powerUp) {
-            uniquePowerUps.putIfAbsent(powerUp.getClass(), powerUp);
-            }
-        }
-        PowerUp[] powerUps = uniquePowerUps.values().toArray(PowerUp[]::new);
+        int yOffset = 0;               
+        List<PowerUp> powerUps = getController().getGame().getPickableObjectManager().getActivePowerUps();
         for (PowerUp powerUp : powerUps) {
-            // if (powerUp.isActive()) {
-                float duration = powerUp.getTimer();
-                if (duration > 0) {                             
-                    String durationStr = String.format("%.1f", duration);
-                    int strWidth = g.getFontMetrics(myFont).stringWidth(durationStr);
-                    int imgSize = (int) (Constants.BLOCK_HEIGHT / 2);
-                    int imgX = (int) this.getController().getXinPixel(Constants.MAX_X) - imgSize;
-                    int imgY = (int) this.getController().getYinPixel(Constants.MAX_Y - 2) - yOffset;
+            float duration = powerUp.getTimer();
+            if (duration > 0) {                             
+                String durationStr = String.format("%.1f", duration);
+                int strWidth = g.getFontMetrics(myFont).stringWidth(durationStr);
+                int imgSize = (int) (Constants.BLOCK_HEIGHT / 2);
+                int imgX = (int) this.getController().getXinPixel(Constants.MAX_X) - imgSize;
+                int imgY = (int) this.getController().getYinPixel(Constants.MAX_Y - 2) - yOffset;
 
-                    if (powerUp.getImage() != null) {
-                        g.drawImage(powerUp.getImage(), imgX, imgY, imgSize, imgSize, null);
-                    }                    
-                    g.setColor(new Color(0, 0, 0, 80));
-                    g.fillRect(imgX - 4, imgY - 4, strWidth + imgSize + 16, imgSize + 16);
-                    g.setColor(Color.WHITE);
-                    g.setFont(myFont);
-                    g.drawString(durationStr,
-                        imgX + imgSize + 5,
-                        imgY + imgSize 
-                    );
-                    yOffset += g.getFontMetrics().getHeight();
-                    
-                }
-            // }
+                if (powerUp.getImage() != null) {
+                    g.drawImage(powerUp.getImage(), imgX, imgY, imgSize, imgSize, null);
+                }                    
+                g.setColor(new Color(0, 0, 0, 80));
+                g.fillRect(imgX - 4, imgY - 4, strWidth + imgSize + 16, imgSize + 16);
+                g.setColor(Color.WHITE);
+                g.setFont(myFont);
+                g.drawString(durationStr,
+                imgX + imgSize + 5,
+                imgY + imgSize 
+                );
+                yOffset += g.getFontMetrics().getHeight();                
+            }
+            
         }
     }
 
