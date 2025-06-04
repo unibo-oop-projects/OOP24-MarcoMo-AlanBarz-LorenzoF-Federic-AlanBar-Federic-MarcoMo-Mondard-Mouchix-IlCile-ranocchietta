@@ -3,6 +3,7 @@ package frogger.common.input;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import frogger.controller.GameController;
 
 /**
@@ -19,6 +20,7 @@ public class KeyInput implements KeyListener {
      *
      * @param controller the game controller to notify of input commands
      */
+    @SuppressFBWarnings(value = "EI2", justification = "GameController is managed externally and this is intentional")
     public KeyInput(final GameController controller) {
         this.controller = controller;
     }

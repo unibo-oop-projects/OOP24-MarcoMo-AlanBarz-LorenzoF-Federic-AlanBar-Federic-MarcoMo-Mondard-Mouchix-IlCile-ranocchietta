@@ -49,7 +49,7 @@ class ShopInitTest {
             final Skin skin = this.factoryPurchasable.createSkin(
                 Integer.parseInt(values[1]),
                 values[2],
-                Boolean.parseBoolean(values[3])
+                Boolean.valueOf(values[3])
             );
 
             assertEquals(1, skin.getPrize());

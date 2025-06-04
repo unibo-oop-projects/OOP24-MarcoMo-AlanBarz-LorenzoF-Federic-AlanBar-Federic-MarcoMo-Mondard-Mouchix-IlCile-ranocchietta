@@ -3,6 +3,7 @@ package frogger.controller;
 
 import java.util.List;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import frogger.common.GameState;
 import frogger.model.implementations.ShopImpl;
 import frogger.model.interfaces.PurchasableObject;
@@ -41,6 +42,7 @@ public class ShopController extends AbstractController {
      *
      * @return the game controller associated with this shop
      */
+    @SuppressFBWarnings(value = "EI_EXPOSE_REP", justification = "GameController is managed externally and this exposure is intentional.")
     public GameController getGameController() {
         return this.gameController;
     }
