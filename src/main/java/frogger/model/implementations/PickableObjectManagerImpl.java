@@ -1,6 +1,7 @@
 
 package frogger.model.implementations;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -22,13 +23,18 @@ public class PickableObjectManagerImpl implements PickableObjectManager {
     
     @Override
     public void checkPowerUps() {
+        var keysToRemove = new ArrayList<PowerUpType>();
         for (var entry : activePowerUps.entrySet()) {
             PowerUp powerUp = entry.getValue();
             if (powerUp != null && !powerUp.isActive()) {
-                activePowerUps.remove(entry.getKey());
+                keysToRemove.add(entry.getKey());
             }
         }
+        for (PowerUpType key : keysToRemove) {
+            activePowerUps.remove(key);
+        }
     }
+    
     
 
     @Override
@@ -50,7 +56,7 @@ public class PickableObjectManagerImpl implements PickableObjectManager {
                 }
                 activePowerUps.put(type, powerUp);
                 powerUp.onPick(); 
-                updatefieldsPowerUp(activePowerUps.get(type), previous);
+                updatefieldsPowerUp(powerUp, previous);
             } else {
                 x.onPick();
             }            
