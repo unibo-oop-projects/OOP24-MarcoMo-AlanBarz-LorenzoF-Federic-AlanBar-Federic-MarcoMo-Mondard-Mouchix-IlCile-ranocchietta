@@ -8,10 +8,16 @@ import frogger.common.LoadSave;
 import frogger.controller.GameController;
 import frogger.controller.PauseController;
 
+/**
+ * The panel that is drawn when the game is paused.
+ */
 public class PausePanel extends AbstractPanel<PauseController> {
 
     private BufferedImage background;
 
+    /**
+     * Just set some basic parameters.
+     */
     public PausePanel() {
         super.setFocusable(true);
         super.setPanelSize();
@@ -43,16 +49,26 @@ public class PausePanel extends AbstractPanel<PauseController> {
         paintMenu(g);
     }
 
-    private void paintMenu(Graphics g) {
+    /**
+     * Paint the menu.
+     * @param g the Graphics
+     */
+    private void paintMenu(final Graphics g) {
         this.getController().getMenu().getButtonList().forEach((button) -> {
-            g.drawImage(button.getCurrentImg(), button.getXPos(), button.getYPos(), Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT, null);           
+            g.drawImage(button.getCurrentImg(), button.getXPos(), button.getYPos(),
+            Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT, null);
         });
     }
 
-    protected void paintBackground(Graphics g) {
-        LevelPainter p = new LevelPainter((GameController) getController().getGameController());
+    /**
+     * paint the background.
+     * @param g the Graphics
+     */
+    protected void paintBackground(final Graphics g) {
+        final LevelPainter p = new LevelPainter((GameController) getController().getGameController());
         p.paintLevel(g);
-        g.drawImage(background, (int) getController().getXinPixel(-3.5), (int) getController().getYinPixel(3), 
+        g.drawImage(background, (int) getController().getXinPixel(Constants.PAUSE_MENU_X_GRID_UNITS),
+        (int) getController().getYinPixel(Constants.PAUSE_MENU_Y_GRID_UNITS), 
         Constants.FRAME_WIDTH / 2, Constants.FRAME_HEIGHT / 2, null);
     }
 

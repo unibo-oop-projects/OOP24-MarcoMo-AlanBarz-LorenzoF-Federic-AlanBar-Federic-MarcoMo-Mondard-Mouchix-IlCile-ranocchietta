@@ -8,10 +8,18 @@ import frogger.model.interfaces.MovingObject;
  */
 public final class Ground extends AbstractLaneImpl {
 
-    private Ground(float speed, Direction direction) {
+    /**
+     * Constructs a Ground lane with the specified speed and direction.
+     * @param speed the speed of the lane
+     * @param direction the direction of movement
+     */
+    private Ground(final float speed, final Direction direction) {
         super(speed, direction);
     }
 
+    /**
+     * Constructs a Ground lane with default values (speed 0, no direction).
+     */
     public Ground() {
         this(0, null);
     }

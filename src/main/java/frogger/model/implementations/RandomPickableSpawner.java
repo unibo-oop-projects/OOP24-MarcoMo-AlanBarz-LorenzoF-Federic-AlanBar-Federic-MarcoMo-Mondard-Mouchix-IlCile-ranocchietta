@@ -23,7 +23,8 @@ public class RandomPickableSpawner extends AbstractRandomEntitySpawner<PickableO
      * @param type the type of PickableObject to create (PowerUp or Coin)
      * @param alreadyPresent the positions of pickable objects that are already in the level (empty if there aren't)
      */
-    public RandomPickableSpawner(final Random ran, final Class<? extends PickableObject> type, final Set<Position> alreadyPresent) {
+    public RandomPickableSpawner(final Random ran, final Class<? extends PickableObject> type,
+    final Set<Position> alreadyPresent) {
         super(ran);
         this.type = type;
         this.alreadyPresent = new HashSet<>(alreadyPresent);

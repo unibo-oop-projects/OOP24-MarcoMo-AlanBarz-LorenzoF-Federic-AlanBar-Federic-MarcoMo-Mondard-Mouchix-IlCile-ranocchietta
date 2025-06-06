@@ -119,6 +119,11 @@ public final class Constants {
     /** Distance between buttons in pixels. */
     public static final int BUTTONS_DISTANCE = 10;
 
+    /**Setting the pause menu in grid units */
+    public static final double PAUSE_MENU_X_GRID_UNITS = -3.5;
+    /**Setting the pause menu in grid units */
+    public static final double PAUSE_MENU_Y_GRID_UNITS = 3;
+
     /** Button width in pixels for shop and menu. */
     public static final int BUTTON_WIDTH_IN_PIXEL = 100;
     /** Button height in pixels for shop and menu. */
