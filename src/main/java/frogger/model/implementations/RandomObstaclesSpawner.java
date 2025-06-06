@@ -8,13 +8,14 @@ import frogger.common.Constants;
 import frogger.common.Direction;
 import frogger.common.Pair;
 import frogger.common.Position;
+import frogger.model.interfaces.MovingObject;
 import frogger.model.interfaces.MovingObjectFactory;
 
 /**
  * Class that extends AbstractRandomEntitySpawner to specify the behaviour spawning type MovingObject (Car or Trunk) entity.
  * @param <X> generic type that extends MovingObjectImpl (Trunk or Car)
  */
-public class RandomObstaclesSpawner<X extends MovingObjectImpl> extends AbstractRandomEntitySpawner<X> {
+public class RandomObstaclesSpawner<X extends MovingObject> extends AbstractRandomEntitySpawner<X> {
 
     private final Random ran;
     private final Class<X> type;

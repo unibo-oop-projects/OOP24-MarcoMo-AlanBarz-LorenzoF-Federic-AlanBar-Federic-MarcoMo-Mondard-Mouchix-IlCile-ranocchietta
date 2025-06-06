@@ -44,9 +44,9 @@ public final class Constants {
     public static final int EAGLE_HEIGHT = 1;
 
     /** Minimum speed for moving objects. */
-    public static final float MIN_SPEED = 0.01f;
+    public static final float MIN_SPEED = 0.008f;
     /** Maximum speed for moving objects. */
-    public static final float MAX_SPEED = 0.03f;
+    public static final float MAX_SPEED = 0.025f;
 
     /** Minimum number of power-ups. */
     public static final int MIN_POWER_UP_NUMBER = 1;

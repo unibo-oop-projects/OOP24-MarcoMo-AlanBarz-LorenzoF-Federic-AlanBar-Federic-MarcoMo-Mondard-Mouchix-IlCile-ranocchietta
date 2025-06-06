@@ -3,6 +3,7 @@ package frogger.model.implementations;
 import frogger.common.Direction;
 import frogger.common.Pair;
 import frogger.common.Position;
+import frogger.model.interfaces.MovingObject;
 import frogger.model.interfaces.MovingObjectFactory;
 
 /**
@@ -22,9 +23,8 @@ public class MovingObjectFactoryImpl implements MovingObjectFactory {
      * @return An object of type X that extends MovingObject
      */
     @Override
-    public <X extends MovingObjectImpl> X createMovingObject(final Position pos, final Pair dimension, 
-        final float speed, final Direction direction, final Class<X> c) {
-
+    public <X extends MovingObject> X createMovingObject(Position pos, Pair dimension, float speed, Direction direction,
+            Class<X> c) {
         try {
             return c.getConstructor(Position.class, Pair.class, float.class, Direction.class)
             .newInstance(pos, dimension, speed, direction);

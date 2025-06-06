@@ -3,7 +3,6 @@ package frogger.model.interfaces;
 import frogger.common.Direction;
 import frogger.common.Pair;
 import frogger.common.Position;
-import frogger.model.implementations.MovingObjectImpl;
 
 /**
  * The factory for moving object, you can create all the type of moving object, Car, Eagle, Trunk.
@@ -20,7 +19,7 @@ public interface MovingObjectFactory {
      * @param c java.lang.Class to instance the new MovingObject
      * @return An object of type X that extends MovingObject
      */
-    <X extends MovingObjectImpl> X createMovingObject(Position pos, Pair dimension,
+    <X extends MovingObject> X createMovingObject(Position pos, Pair dimension,
             float speed, Direction direction, Class<X> c);
 
 }
