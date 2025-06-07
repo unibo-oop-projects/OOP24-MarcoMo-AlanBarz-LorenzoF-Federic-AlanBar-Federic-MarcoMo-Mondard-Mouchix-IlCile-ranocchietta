@@ -170,7 +170,7 @@ public class PlayerObjectImpl extends GameObjectImpl implements PlayerObject {
      * {@inheritDoc}
      */
     @Override
-    public void SetScoreMultiplier(int sMultiplier) {
+    public void setScoreMultiplier(final int sMultiplier) {
         this.scoreMoliplier = (sMultiplier > 0) ? sMultiplier : 1;
     }
 }

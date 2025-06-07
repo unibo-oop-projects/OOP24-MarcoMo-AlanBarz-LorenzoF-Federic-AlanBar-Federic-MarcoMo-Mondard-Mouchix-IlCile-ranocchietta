@@ -13,14 +13,14 @@ public class DoubleScorePowerUp extends PowerUpImpl {
     @Override
     public void applyEffect() {
         if (relatedEntity instanceof PlayerObjectImpl player) {
-            player.SetScoreMultiplier(2);
+            player.setScoreMultiplier(2);
         }
     }
     
     @Override
     public void removeEffect() {
         if (relatedEntity instanceof PlayerObjectImpl player) {
-            player.SetScoreMultiplier(1); // Reset the score multiplier
+            player.setScoreMultiplier(1); // Reset the score multiplier
         }
     }
     

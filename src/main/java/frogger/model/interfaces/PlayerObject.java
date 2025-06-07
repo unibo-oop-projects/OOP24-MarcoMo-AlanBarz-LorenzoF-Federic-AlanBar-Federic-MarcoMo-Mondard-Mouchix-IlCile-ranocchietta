@@ -102,5 +102,5 @@ public interface PlayerObject extends GameObject {
      *
      * @param sMultiplier the score multiplier to set
      */
-    void SetScoreMultiplier(int sMultiplier);
+    void setScoreMultiplier(int sMultiplier);
 }
