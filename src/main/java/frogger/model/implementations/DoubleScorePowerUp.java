@@ -13,12 +13,16 @@ public class DoubleScorePowerUp extends PowerUpImpl {
     @Override
     public void applyEffect() {
         if (relatedEntity instanceof PlayerObjectImpl player) {
-            player.addPoints(player.getScore());
+            player.SetScoreMultiplier(2);
         }
     }
     
     @Override
-    public void removeEffect() {}
+    public void removeEffect() {
+        if (relatedEntity instanceof PlayerObjectImpl player) {
+            player.SetScoreMultiplier(1); // Reset the score multiplier
+        }
+    }
     
     @Override
     public PickableObjectDependency getRequiredDependencies() {

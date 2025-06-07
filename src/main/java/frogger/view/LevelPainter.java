@@ -226,7 +226,7 @@ public class LevelPainter {
                 imgX + imgSize + 5,
                 imgY + imgSize 
                 );
-                yOffset += g.getFontMetrics().getHeight();                
+                yOffset -= Constants.BLOCK_HEIGHT;                
             }
             
         }

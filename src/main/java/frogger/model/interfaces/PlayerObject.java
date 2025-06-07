@@ -96,4 +96,11 @@ public interface PlayerObject extends GameObject {
      * Adds one life to the player.
      */
     void addLife();
+
+    /**
+     * Sets the score multiplier for the player.
+     *
+     * @param sMultiplier the score multiplier to set
+     */
+    void SetScoreMultiplier(int sMultiplier);
 }
