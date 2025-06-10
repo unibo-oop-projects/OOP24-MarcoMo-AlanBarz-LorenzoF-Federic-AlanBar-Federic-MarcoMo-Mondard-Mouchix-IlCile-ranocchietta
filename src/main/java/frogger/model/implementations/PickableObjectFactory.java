@@ -7,7 +7,24 @@ import frogger.common.Pair;
 import frogger.common.Position;
 import frogger.model.interfaces.PickableObject;
 
-final class PickableObjectFactory {
+/**
+ * A utility factory class for creating instances of {@link PickableObject} and its subtypes.
+ * <p>
+ * This class provides a static method to instantiate pickable objects such as coins and power-ups,
+ * based on the specified type, position, and dimension. It also handles the random selection of
+ * power-up types according to predefined probabilities.
+ * </p>
+ * <p>
+ * This class cannot be instantiated.
+ * </p>
+ *
+ * <h2>Usage Example:</h2>
+ * <pre>
+ *     PickableObject coin = PickableObjectFactory.createPickableObject(Coin.class, position, dimension);
+ *     PickableObject powerUp = PickableObjectFactory.createPickableObject(PowerUpImpl.class, position, dimension);
+ * </pre>
+ */
+public final class PickableObjectFactory {
 
     /**
      * Private constructor to prevent instantiation of the factory class.
