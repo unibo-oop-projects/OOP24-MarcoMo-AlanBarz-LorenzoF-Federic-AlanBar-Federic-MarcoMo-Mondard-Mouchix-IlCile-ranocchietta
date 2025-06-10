@@ -52,10 +52,20 @@ public final class Constants {
     public static final int MIN_POWER_UP_NUMBER = 1;
     /** Maximum number of power-ups. */
     public static final int MAX_POWER_UP_NUMBER = 3;
+    /** Threshold for extra life power-up (in percentage). */
+    public static final int EXTRA_LIFE_THRESHOLD = 60;
+    /** Duration for freeze power-up (in seconds). */
+    public static final int FREEZE_DURATION = 3;
+    /** Duration for double score power-up (in seconds). */
+    public static final int DOUBLE_SCORE_DURATION = 5;
     /** Minimum number of coin. */
     public static final int MIN_COIN_NUMBER = 4;
     /** Maximum number of coin. */
     public static final int MAX_COIN_NUMBER = 7;
+    /** Minimum value for a coin. */
+    public static final int COIN_LOW_VALUE = 1;
+    /** Maximum value for a coin. */
+    public static final int COIN_HIGH_VALUE = 5;
     /** Power-up width (in grid units). */
     public static final int PICKABLE_OBJECT_WIDTH = 1;
     /** Power-up height (in grid units). */

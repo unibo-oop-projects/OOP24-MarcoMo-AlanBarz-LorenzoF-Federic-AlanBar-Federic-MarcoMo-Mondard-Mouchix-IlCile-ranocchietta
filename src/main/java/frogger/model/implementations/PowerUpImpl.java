@@ -10,11 +10,12 @@ import frogger.model.interfaces.PowerUp;
  * This class manages the activation, duration, and deactivation of power-ups, as well as the application and removal
  * of their effects. Subclasses must implement the specific effect logic.
  * </p>
- *
  */
 public abstract class PowerUpImpl extends PickableObjectImpl implements PowerUp {
-private final int duration; // Duration in seconds
-    private boolean active; // Indicates if the power-up is currently active
+    // Duration in seconds
+    private final int duration;
+    // Indicates if the power-up is currently active
+    private boolean active;
     private long startTime;
 
     /**
