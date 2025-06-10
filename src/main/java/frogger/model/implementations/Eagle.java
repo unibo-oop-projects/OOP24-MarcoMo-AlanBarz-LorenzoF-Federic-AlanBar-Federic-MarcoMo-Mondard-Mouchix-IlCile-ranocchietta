@@ -60,7 +60,7 @@ public class Eagle extends MovingObjectImpl implements Startable<Integer> {
      */
     @Override
     public Integer getTrigger() {
-        return this.triggerRow;    
+        return this.triggerRow;
     }
 
     /**

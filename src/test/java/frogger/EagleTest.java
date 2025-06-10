@@ -14,15 +14,15 @@ import frogger.common.Pair;
 import frogger.common.Position;
 import frogger.model.implementations.Eagle;
 
-public class EagleTest {
+final class EagleTest {
     private Eagle eagle;
 
     @BeforeEach
     void setUp() {
-        float speed = Constants.MIN_SPEED;
-        Direction dir = Direction.DOWN;
-        Pair dim = new Pair(Constants.EAGLE_WIDTH, Constants.EAGLE_HEIGHT);
-        Position pos = new Position(0, 0);
+        final float speed = Constants.MIN_SPEED;
+        final Direction dir = Direction.DOWN;
+        final Pair dim = new Pair(Constants.EAGLE_WIDTH, Constants.EAGLE_HEIGHT);
+        final Position pos = new Position(0, 0);
 
         eagle = new Eagle(pos, dim, speed, dir);
     }
@@ -51,8 +51,8 @@ public class EagleTest {
 
     @Test
     void imgTest() {
-        assertTrue(ImageTester.bufferedImagesEqual(LoadSave.GetSprite("eagleDown.png"), eagle.getImage()));
+        assertTrue(ImageTester.bufferedImagesEqual(LoadSave.getSprite("eagleDown.png"), eagle.getImage()));
         eagle.setDirection(Direction.UP);
-        assertTrue(ImageTester.bufferedImagesEqual(LoadSave.GetSprite("eagleDown.png"), eagle.getImage()));
+        assertTrue(ImageTester.bufferedImagesEqual(LoadSave.getSprite("eagleDown.png"), eagle.getImage()));
     }
 }

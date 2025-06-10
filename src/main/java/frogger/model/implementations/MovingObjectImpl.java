@@ -48,7 +48,7 @@ public class MovingObjectImpl extends GameObjectImpl implements MovingObject {
      * {@inheritDoc}
      */
     @Override
-    public void setSpeed(float speed) {
+    public void setSpeed(final float speed) {
         this.speed = speed;
     }
 
@@ -82,7 +82,7 @@ public class MovingObjectImpl extends GameObjectImpl implements MovingObject {
      * Checks whether the object has moved outside the valid game area.
      * If so, repositions it to the opposite side and handles special behavior (e.g., stopping an Eagle).
      */
-    private void checkRestart(){
+    private void checkRestart() {
         if (!valid(this.getPos())) {
             switch (this.getDirection()) {
                 case Direction.RIGHT -> this.setPos(new Position(Constants.MIN_X - 1, this.getPos().y()));

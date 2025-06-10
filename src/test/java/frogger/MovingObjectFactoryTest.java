@@ -15,16 +15,16 @@ import frogger.model.implementations.Trunk;
 import frogger.model.interfaces.MovingObject;
 import frogger.model.interfaces.MovingObjectFactory;
 
-public class MovingObjectFactoryTest {
+final class MovingObjectFactoryTest {
 
     private final MovingObjectFactory factory = new MovingObjectFactoryImpl();
 
     @Test
     void instance() {
-        float speed = Constants.MIN_SPEED;
-        Direction dir = Direction.LEFT;
-        Pair dim = new Pair(Constants.EAGLE_WIDTH, Constants.EAGLE_HEIGHT);
-        Position pos = new Position(100, 100);
+        final float speed = Constants.MIN_SPEED;
+        final Direction dir = Direction.LEFT;
+        final Pair dim = new Pair(Constants.EAGLE_WIDTH, Constants.EAGLE_HEIGHT);
+        final Position pos = new Position(100, 100);
         MovingObject ob;
 
 

@@ -11,7 +11,7 @@ import frogger.model.interfaces.MenuFactory;
 import frogger.view.GameScene;
 import frogger.view.MenuPanel;
 
-public class MenuControllerImpl extends AbstractController implements MenuController{
+public class MenuControllerImpl extends AbstractController implements MenuController {
     private final MenuFactory menuFactory = new MenuFactoryImpl();
     private MenuPanel scenePanel;
     private Menu menu;
@@ -23,7 +23,7 @@ public class MenuControllerImpl extends AbstractController implements MenuContro
         menu = menuFactory.mainMenu();
         scenePanel = new MenuPanel();
         scenePanel.setController(this);
-        gameScene.setPanel(scenePanel);        
+        gameScene.setPanel(scenePanel);
     }
 
     @Override

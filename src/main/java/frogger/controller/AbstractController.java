@@ -8,11 +8,11 @@ import frogger.view.GameScene;
  * Provides a generic game loop and utility methods for converting game coordinates
  * to pixel values. Subclasses must implement game-specific logic.
  */
-public abstract class AbstractController implements Controller{
+public abstract class AbstractController implements Controller {
     /** The target frames per second for the game loop.*/
-    private final static int FPS_SET = 120;
+    private static final int FPS_SET = 120;
     /** One second in nanoseconds, used to calculate frame duration.*/
-    private final static double SET = 1000000000.0;
+    private static final double SET = 1000000000.0;
 
     /**
      * {@inheritDoc}

@@ -77,7 +77,7 @@ public class ShopPanel extends AbstractPanel<ShopController> {
     @SuppressWarnings("unused")
     private void addButtonForObject(final PurchasableObject purchasableObject, final int x, final int y) {
         final String img = purchasableObject.getImage();
-        final BufferedImage bufferedImage = LoadSave.GetSprite(img);
+        final BufferedImage bufferedImage = LoadSave.getSprite(img);
         final int imgX = (int) this.getController().getXinPixel(x);
         final int imgY = (int) this.getController().getYinPixel(y);
 
@@ -143,7 +143,7 @@ public class ShopPanel extends AbstractPanel<ShopController> {
      */
     @Override
     protected void importImg() {
-        this.setBackgroundImage(LoadSave.GetSprite(LoadSave.GAME_BACKGROUND));
+        this.setBackgroundImage(LoadSave.getSprite(LoadSave.GAME_BACKGROUND));
     }
 
     /**
@@ -156,7 +156,7 @@ public class ShopPanel extends AbstractPanel<ShopController> {
      */
     private void drawObjectImage(final PurchasableObject purchasableObject, final int x, final int y, final Graphics g) {
         final String img = purchasableObject.getImage();
-        final BufferedImage bufferedImage = LoadSave.GetSprite(img);
+        final BufferedImage bufferedImage = LoadSave.getSprite(img);
         final int imgX = (int) this.getController().getXinPixel(x);
         final int imgY = (int) this.getController().getYinPixel(y);
         g.drawImage(bufferedImage, imgX, imgY, bufferedImage.getWidth(), bufferedImage.getHeight(), null);

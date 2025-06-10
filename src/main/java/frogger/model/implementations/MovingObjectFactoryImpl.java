@@ -23,8 +23,9 @@ public class MovingObjectFactoryImpl implements MovingObjectFactory {
      * @return An object of type X that extends MovingObject
      */
     @Override
-    public <X extends MovingObject> X createMovingObject(Position pos, Pair dimension, float speed, Direction direction,
-            Class<X> c) {
+    public <X extends MovingObject> X createMovingObject(final Position pos, final Pair dimension, final float speed,
+        final Direction direction,
+            final Class<X> c) {
         try {
             return c.getConstructor(Position.class, Pair.class, float.class, Direction.class)
             .newInstance(pos, dimension, speed, direction);
