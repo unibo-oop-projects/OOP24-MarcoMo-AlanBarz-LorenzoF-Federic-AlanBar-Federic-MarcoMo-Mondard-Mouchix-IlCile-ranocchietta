@@ -160,10 +160,10 @@ final class RandomPickableSpawnerTest {
         //Power up test
         //Checking if it works with a scenario where there is no overlap
         final EntitySpawner<PickableObject> spawner = new RandomPickableSpawner(mockRandom, PowerUpImpl.class, Set.of()) {
-            private final int i = 0;
+            private static final int I = 0;
             @Override
             protected Position generatePosition() {
-                return new Position(i, 0);
+                return new Position(I, 0);
             }
         };
 

@@ -37,7 +37,7 @@ public class PausePanel extends AbstractPanel<PauseController> {
      */
     @Override
     protected void importImg() {
-        background = LoadSave.GetSprite("pause_background.jpg");
+        background = LoadSave.getSprite("pause_background.jpg");
     }
 
     /**
@@ -64,6 +64,7 @@ public class PausePanel extends AbstractPanel<PauseController> {
      * paint the background.
      * @param g the Graphics
      */
+    @Override
     protected void paintBackground(final Graphics g) {
         final LevelPainter p = new LevelPainter((GameController) getController().getGameController());
         p.paintLevel(g);

@@ -18,17 +18,18 @@ public class GamePanel extends AbstractPanel<GameControllerImpl> {
      * and background color.
      */
     public GamePanel() {
-        setFocusable(true);
-        setPanelSize();
-        setBackground(Color.BLACK);
+        super.setFocusable(true);
+        super.setPanelSize();
+        super.setBackground(Color.BLACK);
     }
 
-    
+
     /**
      * Paints the components of the panel by delegating to the {@link LevelPainter}.
      *
      * @param g the {@link Graphics} object used for drawing
      */
+    @Override
     public void paintComponent(final Graphics g) {
         painter.paintLevel(g);
     } 

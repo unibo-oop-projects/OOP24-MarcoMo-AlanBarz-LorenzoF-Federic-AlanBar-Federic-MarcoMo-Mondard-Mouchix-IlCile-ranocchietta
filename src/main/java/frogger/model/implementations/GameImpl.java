@@ -49,7 +49,7 @@ public class GameImpl implements Game {
      */
     @Override
     public void checkGameOver() {
-        if(this.player.getLives() == 0) {
+        if (this.player.getLives() == 0) {
             GameState.state = GameState.DEAD;
         }
     }
@@ -85,9 +85,9 @@ public class GameImpl implements Game {
             .filter(x -> x.getHitBox().intersects(this.player.getHitBox()))
             .findFirst()
             .ifPresent(x -> {
-                this.pickableObjectManager.addPickableObject(x);                
+                this.pickableObjectManager.addPickableObject(x);
                 this.level.removePickableObject(x);
-            }                
+            }
         );
 
         if (this.player.getPos().y() > Constants.MIN_Y && this.player.getPos().y() < 1) {
@@ -103,10 +103,10 @@ public class GameImpl implements Game {
                     ((Trunk) x).removeObj();
                 }
             });
-        
+
             if (this.level.getAllObstacles().stream().anyMatch(x -> x.getHitBox().intersects(this.player.getHitBox()))) {
                 getObstacles().stream().filter(x -> x.getHitBox().intersects(this.player.getHitBox())).forEach(x -> {
-                    if (x instanceof Trunk){
+                    if (x instanceof Trunk) {
                         if (!this.player.isAttached()) {
                             ((Trunk) x).setObj(this.player);
                             this.player.setAttached(true);

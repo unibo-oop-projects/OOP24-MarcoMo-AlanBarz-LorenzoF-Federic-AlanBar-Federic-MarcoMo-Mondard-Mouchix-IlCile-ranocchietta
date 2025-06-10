@@ -8,7 +8,7 @@ import frogger.common.Constants;
 import frogger.common.LoadSave;
 import frogger.controller.MenuControllerImpl;
 
-public class MenuPanel extends AbstractPanel<MenuControllerImpl>{
+public class MenuPanel extends AbstractPanel<MenuControllerImpl> {
     private BufferedImage buttonBack;
 
     public MenuPanel() {
@@ -18,7 +18,7 @@ public class MenuPanel extends AbstractPanel<MenuControllerImpl>{
     }
 
     @Override
-    protected void setInputListener(){
+    protected void setInputListener() {
         this.addMouseListener(this.getController().getMouseListener());
         this.addMouseMotionListener(this.getController().getMouseMotionListener());
     }
@@ -30,20 +30,22 @@ public class MenuPanel extends AbstractPanel<MenuControllerImpl>{
         paintMenu(g);
     }
 
-    private void paintButtonBack(Graphics g) {
-        g.drawImage(buttonBack, (Constants.FRAME_WIDTH / 2 - (buttonBack.getWidth() + 30) / 2), (Constants.FRAME_HEIGHT / 2 - (buttonBack.getHeight() + 30) / 2), 
-                        buttonBack.getWidth() + 30, buttonBack.getHeight() + 30, null);
+    private void paintButtonBack(final Graphics g) {
+        g.drawImage(buttonBack, Constants.FRAME_WIDTH / 2 - (buttonBack.getWidth() + 30) / 2,
+        Constants.FRAME_HEIGHT / 2 - (buttonBack.getHeight() + 30) / 2, buttonBack.getWidth() + 30,
+        buttonBack.getHeight() + 30, null);
     }
-    
-    private void paintMenu(Graphics g) {
+
+    private void paintMenu(final Graphics g) {
         this.getController().getMenu().getButtonList().forEach((button) -> {
-            g.drawImage(button.getCurrentImg(), button.getXPos(), button.getYPos(), Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT, null);           
+            g.drawImage(button.getCurrentImg(), button.getXPos(), button.getYPos(),
+            Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT, null);
         });
     }
 
     @Override
     protected void importImg() {
-        buttonBack = LoadSave.GetSprite(LoadSave.MENU_BUTTONBACK);
-        this.setBackgroundImage(LoadSave.GetSprite(LoadSave.GAME_BACKGROUND));
-    };
+        buttonBack = LoadSave.getSprite(LoadSave.MENU_BUTTONBACK);
+        this.setBackgroundImage(LoadSave.getSprite(LoadSave.GAME_BACKGROUND));
+    }
 }

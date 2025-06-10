@@ -15,22 +15,22 @@ import frogger.common.Position;
 import frogger.model.implementations.PlayerObjectImpl;
 import frogger.model.implementations.Trunk;
 
-public class TrunkTest {
+final class TrunkTest {
     private Trunk trunk;
 
     @BeforeEach
     void setUp() {
-        float speed = Constants.MIN_SPEED;
-        Direction dir = Direction.LEFT;
-        Pair dim = new Pair(Constants.EAGLE_WIDTH, Constants.EAGLE_HEIGHT);
-        Position pos = new Position(0, 0);
+        final float speed = Constants.MIN_SPEED;
+        final Direction dir = Direction.LEFT;
+        final Pair dim = new Pair(Constants.EAGLE_WIDTH, Constants.EAGLE_HEIGHT);
+        final Position pos = new Position(0, 0);
 
         trunk = new Trunk(pos, dim, speed, dir);
     }
 
     @Test
     void setObjTest() {
-        PlayerObjectImpl frog = new PlayerObjectImpl(new Pair(50,50), "fede.png");
+        final PlayerObjectImpl frog = new PlayerObjectImpl(new Pair(50,50), "fede.png");
         frog.setPos(trunk.getPos());
         Position pos = new Position(frog.getPos().x(), frog.getPos().y());
         trunk.setObj(frog);
@@ -44,6 +44,6 @@ public class TrunkTest {
 
     @Test
     void imgTest() {
-        assertTrue(ImageTester.bufferedImagesEqual(LoadSave.GetSprite("trunk.png"), trunk.getImage()));
+        assertTrue(ImageTester.bufferedImagesEqual(LoadSave.getSprite("trunk.png"), trunk.getImage()));
     }
 }

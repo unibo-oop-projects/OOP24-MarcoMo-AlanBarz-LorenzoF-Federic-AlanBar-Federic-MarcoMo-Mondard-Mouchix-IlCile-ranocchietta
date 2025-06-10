@@ -95,6 +95,6 @@ public abstract class GameObjectImpl implements GameObject {
      */
     @Override
     public void setImage(final String fileName) {
-        img = LoadSave.GetSprite(fileName);
+        img = LoadSave.getSprite(fileName);
     }
 }

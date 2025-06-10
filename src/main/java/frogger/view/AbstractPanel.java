@@ -24,7 +24,7 @@ public abstract class AbstractPanel<X extends AbstractController> extends JPanel
      * The background image for this panel.
      */
     private BufferedImage background;
-    
+
     /**
      * Sets up input listeners.
      * This method must be implemented by subclasses to handle user input.

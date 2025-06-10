@@ -10,7 +10,7 @@ import frogger.common.Constants;
  * Manages the JFrame and allows setting and switching of game panels.
  */
 public class GameScene {
-    private JFrame frame;
+    private final JFrame frame;
 
     /**
      * Constructs the game window (JFrame) with predefined dimensions and settings.

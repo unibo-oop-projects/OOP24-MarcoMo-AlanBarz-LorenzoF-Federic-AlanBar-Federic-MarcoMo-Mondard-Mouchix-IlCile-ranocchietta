@@ -8,36 +8,36 @@ import frogger.controller.MenuController;
 
 
 public class MouseInput implements MouseMotionListener, MouseListener {
-    private MenuController controller;
-    
-    public <X extends MenuController> MouseInput(X controller) {
+    private final MenuController controller;
+
+    public <X extends MenuController> MouseInput(final X controller) {
         this.controller = controller;
     }
 
     @Override
-    public void mouseClicked(MouseEvent e) { }
+    public void mouseClicked(final MouseEvent e) { }
 
     @Override
-    public void mousePressed(MouseEvent e) {
+    public void mousePressed(final MouseEvent e) {
         controller.getMenu().mousePressed(e);
     }
 
     @Override
-    public void mouseReleased(MouseEvent e) {
+    public void mouseReleased(final MouseEvent e) {
         controller.getMenu().mouseReleased(e);
     }
 
     @Override
-    public void mouseEntered(MouseEvent e) { }
+    public void mouseEntered(final MouseEvent e) { }
 
     @Override
-    public void mouseExited(MouseEvent e) { }
+    public void mouseExited(final MouseEvent e) { }
 
     @Override
-    public void mouseDragged(MouseEvent e) { }
+    public void mouseDragged(final MouseEvent e) { }
 
     @Override
-    public void mouseMoved(MouseEvent e) {
+    public void mouseMoved(final MouseEvent e) {
         controller.getMenu().mouseMoved(e);
     }
 }

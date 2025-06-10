@@ -105,10 +105,10 @@ final class RandomEaglesSpawnerTest {
 
         //Checking if it works with a scenario where there is no overlap
         final EntitySpawner<Eagle> spawner = new RandomEaglesSpawner(mockRandom) {
-            private static final int i = 0;
+            private static final int I = 0;
             @Override
             protected Position generatePosition() {
-                return new Position(i, 0);
+                return new Position(I, 0);
             }
         };
 
