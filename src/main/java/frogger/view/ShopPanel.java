@@ -41,6 +41,33 @@ public class ShopPanel extends AbstractPanel<ShopController> {
     }
 
     /**
+     * {@inheritDoc}
+     * Loads and sets the background image for the shop panel.
+     */
+    @Override
+    protected void importImg() {
+        this.setBackgroundImage(LoadSave.getSprite(LoadSave.GAME_BACKGROUND));
+    }
+
+    /**
+     * {@inheritDoc}
+     * Paints the background and all purchasable object images.
+     *
+     * @param g the Graphics context to use for painting
+     */
+    @Override
+    public void paintComponent(final Graphics g) {
+        super.paintComponent(g);
+        paintBackground(g);
+        paintCoins(g);
+        final List<PurchasableObject> objects = this.getController().getPurchasableObject();
+        for (int i = 0; i < objects.size(); i++) {
+            final Position p = getGridPosition(i);
+            drawObjectImage(objects.get(i), (int) p.x(), (int) p.y(), g);
+        }
+    }
+
+    /**
      * Updates the buttons for all purchasable objects and adds the menu button.
      * Removes all existing buttons and recreates them based on the current state.
      */
@@ -58,8 +85,8 @@ public class ShopPanel extends AbstractPanel<ShopController> {
             GameState.state = GameState.MENU;
         });
 
-        backButton.setBounds((int) this.getController().getXinPixel(Constants.MIN_X), 
-            (int) this.getController().getYinPixel(Constants.MAX_Y), 
+        backButton.setBounds((int) this.getController().getXinPixel(Constants.MIN_X + 0.5), 
+            (int) this.getController().getYinPixel(Constants.MAX_Y - 0.25), 
             Constants.BUTTON_WIDTH_IN_PIXEL, 
             Constants.BUTTON_HEIGHT_IN_PIXEL); // Set position and size of the button
         this.add(backButton);
@@ -120,33 +147,6 @@ public class ShopPanel extends AbstractPanel<ShopController> {
     }
 
     /**
-     * {@inheritDoc}
-     * Paints the background and all purchasable object images.
-     *
-     * @param g the Graphics context to use for painting
-     */
-    @Override
-    public void paintComponent(final Graphics g) {
-        super.paintComponent(g);
-        paintBackground(g);
-        paintCoins(g);
-        final List<PurchasableObject> objects = this.getController().getPurchasableObject();
-        for (int i = 0; i < objects.size(); i++) {
-            final Position p = getGridPosition(i);
-            drawObjectImage(objects.get(i), (int) p.x(), (int) p.y(), g);
-        }
-    }
-
-    /**
-     * {@inheritDoc}
-     * Loads and sets the background image for the shop panel.
-     */
-    @Override
-    protected void importImg() {
-        this.setBackgroundImage(LoadSave.getSprite(LoadSave.GAME_BACKGROUND));
-    }
-
-    /**
      * Draws the image of a purchasable object at the specified grid position.
      *
      * @param purchasableObject the object whose image to draw
@@ -175,11 +175,17 @@ public class ShopPanel extends AbstractPanel<ShopController> {
         return new Position(x, y);
     }
 
+    /**
+     * Paints the current number of coins owned by the player on the shop panel.
+     * The coins are displayed in the top-right area of the panel using a custom font and color.
+     *
+     * @param g the Graphics context to use for painting
+     */
     private void paintCoins(final Graphics g) {
         g.setColor(Color.WHITE);
         g.setFont(myFont);
         g.drawString("Coins: " + this.getController().getGameController().getCoins(), 
         (int) this.getController().getXinPixel(Constants.MAX_X - 2), 
-        (int) this.getController().getYinPixel(Constants.MAX_Y - 0.5));
+        (int) this.getController().getYinPixel(Constants.MAX_Y - 0.75));
     }
 }
