@@ -30,7 +30,7 @@ public class GameControllerImpl extends AbstractController implements GameContro
     /** The panel displaying the game scene. */
     private GamePanel scenePanel;
     /** The number of coins the player currently has. */
-    private int coins = 50;
+    private int coins;
     /** The identifier or path of the currently equipped skin. */
     private String skin = "ranocchietta.png";
 
@@ -42,7 +42,7 @@ public class GameControllerImpl extends AbstractController implements GameContro
      */
     @Override
     public void init(final GameScene gameScene) {
-        if(this.getGame() != null) {           
+        if (this.getGame() != null) {
             scenePanel = new GamePanel();
             scenePanel.setController(this);
             gameScene.setPanel(scenePanel);
@@ -66,7 +66,7 @@ public class GameControllerImpl extends AbstractController implements GameContro
         this.game.checkEagleTrigger();
         this.pickableObjectManager.checkPowerUps(); // check active power-ups
         this.game.getObstacles().forEach(MovingObject::move); // moving all obstacles
-        
+
         this.scenePanel.repaint();
     }
 

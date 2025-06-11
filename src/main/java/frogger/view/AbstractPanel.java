@@ -7,6 +7,7 @@ import java.awt.image.BufferedImage;
 import javax.swing.JPanel;
 
 import frogger.common.Constants;
+import frogger.controller.AbstractController;
 
 /**
  * Abstract base class for all panels in the Frogger game.
@@ -14,7 +15,7 @@ import frogger.common.Constants;
  *
  * @param <X> the type of the controller associated with this panel
  */
-public abstract class AbstractPanel<X> extends JPanel {
+public abstract class AbstractPanel<X extends AbstractController> extends JPanel {
     /**
      * The controller associated with this panel.
      */
@@ -23,7 +24,7 @@ public abstract class AbstractPanel<X> extends JPanel {
      * The background image for this panel.
      */
     private BufferedImage background;
-    
+
     /**
      * Sets up input listeners.
      * This method must be implemented by subclasses to handle user input.

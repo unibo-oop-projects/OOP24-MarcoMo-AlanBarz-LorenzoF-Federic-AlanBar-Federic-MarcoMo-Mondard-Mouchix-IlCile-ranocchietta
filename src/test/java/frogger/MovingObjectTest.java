@@ -12,22 +12,22 @@ import frogger.common.Position;
 import frogger.model.implementations.MovingObjectImpl;
 import frogger.model.interfaces.MovingObject;
 
-public class MovingObjectTest {
+final class MovingObjectTest {
     private MovingObject movingObject;
     
     @BeforeEach
     void setUp() {
-        float speed = Constants.MIN_SPEED;
-        Direction dir = Direction.LEFT;
-        Pair dim = new Pair(Constants.EAGLE_WIDTH, Constants.EAGLE_HEIGHT);
-        Position pos = new Position(100, 100);
+        final float speed = Constants.MIN_SPEED;
+        final Direction dir = Direction.LEFT;
+        final Pair dim = new Pair(Constants.EAGLE_WIDTH, Constants.EAGLE_HEIGHT);
+        final Position pos = new Position(100, 100);
 
         movingObject = new MovingObjectImpl(pos, dim, speed, dir);
     }
 
     @Test
     void moveTest() {
-        Position newPos = new Position(5, 5);
+        final Position newPos = new Position(5, 5);
         
         //move left
         movingObject.setDirection(Direction.LEFT);

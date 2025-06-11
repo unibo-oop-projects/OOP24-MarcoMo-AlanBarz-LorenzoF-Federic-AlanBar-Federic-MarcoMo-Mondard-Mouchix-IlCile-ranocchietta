@@ -1,7 +1,6 @@
 package frogger;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -99,24 +98,24 @@ final class RandomPickableSpawnerTest {
         //Check with 0, should return the minimum value
         when(mockRandom.nextInt(boundX)).thenReturn(0);
         spawner.spawn(Constants.MIN_POWER_UP_NUMBER, Constants.MAX_POWER_UP_NUMBER)
-        .forEach(e -> assertTrue(e.getPos().x() == Constants.MIN_X));
+        .forEach(e -> assertEquals(e.getPos().x(), Constants.MIN_X));
 
         //Check with bound - 1, should return the maximum value
         when(mockRandom.nextInt(boundX)).thenReturn(boundX - 1);
         spawner.spawn(Constants.MIN_POWER_UP_NUMBER, Constants.MAX_POWER_UP_NUMBER)
-        .forEach(e -> assertTrue(e.getPos().x() == Constants.MAX_X));
+        .forEach(e -> assertEquals(e.getPos().x(), Constants.MAX_X));
 
         //Check the y coordinate:
 
         //Check with 0, should return the minimum value
         when(mockRandom.nextInt(boundY)).thenReturn(0);
         spawner.spawn(Constants.MIN_POWER_UP_NUMBER, Constants.MAX_POWER_UP_NUMBER)
-        .forEach(e -> assertTrue(e.getPos().y() == Constants.MIN_Y));
+        .forEach(e -> assertEquals(e.getPos().y(), Constants.MIN_Y));
 
         //Check with bound - 1, should return the maximum value
         when(mockRandom.nextInt(boundY)).thenReturn(boundY - 1);
         spawner.spawn(Constants.MIN_POWER_UP_NUMBER, Constants.MAX_POWER_UP_NUMBER)
-        .forEach(e -> assertTrue(e.getPos().y() == Constants.MAX_Y));
+        .forEach(e -> assertEquals(e.getPos().y(), Constants.MAX_Y));
 
         /*
         //Coin test
@@ -161,10 +160,10 @@ final class RandomPickableSpawnerTest {
         //Power up test
         //Checking if it works with a scenario where there is no overlap
         final EntitySpawner<PickableObject> spawner = new RandomPickableSpawner(mockRandom, PowerUpImpl.class, Set.of()) {
-            private final int i = 0;
+            private static final int I = 0;
             @Override
             protected Position generatePosition() {
-                return new Position(i, 0);
+                return new Position(I, 0);
             }
         };
 

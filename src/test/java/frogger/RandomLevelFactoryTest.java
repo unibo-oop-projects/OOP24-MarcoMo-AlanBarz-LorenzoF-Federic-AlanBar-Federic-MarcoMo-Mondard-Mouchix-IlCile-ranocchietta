@@ -15,6 +15,7 @@ import frogger.model.implementations.Ground;
 import frogger.model.implementations.RandomLevelFactory;
 import frogger.model.implementations.River;
 import frogger.model.implementations.Road;
+import frogger.model.interfaces.GameObject;
 import frogger.model.interfaces.Level;
 import frogger.model.interfaces.LevelFactory;
 
@@ -85,7 +86,7 @@ final class RandomLevelFactoryTest {
     @Test
     void pickableObjectsNoOverlapTest() {
         final var positions = level.getPickableObjects().stream()
-            .map(p -> p.getPos())
+            .map(GameObject::getPos)
             .collect(Collectors.toSet());
         assertEquals(level.getPickableObjects().size(), positions.size());
     }

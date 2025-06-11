@@ -24,6 +24,8 @@ public class PlayerObjectImpl extends GameObjectImpl implements PlayerObject {
     private boolean attached;
     /** Whether the player is dead. */
     private boolean dead;
+    /** The multiplier for the score. */
+    private int scoreMoltiplier = 1;
 
     /**
      * Constructs a new PlayerObjectImpl with the given dimension and skin.
@@ -103,7 +105,7 @@ public class PlayerObjectImpl extends GameObjectImpl implements PlayerObject {
      */
     @Override
     public void addPoints(final int points) {
-        this.score += points;
+        this.score += points * scoreMoltiplier;
     }
 
     /**
@@ -162,5 +164,13 @@ public class PlayerObjectImpl extends GameObjectImpl implements PlayerObject {
     @Override
     public void addLife() {
         this.lives++;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void setScoreMultiplier(final int sMultiplier) {
+        this.scoreMoltiplier = (sMultiplier > 0) ? sMultiplier : 1;
     }
 }

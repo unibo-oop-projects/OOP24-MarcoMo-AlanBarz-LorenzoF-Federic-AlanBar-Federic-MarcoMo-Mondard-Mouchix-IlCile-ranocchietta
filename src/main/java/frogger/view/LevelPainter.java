@@ -114,7 +114,6 @@ public class LevelPainter {
             case Direction.RIGHT -> Math.PI / 2;
             case Direction.DOWN -> Math.PI;
             case Direction.LEFT -> -Math.PI / 2;
-            default -> 0; // No rotation by default
         };
     }
 
@@ -136,7 +135,7 @@ public class LevelPainter {
         // for (int i = 0; i < this.getController().getGame().getPlayer().getLives(); i++) {
         //     g.drawImage(heart, (int) this.getController().getXinPixel(i + Constants.MIN_X) , 0, null);
         // }
-        
+
         final int lives = this.getController().getGame().getPlayer().getLives();
         final int heartWidth = Constants.BLOCK_WIDTH;
         final int heartHeight = Constants.BLOCK_HEIGHT;
@@ -158,7 +157,8 @@ public class LevelPainter {
         g.setColor(Color.WHITE);
         g.setFont(myFont);
         g.drawString("Punteggio: " + this.getController().getGame().getPlayer().getScore(), 
-        (int) this.getController().getXinPixel(Constants.MAX_X - 3), (int) this.getController().getYinPixel(Constants.MAX_Y - 0.5));
+        (int) this.getController().getXinPixel(Constants.MAX_X - 3), (int) this.getController()
+        .getYinPixel(Constants.MAX_Y - 0.5));
     }
 
     /**
@@ -182,7 +182,7 @@ public class LevelPainter {
         final int coinX = startX + textWidth + 5;
         final int coinY = startY - coinSize + g.getFontMetrics().getDescent();
 
-        g.drawImage(LoadSave.GetSprite("coin.png"), coinX, coinY, coinSize, coinSize, null);
+        g.drawImage(LoadSave.getSprite("coin.png"), coinX, coinY, coinSize, coinSize, null);
     }
     /**
      * Paints all power-ups currently present in the level.
@@ -191,33 +191,33 @@ public class LevelPainter {
      */
     public void paintPickableObject(final Graphics g) {
         for (final PickableObject obj : getController().getGame().getPickableObjects()) {
-            g.drawImage((obj).getImage(), 
-            (int) this.getController().getXinPixel((obj).getPos().x()), 
-            (int) this.getController().getYinPixel((obj).getPos().y()), 
+            g.drawImage(obj.getImage(), 
+            (int) this.getController().getXinPixel(obj.getPos().x()), 
+            (int) this.getController().getYinPixel(obj.getPos().y()), 
             null);
         }
     }
-    
+
     /**
      * Displays the power-up image and its remaining duration.
      *
      * @param g the Graphics context to draw on
      */
     public void paintTimerPowerUp(final Graphics g) {
-        int yOffset = 0;               
-        List<PowerUp> powerUps = getController().getGame().getPickableObjectManager().getActivePowerUps();
-        for (PowerUp powerUp : powerUps) {
-            float duration = powerUp.getTimer();
-            if (duration > 0) {                             
-                String durationStr = String.format("%.1f", duration);
-                int strWidth = g.getFontMetrics(myFont).stringWidth(durationStr);
-                int imgSize = (int) (Constants.BLOCK_HEIGHT / 2);
-                int imgX = (int) this.getController().getXinPixel(Constants.MAX_X) - imgSize;
-                int imgY = (int) this.getController().getYinPixel(Constants.MAX_Y - 2) - yOffset;
+        int yOffset = 0;
+        final List<PowerUp> powerUps = getController().getGame().getPickableObjectManager().getActivePowerUps();
+        for (final PowerUp powerUp : powerUps) {
+            final float duration = powerUp.getTimer();
+            if (duration > 0) {
+                final String durationStr = String.format("%.1f", duration);
+                final int strWidth = g.getFontMetrics(myFont).stringWidth(durationStr);
+                final int imgSize = (Constants.BLOCK_HEIGHT / 2);
+                final int imgX = (int) this.getController().getXinPixel(Constants.MAX_X) - imgSize;
+                final int imgY = (int) this.getController().getYinPixel(Constants.MAX_Y - 2) - yOffset;
 
                 if (powerUp.getImage() != null) {
                     g.drawImage(powerUp.getImage(), imgX, imgY, imgSize, imgSize, null);
-                }                    
+                }
                 g.setColor(new Color(0, 0, 0, 80));
                 g.fillRect(imgX - 4, imgY - 4, strWidth + imgSize + 16, imgSize + 16);
                 g.setColor(Color.WHITE);
@@ -226,9 +226,9 @@ public class LevelPainter {
                 imgX + imgSize + 5,
                 imgY + imgSize 
                 );
-                yOffset += g.getFontMetrics().getHeight();                
+                yOffset -= Constants.BLOCK_HEIGHT;
             }
-            
+
         }
     }
 

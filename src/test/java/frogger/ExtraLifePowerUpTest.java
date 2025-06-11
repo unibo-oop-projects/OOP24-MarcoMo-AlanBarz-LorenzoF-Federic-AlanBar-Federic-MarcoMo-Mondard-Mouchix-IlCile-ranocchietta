@@ -27,7 +27,7 @@ class ExtraLifePowerUpTest {
     void setUp() {
         position = mock(Position.class);
         dimension = mock(Pair.class);
-        powerUp = new ExtraLifePowerUp(position, dimension, 0);
+        //powerUp = new ExtraLifePowerUp(position, dimension, 0);
     }
 
     @Test

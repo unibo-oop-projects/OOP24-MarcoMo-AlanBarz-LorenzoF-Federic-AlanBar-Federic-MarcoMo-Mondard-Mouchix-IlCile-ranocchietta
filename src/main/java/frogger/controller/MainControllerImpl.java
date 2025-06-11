@@ -22,7 +22,7 @@ public class MainControllerImpl {
     private final ShopController shopController = new ShopController(gameController);
 
     /**
-     * main loop that choose the controller based on Game actual State
+     * main loop that choose the controller based on Game actual State.
      */
     public void mainLoop() {
         final GameScene frame = new GameScene();

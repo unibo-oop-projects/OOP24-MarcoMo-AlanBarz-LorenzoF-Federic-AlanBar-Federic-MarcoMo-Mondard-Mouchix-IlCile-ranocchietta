@@ -1,7 +1,6 @@
 package frogger;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -78,16 +77,16 @@ final class RandomObstalesSpawnerTest {
         //Check with 0, should return the minimum value
         when(mockRandom.nextInt(bound)).thenReturn(0);
         spawner.spawn(Constants.MIN_OBSTACLES_NUMBER, Constants.MAX_OBSTACLES_NUMBER)
-        .forEach(e -> assertTrue(e.getPos().x() == Constants.MIN_X));
+        .forEach(e -> assertEquals(e.getPos().x(), Constants.MIN_X));
 
         //Check with bound - 1, should return the maximum value
         when(mockRandom.nextInt(bound)).thenReturn(bound - 1);
         spawner.spawn(Constants.MIN_OBSTACLES_NUMBER, Constants.MAX_OBSTACLES_NUMBER)
-        .forEach(e -> assertTrue(e.getPos().x() == Constants.MAX_X));
+        .forEach(e -> assertEquals(e.getPos().x(), Constants.MAX_X));
 
         //Check the y coordinate, should be 0 (from the constructor)
         spawner.spawn(Constants.MIN_OBSTACLES_NUMBER, Constants.MAX_OBSTACLES_NUMBER)
-        .forEach(e -> assertTrue(e.getPos().y() == 0));
+        .forEach(e -> assertEquals(e.getPos().y(), 0));
     }
 
     @Test

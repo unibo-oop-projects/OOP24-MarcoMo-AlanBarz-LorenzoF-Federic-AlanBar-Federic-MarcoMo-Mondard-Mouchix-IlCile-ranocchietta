@@ -2,8 +2,8 @@ package frogger;
 
 import java.awt.image.BufferedImage;
 
-public class ImageTester {
-    public static  boolean bufferedImagesEqual(BufferedImage img1, BufferedImage img2) {
+final class ImageTester {
+    public static  boolean bufferedImagesEqual(final BufferedImage img1, final BufferedImage img2) {
         if (img1.getWidth() != img2.getWidth() || img1.getHeight() != img2.getHeight()) {
             return false;
         }

@@ -52,9 +52,10 @@ public class DeathPanel extends AbstractPanel<DeathController> {
         paintMenu(g);
     }
 
-    private void paintMenu(Graphics g) {
+    private void paintMenu(final Graphics g) {
         this.getController().getMenu().getButtonList().forEach((button) -> {
-            g.drawImage(button.getCurrentImg(), button.getXPos(), button.getYPos(), Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT, null);           
+            g.drawImage(button.getCurrentImg(), button.getXPos(), button.getYPos(),
+            Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT, null);
         });
     }
 
@@ -67,7 +68,7 @@ public class DeathPanel extends AbstractPanel<DeathController> {
         g.setColor(Color.BLACK);
         g.setFont(myFont);
         g.drawString("YOUR SCORE: " + this.score, 
-        (int)this.getController().getXinPixel(FONT_POS.x()), (int) this.getController().getYinPixel(FONT_POS.y()));
+        (int) this.getController().getXinPixel(FONT_POS.x()), (int) this.getController().getYinPixel(FONT_POS.y()));
     }
 
     /**
@@ -75,7 +76,7 @@ public class DeathPanel extends AbstractPanel<DeathController> {
      */
     @Override
     protected void importImg() {
-        this.setBackgroundImage(LoadSave.GetSprite("death_background.png"));
-    };
+        this.setBackgroundImage(LoadSave.getSprite("death_background.png"));
+    }
 
 }

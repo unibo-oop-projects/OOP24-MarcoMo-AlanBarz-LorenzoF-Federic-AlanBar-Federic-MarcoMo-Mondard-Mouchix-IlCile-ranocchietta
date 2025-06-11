@@ -55,6 +55,7 @@ public class RandomEaglesSpawner extends AbstractRandomEntitySpawner<Eagle> {
         while (triggerRow == Constants.MIN_Y || triggerRow == Constants.MAX_Y) {
             if (it >= Constants.MAX_ITERATIONS_NUMBER) {
                 triggerRow = Constants.MIN_Y - 1; //impossible value just useful for testing
+                break;
             }
             triggerRow = randomY();
             it++;
