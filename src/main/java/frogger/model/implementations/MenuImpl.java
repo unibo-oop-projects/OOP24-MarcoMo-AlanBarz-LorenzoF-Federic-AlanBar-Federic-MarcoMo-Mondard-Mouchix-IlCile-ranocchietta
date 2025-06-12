@@ -1,7 +1,6 @@
 package frogger.model.implementations;
 
 import java.awt.event.MouseEvent;
-import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -45,7 +44,7 @@ public class MenuImpl implements Menu {
         int i = 0;
         for (final GameState state : states) {
             final int offset = (i - (int) (states.length / 2)) * (Constants.BUTTON_HEIGHT + Constants.BUTTONS_DISTANCE);
-            final int imgIndex = Arrays.asList(GameState.values()).indexOf(state);
+            final int imgIndex = state.ordinal();
             buttons.add(new MenuButtons(xPos, yPos + offset, imgIndex, states[i]));
             i++;
         }

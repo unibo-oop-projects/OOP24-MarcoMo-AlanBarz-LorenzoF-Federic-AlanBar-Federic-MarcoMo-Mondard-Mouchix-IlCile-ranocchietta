@@ -61,7 +61,7 @@ public class Coin extends PickableObjectImpl {
     }
 
     /**
-     * Generates and retunr a randome value for the coin.
+     * Generates and return a random value for the coin.
      *
      * @return the coin value
      */

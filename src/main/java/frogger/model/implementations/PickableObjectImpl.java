@@ -1,7 +1,5 @@
 package frogger.model.implementations;
 
-import java.util.Optional;
-
 import frogger.common.Pair;
 import frogger.common.Position;
 import frogger.model.interfaces.PickableObject;
@@ -29,7 +27,7 @@ public abstract class PickableObjectImpl extends GameObjectImpl implements Picka
      * The entity related to this pickable object, which can be the player, another gameObject or a list of gameObject.
      * Initially set to an empty optional to indicate no related entity.
      */
-    private Object relatedEntity = Optional.empty(); 
+    private Object relatedEntity = null; 
 
     /**
      * Constructs a new PickableObjectImpl with the specified position and dimension.
