@@ -1,7 +1,7 @@
 package frogger.model.implementations;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 
@@ -36,7 +36,7 @@ import frogger.model.interfaces.PowerUp;
  */
 public class PickableObjectManagerImpl implements PickableObjectManager {
 
-    private final Map<PowerUpType, PowerUp> activePowerUps = new HashMap<>();
+    private final Map<PowerUpType, PowerUp> activePowerUps = new EnumMap<>(PowerUpType.class);
     private final GameImpl game;
     private Controller controller;
 
@@ -102,10 +102,9 @@ public class PickableObjectManagerImpl implements PickableObjectManager {
      * @param lastPowerUp    the previously active power-up of the same type
      */
     private void updatefieldsPowerUp(final PowerUp currentPowerUp, final PowerUp lastPowerUp) {
-        if (currentPowerUp != null && lastPowerUp != null) {
-            if (currentPowerUp instanceof FreezePowerUp cPowerUp && lastPowerUp instanceof FreezePowerUp lPowerUp) {
+        if (currentPowerUp != null && lastPowerUp != null
+         && currentPowerUp instanceof FreezePowerUp cPowerUp && lastPowerUp instanceof FreezePowerUp lPowerUp) {
                 cPowerUp.setEntitiesSpeed(lPowerUp.getEntitiesSpeed());
-            }
         }
     }
 

@@ -1,6 +1,7 @@
 package frogger.model.implementations;
 
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -39,11 +40,11 @@ public class MenuImpl implements Menu {
     }
 
     private void loadButtons(final GameState... states) {
-        final int xPos = (int) (Constants.FRAME_WIDTH / 2);
-        final int yPos = (int) (Constants.FRAME_HEIGHT / 2);
+        final int xPos = Constants.FRAME_WIDTH / 2;
+        final int yPos = Constants.FRAME_HEIGHT / 2;
         int i = 0;
         for (final GameState state : states) {
-            final int offset = (i - (int) (states.length / 2)) * (Constants.BUTTON_HEIGHT + Constants.BUTTONS_DISTANCE);
+            final int offset = (i - states.length / 2) * (Constants.BUTTON_HEIGHT + Constants.BUTTONS_DISTANCE);
             final int imgIndex = state.ordinal();
             buttons.add(new MenuButtons(xPos, yPos + offset, imgIndex, states[i]));
             i++;
@@ -55,7 +56,7 @@ public class MenuImpl implements Menu {
     */
     @Override
     public List<Button> getButtonList() {
-        return buttons;
+        return new ArrayList<>(buttons);
     }
 
     /**
@@ -87,11 +88,9 @@ public class MenuImpl implements Menu {
     @Override
     public void mouseReleased(final MouseEvent e) {
        for (final Button button : buttons) {
-            if (isIn(e, button)) {
-                if (button.isMousePressed()) {
-                    button.applyGameState();
-                    break;
-                }
+            if (isIn(e, button) && button.isMousePressed()) {
+                button.applyGameState();
+                break;
             }
         }
         resetButtons();

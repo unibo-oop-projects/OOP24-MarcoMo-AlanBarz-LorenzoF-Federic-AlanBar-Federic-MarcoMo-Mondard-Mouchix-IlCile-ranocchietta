@@ -153,7 +153,7 @@ public class MenuButtons implements Button {
      */
     @Override
     public Rectangle getBounds() {
-        return bounds;
+        return new Rectangle(this.bounds);
     }
 
     /**

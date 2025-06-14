@@ -26,6 +26,8 @@ import frogger.model.interfaces.PickableObject;
  */
 public final class PickableObjectFactory {
 
+    private static final Random RANDOM = new Random();
+
     /**
      * Private constructor to prevent instantiation of the factory class.
      * This class is intended to be used as a utility for creating PickableObject instances.
@@ -58,14 +60,13 @@ public final class PickableObjectFactory {
      * @return a new instance of a PowerUp based on random selection
      */
     private static PickableObject getRandomPowerUpType(final Position position, final Pair dimension) {
-        final Random random = new Random();
-        final int rand = random.nextInt(1, 101); // 1-100
+        final int rand = RANDOM.nextInt(1, 101); // 1-100
         final PowerUpType selectedType;
 
         if (rand < Constants.EXTRA_LIFE_THRESHOLD) { 
             selectedType = PowerUpType.EXTRA_LIFE;
         } else {
-            selectedType = random.nextBoolean() ? PowerUpType.FREEZE : PowerUpType.X2_SCORE;
+            selectedType = RANDOM.nextBoolean() ? PowerUpType.FREEZE : PowerUpType.X2_SCORE;
         }
 
         return switch (selectedType) {

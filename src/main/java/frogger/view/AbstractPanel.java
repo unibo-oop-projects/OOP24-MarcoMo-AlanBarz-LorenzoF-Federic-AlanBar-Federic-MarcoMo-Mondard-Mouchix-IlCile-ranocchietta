@@ -16,7 +16,7 @@ import frogger.controller.AbstractController;
  * @param <X> the type of the controller associated with this panel
  */
 public abstract class AbstractPanel<X extends AbstractController> extends JPanel {
-    /**added because the class JPanel implements Serializable */
+    /**added because the class JPanel implements Serializable. */
     private static final long serialVersionUID = 1L;
     /**The controller associated with this panel.*/
     private X controller;
