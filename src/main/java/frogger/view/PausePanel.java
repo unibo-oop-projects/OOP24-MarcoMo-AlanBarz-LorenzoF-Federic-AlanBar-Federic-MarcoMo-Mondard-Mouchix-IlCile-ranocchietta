@@ -12,8 +12,9 @@ import frogger.controller.PauseController;
  * The panel that is drawn when the game is paused.
  */
 public class PausePanel extends AbstractPanel<PauseController> {
-
-    private BufferedImage background;
+    /*added because the class JPanel implements Serializable. */
+    private static final long serialVersionUID = 1L;
+    private transient BufferedImage background;
 
     /**
      * Just set some basic parameters.

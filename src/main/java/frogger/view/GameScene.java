@@ -20,7 +20,7 @@ public class GameScene {
         frame = new JFrame("Ranocchietta");
         frame.setSize(Constants.FRAME_WIDTH, Constants.FRAME_HEIGHT);
         this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setResizable(true);
+        frame.setResizable(false);
         frame.setLocationRelativeTo(null);
     }
 

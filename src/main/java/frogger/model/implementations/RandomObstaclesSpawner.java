@@ -4,6 +4,7 @@ import java.util.Random;
 import java.util.Set;
 import java.util.stream.IntStream;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import frogger.common.Constants;
 import frogger.common.Direction;
 import frogger.common.Pair;
@@ -33,6 +34,10 @@ public class RandomObstaclesSpawner<X extends MovingObject> extends AbstractRand
      * @param direction the direction of the obstacle
      * @param ran random injection to be able to test it
      */
+    @SuppressFBWarnings(
+        value = "EI2",
+        justification = "Random is intentionally injected to allow deterministic behavior during testing"
+    )
     public RandomObstaclesSpawner(final Class<X> type, final int y, final float speed, final Direction direction,
     final Random ran) {
         super(ran);

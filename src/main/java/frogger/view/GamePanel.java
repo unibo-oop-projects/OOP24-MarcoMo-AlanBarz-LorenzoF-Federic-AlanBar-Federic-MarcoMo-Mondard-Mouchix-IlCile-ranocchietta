@@ -11,6 +11,8 @@ import frogger.controller.GameControllerImpl;
  * to the {@link LevelPainter} and for setting input listeners.
  */
 public class GamePanel extends AbstractPanel<GameControllerImpl> {
+    /*added because the class JPanel implements Serializable. */
+    private static final long serialVersionUID = 1L;
     private LevelPainter painter;
 
     /**

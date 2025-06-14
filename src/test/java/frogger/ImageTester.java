@@ -7,7 +7,7 @@ final class ImageTester {
     private ImageTester() {
         throw new AssertionError();
     }
-    
+
     public static boolean bufferedImagesEqual(final BufferedImage img1, final BufferedImage img2) {
         if (img1.getWidth() != img2.getWidth() || img1.getHeight() != img2.getHeight()) {
             return false;

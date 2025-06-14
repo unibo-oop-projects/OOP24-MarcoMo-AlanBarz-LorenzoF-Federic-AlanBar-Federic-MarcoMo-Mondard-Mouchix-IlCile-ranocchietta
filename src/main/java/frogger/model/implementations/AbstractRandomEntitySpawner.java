@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.Set;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import frogger.common.Constants;
 import frogger.common.Position;
 import frogger.model.interfaces.EntitySpawner;
@@ -23,6 +24,10 @@ public abstract class AbstractRandomEntitySpawner<X> implements EntitySpawner<X>
      * the class, it's useful to make deterministic output while testing.
      * @param ran the random object that will be used in this class.
      */
+    @SuppressFBWarnings(
+        value = "EI2",
+        justification = "Random is intentionally injected to allow deterministic behavior during testing"
+    )
     public AbstractRandomEntitySpawner(final Random ran) {
         this.ran = ran;
     }

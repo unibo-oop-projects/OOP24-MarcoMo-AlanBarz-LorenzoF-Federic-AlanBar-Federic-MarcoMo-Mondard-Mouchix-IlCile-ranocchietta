@@ -3,6 +3,7 @@ package frogger.model.implementations;
 import java.util.Random;
 import java.util.Set;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import frogger.common.Constants;
 import frogger.common.Direction;
 import frogger.common.Pair;
@@ -21,6 +22,10 @@ public class RandomEaglesSpawner extends AbstractRandomEntitySpawner<Eagle> {
      * Just recall the superclass constructor.
      * @param ran random injection useful for testing
      */
+    @SuppressFBWarnings(
+        value = "EI2",
+        justification = "Random is intentionally injected to allow deterministic behavior during testing"
+    )
     public RandomEaglesSpawner(final Random ran) {
         super(ran);
         this.ran = ran;

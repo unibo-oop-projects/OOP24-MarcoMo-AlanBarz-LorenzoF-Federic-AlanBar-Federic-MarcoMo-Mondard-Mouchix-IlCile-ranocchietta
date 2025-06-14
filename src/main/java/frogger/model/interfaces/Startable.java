@@ -2,6 +2,7 @@ package frogger.model.interfaces;
 
 /**
  * Gives to an object the ability to start its action only after the trigger has been fired.
+ * @param <X> the type of trigger that will start the action.
  */
 public interface Startable<X> {
     /**
