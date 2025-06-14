@@ -11,6 +11,10 @@ import frogger.model.interfaces.MenuFactory;
 import frogger.view.GameScene;
 import frogger.view.MenuPanel;
 
+/**
+ * Controller for the main menu. 
+ * Manages input handling, and rendering within the game scene.
+ */
 public class MenuControllerImpl extends AbstractController implements MenuController {
     private final MenuFactory menuFactory = new MenuFactoryImpl();
     private MenuPanel scenePanel;

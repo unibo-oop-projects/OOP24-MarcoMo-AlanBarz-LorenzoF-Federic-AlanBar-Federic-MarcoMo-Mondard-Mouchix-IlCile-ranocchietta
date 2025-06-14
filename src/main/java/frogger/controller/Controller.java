@@ -25,12 +25,12 @@ public interface Controller {
      * @param x the logical x-coordinate
      * @return the corresponding x-coordinate in pixels
      */
-    double getXinPixel(final double x);
+    double getXinPixel(double x);
 
     /**
      * Trasformer of a logical y-coordinate (in game units) to a pixel value on screen.
      * @param y the logical y-coordinate
      * @return the corresponding y-coordinate in pixels
      */
-    double getYinPixel(final double y);
+    double getYinPixel(double y);
 }

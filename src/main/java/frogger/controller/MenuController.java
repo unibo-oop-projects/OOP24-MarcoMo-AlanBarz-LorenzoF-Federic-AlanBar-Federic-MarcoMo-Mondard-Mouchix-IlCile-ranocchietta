@@ -5,7 +5,10 @@ import java.awt.event.MouseMotionListener;
 
 import frogger.model.interfaces.Menu;
 
-
+/**
+ * Defines the behavior of a controller that manages a menu,
+ * providing access to input listeners and the associated menu instance.
+ */
 public interface MenuController extends Controller {
 
     /**
