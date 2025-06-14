@@ -61,7 +61,7 @@ public class MenuButtons implements Button {
      */
     private void loadImgs() {
         this.imgs = new BufferedImage[3];
-        final BufferedImage temp = LoadSave.getSprite(LoadSave.MENU_BUTTONS);
+        final BufferedImage temp = LoadSave.getSprite("menu_buttons.png");
         for (int i = 0; i < imgs.length; i++) {
             imgs[i] = temp.getSubimage(i * Constants.BUTTON_WIDTH_DEFAULT, 
                                         rowIndex * Constants.BUTTON_HEIGHT_DEFAULT, 

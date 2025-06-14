@@ -6,30 +6,32 @@ import java.io.InputStream;
 
 import javax.imageio.ImageIO;
 
-public class LoadSave {
+/**
+ * Utility class for loading image resources from the classpath.
+ */
+public final class LoadSave {
 
-    public static final String MENU_BUTTONS = "menu_buttons.png";
-    public static final String MENU_BUTTONBACK = "menu_background.png";
-    public static final String EXTRA_LIFE = "heartPowerUp.png";
-    public static final String GAME_BACKGROUND = "background.png";
-
+    /**
+     * Private constructor to prevent instantiation of this utility class.
+     */
     private LoadSave() { }
 
+    /**
+     * Loads an image from the classpath as a {@link BufferedImage}.
+     *
+     * @param fileName the name of the image file to load, relative to the classpath root.
+     * @return the loaded {@code BufferedImage}, or {@code null} if the file is not found or an error occurs.
+     */
     public static BufferedImage getSprite(final String fileName) {
-        BufferedImage img = null;
-        final InputStream is = LoadSave.class.getResourceAsStream("/" + fileName);
-        try {
-            img = ImageIO.read(is);
-        } catch (final IOException e) {
-            System.err.println("Error closing InputStream: " + e.getMessage());
-        } finally {
-            try {
-                is.close();
-            } catch (final IOException e) {
-                System.err.println("Error closing InputStream in finally block: " + e.getMessage());
+        try (InputStream is = LoadSave.class.getResourceAsStream("/" + fileName)) {
+            if (is == null) {
+                System.err.println("File not found: " + fileName);
+                return null;
             }
+            return ImageIO.read(is);
+        } catch (final IOException e) {
+            System.err.println("Error reading image: " + e.getMessage());
+            return null;
         }
-
-        return img;
     }
 }

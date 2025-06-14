@@ -8,21 +8,39 @@ import frogger.common.Constants;
 import frogger.common.LoadSave;
 import frogger.controller.MenuControllerImpl;
 
+/**
+ * The {@code MenuPanel} class represents the main menu panel in the Frogger game.
+ * It extends {@link AbstractPanel} and is responsible for rendering the menu background,
+ * the back button, and the menu buttons. It also sets up mouse input listeners for
+ * user interaction.
+ * 
+ * @see AbstractPanel
+ * @see MenuControllerImpl
+ */
 public class MenuPanel extends AbstractPanel<MenuControllerImpl> {
     private BufferedImage buttonBack;
 
+    /**
+     * Constructs a new ShopPanel and sets its properties.
+     */
     public MenuPanel() {
         setFocusable(true);
         setPanelSize();
         setBackground(Color.BLACK);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void setInputListener() {
         this.addMouseListener(this.getController().getMouseListener());
         this.addMouseMotionListener(this.getController().getMouseMotionListener());
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void paintComponent(final Graphics g) {
         paintBackground(g);
@@ -30,12 +48,23 @@ public class MenuPanel extends AbstractPanel<MenuControllerImpl> {
         paintMenu(g);
     }
 
+    /**
+     * Paint the mini-background for the button.
+     * 
+     * @param g the Graphics context to use for painting
+     */
     private void paintButtonBack(final Graphics g) {
-        g.drawImage(buttonBack, Constants.FRAME_WIDTH / 2 - (buttonBack.getWidth() + 30) / 2,
-        Constants.FRAME_HEIGHT / 2 - (buttonBack.getHeight() + 30) / 2, buttonBack.getWidth() + 30,
-        buttonBack.getHeight() + 30, null);
+        final int offset = 30;
+        g.drawImage(buttonBack, Constants.FRAME_WIDTH / 2 - (buttonBack.getWidth() + offset) / 2,
+        Constants.FRAME_HEIGHT / 2 - (buttonBack.getHeight() + offset) / 2, buttonBack.getWidth() + offset,
+        buttonBack.getHeight() + offset, null);
     }
 
+    /**
+     * Paint the buttons.
+     * 
+     * @param g the Graphics context to use for painting
+     */
     private void paintMenu(final Graphics g) {
         this.getController().getMenu().getButtonList().forEach((button) -> {
             g.drawImage(button.getCurrentImg(), button.getXPos(), button.getYPos(),
@@ -43,9 +72,12 @@ public class MenuPanel extends AbstractPanel<MenuControllerImpl> {
         });
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void importImg() {
-        buttonBack = LoadSave.getSprite(LoadSave.MENU_BUTTONBACK);
-        this.setBackgroundImage(LoadSave.getSprite(LoadSave.GAME_BACKGROUND));
+        buttonBack = LoadSave.getSprite("menu_background.png");
+        this.setBackgroundImage(LoadSave.getSprite("background.png"));
     }
 }

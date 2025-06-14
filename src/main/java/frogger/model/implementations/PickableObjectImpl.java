@@ -27,7 +27,7 @@ public abstract class PickableObjectImpl extends GameObjectImpl implements Picka
      * The entity related to this pickable object, which can be the player, another gameObject or a list of gameObject.
      * Initially set to an empty optional to indicate no related entity.
      */
-    private Object relatedEntity = null; 
+    private Object relatedEntity; 
 
     /**
      * Constructs a new PickableObjectImpl with the specified position and dimension.
