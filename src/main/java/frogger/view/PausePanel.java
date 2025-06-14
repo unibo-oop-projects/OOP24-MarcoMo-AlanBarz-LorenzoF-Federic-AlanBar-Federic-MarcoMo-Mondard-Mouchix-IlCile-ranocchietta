@@ -14,7 +14,7 @@ import frogger.controller.PauseController;
 public class PausePanel extends AbstractPanel<PauseController> {
     /*added because the class JPanel implements Serializable. */
     private static final long serialVersionUID = 1L;
-    private BufferedImage background;
+    private transient BufferedImage background;
 
     /**
      * Just set some basic parameters.
