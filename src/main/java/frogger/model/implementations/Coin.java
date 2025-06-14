@@ -24,7 +24,7 @@ import frogger.controller.GameControllerImpl;
 public class Coin extends PickableObjectImpl {
 
     private final int coinValue;
-    final Random random = new Random();
+    private final Random random = new Random();
 
     /**
      * Constructs a new Coin at the specified position with the given dimensions.
