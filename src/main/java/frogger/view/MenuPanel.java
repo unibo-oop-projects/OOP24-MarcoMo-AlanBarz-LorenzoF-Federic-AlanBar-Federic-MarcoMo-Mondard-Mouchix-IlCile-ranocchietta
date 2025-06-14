@@ -77,7 +77,7 @@ public class MenuPanel extends AbstractPanel<MenuControllerImpl> {
      */
     @Override
     protected void importImg() {
-        buttonBack = LoadSave.getSprite(LoadSave.MENU_BUTTONBACK);
-        this.setBackgroundImage(LoadSave.getSprite(LoadSave.GAME_BACKGROUND));
+        buttonBack = LoadSave.getSprite("menu_background.png");
+        this.setBackgroundImage(LoadSave.getSprite("background.png"));
     }
 }

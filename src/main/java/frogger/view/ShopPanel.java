@@ -46,7 +46,7 @@ public class ShopPanel extends AbstractPanel<ShopController> {
      */
     @Override
     protected void importImg() {
-        this.setBackgroundImage(LoadSave.getSprite(LoadSave.GAME_BACKGROUND));
+        this.setBackgroundImage(LoadSave.getSprite("background.png"));
     }
 
     /**

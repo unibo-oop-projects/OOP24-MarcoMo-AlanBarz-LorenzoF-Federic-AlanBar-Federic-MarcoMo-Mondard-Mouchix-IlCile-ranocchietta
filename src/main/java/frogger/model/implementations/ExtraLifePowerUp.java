@@ -35,7 +35,7 @@ public class ExtraLifePowerUp extends PowerUpImpl {
      */
     public ExtraLifePowerUp(final Position pos, final Pair dimension) {
         super(pos, dimension, 0); // Duration is to set to 0 for permanent effect
-        super.setImage(LoadSave.EXTRA_LIFE);
+        super.setImage("heartPowerUp.png");
     }
 
     /**
