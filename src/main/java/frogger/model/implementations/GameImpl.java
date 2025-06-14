@@ -50,7 +50,7 @@ public class GameImpl implements Game {
     @Override
     public void checkGameOver() {
         if (this.player.getLives() == 0) {
-            GameState.state = GameState.DEAD;
+            GameState.setState(GameState.DEAD);
         }
     }
 
@@ -200,7 +200,7 @@ public class GameImpl implements Game {
      */
     @Override
     public boolean gameIsPaused() {
-        return GameState.state == GameState.PAUSE;
+        return GameState.getState() == GameState.PAUSE;
     }
 
     /**

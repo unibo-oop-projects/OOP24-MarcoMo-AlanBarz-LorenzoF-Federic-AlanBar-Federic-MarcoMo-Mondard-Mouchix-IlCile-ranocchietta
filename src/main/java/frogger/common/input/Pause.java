@@ -14,7 +14,7 @@ public final class Pause implements Command {
      */
     @Override
     public void execute(final Game game) {
-        GameState.state = GameState.PAUSE;
+        GameState.setState(GameState.PAUSE);
     }
 
 }

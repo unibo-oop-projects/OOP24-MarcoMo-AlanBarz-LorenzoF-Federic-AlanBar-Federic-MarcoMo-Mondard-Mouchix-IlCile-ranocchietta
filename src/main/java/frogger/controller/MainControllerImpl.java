@@ -27,7 +27,7 @@ public class MainControllerImpl {
     public void mainLoop() {
         final GameScene frame = new GameScene();
         while (true) {
-            switch (GameState.state) {
+            switch (GameState.getState()) {
                 case PLAYING -> {
                     this.controller = this.gameController;
                 }

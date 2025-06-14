@@ -82,7 +82,7 @@ public class ShopPanel extends AbstractPanel<ShopController> {
 
         final JButton backButton = new JButton("Menu");
         backButton.addActionListener((e) -> {
-            GameState.state = GameState.MENU;
+            GameState.setState(GameState.MENU);
         });
 
         backButton.setBounds((int) this.getController().getXinPixel(Constants.MIN_X + 0.5), 

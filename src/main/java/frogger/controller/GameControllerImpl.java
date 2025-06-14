@@ -76,7 +76,7 @@ public class GameControllerImpl extends AbstractController implements GameContro
      */
     @Override
     public boolean loopCondition() {
-        return GameState.state == GameState.PLAYING;
+        return GameState.getState() == GameState.PLAYING;
     }
 
     /**

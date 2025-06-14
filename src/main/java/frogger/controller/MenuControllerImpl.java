@@ -34,7 +34,7 @@ public class MenuControllerImpl extends AbstractController implements MenuContro
 
     @Override
     protected boolean loopCondition() {
-        return GameState.state == GameState.MENU;
+        return GameState.getState() == GameState.MENU;
     }
 
     @Override

@@ -92,7 +92,7 @@ public class ShopController extends AbstractController {
      */
     @Override
     protected boolean loopCondition() {
-        return GameState.state == GameState.SHOP;
+        return GameState.getState() == GameState.SHOP;
     }
 
     /**

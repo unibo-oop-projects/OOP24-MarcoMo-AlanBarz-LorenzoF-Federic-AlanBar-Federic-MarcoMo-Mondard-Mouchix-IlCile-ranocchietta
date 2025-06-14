@@ -161,7 +161,7 @@ public class MenuButtons implements Button {
      */
     @Override
     public void applyGameState() {
-        GameState.state = state;
+        GameState.setState(state);
     }
 
     /**

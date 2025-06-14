@@ -63,7 +63,7 @@ public class PauseController extends AbstractController implements MenuControlle
      */
     @Override
     protected boolean loopCondition() {
-        return GameState.state == GameState.PAUSE;
+        return GameState.getState() == GameState.PAUSE;
     }
 
     /**

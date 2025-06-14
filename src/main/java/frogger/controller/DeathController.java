@@ -64,7 +64,7 @@ public class DeathController extends AbstractController implements MenuControlle
      */
     @Override
     protected boolean loopCondition() {
-        return GameState.state == GameState.DEAD;
+        return GameState.getState() == GameState.DEAD;
     }
 
     /**
