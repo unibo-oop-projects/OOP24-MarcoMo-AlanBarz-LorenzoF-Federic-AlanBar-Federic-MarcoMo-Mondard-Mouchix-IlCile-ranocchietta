@@ -210,7 +210,7 @@ public class LevelPainter {
             if (duration > 0) {
                 final String durationStr = String.format("%.1f", duration);
                 final int strWidth = g.getFontMetrics(myFont).stringWidth(durationStr);
-                final int imgSize = (Constants.BLOCK_HEIGHT / 2);
+                final int imgSize = Constants.BLOCK_HEIGHT / 2;
                 final int imgX = (int) this.getController().getXinPixel(Constants.MAX_X) - imgSize;
                 final int imgY = (int) this.getController().getYinPixel(Constants.MAX_Y - 2) - yOffset;
                 final int rectX = imgX - 4;
@@ -242,17 +242,9 @@ public class LevelPainter {
      * Loads resources from the classpath.
      */
     public void importImg() {
-        final InputStream backgroundStream = getClass().getResourceAsStream("/background.png");
-        final InputStream heartStream = getClass().getResourceAsStream("/heart.png");
-        final InputStream deathStream = getClass().getResourceAsStream("/death.png");
-
-        try {
-            background = ImageIO.read(backgroundStream);
-            heart = ImageIO.read(heartStream);
-            death = ImageIO.read(deathStream);
-        } catch (final IOException e) {
-            e.printStackTrace();
-        }
+        background = LoadSave.getSprite("background.png");
+        heart = LoadSave.getSprite("heart.png");
+        death = LoadSave.getSprite("death.png");
     }
 
     /**
