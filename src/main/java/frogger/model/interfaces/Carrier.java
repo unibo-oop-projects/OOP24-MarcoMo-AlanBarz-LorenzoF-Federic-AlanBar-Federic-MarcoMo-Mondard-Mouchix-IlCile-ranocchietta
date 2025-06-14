@@ -2,7 +2,7 @@ package frogger.model.interfaces;
 
 /**
  * give to an object the possibility to carry another object by setting or removing it.
- * * @param <X> the type of object to carry
+ * @param <X> the type of object to carry
  */
 public interface Carrier<X> { 
     /**

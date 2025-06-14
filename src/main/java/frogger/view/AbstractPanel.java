@@ -13,14 +13,14 @@ import frogger.controller.AbstractController;
  * Abstract base class for all panels in the Frogger game.
  * Provides common functionality for background image handling and controller management.
  *
- * @param <X> the type of the controller associated with this panel
+ * @param <X> the type of the controller associated with this panel.
  */
 public abstract class AbstractPanel<X extends AbstractController> extends JPanel {
-    /**added because the class JPanel implements Serializable */
+    /*added because the class JPanel implements Serializable. */
     private static final long serialVersionUID = 1L;
-    /**The controller associated with this panel.*/
+    /*The controller associated with this panel.*/
     private X controller;
-    /**The background image for this panel.*/
+    /*The background image for this panel.*/
     private BufferedImage background;
 
     /**

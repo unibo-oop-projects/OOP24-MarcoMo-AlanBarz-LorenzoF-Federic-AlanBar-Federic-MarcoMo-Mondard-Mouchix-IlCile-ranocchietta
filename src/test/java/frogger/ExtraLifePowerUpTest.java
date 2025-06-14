@@ -14,16 +14,14 @@ import frogger.model.implementations.ExtraLifePowerUp;
 import frogger.model.implementations.PickableObjectDependency;
 import frogger.model.implementations.PlayerObjectImpl;
 
-
-
 class ExtraLifePowerUpTest {
-
     private ExtraLifePowerUp powerUp;
+    @SuppressWarnings("unused")
     private Position position;
+    @SuppressWarnings("unused")
     private Pair dimension;
 
     @BeforeEach
-    @SuppressWarnings("unused")
     void setUp() {
         position = mock(Position.class);
         dimension = mock(Pair.class);
