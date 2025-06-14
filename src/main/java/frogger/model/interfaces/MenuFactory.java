@@ -1,5 +1,9 @@
 package frogger.model.interfaces;
 
+/**
+ * Factory interface for creating different types of menus in the game.
+ * This interface defines methods to create the main menu, pause menu, and death menu.
+ */
 public interface MenuFactory {
     /**
      * Creates the main menu with options to play, shop, or quit.

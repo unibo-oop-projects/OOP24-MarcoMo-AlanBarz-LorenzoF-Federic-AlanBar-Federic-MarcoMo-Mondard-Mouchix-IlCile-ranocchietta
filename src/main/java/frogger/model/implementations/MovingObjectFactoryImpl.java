@@ -6,11 +6,16 @@ import frogger.common.Position;
 import frogger.model.interfaces.MovingObject;
 import frogger.model.interfaces.MovingObjectFactory;
 
+import java.lang.reflect.InvocationTargetException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  * The factory for moving object, you can create all the type of moving object, Car, Eagle, Trunk.
  * implement MovingObjectFactory
  */
 public class MovingObjectFactoryImpl implements MovingObjectFactory {
+    private static final Logger LOGGER = Logger.getLogger(MovingObjectFactoryImpl.class.getName());
 
     /**
      * generic method to create a MovingObject element.
@@ -24,21 +29,13 @@ public class MovingObjectFactoryImpl implements MovingObjectFactory {
      */
     @Override
     public <X extends MovingObject> X createMovingObject(final Position pos, final Pair dimension, final float speed,
-        final Direction direction,
-            final Class<X> c) {
+        final Direction direction, final Class<X> c) {
         try {
             return c.getConstructor(Position.class, Pair.class, float.class, Direction.class)
             .newInstance(pos, dimension, speed, direction);
-        } catch (final NullPointerException ex) {
-            System.out.println("error: " + ex.getMessage());
-            return null;
-        } catch (final RuntimeException ex) {
-            System.out.println("error: " + ex.getMessage());
-            return null;
-        } catch (final Exception ex) {
-            System.out.println("error: " + ex.getMessage());
+        } catch (NoSuchMethodException | InstantiationException | IllegalAccessException | InvocationTargetException ex) {
+            LOGGER.log(Level.SEVERE, "Error creating MovingObject: " + ex.getMessage(), ex);
             return null;
         }
     }
-
 }

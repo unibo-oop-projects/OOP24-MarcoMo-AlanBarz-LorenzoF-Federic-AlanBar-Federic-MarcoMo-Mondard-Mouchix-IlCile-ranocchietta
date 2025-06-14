@@ -18,6 +18,9 @@ public class MenuControllerImpl extends AbstractController implements MenuContro
 
     private final MouseInput mouseInput = new MouseInput(this);
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void init(final GameScene gameScene) {
         menu = menuFactory.mainMenu();
@@ -26,27 +29,42 @@ public class MenuControllerImpl extends AbstractController implements MenuContro
         gameScene.setPanel(scenePanel);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void core() {
         this.getMenu().update();
         this.scenePanel.repaint();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected boolean loopCondition() {
         return GameState.getState() == GameState.MENU;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Menu getMenu() {
         return menu;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public MouseMotionListener getMouseMotionListener() {
         return this.mouseInput;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public MouseListener getMouseListener() {
         return this.mouseInput;

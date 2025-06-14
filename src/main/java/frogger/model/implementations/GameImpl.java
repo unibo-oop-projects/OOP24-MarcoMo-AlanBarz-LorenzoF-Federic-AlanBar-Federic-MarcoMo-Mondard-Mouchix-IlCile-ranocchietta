@@ -81,7 +81,7 @@ public class GameImpl implements Game {
         }
 
         this.getPickableObjects().stream()
-            .map(x -> PickableObjectImpl.class.cast(x))
+            .map(PickableObjectImpl.class :: cast)
             .filter(x -> x.getHitBox().intersects(this.player.getHitBox()))
             .findFirst()
             .ifPresent(x -> {
@@ -211,6 +211,10 @@ public class GameImpl implements Game {
         return this.level.getPickableObjects();
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public PickableObjectManagerImpl getPickableObjectManager() {
         return this.pickableObjectManager;
     }

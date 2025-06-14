@@ -3,7 +3,12 @@ package frogger;
 import java.awt.image.BufferedImage;
 
 final class ImageTester {
-    public static  boolean bufferedImagesEqual(final BufferedImage img1, final BufferedImage img2) {
+    // Private constructor to prevent instantiation
+    private ImageTester() {
+        throw new AssertionError();
+    }
+    
+    public static boolean bufferedImagesEqual(final BufferedImage img1, final BufferedImage img2) {
         if (img1.getWidth() != img2.getWidth() || img1.getHeight() != img2.getHeight()) {
             return false;
         }
