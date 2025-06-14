@@ -39,7 +39,7 @@ public class MainControllerImpl {
                     this.controller = this.shopController;
                 }
                 case DEAD -> {
-                    this.controller = new DeathController(((GameController) gameController).getGame().getScore());
+                    this.controller = new DeathController(gameController.getGame().getScore());
                     this.gameController.newGame();
                 }
                 case PAUSE -> {

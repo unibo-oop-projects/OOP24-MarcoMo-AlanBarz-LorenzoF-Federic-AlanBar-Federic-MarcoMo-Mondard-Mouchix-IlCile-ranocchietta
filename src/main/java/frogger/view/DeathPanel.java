@@ -14,6 +14,8 @@ import frogger.controller.DeathController;
  * Shows the final score and a background image, and allows mouse interaction for restarting or exiting.
  */
 public class DeathPanel extends AbstractPanel<DeathController> {
+    /**added because the class JPanel implements Serializable */
+    private static final long serialVersionUID = 1L;
     /** Position on screen where the score will be drawn.*/
     private static final Position FONT_POS = new Position(-4, 2);
 
@@ -26,9 +28,9 @@ public class DeathPanel extends AbstractPanel<DeathController> {
      * @param score the final score to be displayed
      */
     public DeathPanel(final int score) {
-        setFocusable(true);
-        setPanelSize();
-        setBackground(Color.BLACK);
+        this.setFocusable(true);
+        this.setPanelSize();
+        this.setBackground(Color.BLACK);
         this.setOpaque(false);
         this.score = score;
     }

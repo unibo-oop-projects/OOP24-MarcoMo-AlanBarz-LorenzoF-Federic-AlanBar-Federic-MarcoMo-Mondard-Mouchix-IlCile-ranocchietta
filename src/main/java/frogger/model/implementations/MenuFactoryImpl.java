@@ -4,6 +4,10 @@ import frogger.common.GameState;
 import frogger.model.interfaces.Menu;
 import frogger.model.interfaces.MenuFactory;
 
+/**
+ * Implementation of the {@link MenuFactory} interface.
+ * Provides methods to create different menus based on the current game state.
+ */
 public class MenuFactoryImpl implements MenuFactory {
     /**
      * {@inheritDoc}

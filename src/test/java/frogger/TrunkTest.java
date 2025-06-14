@@ -30,7 +30,7 @@ final class TrunkTest {
 
     @Test
     void setObjTest() {
-        final PlayerObjectImpl frog = new PlayerObjectImpl(new Pair(50,50), "fede.png");
+        final PlayerObjectImpl frog = new PlayerObjectImpl(new Pair(50, 50), "fede.png");
         frog.setPos(trunk.getPos());
         Position pos = new Position(frog.getPos().x(), frog.getPos().y());
         trunk.setObj(frog);

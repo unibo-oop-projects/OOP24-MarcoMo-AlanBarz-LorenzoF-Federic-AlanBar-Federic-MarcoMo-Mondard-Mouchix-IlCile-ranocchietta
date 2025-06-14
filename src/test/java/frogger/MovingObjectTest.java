@@ -14,7 +14,7 @@ import frogger.model.interfaces.MovingObject;
 
 final class MovingObjectTest {
     private MovingObject movingObject;
-    
+
     @BeforeEach
     void setUp() {
         final float speed = Constants.MIN_SPEED;
@@ -28,7 +28,7 @@ final class MovingObjectTest {
     @Test
     void moveTest() {
         final Position newPos = new Position(5, 5);
-        
+
         //move left
         movingObject.setDirection(Direction.LEFT);
         movingObject.setPos(newPos);
@@ -71,14 +71,14 @@ final class MovingObjectTest {
         movingObject.setPos(newPos);
         movingObject.move();
         assertEquals(movingObject.getPos(), new Position(newPos.x(), Constants.MIN_Y - 1));
-    
+
         //check left
         newPos = new Position(Constants.MIN_X - 1, 0);
         movingObject.setDirection(Direction.LEFT);
         movingObject.setPos(newPos);
         movingObject.move();
         assertEquals(movingObject.getPos(), new Position(Constants.MAX_X + 1, newPos.y()));
-    
+
         //check bottom
         newPos = new Position(0, Constants.MIN_Y - 1);
         movingObject.setDirection(Direction.DOWN);
