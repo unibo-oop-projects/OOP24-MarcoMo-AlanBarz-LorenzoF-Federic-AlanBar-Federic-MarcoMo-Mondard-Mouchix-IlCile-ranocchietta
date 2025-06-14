@@ -214,18 +214,24 @@ public class LevelPainter {
                 final int imgSize = (Constants.BLOCK_HEIGHT / 2);
                 final int imgX = (int) this.getController().getXinPixel(Constants.MAX_X) - imgSize;
                 final int imgY = (int) this.getController().getYinPixel(Constants.MAX_Y - 2) - yOffset;
+                final int rectX = imgX - 4;
+                final int rectY = imgY - 4;
+                final int rectHigh = strWidth + imgSize + 16;
+                final int rectWidth = imgSize + 16;
+                final Color colorStr = new Color(0, 0, 0, 80);
+                final int xStr = imgX + imgSize + 5;
+                final int yStr = imgY + imgSize;
 
                 if (powerUp.getImage() != null) {
                     g.drawImage(powerUp.getImage(), imgX, imgY, imgSize, imgSize, null);
                 }
-                g.setColor(new Color(0, 0, 0, 80));
-                g.fillRect(imgX - 4, imgY - 4, strWidth + imgSize + 16, imgSize + 16);
+                g.setColor(colorStr);
+                g.fillRect(rectX, rectY, rectHigh, rectWidth);
                 g.setColor(Color.WHITE);
+
                 g.setFont(myFont);
-                g.drawString(durationStr,
-                imgX + imgSize + 5,
-                imgY + imgSize 
-                );
+                g.drawString(durationStr, xStr, yStr);
+
                 yOffset -= Constants.BLOCK_HEIGHT;
             }
 
