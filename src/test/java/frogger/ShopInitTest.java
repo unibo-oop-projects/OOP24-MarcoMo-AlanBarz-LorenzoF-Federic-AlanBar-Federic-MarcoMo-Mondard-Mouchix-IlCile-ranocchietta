@@ -37,7 +37,8 @@ class ShopInitTest {
 
     @Test
     void testShopInit() {
-        try (BufferedReader r = new BufferedReader(new InputStreamReader(getClass().getResourceAsStream(FILE_NAME)))) {
+        try (BufferedReader r = new BufferedReader(
+                new InputStreamReader(getClass().getResourceAsStream(FILE_NAME), java.nio.charset.StandardCharsets.UTF_8))) {
             final String line = r.readLine();
             assertEquals("Skin 1 ranocchietta.png true", line);
             final String[] values = line.split(" ");
@@ -83,12 +84,20 @@ class ShopInitTest {
         boolean renamed = false;
         if (saveFile.exists()) {
             renamed = saveFile.renameTo(backup);
+            if (!renamed) {
+                java.util.logging.Logger.getLogger(ShopInitTest.class.getName())
+                    .warning("Failed to rename shop_save.txt to shop_save_backup.txt");
+            }
         }
         shopController.shopInit();
         final var objects = shopController.getPurchasableObject();
         assertFalse(objects.isEmpty());
         if (renamed && backup.exists()) {
-            backup.renameTo(saveFile);
+            final boolean restored = backup.renameTo(saveFile);
+            if (!restored) {
+                java.util.logging.Logger.getLogger(ShopInitTest.class.getName())
+                    .warning("Failed to restore shop_save_backup.txt to shop_save.txt");
+            }
         }
     }
 }
