@@ -42,7 +42,8 @@ public class ShopController extends AbstractController {
      *
      * @return the game controller associated with this shop
      */
-    @SuppressFBWarnings(value = "EI_EXPOSE_REP", justification = "GameController is managed externally and this exposure is intentional.")
+    @SuppressFBWarnings(value = "EI_EXPOSE_REP",
+    justification = "GameController is managed externally and this exposure is intentional.")
     public GameController getGameController() {
         return this.gameController;
     }
