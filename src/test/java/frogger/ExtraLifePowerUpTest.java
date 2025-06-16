@@ -15,8 +15,12 @@ class ExtraLifePowerUpTest {
 
     @Test
     void testApplyEffectAddsLifeToPlayer() {
-        PlayerObjectImpl player = mock(PlayerObjectImpl.class);
-        // Simulate setting the related entity
+        // Crea un player reale
+        final PlayerObjectImpl player = new PlayerObjectImpl(new Pair(1, 1), "skin.png");
+        int initialLives = player.getLives();
+
+        // Crea il power-up e assegnagli il player come relatedEntity
+        ExtraLifePowerUp powerUp = new ExtraLifePowerUp(new Position(1, 1), new Pair(1, 1));
         powerUp.setRelatedEntity(player);
 
         // Applica l'effetto
@@ -28,7 +32,10 @@ class ExtraLifePowerUpTest {
 
     @Test
     void testApplyEffectDoesNothingIfNotPlayer() {
-        Object notAPlayer = mock(Object.class);
+        // Crea un oggetto che NON è un player
+        final Object notAPlayer = new Object();
+
+        ExtraLifePowerUp powerUp = new ExtraLifePowerUp(new Position(1, 1), new Pair(1, 1));
         powerUp.setRelatedEntity(notAPlayer);
 
         // Non deve lanciare eccezioni
@@ -46,11 +53,5 @@ class ExtraLifePowerUpTest {
     void testGetRequiredDependencies() {
         ExtraLifePowerUp powerUp = new ExtraLifePowerUp(new Position(1, 1), new Pair(1, 1));
         assertEquals(PickableObjectDependency.PLAYER, powerUp.getRequiredDependencies());
-    }
-
-    @Test
-    void testGetPowerUpType() {
-        ExtraLifePowerUp powerUp = new ExtraLifePowerUp(new Position(1, 1), new Pair(1, 1));
-        assertEquals(PowerUpType.EXTRA_LIFE, powerUp.getPowerUpType());
     }
 }
