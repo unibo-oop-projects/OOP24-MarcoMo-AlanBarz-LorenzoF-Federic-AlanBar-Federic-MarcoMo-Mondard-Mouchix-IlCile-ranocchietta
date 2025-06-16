@@ -233,7 +233,7 @@ public class LevelPainter {
      * Imports required images such as the background, heart (life), and death image.
      * Loads resources from the classpath.
      */
-    private void importImg() {
+    public void importImg() {
         background = LoadSave.getSprite("background.png");
         heart = LoadSave.getSprite("heart.png");
         death = LoadSave.getSprite("death.png");
