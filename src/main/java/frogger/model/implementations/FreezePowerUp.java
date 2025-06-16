@@ -32,7 +32,7 @@ import frogger.common.Position;
  */
 public class FreezePowerUp extends PowerUpImpl {
 
-    private float[] copyEntitiesSpeed;
+    private float[] copyEntitiesSpeed = new float[0];
 
     /**
      * Constructs a new {@code FreezePowerUp} at the specified position with the given dimensions and duration.
@@ -56,7 +56,7 @@ public class FreezePowerUp extends PowerUpImpl {
             int i = 0; // Index for storing speeds
             for (final Object obj : entities) {
                 if (obj instanceof MovingObjectImpl movingObjectImpl) {
-                    entitiesSpeed[i++] = (movingObjectImpl.getSpeed()); // Store the original speed
+                    entitiesSpeed[i++] = movingObjectImpl.getSpeed(); // Store the original speed
                     movingObjectImpl.setSpeed(0); // Stop the entity
                 }
             }
@@ -69,7 +69,7 @@ public class FreezePowerUp extends PowerUpImpl {
      */
     @Override
     public void removeEffect() {
-        if (super.getRelatedEntity() instanceof List<?> entities && getEntitiesSpeed() != null) {
+        if (super.getRelatedEntity() instanceof List<?> entities) {
             int i = 0;
             for (final Object obj : entities) {
                 if (obj instanceof MovingObjectImpl movingObjectImpl) {
@@ -101,7 +101,7 @@ public class FreezePowerUp extends PowerUpImpl {
      * @return an array of floats representing the speeds of the entities
      */
     public float[] getEntitiesSpeed() {
-        return this.copyEntitiesSpeed;
+        return this.copyEntitiesSpeed.clone();
     }
 
     /**
@@ -110,6 +110,6 @@ public class FreezePowerUp extends PowerUpImpl {
      * @param copyES an array of floats representing the speeds to be set for the entities
      */
     public void setEntitiesSpeed(final float[] copyES) {
-        this.copyEntitiesSpeed = copyES;
+        this.copyEntitiesSpeed = copyES.clone();
     }
 }

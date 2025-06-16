@@ -57,7 +57,7 @@ public class LevelPainter {
      *
      * @param g the Graphics context to draw on
      */
-    public void paintObstacles(final Graphics g) {
+    private void paintObstacles(final Graphics g) {
         for (final var obstacle : getController().getGame().getObstacles()) {
             g.drawImage(obstacle.getImage(), (int) this.getController().getXinPixel(obstacle.getPos().x()), 
                 (int) this.getController().getYinPixel(obstacle.getPos().y()), 
@@ -73,7 +73,7 @@ public class LevelPainter {
      *
      * @param g the Graphics context to draw on
      */
-    public void paintPlayer(final Graphics g) {
+    private void paintPlayer(final Graphics g) {
         final Graphics2D g2d = (Graphics2D) g;
         final var player = getController().getGame().getPlayer();
         final BufferedImage playerImage = player.getImage(); 
@@ -116,7 +116,7 @@ public class LevelPainter {
      *
      * @param g the Graphics context to draw on
      */
-    public void paintBackground(final Graphics g) {
+    private void paintBackground(final Graphics g) {
         g.drawImage(background, 0, 0, Constants.FRAME_WIDTH, Constants.FRAME_HEIGHT, null);
     }
 
@@ -125,11 +125,7 @@ public class LevelPainter {
      *
      * @param g the Graphics context to draw on
      */
-    public void paintLives(final Graphics g) {
-        // for (int i = 0; i < this.getController().getGame().getPlayer().getLives(); i++) {
-        //     g.drawImage(heart, (int) this.getController().getXinPixel(i + Constants.MIN_X) , 0, null);
-        // }
-
+    private void paintLives(final Graphics g) {
         final int lives = this.getController().getGame().getPlayer().getLives();
         final int heartWidth = Constants.BLOCK_WIDTH;
         final int heartHeight = Constants.BLOCK_HEIGHT;
@@ -147,7 +143,7 @@ public class LevelPainter {
      *
      * @param g the Graphics context to draw on
      */
-    public void paintScore(final Graphics g) {
+    private void paintScore(final Graphics g) {
         g.setColor(Color.WHITE);
         g.setFont(myFont);
         g.drawString("Punteggio: " + this.getController().getGame().getPlayer().getScore(), 
@@ -160,7 +156,7 @@ public class LevelPainter {
      *
      * @param g the Graphics context to draw on
      */
-    public void paintTotalCoins(final Graphics g) {
+    private void paintTotalCoins(final Graphics g) {
 
         final int startX = (int) getController().getXinPixel(Constants.MIN_X + 0.1);
         final int startY = (int) getController().getYinPixel(Constants.MAX_Y - 1.5);
@@ -178,12 +174,13 @@ public class LevelPainter {
 
         g.drawImage(LoadSave.getSprite("coin.png"), coinX, coinY, coinSize, coinSize, null);
     }
+
     /**
      * Paints all power-ups currently present in the level.
      *
      * @param g the Graphics context to draw on
      */
-    public void paintPickableObject(final Graphics g) {
+    private void paintPickableObject(final Graphics g) {
         for (final PickableObject obj : getController().getGame().getPickableObjects()) {
             g.drawImage(obj.getImage(), 
             (int) this.getController().getXinPixel(obj.getPos().x()), 
@@ -197,7 +194,7 @@ public class LevelPainter {
      *
      * @param g the Graphics context to draw on
      */
-    public void paintTimerPowerUp(final Graphics g) {
+    private void paintTimerPowerUp(final Graphics g) {
         int yOffset = 0;
         final List<PowerUp> powerUps = getController().getGame().getPickableObjectManager().getActivePowerUps();
         for (final PowerUp powerUp : powerUps) {
@@ -236,7 +233,7 @@ public class LevelPainter {
      * Imports required images such as the background, heart (life), and death image.
      * Loads resources from the classpath.
      */
-    public void importImg() {
+    private void importImg() {
         background = LoadSave.getSprite("background.png");
         heart = LoadSave.getSprite("heart.png");
         death = LoadSave.getSprite("death.png");
@@ -251,4 +248,3 @@ public class LevelPainter {
         return this.controller;
     }
 }
-

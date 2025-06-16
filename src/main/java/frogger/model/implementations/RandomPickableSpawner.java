@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import frogger.common.Constants;
 import frogger.common.Pair;
 import frogger.common.Position;
@@ -23,6 +24,10 @@ public class RandomPickableSpawner extends AbstractRandomEntitySpawner<PickableO
      * @param type the type of PickableObject to create (PowerUp or Coin)
      * @param alreadyPresent the positions of pickable objects that are already in the level (empty if there aren't)
      */
+    @SuppressFBWarnings(
+        value = "EI2",
+        justification = "Random is intentionally injected to allow deterministic behavior during testing"
+    )
     public RandomPickableSpawner(final Random ran, final Class<? extends PickableObject> type,
     final Set<Position> alreadyPresent) {
         super(ran);

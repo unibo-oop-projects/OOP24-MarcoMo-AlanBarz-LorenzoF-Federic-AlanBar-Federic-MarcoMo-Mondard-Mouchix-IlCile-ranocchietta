@@ -1,6 +1,5 @@
 package frogger.view;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
@@ -18,15 +17,17 @@ import frogger.controller.MenuControllerImpl;
  * @see MenuControllerImpl
  */
 public class MenuPanel extends AbstractPanel<MenuControllerImpl> {
-    private BufferedImage buttonBack;
+    /** Added because the class JPanel implements Serializable. */
+    private static final long serialVersionUID = 1L;
+
+    private transient BufferedImage buttonBack = new BufferedImage(1, 1, BufferedImage.TYPE_INT_RGB);
 
     /**
      * Constructs a new ShopPanel and sets its properties.
      */
     public MenuPanel() {
-        setFocusable(true);
-        setPanelSize();
-        setBackground(Color.BLACK);
+        super.setFocusable(true);
+        super.setPanelSize();
     }
 
     /**
@@ -43,7 +44,7 @@ public class MenuPanel extends AbstractPanel<MenuControllerImpl> {
      */
     @Override
     public void paintComponent(final Graphics g) {
-        paintBackground(g);
+        super.paintBackground(g);
         paintButtonBack(g);
         paintMenu(g);
     }
