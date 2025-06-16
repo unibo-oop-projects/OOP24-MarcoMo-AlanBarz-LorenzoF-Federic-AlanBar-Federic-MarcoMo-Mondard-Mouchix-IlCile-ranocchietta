@@ -45,9 +45,7 @@ class MenuImplTest {
             button.setMousePressed(true);
         }
 
-        /**
-         * We reset all state of button, calling mouseReleased
-         */
+        // We reset all state of button, calling mouseReleased
         menu.mouseReleased(new MouseEvent(
             new Canvas(), // source
             MouseEvent.MOUSE_RELEASED, // id

@@ -40,7 +40,7 @@ public class MenuImpl implements Menu {
     }
 
     private void loadButtons(final GameState... states) {
-        final int xPos = Constants.FRAME_WIDTH / 2;
+        final int xPos = Constants.FRAME_WIDTH / 2 - Constants.BUTTON_WIDTH / 2;
         final int yPos = Constants.FRAME_HEIGHT / 2;
         int i = 0;
         for (final GameState state : states) {

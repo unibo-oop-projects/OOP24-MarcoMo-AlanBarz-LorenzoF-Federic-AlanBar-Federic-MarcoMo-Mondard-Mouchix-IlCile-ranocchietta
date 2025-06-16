@@ -67,7 +67,7 @@ public class MenuPanel extends AbstractPanel<MenuControllerImpl> {
      * @param g the Graphics context to use for painting
      */
     private void paintMenu(final Graphics g) {
-        this.getController().getMenu().getButtonList().forEach((button) -> {
+        this.getController().getMenu().getButtonList().forEach(button -> {
             g.drawImage(button.getCurrentImg(), button.getXPos(), button.getYPos(),
             Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT, null);
         });

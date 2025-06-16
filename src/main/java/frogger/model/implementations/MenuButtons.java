@@ -75,7 +75,7 @@ public class MenuButtons implements Button {
      * The bounds are used for collision detection with mouse events.
      */
     private void initBounds() {
-        bounds = new Rectangle(xPos - Constants.BUTTON_WIDTH / 2, yPos, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
+        bounds = new Rectangle(xPos, yPos, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
     }
 
     /**
@@ -91,7 +91,7 @@ public class MenuButtons implements Button {
      */
     @Override
     public int getXPos() {
-        return xPos - Constants.BUTTON_WIDTH / 2;
+        return xPos;
     }
 
     /**
