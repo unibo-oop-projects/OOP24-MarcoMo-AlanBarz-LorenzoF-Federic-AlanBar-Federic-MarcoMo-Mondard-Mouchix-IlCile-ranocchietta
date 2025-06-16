@@ -2,57 +2,62 @@ package frogger;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
 
 import frogger.common.Pair;
 import frogger.common.Position;
 import frogger.model.implementations.ExtraLifePowerUp;
 import frogger.model.implementations.PickableObjectDependency;
 import frogger.model.implementations.PlayerObjectImpl;
+import frogger.model.implementations.PowerUpType;
 
 class ExtraLifePowerUpTest {
-    private ExtraLifePowerUp powerUp;
-    @SuppressWarnings("unused")
-    private Position position;
-    @SuppressWarnings("unused")
-    private Pair dimension;
-
-    @BeforeEach
-    void setUp() {
-        position = mock(Position.class);
-        dimension = mock(Pair.class);
-        //powerUp = new ExtraLifePowerUp(position, dimension, 0);
-    }
 
     @Test
     void testApplyEffectAddsLifeToPlayer() {
-        PlayerObjectImpl player = mock(PlayerObjectImpl.class);
-        // Simulate setting the related entity
+        // Crea un player reale
+        PlayerObjectImpl player = new PlayerObjectImpl(new Pair(1, 1), "skin.png");
+        int initialLives = player.getLives();
+
+        // Crea il power-up e assegnagli il player come relatedEntity
+        ExtraLifePowerUp powerUp = new ExtraLifePowerUp(new Position(1, 1), new Pair(1, 1));
         powerUp.setRelatedEntity(player);
+
+        // Applica l'effetto
         powerUp.applyEffect();
-        verify(player, times(1)).addLife();
+
+        // Verifica che le vite siano aumentate di 1
+        assertEquals(initialLives + 1, player.getLives());
     }
 
     @Test
     void testApplyEffectDoesNothingIfNotPlayer() {
-        Object notAPlayer = mock(Object.class);
+        // Crea un oggetto che NON è un player
+        Object notAPlayer = new Object();
+
+        ExtraLifePowerUp powerUp = new ExtraLifePowerUp(new Position(1, 1), new Pair(1, 1));
         powerUp.setRelatedEntity(notAPlayer);
-        // Should not throw or call addLife
-        assertDoesNotThrow(() -> powerUp.applyEffect());
+
+        // Non deve lanciare eccezioni
+        assertDoesNotThrow(powerUp::applyEffect);
     }
 
     @Test
     void testRemoveEffectDoesNothing() {
-        // Should not throw
-        assertDoesNotThrow(() -> powerUp.removeEffect());
+        ExtraLifePowerUp powerUp = new ExtraLifePowerUp(new Position(1, 1), new Pair(1, 1));
+        // Non deve lanciare eccezioni
+        assertDoesNotThrow(powerUp::removeEffect);
     }
 
     @Test
-    void testGetRequiredDependenciesReturnsPlayer() {
+    void testGetRequiredDependencies() {
+        ExtraLifePowerUp powerUp = new ExtraLifePowerUp(new Position(1, 1), new Pair(1, 1));
         assertEquals(PickableObjectDependency.PLAYER, powerUp.getRequiredDependencies());
+    }
+
+    @Test
+    void testGetPowerUpType() {
+        ExtraLifePowerUp powerUp = new ExtraLifePowerUp(new Position(1, 1), new Pair(1, 1));
+        assertEquals(PowerUpType.EXTRA_LIFE, powerUp.getPowerUpType());
     }
 }
