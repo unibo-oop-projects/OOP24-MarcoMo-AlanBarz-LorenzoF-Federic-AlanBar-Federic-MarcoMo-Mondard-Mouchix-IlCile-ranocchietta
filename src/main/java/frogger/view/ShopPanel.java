@@ -21,6 +21,8 @@ import frogger.model.interfaces.PurchasableObject;
  */
 public class ShopPanel extends AbstractPanel<ShopController> {
 
+    private static final double COINS_X_OFFSET = 0.25;
+    private static final double COINS_Y_OFFSET = 0.75;
     private static final long serialVersionUID = 1L;
     private final Font myFont = new Font("MyFont", 1, Constants.BLOCK_HEIGHT / 2);
 
@@ -86,7 +88,7 @@ public class ShopPanel extends AbstractPanel<ShopController> {
         });
 
         backButton.setBounds((int) this.getController().getXinPixel(Constants.MIN_X + 0.5), 
-            (int) this.getController().getYinPixel(Constants.MAX_Y - 0.25), 
+            (int) this.getController().getYinPixel(Constants.MAX_Y - COINS_X_OFFSET), 
             Constants.BUTTON_WIDTH_IN_PIXEL, 
             Constants.BUTTON_HEIGHT_IN_PIXEL); // Set position and size of the button
         this.add(backButton);
@@ -185,7 +187,7 @@ public class ShopPanel extends AbstractPanel<ShopController> {
         g.setColor(Color.WHITE);
         g.setFont(myFont);
         g.drawString("Coins: " + this.getController().getGameController().getCoins(), 
-        (int) this.getController().getXinPixel(Constants.MAX_X - 2), 
-        (int) this.getController().getYinPixel(Constants.MAX_Y - 0.75));
+            (int) this.getController().getXinPixel(Constants.MAX_X - COINS_X_OFFSET), 
+            (int) this.getController().getYinPixel(Constants.MAX_Y - COINS_Y_OFFSET));
     }
 }

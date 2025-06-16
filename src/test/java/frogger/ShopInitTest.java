@@ -21,9 +21,9 @@ import frogger.view.GameScene;
 
 class ShopInitTest {
 
-    private ShopController shopController;
     private static final String FILE_NAME = "/shop.txt";
     private static final GameController GAME_CONTROLLER = new GameControllerImpl();
+    private ShopController shopController;
     private PurchasableObjectFactory factoryPurchasable;
 
     @BeforeEach
@@ -49,7 +49,7 @@ class ShopInitTest {
             final Skin skin = this.factoryPurchasable.createSkin(
                 Integer.parseInt(values[1]),
                 values[2],
-                Boolean.valueOf(values[3])
+                Boolean.parseBoolean(values[3])
             );
 
             assertEquals(1, skin.getPrize());

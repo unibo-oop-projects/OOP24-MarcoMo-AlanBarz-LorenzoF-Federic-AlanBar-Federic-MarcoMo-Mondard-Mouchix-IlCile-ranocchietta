@@ -11,11 +11,11 @@ import java.awt.Toolkit;
  */
 public final class Constants {
     /** The screen dimension as detected from the system. */
-    private static final Dimension SCREEN = Toolkit.getDefaultToolkit().getScreenSize();
+    public static final Dimension SCREEN = Toolkit.getDefaultToolkit().getScreenSize();
     /** The screen height. */
-    private static final int SH = (int) SCREEN.getHeight();
+    public static final int SH = (int) SCREEN.getHeight();
     /** The scale factor for the game window. */
-    private static final double SCALE = 0.8;
+    public static final double SCALE = 0.8;
 
     /** Maximum number of iterations when spawning random entities. */
     public static final int MAX_ITERATIONS_NUMBER = 200;

@@ -14,12 +14,12 @@ import frogger.view.GameScene;
 
 class InputTest {
 
-    private GameControllerImpl controller;
     private static final int INITIAL_PLAYER_X = 0;
     private static final int INITIAL_PLAYER_Y = -6; 
     private static final int MODIFIED_X = -1;
     private static final int MODIFIED_Y = -5;
     private static final int MIN_PLAYER_X = -7;
+    private GameControllerImpl controller;
 
     @BeforeEach
     void setUp() {
