@@ -16,23 +16,25 @@ class MenuButtonsTest {
 
     @Test
     void testGettersAndBounds() {
-        MenuButtons button = new MenuButtons(100, 200, 1, GameState.PLAYING);
-        assertEquals(100, button.getXPos());
-        assertEquals(200, button.getYPos());
+        final int xPos = 100;
+        final int yPos = 200;
+        final MenuButtons button = new MenuButtons(xPos, yPos, 1, GameState.PLAYING);
+        assertEquals(xPos, button.getXPos());
+        assertEquals(yPos, button.getYPos());
 
-        Rectangle bounds = button.getBounds();
+        final Rectangle bounds = button.getBounds();
         assertNotNull(bounds);
-        assertEquals(100, bounds.x);
-        assertEquals(200, bounds.y);
+        assertEquals(xPos, bounds.x);
+        assertEquals(yPos, bounds.y);
 
         // Check that getBounds returns a copy
-        Rectangle bounds2 = button.getBounds();
+        final Rectangle bounds2 = button.getBounds();
         assertNotSame(bounds, bounds2);
     }
 
     @Test
     void testMouseStates() {
-        MenuButtons button = new MenuButtons(0, 0, 0, GameState.PLAYING);
+        final MenuButtons button = new MenuButtons(0, 0, 0, GameState.PLAYING);
 
         button.setMouseOver(true);
         assertTrue(button.isMouseOver());
@@ -47,7 +49,7 @@ class MenuButtonsTest {
 
     @Test
     void testApplyGameState() {
-        MenuButtons button = new MenuButtons(0, 0, 0, GameState.PAUSE);
+        final MenuButtons button = new MenuButtons(0, 0, 0, GameState.PAUSE);
         button.applyGameState();
         assertEquals(GameState.PAUSE, GameState.getState());
     }

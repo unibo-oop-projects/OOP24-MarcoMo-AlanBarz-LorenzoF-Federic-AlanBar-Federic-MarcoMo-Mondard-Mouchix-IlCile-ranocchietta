@@ -4,6 +4,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -30,25 +31,25 @@ class PickableObjectManagerImplTest {
     }
 
     @Test
-    void testAddPickableObject_PowerUp() {
-        FreezePowerUp freeze = new FreezePowerUp(new Position(0, 0), new Pair(1, 1), 5);
-        ExtraLifePowerUp extraLife = new ExtraLifePowerUp(new Position(0, 0), new Pair(1, 1));
+    void testAddPickableObjectPowerUp() {
+        final FreezePowerUp freeze = new FreezePowerUp(new Position(0, 0), new Pair(1, 1), 5);
+        final ExtraLifePowerUp extraLife = new ExtraLifePowerUp(new Position(0, 0), new Pair(1, 1));
 
         manager.addPickableObject(freeze);
         manager.addPickableObject(extraLife);
 
-        List<PowerUp> active = manager.getActivePowerUps();
+        final List<PowerUp> active = manager.getActivePowerUps();
         assertEquals(2, active.size());
         if (active.get(0) instanceof FreezePowerUp) {
             assertTrue(active.get(0).isActive());
         } else {
-            assert(active.get(0).isActive() == false);
+            assertFalse(active.get(0).isActive());
         }
     }
 
     @Test
-    void testCheckPowerUps_RemovesInactive() {
-        FreezePowerUp freeze = new FreezePowerUp(new Position(0, 0), new Pair(1, 1), 1);
+    void testCheckPowerUpsRemovesInactive() {
+        final FreezePowerUp freeze = new FreezePowerUp(new Position(0, 0), new Pair(1, 1), 1);
 
         manager.addPickableObject(freeze);
 
@@ -59,15 +60,15 @@ class PickableObjectManagerImplTest {
     }
 
     @Test
-    void testAddPickableObject_NonPowerUp() {
-        PickableObjectImpl obj = new PickableObjectImpl(new Position(0, 0), new Pair(1, 1)) {
+    void testAddPickableObjectNonPowerUp() {
+        final PickableObjectImpl obj = new PickableObjectImpl(new Position(0, 0), new Pair(1, 1)) {
             @Override
             public PickableObjectDependency getRequiredDependencies() {
                 return PickableObjectDependency.PLAYER;
             }
 
             @Override
-            public void onPick() {}
+            public void onPick() { }
         };
         obj.setRelatedEntity(game.getPlayer());
 

@@ -3,7 +3,6 @@ package frogger;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -15,14 +14,12 @@ import frogger.model.implementations.PickableObjectDependency;
 
 class CoinTest {
 
-    private Position position;
-    private Pair dimension;
     private Coin coin;
 
     @BeforeEach
     void setUp() {
-        position = new Position(1, 2);
-        dimension = new Pair(10, 10);
+        final Position position = new Position(1, 2);
+        final Pair dimension = new Pair(10, 10);
         coin = new Coin(position, dimension);
     }
 
@@ -33,35 +30,25 @@ class CoinTest {
 
     @Test
     void testOnPickIncreasesCoinsByRandomValue() {
-        GameControllerImpl controller = new GameControllerImpl();
+        final GameControllerImpl controller = new GameControllerImpl();
         controller.setCoins(10);
+        final int startCoinValue = controller.getCoins();
 
-        try {
-            var field = coin.getClass().getSuperclass().getDeclaredField("relatedEntity");
-            field.setAccessible(true);
-            field.set(coin, controller);
-        } catch (IllegalAccessException | IllegalArgumentException | NoSuchFieldException | SecurityException e) {
-            fail("Failed to set relatedEntity: " + e.getMessage());
-        }
+        coin.setRelatedEntity(controller);
 
         coin.onPick();
 
-        int coins = controller.getCoins();
-        assertTrue(coins >= 11 && coins <= 15,
+        final int coins = controller.getCoins();
+        final int minCoinValue = 1;
+        final int maxCoinValue = 5;
+        assertTrue(coins >= startCoinValue + minCoinValue && coins <= startCoinValue + maxCoinValue,
                 "Coins after pick: " + coins);
     }
 
     @Test
     void testOnPickDoesNothingIfRelatedEntityIsNotGameController() {
-        Object unrelatedEntity = new Object();
-        try {
-            var field = coin.getClass().getSuperclass().getDeclaredField("relatedEntity");
-            field.setAccessible(true);
-            field.set(coin, unrelatedEntity);
-        } catch (IllegalAccessException | IllegalArgumentException | NoSuchFieldException | SecurityException e) {
-            fail("Failed to set relatedEntity: " + e.getMessage());
-        }
-
-        assertDoesNotThrow(() -> coin.onPick());
+        final Object unrelatedEntity = new Object();
+        coin.setRelatedEntity(unrelatedEntity);
+        assertDoesNotThrow(coin::onPick);
     }
 }

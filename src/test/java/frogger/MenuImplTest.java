@@ -30,17 +30,17 @@ class MenuImplTest {
 
     @Test
     void testButtonClickChangesGameState() {
-        Button button = menu.getButtonList().get(0);
-        GameState initialState = GameState.getState();
+        final Button button = menu.getButtonList().get(0);
+        final GameState initialState = GameState.getState();
         button.applyGameState();
         assertEquals(GameState.PLAYING, GameState.getState());
-        // Ripristina lo stato per non influenzare altri test
+        // Restore the state to avoid affecting other tests
         GameState.setState(initialState);
     }
 
     @Test
     void testResetAllButtons() {
-        for (Button button : menu.getButtonList()) {
+        for (final Button button : menu.getButtonList()) {
             button.setMouseOver(true);
             button.setMousePressed(true);
         }
@@ -59,7 +59,7 @@ class MenuImplTest {
             false // popupTrigger
         ));
 
-        for (Button button : menu.getButtonList()) {
+        for (final Button button : menu.getButtonList()) {
             assertFalse(button.isMouseOver());
             assertFalse(button.isMousePressed());
         }
