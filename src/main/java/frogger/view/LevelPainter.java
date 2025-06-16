@@ -33,7 +33,6 @@ public class LevelPainter {
      */
     public LevelPainter(final GameController controller) {
         this.controller = controller;
-        importImg();
     }
 
     /**

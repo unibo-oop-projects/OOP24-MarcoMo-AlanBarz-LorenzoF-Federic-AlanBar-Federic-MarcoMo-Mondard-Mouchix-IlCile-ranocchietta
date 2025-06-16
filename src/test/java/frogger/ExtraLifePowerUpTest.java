@@ -30,7 +30,7 @@ class ExtraLifePowerUpTest {
 
     @Test
     void testApplyEffectAddsLifeToPlayer() {
-        PlayerObjectImpl player = mock(PlayerObjectImpl.class);
+        final PlayerObjectImpl player = mock(PlayerObjectImpl.class);
         // Simulate setting the related entity
         powerUp.setRelatedEntity(player);
         powerUp.applyEffect();
@@ -39,7 +39,7 @@ class ExtraLifePowerUpTest {
 
     @Test
     void testApplyEffectDoesNothingIfNotPlayer() {
-        Object notAPlayer = mock(Object.class);
+        final Object notAPlayer = mock(Object.class);
         powerUp.setRelatedEntity(notAPlayer);
         // Should not throw or call addLife
         assertDoesNotThrow(() -> powerUp.applyEffect());

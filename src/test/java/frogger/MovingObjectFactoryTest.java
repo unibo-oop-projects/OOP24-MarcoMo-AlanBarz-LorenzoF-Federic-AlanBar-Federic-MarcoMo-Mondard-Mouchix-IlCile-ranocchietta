@@ -27,7 +27,6 @@ final class MovingObjectFactoryTest {
         final Position pos = new Position(100, 100);
         MovingObject ob;
 
-
         //Car
         ob = factory.createMovingObject(pos, dim, speed, dir, Car.class);
         assertEquals(Car.class, ob.getClass());

@@ -23,6 +23,7 @@ public class GamePanel extends AbstractPanel<GameControllerImpl> {
         super.setFocusable(true);
         super.setPanelSize();
         super.setBackground(Color.BLACK);
+        painter.importImg();
     }
 
 
