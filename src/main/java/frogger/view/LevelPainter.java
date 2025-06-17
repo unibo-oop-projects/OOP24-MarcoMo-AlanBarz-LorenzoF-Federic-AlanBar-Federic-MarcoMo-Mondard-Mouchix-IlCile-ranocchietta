@@ -7,6 +7,7 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.util.List;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import frogger.common.Constants;
 import frogger.common.Direction;
 import frogger.common.LoadSave;
@@ -31,6 +32,10 @@ public class LevelPainter {
      *
      * @param controller the GameController managing the game state
      */
+    @SuppressFBWarnings(
+        value = "EI_EXPOSE_REP",
+        justification = "The exposure of GameController is intentional: its lifecycle is managed externally to LevelPainter."
+    )
     public LevelPainter(final GameController controller) {
         this.controller = controller;
     }
@@ -241,6 +246,7 @@ public class LevelPainter {
 
     /**
      * Returns the GameController associated with this painter.
+     * The exposure of GameController is intentional: its lifecycle is managed externally to LevelPainter.
      *
      * @return the game controller
      */

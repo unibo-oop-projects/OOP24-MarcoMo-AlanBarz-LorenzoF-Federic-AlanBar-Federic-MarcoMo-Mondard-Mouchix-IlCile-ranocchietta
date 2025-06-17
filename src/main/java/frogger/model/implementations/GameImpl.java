@@ -2,6 +2,7 @@ package frogger.model.implementations;
 
 import java.util.List;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import frogger.common.Constants;
 import frogger.common.GameState;
 import frogger.common.Pair;
@@ -135,6 +136,10 @@ public class GameImpl implements Game {
      * Returns the internal PlayerObject reference. Modifying the returned object will affect this GameImpl.
      * </p>
      */
+    @SuppressFBWarnings(
+        value = "EI_EXPOSE_REP",
+        justification = "Player is managed externally and this exposure is intentional"
+    )
     @Override
     public PlayerObject getPlayer() {
         return this.player;
@@ -156,6 +161,10 @@ public class GameImpl implements Game {
     /**
      * {@inheritDoc}
      */
+    @SuppressFBWarnings(
+        value = "EI_EXPOSE_REP",
+        justification = "Level is managed externally and this exposure is intentional"
+    )
     @Override
     public Level getLevel() {
         return this.level;
@@ -188,8 +197,9 @@ public class GameImpl implements Game {
      * Checks if any eagle should be triggered based on the player's position.
      */
     public void checkEagleTrigger() {
+        final double epsilon = 1e-6;
         for (final var eagle : this.level.getEagles()) {
-            if (eagle.getTrigger() == this.getPlayer().getPos().y()) { 
+            if (Math.abs(eagle.getTrigger() - this.getPlayer().getPos().y()) < epsilon) {
                 eagle.start();
             }
         }
@@ -214,6 +224,10 @@ public class GameImpl implements Game {
     /**
      * {@inheritDoc}
      */
+    @SuppressFBWarnings(
+        value = "EI_EXPOSE_REP",
+        justification = "PickableObjectManager is managed externally and this exposure is intentional"
+    )
     @Override
     public PickableObjectManagerImpl getPickableObjectManager() {
         return this.pickableObjectManager;

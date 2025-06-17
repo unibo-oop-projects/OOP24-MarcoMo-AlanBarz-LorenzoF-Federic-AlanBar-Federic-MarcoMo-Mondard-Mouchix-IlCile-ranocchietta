@@ -37,6 +37,15 @@ public class GameControllerImpl extends AbstractController implements GameContro
     private PickableObjectManagerImpl pickableObjectManager;
 
     /**
+     * Constructs a new GameControllerImpl instance.
+     * Initializes the game with default settings and starts a new game session.
+     */
+    public GameControllerImpl() {
+        this.coins = 0; // Initialize coins to zero
+        this.newGame(); // Start a new game session
+    }
+
+    /**
      * {@inheritDoc}
      * Initializes the game scene and sets up the game panel.
      */
@@ -111,7 +120,7 @@ public class GameControllerImpl extends AbstractController implements GameContro
      * Starts a new game session, resetting all relevant state.
      */
     @Override
-    public void newGame() {
+    public final void newGame() {
         this.game = new GameImpl(new Pair(Constants.PLAYER_WIDTH, Constants.PLAYER_HEIGHT), this.skin);
     }
 
@@ -151,4 +160,3 @@ public class GameControllerImpl extends AbstractController implements GameContro
         this.skin = skin;
     }
 }
-

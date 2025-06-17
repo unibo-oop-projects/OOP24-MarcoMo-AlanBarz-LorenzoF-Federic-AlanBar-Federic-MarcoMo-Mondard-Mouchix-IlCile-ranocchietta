@@ -3,6 +3,7 @@ package frogger.model.implementations;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import frogger.common.LoadSave;
 import frogger.common.Pair;
 import frogger.common.Position;
@@ -52,9 +53,17 @@ public abstract class GameObjectImpl implements GameObject {
     /**
      * {@inheritDoc}
      */
+    @SuppressFBWarnings(
+        value = "EI_EXPOSE_REP",
+        justification = "HitBox is managed externally and this exposure is intentional"
+    )
     @Override
     public Rectangle2D.Float getHitBox() {
-        return this.hitbox;
+        return new Rectangle2D.Float(
+            this.hitbox.x,
+            this.hitbox.y,
+            this.hitbox.width,
+            this.hitbox.height);
     }
 
     /**
@@ -87,7 +96,17 @@ public abstract class GameObjectImpl implements GameObject {
      */
     @Override
     public BufferedImage getImage() {
-        return img;
+        if (this.img == null) {
+            return null;
+        }
+
+        final BufferedImage copy = new BufferedImage(
+            this.img.getWidth(),
+            this.img.getHeight(),
+            this.img.getType()
+        );
+        copy.setData(this.img.getData());
+        return copy;
     }
 
     /**

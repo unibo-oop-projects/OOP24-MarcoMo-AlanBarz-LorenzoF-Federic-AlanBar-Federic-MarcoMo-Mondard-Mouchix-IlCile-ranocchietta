@@ -17,6 +17,7 @@ import java.util.logging.Logger;
 
 import frogger.controller.ShopController;
 import frogger.model.interfaces.PurchasableObject;
+import frogger.model.interfaces.PurchasableObjectFactory;
 import frogger.model.interfaces.Shop;
 
 /**
@@ -34,7 +35,7 @@ public class ShopImpl implements Shop {
     /** List of purchasable objects available in the shop. */
     private final List<PurchasableObject> purchasableObjects;
     /** Factory for creating purchasable objects. */
-    private final PurchasableObjectFactoryImpl factory;
+    private final PurchasableObjectFactory factory;
 
     /**
      * Constructs a new ShopImpl, initializing the purchasable objects list and factory.

@@ -13,7 +13,7 @@ import frogger.controller.GameControllerImpl;
 public class GamePanel extends AbstractPanel<GameControllerImpl> {
     /*added because the class JPanel implements Serializable. */
     private static final long serialVersionUID = 1L;
-    private LevelPainter painter;
+    private transient LevelPainter painter;
 
     /**
      * Constructs the game panel, sets its focusable state, size,
@@ -23,7 +23,6 @@ public class GamePanel extends AbstractPanel<GameControllerImpl> {
         super.setFocusable(true);
         super.setPanelSize();
         super.setBackground(Color.BLACK);
-        painter.importImg();
     }
 
 
@@ -34,7 +33,11 @@ public class GamePanel extends AbstractPanel<GameControllerImpl> {
      */
     @Override
     public void paintComponent(final Graphics g) {
-        painter.paintLevel(g);
+        if (painter != null) {
+            painter.paintLevel(g);
+        } else {
+            super.paintComponent(g);
+        }
     } 
 
     /**
@@ -43,6 +46,7 @@ public class GamePanel extends AbstractPanel<GameControllerImpl> {
     @Override
     protected void importImg() {
         painter = new LevelPainter(getController());
+        painter.importImg();
     }
 
     /**

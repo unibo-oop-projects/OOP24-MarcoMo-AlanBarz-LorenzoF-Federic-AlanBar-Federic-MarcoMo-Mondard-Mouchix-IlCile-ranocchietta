@@ -30,6 +30,10 @@ public class ShopController extends AbstractController {
      *
      * @param gc the main game controller
      */
+    @SuppressFBWarnings(
+        value = "EI_EXPOSE_REP",
+        justification = "The exposure of GameController is intentional: its lifecycle is managed externally to LevelPainter."
+    )
     public ShopController(final GameController gc) {
         this.shop = new ShopImpl();
         this.gameController = gc;
@@ -39,12 +43,13 @@ public class ShopController extends AbstractController {
     /**
      * Returns the internal GameController reference.
      * Modifying the returned object will affect this ShopController.
+     * The exposure of GameController is intentional: its lifecycle is managed externally to ShopController.
      *
      * @return the game controller associated with this shop
      */
     @SuppressFBWarnings(
         value = "EI_EXPOSE_REP",
-        justification = "GameController is managed externally and this exposure is intentional"
+        justification = "The exposure of GameController is intentional: its lifecycle is managed externally to ShopController."
     )
     public GameController getGameController() {
         return this.gameController;

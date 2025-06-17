@@ -12,6 +12,8 @@ import frogger.model.interfaces.Carrier;
  * Trunks may carry an object and change his position, it can be setted and removed, thanks the Carrier implementation
  */
 public class Trunk extends MovingObjectImpl implements Carrier<PlayerObjectImpl> {
+    /** Tolerance for float comparisons. */
+    private static final float EPSILON = 1e-5f;
     /** The possible object to carry is the frog.*/
     private Optional<PlayerObjectImpl> frog = Optional.empty();
 
@@ -50,7 +52,7 @@ public class Trunk extends MovingObjectImpl implements Carrier<PlayerObjectImpl>
     @Override
     protected void step() {
         if (frog.isPresent()) {
-            if (frog.get().getPos().y() != this.getPos().y()) {
+            if (Math.abs(frog.get().getPos().y() - this.getPos().y()) > EPSILON) {
                 this.removeObj();
             } else {
                 frog.get().setPos(new Position(frog.get().getPos().x() + this.getDirectionValue().x() * this.getSpeed(), 
