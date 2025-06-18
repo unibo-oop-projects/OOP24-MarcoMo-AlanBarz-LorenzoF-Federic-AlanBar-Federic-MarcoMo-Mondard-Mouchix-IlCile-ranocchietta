@@ -135,7 +135,6 @@ public class ShopPanel extends AbstractPanel<ShopController> {
 
                     this.getController().getGameController().setSkin(img);
                     purchasableObject.setAvailable(true);
-                    this.getController().updateShop();
                     this.updateButtons();
                 }
             });

@@ -102,12 +102,4 @@ public class ShopController extends AbstractController {
     protected boolean loopCondition() {
         return GameState.getState() == GameState.SHOP;
     }
-
-    /**
-     * Saves the current state of purchasable objects to the shop save file.
-     * Uses UTF-8 encoding for writing.
-     */
-    public void updateShop() { 
-        this.shop.update();
-    }
 }

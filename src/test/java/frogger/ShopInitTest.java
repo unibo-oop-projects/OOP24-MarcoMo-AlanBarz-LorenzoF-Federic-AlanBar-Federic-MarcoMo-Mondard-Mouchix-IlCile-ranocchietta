@@ -69,35 +69,10 @@ class ShopInitTest {
         final var objects = shopController.getPurchasableObject();
         final Skin skin = (Skin) objects.get(0);
         skin.setAvailable(false);
-        shopController.updateShop();
 
         shopController.shopInit();
         final var reloadedObjects = shopController.getPurchasableObject();
         final Skin reloadedSkin = (Skin) reloadedObjects.get(0);
         assertFalse(reloadedSkin.isAvailable());
-    }
-
-    @Test
-    void testShopInitWithMissingFile() {
-        final java.io.File saveFile = new java.io.File("shop_save.txt");
-        final java.io.File backup = new java.io.File("shop_save_backup.txt");
-        boolean renamed = false;
-        if (saveFile.exists()) {
-            renamed = saveFile.renameTo(backup);
-            if (!renamed) {
-                java.util.logging.Logger.getLogger(ShopInitTest.class.getName())
-                    .warning("Failed to rename shop_save.txt to shop_save_backup.txt");
-            }
-        }
-        shopController.shopInit();
-        final var objects = shopController.getPurchasableObject();
-        assertFalse(objects.isEmpty());
-        if (renamed && backup.exists()) {
-            final boolean restored = backup.renameTo(saveFile);
-            if (!restored) {
-                java.util.logging.Logger.getLogger(ShopInitTest.class.getName())
-                    .warning("Failed to restore shop_save_backup.txt to shop_save.txt");
-            }
-        }
     }
 }

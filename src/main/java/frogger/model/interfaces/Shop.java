@@ -21,10 +21,4 @@ public interface Shop {
      * Populates the internal list of purchasable objects.
      */
     void init();
-
-    /**
-     * Saves the current state of purchasable objects to the shop save file.
-     * Uses UTF-8 encoding for writing.
-     */
-    void update();
 }
