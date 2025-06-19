@@ -5,5 +5,6 @@ Skin 10 scimmia.png false
 Skin 10 tucano.png false
 Skin 10 cane.png false
 Skin 20 fede.png false
+Skin 20 lollo.png false
 Skin 20 cile.png false
 Skin 20 mouchi.png false
