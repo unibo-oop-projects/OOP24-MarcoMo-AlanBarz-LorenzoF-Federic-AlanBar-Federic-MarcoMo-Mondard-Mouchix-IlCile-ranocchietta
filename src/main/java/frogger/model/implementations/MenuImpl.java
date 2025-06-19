@@ -39,6 +39,14 @@ public class MenuImpl implements Menu {
         loadButtons(states);
     }
 
+    /**
+     * Loads and positions menu buttons corresponding to the given game states.
+     * <p>
+     * The buttons are horizontally centered on the screen and vertically spaced
+     * based on the total number of {@link GameState} entries. Each button is associated
+     * with an image index matching the ordinal value of its respective state.
+     * </p>
+     */
     private void loadButtons(final GameState... states) {
         final int xPos = Constants.FRAME_WIDTH / 2 - Constants.BUTTON_WIDTH / 2;
         final int yPos = Constants.FRAME_HEIGHT / 2;
